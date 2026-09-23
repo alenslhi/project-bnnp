@@ -86,22 +86,22 @@
             <div class="mt-8 pt-6 border-t border-white/10">
                 <p class="text-[11px] font-semibold uppercase tracking-wider text-surface-400 mb-3 text-center">Akun Percobaan (Seeder)</p>
                 <div class="space-y-1.5 text-xs">
-                    <button type="button" onclick="fillCreds('superadmin@bnnp.go.id', 'password')"
+                    <button type="button" onclick="fillCreds('superadmin@bnnp-sulteng.go.id', 'password')"
                             class="w-full flex items-center justify-between p-2 rounded-lg bg-white/5 hover:bg-white/10 text-left transition">
                         <span class="text-surface-300 font-medium">👑 Super Admin</span>
                         <span class="text-[11px] text-primary-400">klik isi otomatis</span>
                     </button>
-                    <button type="button" onclick="fillCreds('brantas@bnnp.go.id', 'password')"
+                    <button type="button" onclick="fillCreds('brantas@bnnp-sulteng.go.id', 'password')"
                             class="w-full flex items-center justify-between p-2 rounded-lg bg-white/5 hover:bg-white/10 text-left transition">
                         <span class="text-surface-300 font-medium">🎯 Admin Pemberantasan</span>
                         <span class="text-[11px] text-primary-400">klik isi otomatis</span>
                     </button>
-                    <button type="button" onclick="fillCreds('rehab@bnnp.go.id', 'password')"
+                    <button type="button" onclick="fillCreds('rehab@bnnp-sulteng.go.id', 'password')"
                             class="w-full flex items-center justify-between p-2 rounded-lg bg-white/5 hover:bg-white/10 text-left transition">
                         <span class="text-surface-300 font-medium">🏥 Admin Rehabilitasi</span>
                         <span class="text-[11px] text-primary-400">klik isi otomatis</span>
                     </button>
-                    <button type="button" onclick="fillCreds('cegah@bnnp.go.id', 'password')"
+                    <button type="button" onclick="fillCreds('cegah@bnnp-sulteng.go.id', 'password')"
                             class="w-full flex items-center justify-between p-2 rounded-lg bg-white/5 hover:bg-white/10 text-left transition">
                         <span class="text-surface-300 font-medium">🛡️ Admin Pencegahan</span>
                         <span class="text-[11px] text-primary-400">klik isi otomatis</span>
