@@ -3,9 +3,25 @@
 @section('title', 'Peta Zona Kerawanan')
 
 @push('styles')
+{{-- Mapbox CSS --}}
+<link href="https://api.mapbox.com/mapbox-gl-js/v3.2.0/mapbox-gl.css" rel="stylesheet">
 <style>
-    #peta-zona { height: calc(100vh - 12rem); min-height: 500px; border-radius: 1rem; }
+    #peta-zona { height: calc(100vh - 12rem); min-height: 500px; border-radius: 1rem; width: 100%; }
     .legend-color { width: 14px; height: 14px; border-radius: 4px; display: inline-block; }
+    
+    /* Mapbox Popup Dark Theme */
+    .mapboxgl-popup-content {
+        background-color: #0f172a;
+        color: #f8fafc;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 0.75rem;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+        padding: 1rem;
+    }
+    .mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip { border-top-color: #0f172a; }
+    .mapboxgl-popup-anchor-top .mapboxgl-popup-tip { border-bottom-color: #0f172a; }
+    .mapboxgl-popup-close-button { color: #94a3b8; padding: 4px 8px; font-size: 16px; }
+    .mapboxgl-popup-close-button:hover { background-color: transparent; color: #f8fafc; }
 </style>
 @endpush
 
@@ -37,69 +53,170 @@
         </div>
 
         {{-- Map Container --}}
-        <div class="rounded-2xl border border-white/5 bg-surface-900/60 p-2 overflow-hidden">
+        <div class="rounded-2xl border border-white/5 bg-surface-900/60 p-2 overflow-hidden relative">
             <div id="peta-zona"></div>
+            @if(!env('MAPBOX_ACCESS_TOKEN'))
+            <div class="absolute inset-0 bg-surface-900/80 flex items-center justify-center z-10 flex-col gap-2 p-6 text-center rounded-xl backdrop-blur-sm">
+                <svg class="w-12 h-12 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                </svg>
+                <h3 class="text-xl font-bold text-white">Mapbox Access Token Belum Dikonfigurasi</h3>
+                <p class="text-surface-300 max-w-md">Silakan tambahkan <code>MAPBOX_ACCESS_TOKEN=token_anda</code> di dalam file <code>.env</code> Anda untuk menampilkan peta ini.</p>
+            </div>
+            @endif
         </div>
     </section>
 
 @endsection
 
 @push('scripts')
+{{-- Mapbox JS --}}
+<script src="https://api.mapbox.com/mapbox-gl-js/v3.2.0/mapbox-gl.js"></script>
+
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Inisialisasi peta Leaflet — center di Sulawesi Tengah
-    const map = L.map('peta-zona', {
-        zoomControl: true,
-        scrollWheelZoom: true,
-    }).setView([-1.0, 120.5], 7);
+    const mapboxToken = '{{ env("MAPBOX_ACCESS_TOKEN") }}';
+    
+    if (!mapboxToken) return; // Hentikan eksekusi jika token tidak ada
 
-    // Tile layer (dark style)
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/">CARTO</a>',
-        maxZoom: 18,
-    }).addTo(map);
+    mapboxgl.accessToken = mapboxToken;
 
-    // Warna berdasarkan status zona
-    const statusColors = {
-        'merah': '#ef4444',
-        'kuning': '#f59e0b',
-        'hijau': '#10b981',
-    };
+    const map = new mapboxgl.Map({
+        container: 'peta-zona',
+        style: 'mapbox://styles/mapbox/dark-v11', // Tampilan gelap modern
+        center: [120.5, -1.0], // Longitude, Latitude Sulawesi Tengah
+        zoom: 6,
+        pitch: 45, // Sudut kemiringan 3D
+        bearing: -17.6,
+        antialias: true
+    });
 
-    // Load data GeoJSON dari endpoint
-    fetch('{{ route("peta.geojson") }}')
-        .then(res => res.json())
-        .then(data => {
-            L.geoJSON(data, {
-                pointToLayer: function(feature, latlng) {
-                    const color = statusColors[feature.properties.status_zona] || '#3b82f6';
-                    return L.circleMarker(latlng, {
-                        radius: 10 + (feature.properties.jumlah_kasus / 5),
-                        fillColor: color,
-                        color: color,
-                        weight: 2,
-                        opacity: 0.9,
-                        fillOpacity: 0.35,
-                    });
-                },
-                onEachFeature: function(feature, layer) {
-                    const p = feature.properties;
-                    const statusLabel = {
-                        'merah': '<span style="color:#ef4444;font-weight:700">⬤ MERAH — Rawan Tinggi</span>',
-                        'kuning': '<span style="color:#f59e0b;font-weight:700">⬤ KUNING — Rawan Sedang</span>',
-                        'hijau': '<span style="color:#10b981;font-weight:700">⬤ HIJAU — Rawan Rendah</span>',
-                    };
-                    layer.bindPopup(`
-                        <div style="font-family:Inter,sans-serif;min-width:200px">
-                            <h3 style="font-size:16px;font-weight:700;margin:0 0 8px">${p.nama_wilayah}</h3>
-                            <div style="margin-bottom:6px">${statusLabel[p.status_zona]}</div>
-                            <div style="font-size:13px;color:#64748b;margin-bottom:4px"><strong>Jumlah Kasus:</strong> ${p.jumlah_kasus}</div>
-                            <div style="font-size:12px;color:#94a3b8">${p.deskripsi || '-'}</div>
+    // Menambahkan kontrol navigasi (zoom in/out)
+    map.addControl(new mapboxgl.NavigationControl(), 'top-right');
+
+    map.on('load', () => {
+        // Fetch GeoJSON data dari route Laravel
+        fetch('{{ route("peta.geojson") }}')
+            .then(response => response.json())
+            .then(data => {
+                
+                // Tambahkan source data GeoJSON
+                map.addSource('zona-kerawanan', {
+                    type: 'geojson',
+                    data: data
+                });
+
+                // Layer untuk poligon / area (jika tipe data adalah Polygon)
+                map.addLayer({
+                    'id': 'zona-polygons',
+                    'type': 'fill',
+                    'source': 'zona-kerawanan',
+                    'paint': {
+                        'fill-color': [
+                            'match',
+                            ['get', 'status_zona'],
+                            'merah', '#ef4444',
+                            'kuning', '#f59e0b',
+                            'hijau', '#10b981',
+                            '#3b82f6' // Default color
+                        ],
+                        'fill-opacity': 0.4
+                    },
+                    'filter': ['==', '$type', 'Polygon']
+                });
+
+                // Layer outline untuk poligon
+                map.addLayer({
+                    'id': 'zona-polygons-outline',
+                    'type': 'line',
+                    'source': 'zona-kerawanan',
+                    'paint': {
+                        'line-color': [
+                            'match',
+                            ['get', 'status_zona'],
+                            'merah', '#ef4444',
+                            'kuning', '#f59e0b',
+                            'hijau', '#10b981',
+                            '#3b82f6'
+                        ],
+                        'line-width': 2
+                    },
+                    'filter': ['==', '$type', 'Polygon']
+                });
+
+                // Layer titik/points (jika data belum diupdate menjadi polygon)
+                map.addLayer({
+                    'id': 'zona-points',
+                    'type': 'circle',
+                    'source': 'zona-kerawanan',
+                    'paint': {
+                        'circle-radius': [
+                            '+', 8, ['/', ['get', 'jumlah_kasus'], 5]
+                        ],
+                        'circle-color': [
+                            'match',
+                            ['get', 'status_zona'],
+                            'merah', '#ef4444',
+                            'kuning', '#f59e0b',
+                            'hijau', '#10b981',
+                            '#3b82f6'
+                        ],
+                        'circle-stroke-width': 2,
+                        'circle-stroke-color': '#ffffff'
+                    },
+                    'filter': ['==', '$type', 'Point']
+                });
+
+                // Setup interaksi klik untuk Popup
+                const popup = new mapboxgl.Popup({
+                    closeButton: true,
+                    closeOnClick: true,
+                    className: 'zona-popup'
+                });
+
+                const statusLabel = {
+                    'merah': '<span style="color:#ef4444;font-weight:700">⬤ MERAH — Rawan Tinggi</span>',
+                    'kuning': '<span style="color:#f59e0b;font-weight:700">⬤ KUNING — Rawan Sedang</span>',
+                    'hijau': '<span style="color:#10b981;font-weight:700">⬤ HIJAU — Rawan Rendah</span>',
+                };
+
+                // Fungsi click handler yang bisa dipakai di titik maupun poligon
+                const clickHandler = (e) => {
+                    const properties = e.features[0].properties;
+                    const coordinates = e.lngLat;
+                    
+                    const nama = properties.nama_wilayah;
+                    const status = properties.status_zona;
+                    const kasus = properties.jumlah_kasus;
+                    const deskripsi = properties.deskripsi;
+
+                    const html = `
+                        <div style="font-family:Inter,sans-serif;min-width:200px;">
+                            <h3 style="font-size:16px;font-weight:700;margin:0 0 8px">${nama}</h3>
+                            <div style="margin-bottom:6px">${statusLabel[status] || status}</div>
+                            <div style="font-size:13px;color:#cbd5e1;margin-bottom:4px"><strong>Jumlah Kasus:</strong> ${kasus}</div>
+                            <div style="font-size:12px;color:#94a3b8;margin-top:8px;line-height:1.4">${deskripsi || '-'}</div>
                         </div>
-                    `);
-                }
-            }).addTo(map);
-        });
+                    `;
+
+                    popup.setLngLat(coordinates).setHTML(html).addTo(map);
+                };
+
+                // Bind klik ke layer poligon
+                map.on('click', 'zona-polygons', clickHandler);
+                
+                // Ubah kursor jadi pointer saat hover poligon
+                map.on('mouseenter', 'zona-polygons', () => { map.getCanvas().style.cursor = 'pointer'; });
+                map.on('mouseleave', 'zona-polygons', () => { map.getCanvas().style.cursor = ''; });
+
+                // Bind klik ke layer point
+                map.on('click', 'zona-points', clickHandler);
+                
+                // Ubah kursor jadi pointer saat hover point
+                map.on('mouseenter', 'zona-points', () => { map.getCanvas().style.cursor = 'pointer'; });
+                map.on('mouseleave', 'zona-points', () => { map.getCanvas().style.cursor = ''; });
+            });
+    });
 });
 </script>
 @endpush
