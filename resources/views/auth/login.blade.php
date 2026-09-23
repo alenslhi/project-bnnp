@@ -13,11 +13,7 @@
         <div class="rounded-3xl border border-white/10 bg-surface-900/80 backdrop-blur-2xl p-8 sm:p-10 shadow-2xl">
             {{-- Header --}}
             <div class="text-center mb-8">
-                <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-primary-500 to-primary-700 shadow-xl shadow-primary-500/25 mb-4">
-                    <svg class="h-7 w-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
-                    </svg>
-                </div>
+                <img src="{{ asset('images/logo-bnn.png') }}" alt="Logo BNNP Sulteng" class="mx-auto h-16 w-auto object-contain mb-4 drop-shadow-xl">
                 <h1 class="text-2xl font-extrabold text-white">Login Admin & Petugas</h1>
                 <p class="text-xs text-surface-400 mt-1">Sistem Edukasi & Pemetaan BNNP Sulawesi Tengah</p>
             </div>

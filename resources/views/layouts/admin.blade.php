@@ -22,11 +22,7 @@
 
             {{-- Sidebar Header --}}
             <div class="flex items-center gap-3 px-5 h-16 border-b border-white/5 shrink-0">
-                <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-primary-500 to-primary-700 shadow-lg shadow-primary-500/20">
-                    <svg class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
-                    </svg>
-                </div>
+                <img src="{{ asset('images/logo-bnn.png') }}" alt="Logo BNNP Sulteng" class="h-9 w-auto object-contain">
                 <div>
                     <span class="block text-sm font-bold text-white leading-tight">BNNP Admin</span>
                     <span class="block text-[10px] text-surface-400 font-medium uppercase tracking-wider">Sulawesi Tengah</span>
