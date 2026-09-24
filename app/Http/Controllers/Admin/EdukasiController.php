@@ -51,7 +51,9 @@ class EdukasiController extends Controller
 
         $validated['penulis_id'] = Auth::id();
 
-        Edukasi::create($validated);
+        $edukasi = Edukasi::create($validated);
+
+        \App\Models\ActivityLog::record('CREATE_EDUKASI', "Menambahkan materi edukasi: {$edukasi->judul}");
 
         return redirect()->route('admin.edukasi.index')
             ->with('success', 'Materi edukasi berhasil ditambahkan.');
@@ -84,6 +86,8 @@ class EdukasiController extends Controller
 
         $edukasi->update($validated);
 
+        \App\Models\ActivityLog::record('UPDATE_EDUKASI', "Mengupdate materi edukasi: {$edukasi->judul}");
+
         return redirect()->route('admin.edukasi.index')
             ->with('success', 'Materi edukasi berhasil diperbarui.');
     }
@@ -95,7 +99,10 @@ class EdukasiController extends Controller
     {
         $this->authorizeOwnership($edukasi);
 
+        $judul = $edukasi->judul;
         $edukasi->delete();
+
+        \App\Models\ActivityLog::record('DELETE_EDUKASI', "Menghapus materi edukasi: {$judul}");
 
         return redirect()->route('admin.edukasi.index')
             ->with('success', 'Materi edukasi berhasil dihapus.');

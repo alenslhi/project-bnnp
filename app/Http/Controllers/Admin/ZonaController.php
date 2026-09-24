@@ -39,7 +39,9 @@ class ZonaController extends Controller
             'deskripsi'         => ['nullable', 'string'],
         ]);
 
-        Zona::create($validated);
+        $zona = Zona::create($validated);
+
+        \App\Models\ActivityLog::record('CREATE_ZONA', "Menambahkan zona rawan baru: {$zona->nama_wilayah}");
 
         return redirect()->route('admin.zona.index')
             ->with('success', 'Zona berhasil ditambahkan.');
@@ -68,6 +70,8 @@ class ZonaController extends Controller
 
         $zona->update($validated);
 
+        \App\Models\ActivityLog::record('UPDATE_ZONA', "Mengupdate data zona: {$zona->nama_wilayah}");
+
         return redirect()->route('admin.zona.index')
             ->with('success', 'Zona berhasil diperbarui.');
     }
@@ -77,7 +81,10 @@ class ZonaController extends Controller
      */
     public function destroy(Zona $zona)
     {
+        $nama = $zona->nama_wilayah;
         $zona->delete();
+
+        \App\Models\ActivityLog::record('DELETE_ZONA', "Menghapus zona: {$nama}");
 
         return redirect()->route('admin.zona.index')
             ->with('success', 'Zona berhasil dihapus.');
