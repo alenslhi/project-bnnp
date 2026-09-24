@@ -24,6 +24,9 @@ Route::get('/api/peta/geojson', [PetaController::class, 'geoJson'])->name('peta.
 Route::get('/edukasi', [EdukasiController::class, 'index'])->name('edukasi.index');
 Route::get('/edukasi/{edukasi}', [EdukasiController::class, 'show'])->name('edukasi.show');
 
+// FAQ & Kontak
+Route::get('/faq-kontak', [\App\Http\Controllers\FaqKontakController::class, 'index'])->name('faq-kontak');
+
 // ══════════════════════════════════════════════════════════════
 // AUTENTIKASI
 // ══════════════════════════════════════════════════════════════
@@ -43,6 +46,15 @@ Route::prefix('admin')
 
         // Dashboard (semua admin)
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+        // ── Manajemen User (Super Admin) ──
+        Route::resource('users', \App\Http\Controllers\Admin\UserController::class)
+            ->middleware('role:super_admin');
+
+        // ── Log Aktivitas (Super Admin) ──
+        Route::get('logs', [\App\Http\Controllers\Admin\ActivityLogController::class, 'index'])
+            ->name('logs.index')
+            ->middleware('role:super_admin');
 
         // ── Manajemen Zona (Super Admin & Admin Pemberantasan) ──
         Route::resource('zona', AdminZonaController::class)
