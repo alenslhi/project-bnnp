@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Zona;
+use Illuminate\Http\Request;
 
 class PetaController extends Controller
 {
@@ -21,9 +22,15 @@ class PetaController extends Controller
      * API endpoint: Ambil data zona dalam format GeoJSON untuk Leaflet.
      * Digunakan oleh JavaScript di frontend.
      */
-    public function geoJson()
+    public function geoJson(Request $request)
     {
-        $zonas = Zona::all();
+        $query = Zona::query();
+
+        if ($request->has('status') && in_array($request->status, ['merah', 'kuning', 'hijau'])) {
+            $query->where('status_zona', $request->status);
+        }
+
+        $zonas = $query->get();
 
         $features = $zonas->map(function (Zona $zona) {
             return [

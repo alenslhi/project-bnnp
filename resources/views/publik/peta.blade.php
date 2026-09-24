@@ -20,21 +20,34 @@
 
     {{-- Legend + Map --}}
     <section class="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
-        {{-- Legend --}}
-        <div class="flex flex-wrap gap-4 mb-4">
-            <div class="flex items-center gap-2 rounded-lg border border-white/5 bg-surface-900/60 px-4 py-2">
-                <span class="legend-color bg-red-500"></span>
-                <span class="text-sm text-surface-300">Merah — Rawan Tinggi</span>
+        <div class="flex flex-wrap items-center justify-between gap-4 mb-4">
+            {{-- Legend --}}
+            <div class="flex flex-wrap gap-4">
+                <div class="flex items-center gap-2 rounded-lg border border-white/5 bg-surface-900/60 px-4 py-2">
+                    <span class="legend-color bg-red-500"></span>
+                    <span class="text-sm text-surface-300">Merah — Rawan Tinggi</span>
+                </div>
+                <div class="flex items-center gap-2 rounded-lg border border-white/5 bg-surface-900/60 px-4 py-2">
+                    <span class="legend-color bg-yellow-500"></span>
+                    <span class="text-sm text-surface-300">Kuning — Rawan Sedang</span>
+                </div>
+                <div class="flex items-center gap-2 rounded-lg border border-white/5 bg-surface-900/60 px-4 py-2">
+                    <span class="legend-color bg-emerald-500"></span>
+                    <span class="text-sm text-surface-300">Hijau — Rawan Rendah</span>
+                </div>
             </div>
-            <div class="flex items-center gap-2 rounded-lg border border-white/5 bg-surface-900/60 px-4 py-2">
-                <span class="legend-color bg-yellow-500"></span>
-                <span class="text-sm text-surface-300">Kuning — Rawan Sedang</span>
-            </div>
-            <div class="flex items-center gap-2 rounded-lg border border-white/5 bg-surface-900/60 px-4 py-2">
-                <span class="legend-color bg-emerald-500"></span>
-                <span class="text-sm text-surface-300">Hijau — Rawan Rendah</span>
+            
+            {{-- Filter --}}
+            <div>
+                <select id="filter-status" class="rounded-xl bg-surface-900 border border-white/10 px-4 py-2 text-sm text-white focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition outline-none shadow-sm">
+                    <option value="">Semua Zona</option>
+                    <option value="merah">Hanya Merah</option>
+                    <option value="kuning">Hanya Kuning</option>
+                    <option value="hijau">Hanya Hijau</option>
+                </select>
             </div>
         </div>
+
 
         {{-- Map Container --}}
         <div class="rounded-2xl border border-white/5 bg-surface-900/60 p-2 overflow-hidden">
@@ -67,49 +80,65 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     // Load data GeoJSON dari endpoint
-    fetch('{{ route("peta.geojson") }}')
-        .then(res => res.json())
-        .then(data => {
-            L.geoJSON(data, {
-                style: function(feature) {
-                    const color = statusColors[feature.properties.status_zona] || '#3b82f6';
-                    return {
-                        fillColor: color,
-                        color: color,
-                        weight: 2,
-                        opacity: 0.9,
-                        fillOpacity: 0.35
-                    };
-                },
-                pointToLayer: function(feature, latlng) {
-                    const color = statusColors[feature.properties.status_zona] || '#3b82f6';
-                    return L.circleMarker(latlng, {
-                        radius: 10 + (feature.properties.jumlah_kasus / 5),
-                        fillColor: color,
-                        color: color,
-                        weight: 2,
-                        opacity: 0.9,
-                        fillOpacity: 0.35,
-                    });
-                },
-                onEachFeature: function(feature, layer) {
-                    const p = feature.properties;
-                    const statusLabel = {
-                        'merah': '<span style="color:#ef4444;font-weight:700">⬤ MERAH — Rawan Tinggi</span>',
-                        'kuning': '<span style="color:#f59e0b;font-weight:700">⬤ KUNING — Rawan Sedang</span>',
-                        'hijau': '<span style="color:#10b981;font-weight:700">⬤ HIJAU — Rawan Rendah</span>',
-                    };
-                    layer.bindPopup(`
-                        <div style="font-family:Inter,sans-serif;min-width:200px">
-                            <h3 style="font-size:16px;font-weight:700;margin:0 0 8px">${p.nama_wilayah}</h3>
-                            <div style="margin-bottom:6px">${statusLabel[p.status_zona]}</div>
-                            <div style="font-size:13px;color:#64748b;margin-bottom:4px"><strong>Jumlah Kasus:</strong> ${p.jumlah_kasus}</div>
-                            <div style="font-size:12px;color:#94a3b8">${p.deskripsi || '-'}</div>
-                        </div>
-                    `);
+    let geoJsonLayer;
+
+    function loadDataPeta(status = '') {
+        const url = `{{ route("peta.geojson") }}${status ? '?status=' + status : ''}`;
+        fetch(url)
+            .then(res => res.json())
+            .then(data => {
+                if (geoJsonLayer) {
+                    map.removeLayer(geoJsonLayer);
                 }
-            }).addTo(map);
-        });
+                geoJsonLayer = L.geoJSON(data, {
+                    style: function(feature) {
+                        const color = statusColors[feature.properties.status_zona] || '#3b82f6';
+                        return {
+                            fillColor: color,
+                            color: color,
+                            weight: 2,
+                            opacity: 0.9,
+                            fillOpacity: 0.35
+                        };
+                    },
+                    pointToLayer: function(feature, latlng) {
+                        const color = statusColors[feature.properties.status_zona] || '#3b82f6';
+                        return L.circleMarker(latlng, {
+                            radius: 10 + (feature.properties.jumlah_kasus / 5),
+                            fillColor: color,
+                            color: color,
+                            weight: 2,
+                            opacity: 0.9,
+                            fillOpacity: 0.35,
+                        });
+                    },
+                    onEachFeature: function(feature, layer) {
+                        const p = feature.properties;
+                        const statusLabel = {
+                            'merah': '<span style="color:#ef4444;font-weight:700">⬤ MERAH — Rawan Tinggi</span>',
+                            'kuning': '<span style="color:#f59e0b;font-weight:700">⬤ KUNING — Rawan Sedang</span>',
+                            'hijau': '<span style="color:#10b981;font-weight:700">⬤ HIJAU — Rawan Rendah</span>',
+                        };
+                        layer.bindPopup(`
+                            <div style="font-family:Inter,sans-serif;min-width:200px">
+                                <h3 style="font-size:16px;font-weight:700;margin:0 0 8px">${p.nama_wilayah}</h3>
+                                <div style="margin-bottom:6px">${statusLabel[p.status_zona]}</div>
+                                <div style="font-size:13px;color:#64748b;margin-bottom:4px"><strong>Jumlah Kasus:</strong> ${p.jumlah_kasus}</div>
+                                <div style="font-size:12px;color:#94a3b8">${p.deskripsi || '-'}</div>
+                            </div>
+                        `);
+                    }
+                }).addTo(map);
+            });
+    }
+
+    // Load data awal
+    loadDataPeta();
+
+    // Event listener untuk filter dropdown
+    document.getElementById('filter-status').addEventListener('change', function() {
+        loadDataPeta(this.value);
+    });
 });
 </script>
 @endpush
