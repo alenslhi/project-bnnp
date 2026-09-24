@@ -52,6 +52,11 @@
                               {{ request()->routeIs('edukasi.*') ? 'bg-primary-500/15 text-primary-400' : 'text-surface-300 hover:text-white hover:bg-white/5' }}">
                         Edukasi
                     </a>
+                    <a href="{{ route('faq-kontak') }}"
+                       class="px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200
+                              {{ request()->routeIs('faq-kontak') ? 'bg-primary-500/15 text-primary-400' : 'text-surface-300 hover:text-white hover:bg-white/5' }}">
+                        FAQ & Kontak
+                    </a>
                 </div>
 
                 {{-- Right Side --}}
@@ -86,6 +91,7 @@
                 <a href="{{ route('beranda') }}" class="block px-4 py-2.5 rounded-lg text-sm font-medium {{ request()->routeIs('beranda') ? 'bg-primary-500/15 text-primary-400' : 'text-surface-300 hover:bg-white/5' }}">Beranda</a>
                 <a href="{{ route('peta') }}" class="block px-4 py-2.5 rounded-lg text-sm font-medium {{ request()->routeIs('peta') ? 'bg-primary-500/15 text-primary-400' : 'text-surface-300 hover:bg-white/5' }}">Peta Zona</a>
                 <a href="{{ route('edukasi.index') }}" class="block px-4 py-2.5 rounded-lg text-sm font-medium {{ request()->routeIs('edukasi.*') ? 'bg-primary-500/15 text-primary-400' : 'text-surface-300 hover:bg-white/5' }}">Edukasi</a>
+                <a href="{{ route('faq-kontak') }}" class="block px-4 py-2.5 rounded-lg text-sm font-medium {{ request()->routeIs('faq-kontak') ? 'bg-primary-500/15 text-primary-400' : 'text-surface-300 hover:bg-white/5' }}">FAQ & Kontak</a>
                 @auth
                     <a href="{{ route('admin.dashboard') }}" class="block px-4 py-2.5 rounded-lg text-sm font-medium text-primary-400 bg-primary-500/10">Dashboard Admin</a>
                 @endauth
@@ -142,6 +148,7 @@
                         <li><a href="{{ route('beranda') }}" class="text-sm text-surface-400 hover:text-primary-400 transition">Beranda</a></li>
                         <li><a href="{{ route('peta') }}" class="text-sm text-surface-400 hover:text-primary-400 transition">Peta Zona Kerawanan</a></li>
                         <li><a href="{{ route('edukasi.index') }}" class="text-sm text-surface-400 hover:text-primary-400 transition">Katalog Edukasi</a></li>
+                        <li><a href="{{ route('faq-kontak') }}" class="text-sm text-surface-400 hover:text-primary-400 transition">FAQ & Kontak Darurat</a></li>
                     </ul>
                 </div>
 
