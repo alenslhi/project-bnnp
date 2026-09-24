@@ -56,7 +56,7 @@
                     </button>
                     <div x-show="open" x-collapse>
                         <div class="px-5 pb-5 text-sm text-surface-300 leading-relaxed pt-2 border-t border-white/5">
-                            Anda dapat melapor melalui Call Center BNN di nomor <strong>106</strong> atau mengirimkan SMS ke <strong>081221675675</strong>. Identitas pelapor akan dirahasiakan dan dilindungi sepenuhnya oleh undang-undang perlindungan saksi.
+                            Anda dapat melapor melalui Call Center BNN di nomor <strong>184</strong> atau menghubungi BNNP Sulteng di <strong>08114511344</strong>. Identitas pelapor akan dirahasiakan dan dilindungi sepenuhnya oleh undang-undang perlindungan saksi.
                         </div>
                     </div>
                 </div>
@@ -78,8 +78,8 @@
                                 <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
                             </div>
                             <div>
-                                <p class="text-sm font-medium text-primary-400">Call Center Nasional</p>
-                                <p class="text-2xl font-bold text-white tracking-wider">106</p>
+                                <p class="text-sm font-medium text-primary-400">Call Center BNN</p>
+                                <p class="text-2xl font-bold text-white tracking-wider">184</p>
                             </div>
                         </div>
 
@@ -89,8 +89,8 @@
                                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
                                 </div>
                                 <div>
-                                    <p class="text-xs text-surface-400">WhatsApp Pengaduan</p>
-                                    <p class="font-semibold text-white">+62 812-3456-7890</p>
+                                    <p class="text-xs text-surface-400">Call Centre BNNP Sulteng</p>
+                                    <p class="font-semibold text-white">08114511344</p>
                                 </div>
                             </div>
                             
@@ -100,7 +100,7 @@
                                 </div>
                                 <div>
                                     <p class="text-xs text-surface-400">Email Resmi</p>
-                                    <p class="font-semibold text-white">info@bnnp-sulteng.go.id</p>
+                                    <p class="font-semibold text-white">bnnpsulteng@gmail.com</p>
                                 </div>
                             </div>
                         </div>
