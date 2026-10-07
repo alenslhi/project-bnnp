@@ -52,6 +52,11 @@
                               {{ request()->routeIs('edukasi.*') ? 'bg-primary-500/15 text-primary-400' : 'text-surface-300 hover:text-white hover:bg-white/5' }}">
                         Edukasi
                     </a>
+                    <a href="{{ route('statistik') }}"
+                       class="px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200
+                              {{ request()->routeIs('statistik') ? 'bg-primary-500/15 text-primary-400' : 'text-surface-300 hover:text-white hover:bg-white/5' }}">
+                        Statistik
+                    </a>
                     <a href="{{ route('faq-kontak') }}"
                        class="px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200
                               {{ request()->routeIs('faq-kontak') ? 'bg-primary-500/15 text-primary-400' : 'text-surface-300 hover:text-white hover:bg-white/5' }}">
@@ -61,19 +66,7 @@
 
                 {{-- Right Side --}}
                 <div class="flex items-center gap-3">
-                    @auth
-                        <a href="{{ route('admin.dashboard') }}"
-                           class="hidden sm:inline-flex items-center gap-2 rounded-lg bg-primary-600 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-primary-600/25 transition hover:bg-primary-500 hover:shadow-primary-500/30">
-                            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>
-                            Dashboard
-                        </a>
-                    @else
-                        <a href="{{ route('login') }}"
-                           class="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-surface-200 transition hover:bg-white/10 hover:text-white">
-                            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/></svg>
-                            Login
-                        </a>
-                    @endauth
+
 
                     {{-- Mobile Menu Toggle --}}
                     <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg text-surface-400 hover:text-white hover:bg-white/5 transition">
@@ -91,10 +84,9 @@
                 <a href="{{ route('beranda') }}" class="block px-4 py-2.5 rounded-lg text-sm font-medium {{ request()->routeIs('beranda') ? 'bg-primary-500/15 text-primary-400' : 'text-surface-300 hover:bg-white/5' }}">Beranda</a>
                 <a href="{{ route('peta') }}" class="block px-4 py-2.5 rounded-lg text-sm font-medium {{ request()->routeIs('peta') ? 'bg-primary-500/15 text-primary-400' : 'text-surface-300 hover:bg-white/5' }}">Peta Zona</a>
                 <a href="{{ route('edukasi.index') }}" class="block px-4 py-2.5 rounded-lg text-sm font-medium {{ request()->routeIs('edukasi.*') ? 'bg-primary-500/15 text-primary-400' : 'text-surface-300 hover:bg-white/5' }}">Edukasi</a>
+                <a href="{{ route('statistik') }}" class="block px-4 py-2.5 rounded-lg text-sm font-medium {{ request()->routeIs('statistik') ? 'bg-primary-500/15 text-primary-400' : 'text-surface-300 hover:bg-white/5' }}">Statistik</a>
                 <a href="{{ route('faq-kontak') }}" class="block px-4 py-2.5 rounded-lg text-sm font-medium {{ request()->routeIs('faq-kontak') ? 'bg-primary-500/15 text-primary-400' : 'text-surface-300 hover:bg-white/5' }}">FAQ & Kontak</a>
-                @auth
-                    <a href="{{ route('admin.dashboard') }}" class="block px-4 py-2.5 rounded-lg text-sm font-medium text-primary-400 bg-primary-500/10">Dashboard Admin</a>
-                @endauth
+
             </div>
         </div>
     </nav>

@@ -48,74 +48,10 @@ class DatabaseSeeder extends Seeder
         ]);
 
         // ──────────────────────────────────────────────
-        // Zona Kerawanan (Sample data Sulawesi Tengah)
+        // Zona Kerawanan (Seluruh 13 Kabupaten/Kota se-Sulawesi Tengah Poligon Resmi)
         // ──────────────────────────────────────────────
 
-        Zona::create([
-            'nama_wilayah'      => 'Kota Palu',
-            'koordinat_geojson' => json_encode([
-                'type'        => 'Point',
-                'coordinates' => [119.8707, -0.8917],
-            ]),
-            'status_zona'  => 'merah',
-            'jumlah_kasus' => 45,
-            'deskripsi'    => 'Zona kerawanan tinggi di ibukota provinsi.',
-        ]);
-
-        Zona::create([
-            'nama_wilayah'      => 'Kabupaten Donggala',
-            'koordinat_geojson' => json_encode([
-                'type'        => 'Point',
-                'coordinates' => [119.7414, -0.6805],
-            ]),
-            'status_zona'  => 'kuning',
-            'jumlah_kasus' => 18,
-            'deskripsi'    => 'Zona kerawanan sedang, area pesisir.',
-        ]);
-
-        Zona::create([
-            'nama_wilayah'      => 'Kabupaten Sigi',
-            'koordinat_geojson' => json_encode([
-                'type'        => 'Point',
-                'coordinates' => [119.9864, -1.4591],
-            ]),
-            'status_zona'  => 'kuning',
-            'jumlah_kasus' => 12,
-            'deskripsi'    => 'Zona kerawanan sedang, area pedalaman.',
-        ]);
-
-        Zona::create([
-            'nama_wilayah'      => 'Kabupaten Parigi Moutong',
-            'koordinat_geojson' => json_encode([
-                'type'        => 'Point',
-                'coordinates' => [120.1778, -0.3695],
-            ]),
-            'status_zona'  => 'hijau',
-            'jumlah_kasus' => 5,
-            'deskripsi'    => 'Zona kerawanan rendah.',
-        ]);
-
-        Zona::create([
-            'nama_wilayah'      => 'Kabupaten Toli-Toli',
-            'koordinat_geojson' => json_encode([
-                'type'        => 'Point',
-                'coordinates' => [120.7940, 1.0527],
-            ]),
-            'status_zona'  => 'merah',
-            'jumlah_kasus' => 32,
-            'deskripsi'    => 'Zona kerawanan tinggi, area perbatasan.',
-        ]);
-
-        Zona::create([
-            'nama_wilayah'      => 'Kabupaten Banggai',
-            'koordinat_geojson' => json_encode([
-                'type'        => 'Point',
-                'coordinates' => [122.7902, -1.5757],
-            ]),
-            'status_zona'  => 'kuning',
-            'jumlah_kasus' => 15,
-            'deskripsi'    => 'Zona kerawanan sedang.',
-        ]);
+        $this->call(ZonaSultengSeeder::class);
 
         // ──────────────────────────────────────────────
         // Edukasi (Sample data)

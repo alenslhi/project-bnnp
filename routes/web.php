@@ -7,6 +7,7 @@ use App\Http\Controllers\PetaController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\EdukasiController as AdminEdukasiController;
 use App\Http\Controllers\Admin\ZonaController as AdminZonaController;
+use App\Http\Controllers\StatistikController;
 use Illuminate\Support\Facades\Route;
 
 // ══════════════════════════════════════════════════════════════
@@ -27,12 +28,15 @@ Route::get('/edukasi/{edukasi}', [EdukasiController::class, 'show'])->name('eduk
 // FAQ & Kontak
 Route::get('/faq-kontak', [\App\Http\Controllers\FaqKontakController::class, 'index'])->name('faq-kontak');
 
+// Statistik Dashboard
+Route::get('/statistik', [StatistikController::class, 'index'])->name('statistik');
+
 // ══════════════════════════════════════════════════════════════
 // AUTENTIKASI
 // ══════════════════════════════════════════════════════════════
 
-Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
-Route::post('/login', [AuthController::class, 'login']);
+Route::get('/admin', [AuthController::class, 'showLogin'])->name('login');
+Route::post('/admin', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // ══════════════════════════════════════════════════════════════
@@ -64,4 +68,9 @@ Route::prefix('admin')
         // ── Manajemen Edukasi (Super Admin & semua Admin Bidang) ──
         Route::resource('edukasi', AdminEdukasiController::class)
             ->except(['show']);
+
+        // ── Manajemen Statistik Kasus (Super Admin & semua Admin Bidang) ──
+        Route::get('statistik', [\App\Http\Controllers\Admin\StatistikKasusController::class, 'index'])->name('statistik.index');
+        Route::post('statistik/import', [\App\Http\Controllers\Admin\StatistikKasusController::class, 'import'])->name('statistik.import');
+        Route::delete('statistik/destroy/{nama_dataset}', [\App\Http\Controllers\Admin\StatistikKasusController::class, 'destroyDataset'])->name('statistik.destroy');
     });
