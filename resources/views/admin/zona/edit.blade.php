@@ -80,10 +80,14 @@
                     <label for="koordinat_geojson" class="block text-xs font-semibold uppercase tracking-wider text-surface-300">
                         Data Koordinat GeoJSON (Opsional)
                     </label>
-                    <span class="text-[11px] text-surface-500 font-mono">Format JSON Leaflet</span>
+                    <span class="text-[11px] text-emerald-400 font-medium">✓ Poligon Resmi Tersedia</span>
                 </div>
-                <textarea name="koordinat_geojson" id="koordinat_geojson" rows="4"
-                          class="font-mono text-xs w-full rounded-xl border border-white/10 bg-surface-950/70 px-4 py-3 text-white placeholder-surface-600 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500/20 transition">{{ old('koordinat_geojson', $zona->koordinat_geojson) }}</textarea>
+                <textarea name="koordinat_geojson" id="koordinat_geojson" rows="3"
+                          placeholder="Biarkan kosong untuk tetap menggunakan poligon batas wilayah resmi Sulawesi Tengah saat ini."
+                          class="font-mono text-xs w-full rounded-xl border border-white/10 bg-surface-950/70 px-4 py-3 text-white placeholder-surface-500 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500/20 transition">{{ old('koordinat_geojson') }}</textarea>
+                <p class="mt-1.5 text-[11px] text-surface-400">
+                    💡 Wilayah ini sudah memiliki batas resmi. <strong>Biarkan kotak di atas kosong</strong> jika hanya ingin memperbarui status kerawanan/warna, jumlah kasus, atau deskripsi.
+                </p>
                 @error('koordinat_geojson')
                     <p class="mt-1 text-xs text-danger-400">{{ $message }}</p>
                 @enderror

@@ -13,9 +13,10 @@ class ZonaController extends Controller
      */
     public function index()
     {
-        $zonas = Zona::latest()->paginate(10);
+        $allZonas = Zona::orderBy('nama_wilayah')->get();
+        $zonas = Zona::orderBy('nama_wilayah')->paginate(15);
 
-        return view('admin.zona.index', compact('zonas'));
+        return view('admin.zona.index', compact('zonas', 'allZonas'));
     }
 
     /**
@@ -61,16 +62,28 @@ class ZonaController extends Controller
     public function update(Request $request, Zona $zona)
     {
         $validated = $request->validate([
-            'nama_wilayah'      => ['required', 'string', 'max:255'],
+            'nama_wilayah'      => ['sometimes', 'required', 'string', 'max:255'],
             'koordinat_geojson' => ['nullable', 'string'],
             'status_zona'       => ['required', 'in:merah,kuning,hijau'],
             'jumlah_kasus'      => ['required', 'integer', 'min:0'],
             'deskripsi'         => ['nullable', 'string'],
         ]);
 
+        if (empty($validated['koordinat_geojson'])) {
+            unset($validated['koordinat_geojson']);
+        }
+
         $zona->update($validated);
 
-        \App\Models\ActivityLog::record('UPDATE_ZONA', "Mengupdate data zona: {$zona->nama_wilayah}");
+        \App\Models\ActivityLog::record('UPDATE_ZONA', "Mengupdate data zona: {$zona->nama_wilayah} menjadi status {$zona->status_zona}");
+
+        if ($request->wantsJson() || $request->ajax()) {
+            return response()->json([
+                'success' => true,
+                'message' => "Zona {$zona->nama_wilayah} berhasil diperbarui.",
+                'zona'    => $zona,
+            ]);
+        }
 
         return redirect()->route('admin.zona.index')
             ->with('success', 'Zona berhasil diperbarui.');
