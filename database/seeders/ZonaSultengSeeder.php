@@ -12,39 +12,36 @@ class ZonaSultengSeeder extends Seeder
      */
     public function run(): void
     {
-        $filePath = database_path('data/sulawesi_tengah_kabupaten.geojson');
+        $baseDir = database_path('data/geojson');
+        $kabFile = database_path('data/sulawesi_tengah_kabupaten.geojson');
 
-        if (!file_exists($filePath)) {
-            $this->command?->error("File GeoJSON tidak ditemukan: {$filePath}");
+        if (!file_exists($kabFile)) {
+            $this->command?->error("File GeoJSON Kabupaten tidak ditemukan: {$kabFile}");
             return;
         }
 
-        $geoJson = json_decode(file_get_contents($filePath), true);
+        $kabGeoJson = json_decode(file_get_contents($kabFile), true);
 
-        if (!$geoJson || !isset($geoJson['features'])) {
-            $this->command?->error("Format GeoJSON tidak valid.");
-            return;
-        }
-
-        // Pemetaan nama wilayah agar rapi sesuai format resmi
+        // ══════════════════════════════════════════════════════════════
+        // 1. TINGKAT KABUPATEN / KOTA (13 Wilayah se-Sulawesi Tengah)
+        // ══════════════════════════════════════════════════════════════
         $nameMap = [
-            'KAB. BANGGAI'           => 'Kabupaten Banggai',
-            'KAB. POSO'              => 'Kabupaten Poso',
-            'KAB. DONGGALA'          => 'Kabupaten Donggala',
-            'KAB. TOLI TOLI'         => 'Kabupaten Tolitoli',
-            'KAB. BUOL'              => 'Kabupaten Buol',
-            'KAB. MOROWALI'          => 'Kabupaten Morowali',
-            'KAB. BANGGAI KEPULAUAN' => 'Kabupaten Banggai Kepulauan',
-            'KAB. PARIGI MOUTONG'    => 'Kabupaten Parigi Moutong',
-            'KAB. TOJO UNA UNA'      => 'Kabupaten Tojo Una-Una',
-            'KAB. SIGI'              => 'Kabupaten Sigi',
-            'KAB. BANGGAI LAUT'      => 'Kabupaten Banggai Laut',
-            'KAB. MOROWALI UTARA'    => 'Kabupaten Morowali Utara',
-            'KOTA PALU'              => 'Kota Palu',
+            'KAB. BANGGAI'           => ['name' => 'Kabupaten Banggai',           'code' => '72.01'],
+            'KAB. POSO'              => ['name' => 'Kabupaten Poso',              'code' => '72.02'],
+            'KAB. DONGGALA'          => ['name' => 'Kabupaten Donggala',          'code' => '72.03'],
+            'KAB. TOLI TOLI'         => ['name' => 'Kabupaten Tolitoli',           'code' => '72.04'],
+            'KAB. BUOL'              => ['name' => 'Kabupaten Buol',              'code' => '72.05'],
+            'KAB. MOROWALI'          => ['name' => 'Kabupaten Morowali',          'code' => '72.06'],
+            'KAB. BANGGAI KEPULAUAN' => ['name' => 'Kabupaten Banggai Kepulauan', 'code' => '72.07'],
+            'KAB. PARIGI MOUTONG'    => ['name' => 'Kabupaten Parigi Moutong',    'code' => '72.08'],
+            'KAB. TOJO UNA UNA'      => ['name' => 'Kabupaten Tojo Una-Una',      'code' => '72.09'],
+            'KAB. SIGI'              => ['name' => 'Kabupaten Sigi',              'code' => '72.10'],
+            'KAB. BANGGAI LAUT'      => ['name' => 'Kabupaten Banggai Laut',      'code' => '72.11'],
+            'KAB. MOROWALI UTARA'    => ['name' => 'Kabupaten Morowali Utara',    'code' => '72.12'],
+            'KOTA PALU'              => ['name' => 'Kota Palu',                   'code' => '72.71'],
         ];
 
-        // Sample status & jumlah kasus awal
-        $defaultConfig = [
+        $defaultKabConfig = [
             'Kota Palu'                  => ['status' => 'merah',  'kasus' => 54, 'deskripsi' => 'Pusat ibukota provinsi, tingkat mobilitas dan potensi peredaran tinggi.'],
             'Kabupaten Donggala'         => ['status' => 'kuning', 'kasus' => 22, 'deskripsi' => 'Wilayah pesisir dan jalur transportasi laut.'],
             'Kabupaten Sigi'             => ['status' => 'kuning', 'kasus' => 16, 'deskripsi' => 'Daerah penyangga ibukota provinsi.'],
@@ -60,39 +57,148 @@ class ZonaSultengSeeder extends Seeder
             'Kabupaten Morowali Utara'   => ['status' => 'kuning', 'kasus' => 18, 'deskripsi' => 'Kawasan perkembangan industri dan logistik.'],
         ];
 
-        foreach ($geoJson['features'] as $feature) {
+        $kabupatenCodeToName = [];
+
+        foreach ($kabGeoJson['features'] as $feature) {
             $rawName = $feature['properties']['name'] ?? '';
-            $namaWilayah = $nameMap[$rawName] ?? ucwords(strtolower($rawName));
-            $config = $defaultConfig[$namaWilayah] ?? ['status' => 'hijau', 'kasus' => 0, 'deskripsi' => 'Wilayah Sulawesi Tengah.'];
+            $info = $nameMap[$rawName] ?? ['name' => ucwords(strtolower($rawName)), 'code' => $feature['properties']['code'] ?? '72.00'];
+            $namaWilayah = $info['name'];
+            $kodeWilayah = $info['code'];
+            $kabupatenCodeToName[$kodeWilayah] = $namaWilayah;
+            $normalizedCode = str_replace('.', '_', $kodeWilayah);
+            $kabupatenCodeToName[$normalizedCode] = $namaWilayah;
 
-            // Simpan bentuk polygon utuh ke koordinat_geojson
-            $geometryJson = json_encode($feature['geometry']);
+            $config = $defaultKabConfig[$namaWilayah] ?? ['status' => 'hijau', 'kasus' => 0, 'deskripsi' => 'Wilayah Sulawesi Tengah.'];
 
-            // Update jika sudah ada (berdasarkan kemiripan nama) atau buat baru
-            $existing = Zona::where('nama_wilayah', 'LIKE', "%{$namaWilayah}%")
-                ->orWhere('nama_wilayah', 'LIKE', "%" . str_replace(['Kabupaten ', 'Kota '], '', $namaWilayah) . "%")
-                ->first();
-
-            if ($existing) {
-                $existing->update([
+            Zona::updateOrCreate(
+                ['kode_wilayah' => $kodeWilayah, 'tingkat' => 'kabupaten'],
+                [
                     'nama_wilayah'      => $namaWilayah,
-                    'koordinat_geojson' => $geometryJson,
+                    'tingkat'           => 'kabupaten',
+                    'kode_wilayah'      => $kodeWilayah,
+                    'parent_kode'       => null,
+                    'parent_nama'       => null,
+                    'koordinat_geojson' => json_encode($feature['geometry']),
                     'status_zona'       => $config['status'],
                     'jumlah_kasus'      => $config['kasus'],
                     'deskripsi'         => $config['deskripsi'],
-                ]);
-            } else {
-                Zona::create([
-                    'nama_wilayah'      => $namaWilayah,
-                    'koordinat_geojson' => $geometryJson,
-                    'status_zona'       => $config['status'],
-                    'jumlah_kasus'      => $config['kasus'],
-                    'deskripsi'         => $config['deskripsi'],
-                ]);
+                ]
+            );
+        }
+
+        // ══════════════════════════════════════════════════════════════
+        // 2. TINGKAT KECAMATAN (167 Kecamatan se-Sulawesi Tengah)
+        // ══════════════════════════════════════════════════════════════
+        $districtFiles = glob("{$baseDir}/districts_*.geojson");
+        $kecamatanCodeToName = [];
+
+        foreach ($districtFiles as $file) {
+            $data = json_decode(file_get_contents($file), true);
+            if (!isset($data['features'])) continue;
+
+            // Ambil kode kabupaten dari nama file, misal districts_72_71.geojson -> 72.71
+            preg_match('/districts_(\d+)_(\d+)\.geojson/', basename($file), $matches);
+            $parentKode = isset($matches[1], $matches[2]) ? "{$matches[1]}.{$matches[2]}" : null;
+            $parentNama = $parentKode && isset($kabupatenCodeToName[$parentKode]) ? $kabupatenCodeToName[$parentKode] : 'Sulawesi Tengah';
+
+            foreach ($data['features'] as $f) {
+                $rawName = $f['properties']['name'] ?? '';
+                $namaKecamatan = ucwords(strtolower($rawName));
+                if (!str_starts_with($namaKecamatan, 'Kecamatan ') && !str_starts_with($namaKecamatan, 'Kec. ')) {
+                    $namaKecamatan = 'Kecamatan ' . str_replace('Kec. ', '', $namaKecamatan);
+                }
+                $kodeKecamatan = $f['properties']['code'] ?? '';
+                $kecamatanCodeToName[$kodeKecamatan] = $namaKecamatan;
+                $kecamatanCodeToName[str_replace('.', '_', $kodeKecamatan)] = $namaKecamatan;
+
+                // Status awal variatif
+                $status = 'hijau';
+                $kasus = rand(1, 12);
+                if (stripos($namaKecamatan, 'Tawaeli') !== false || stripos($namaKecamatan, 'Palu Timur') !== false || stripos($namaKecamatan, 'Palu Selatan') !== false) {
+                    $status = 'kuning';
+                    $kasus = rand(15, 25);
+                } elseif (stripos($namaKecamatan, 'Palu Barat') !== false || stripos($namaKecamatan, 'Bahodopi') !== false) {
+                    $status = 'merah';
+                    $kasus = rand(25, 38);
+                }
+
+                Zona::updateOrCreate(
+                    ['kode_wilayah' => $kodeKecamatan, 'tingkat' => 'kecamatan'],
+                    [
+                        'nama_wilayah'      => $namaKecamatan,
+                        'tingkat'           => 'kecamatan',
+                        'kode_wilayah'      => $kodeKecamatan,
+                        'parent_kode'       => $parentKode,
+                        'parent_nama'       => $parentNama,
+                        'koordinat_geojson' => json_encode($f['geometry']),
+                        'status_zona'       => $status,
+                        'jumlah_kasus'      => $kasus,
+                        'deskripsi'         => "Wilayah {$namaKecamatan}, {$parentNama}.",
+                    ]
+                );
             }
         }
 
-        // Hapus dummy data lama yang tidak valid jika ada
-        Zona::whereNotIn('nama_wilayah', array_values($nameMap))->delete();
+        // ══════════════════════════════════════════════════════════════
+        // 3. TINGKAT KELURAHAN / DESA (Kota Palu & Sekitarnya)
+        // ══════════════════════════════════════════════════════════════
+        $kelurahanFiles = glob("{$baseDir}/kelurahan_*.geojson");
+
+        // Custom config desa/kelurahan penting
+        $kelurahanCustomConfig = [
+            'Kayumalue Ngapa'  => ['status' => 'merah',  'kasus' => 14, 'deskripsi' => 'Area pemantauan rawan peredaran di Palu Utara.'],
+            'Kayumalue Pajeko' => ['status' => 'kuning', 'kasus' => 8,  'deskripsi' => 'Area waspada pesisir Palu Utara.'],
+            'Baiya'            => ['status' => 'kuning', 'kasus' => 9,  'deskripsi' => 'Area pelabuhan/pesisir Tawaeli.'],
+            'Pantoloan'        => ['status' => 'merah',  'kasus' => 17, 'deskripsi' => 'Kawasan pelabuhan peti kemas & industri Tawaeli.'],
+            'Taipa'            => ['status' => 'kuning', 'kasus' => 7,  'deskripsi' => 'Area wisata dan pesisir Palu Utara.'],
+            'Mamboro'          => ['status' => 'kuning', 'kasus' => 10, 'deskripsi' => 'Jalur perlintasan Palu Utara.'],
+            'Besusu Barat'     => ['status' => 'merah',  'kasus' => 18, 'deskripsi' => 'Pusat keramaian kota.'],
+            'Lere'             => ['status' => 'kuning', 'kasus' => 11, 'deskripsi' => 'Kawasan pesisir Teluk Palu.'],
+        ];
+
+        foreach ($kelurahanFiles as $file) {
+            $data = json_decode(file_get_contents($file), true);
+            if (!isset($data['features'])) continue;
+
+            // Ambil kode kecamatan dari nama file: kelurahan_72_71_04.geojson -> 72.71.04
+            preg_match('/kelurahan_(\d+)_(\d+)_(\d+)\.geojson/', basename($file), $matches);
+            $parentKode = isset($matches[1], $matches[2], $matches[3]) ? "{$matches[1]}.{$matches[2]}.{$matches[3]}" : '72.71';
+            $parentNama = isset($kecamatanCodeToName[$parentKode]) ? $kecamatanCodeToName[$parentKode] : 'Kota Palu';
+
+            foreach ($data['features'] as $f) {
+                $rawName = $f['properties']['name'] ?? '';
+                $cleanName = trim(preg_replace('/\s+/', ' ', str_replace(['KEL.', 'DESA'], '', $rawName)));
+                $namaDesa = (str_starts_with($rawName, 'DESA') ? 'Desa ' : 'Kelurahan ') . ucwords(strtolower($cleanName));
+                $kodeDesa = $f['properties']['code'] ?? '';
+
+                $status = 'hijau';
+                $kasus = rand(1, 6);
+                $deskripsi = "Wilayah {$namaDesa}, {$parentNama}.";
+
+                foreach ($kelurahanCustomConfig as $key => $cfg) {
+                    if (stripos($cleanName, $key) !== false) {
+                        $status = $cfg['status'];
+                        $kasus = $cfg['kasus'];
+                        $deskripsi = $cfg['deskripsi'];
+                        break;
+                    }
+                }
+
+                Zona::updateOrCreate(
+                    ['kode_wilayah' => $kodeDesa, 'tingkat' => 'kelurahan'],
+                    [
+                        'nama_wilayah'      => $namaDesa,
+                        'tingkat'           => 'kelurahan',
+                        'kode_wilayah'      => $kodeDesa,
+                        'parent_kode'       => $parentKode,
+                        'parent_nama'       => $parentNama,
+                        'koordinat_geojson' => json_encode($f['geometry']),
+                        'status_zona'       => $status,
+                        'jumlah_kasus'      => $kasus,
+                        'deskripsi'         => $deskripsi,
+                    ]
+                );
+            }
+        }
     }
 }

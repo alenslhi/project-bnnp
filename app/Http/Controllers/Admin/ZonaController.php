@@ -11,12 +11,49 @@ class ZonaController extends Controller
     /**
      * Tampilkan daftar semua zona.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $allZonas = Zona::orderBy('nama_wilayah')->get();
-        $zonas = Zona::orderBy('nama_wilayah')->paginate(15);
+        $tingkat = $request->get('tingkat', 'kecamatan');
+        $parentKode = $request->get('parent_kode');
+        $search = $request->get('search');
 
-        return view('admin.zona.index', compact('zonas', 'allZonas'));
+        $kabupatens = Zona::where('tingkat', 'kabupaten')
+            ->orderBy('nama_wilayah')
+            ->get();
+
+        $kecamatanCounts = Zona::where('tingkat', 'kecamatan')
+            ->selectRaw('parent_kode, count(*) as count')
+            ->groupBy('parent_kode')
+            ->pluck('count', 'parent_kode')
+            ->toArray();
+
+        $query = Zona::query();
+
+        if (in_array($tingkat, ['kabupaten', 'kecamatan', 'kelurahan'])) {
+            $query->where('tingkat', $tingkat);
+        } else {
+            $query->where('tingkat', 'kecamatan');
+        }
+
+        if ($parentKode) {
+            if ($tingkat === 'kabupaten') {
+                $query->where('kode_wilayah', $parentKode);
+            } else {
+                $query->where('parent_kode', $parentKode);
+            }
+        }
+
+        if ($search) {
+            $query->where(function($q) use ($search) {
+                $q->where('nama_wilayah', 'LIKE', "%{$search}%")
+                  ->orWhere('parent_nama', 'LIKE', "%{$search}%");
+            });
+        }
+
+        $allZonas = (clone $query)->orderBy('nama_wilayah')->get();
+        $zonas = $query->orderBy('nama_wilayah')->paginate(15)->withQueryString();
+
+        return view('admin.zona.index', compact('zonas', 'allZonas', 'kabupatens', 'kecamatanCounts', 'tingkat', 'parentKode', 'search'));
     }
 
     /**
@@ -24,7 +61,8 @@ class ZonaController extends Controller
      */
     public function create()
     {
-        return view('admin.zona.create');
+        $kabupatens = Zona::where('tingkat', 'kabupaten')->orderBy('nama_wilayah')->get();
+        return view('admin.zona.create', compact('kabupatens'));
     }
 
     /**
@@ -34,6 +72,10 @@ class ZonaController extends Controller
     {
         $validated = $request->validate([
             'nama_wilayah'      => ['required', 'string', 'max:255'],
+            'tingkat'           => ['nullable', 'string', 'in:kabupaten,kecamatan,kelurahan'],
+            'kode_wilayah'      => ['nullable', 'string', 'max:50'],
+            'parent_kode'       => ['nullable', 'string', 'max:50'],
+            'parent_nama'       => ['nullable', 'string', 'max:255'],
             'koordinat_geojson' => ['nullable', 'string'],
             'status_zona'       => ['required', 'in:merah,kuning,hijau'],
             'jumlah_kasus'      => ['required', 'integer', 'min:0'],
@@ -63,6 +105,10 @@ class ZonaController extends Controller
     {
         $validated = $request->validate([
             'nama_wilayah'      => ['sometimes', 'required', 'string', 'max:255'],
+            'tingkat'           => ['nullable', 'string', 'in:kabupaten,kecamatan,kelurahan'],
+            'kode_wilayah'      => ['nullable', 'string', 'max:50'],
+            'parent_kode'       => ['nullable', 'string', 'max:50'],
+            'parent_nama'       => ['nullable', 'string', 'max:255'],
             'koordinat_geojson' => ['nullable', 'string'],
             'status_zona'       => ['required', 'in:merah,kuning,hijau'],
             'jumlah_kasus'      => ['required', 'integer', 'min:0'],

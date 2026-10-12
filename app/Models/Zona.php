@@ -21,6 +21,10 @@ class Zona extends Model
      */
     protected $fillable = [
         'nama_wilayah',
+        'tingkat',
+        'kode_wilayah',
+        'parent_kode',
+        'parent_nama',
         'koordinat_geojson',
         'status_zona',
         'jumlah_kasus',

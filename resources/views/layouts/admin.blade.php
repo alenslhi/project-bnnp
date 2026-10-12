@@ -7,6 +7,12 @@
 
     <title>@yield('title', 'Dashboard') — Admin BNNP Sulteng</title>
 
+    {{-- Favicon BNN --}}
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-32x32.png') }}?v=2">
+    <link rel="icon" type="image/png" sizes="64x64" href="{{ asset('favicon.png') }}?v=2">
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}?v=2">
+    <link rel="apple-touch-icon" href="{{ asset('images/logo-bnn.png') }}?v=2">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -14,14 +20,14 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @stack('styles')
 </head>
-<body class="bg-surface-950 text-surface-100 font-sans antialiased">
-    <div class="flex min-h-screen">
+<body class="bg-surface-950 text-surface-100 font-sans antialiased overflow-x-hidden">
+    <div class="flex min-h-screen overflow-x-hidden max-w-full">
 
         {{-- ═══ SIDEBAR ═══ --}}
         @include('layouts.admin.sidebar')
 
         {{-- ═══ MAIN AREA ═══ --}}
-        <div class="flex-1 lg:ml-64 flex flex-col min-h-screen">
+        <div class="flex-1 lg:ml-64 flex flex-col min-h-screen min-w-0 max-w-full overflow-x-hidden">
 
             {{-- Top Bar --}}
             @include('layouts.admin.topbar')
@@ -45,7 +51,7 @@
             @endif
 
             {{-- Content --}}
-            <main class="flex-1 p-4 sm:p-6 lg:p-8">
+            <main class="flex-1 p-4 sm:p-6 lg:p-8 min-w-0 max-w-full overflow-x-hidden">
                 @yield('content')
             </main>
         </div>
