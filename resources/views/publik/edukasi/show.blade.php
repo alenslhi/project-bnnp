@@ -22,15 +22,15 @@
             <div class="flex flex-wrap items-center gap-3 mb-6">
                 @if($edukasi->kategori === 'artikel')
                     <span class="inline-flex items-center gap-1 rounded-lg border border-primary-500/30 bg-primary-500/10 px-3 py-1 text-xs font-semibold text-primary-400">
-                        📖 Artikel Ilmiah & Edukasi
+                        Artikel Ilmiah & Edukasi
                     </span>
                 @elseif($edukasi->kategori === 'kamus')
                     <span class="inline-flex items-center gap-1 rounded-lg border border-warning-500/30 bg-warning-500/10 px-3 py-1 text-xs font-semibold text-warning-400">
-                        🔍 Kamus Istilah Narkoba
+                        Kamus Istilah Narkoba
                     </span>
                 @else
                     <span class="inline-flex items-center gap-1 rounded-lg border border-accent-500/30 bg-accent-500/10 px-3 py-1 text-xs font-semibold text-accent-400">
-                        📢 Siaran Media Resmi
+                        Siaran Media Resmi
                     </span>
                 @endif
 
