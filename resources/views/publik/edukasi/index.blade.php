@@ -29,15 +29,15 @@
             </a>
             <a href="{{ route('edukasi.index', ['kategori' => 'artikel']) }}"
                class="px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 border {{ $kategoriAktif === 'artikel' ? 'bg-primary-600 border-primary-500 text-white shadow-lg shadow-primary-600/30' : 'bg-surface-900/60 border-white/5 text-surface-300 hover:bg-surface-800 hover:text-white' }}">
-                📖 Artikel Edukatif
+                Artikel Edukatif
             </a>
             <a href="{{ route('edukasi.index', ['kategori' => 'kamus']) }}"
                class="px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 border {{ $kategoriAktif === 'kamus' ? 'bg-primary-600 border-primary-500 text-white shadow-lg shadow-primary-600/30' : 'bg-surface-900/60 border-white/5 text-surface-300 hover:bg-surface-800 hover:text-white' }}">
-                🔍 Kamus Narkoba
+                Kamus Narkoba
             </a>
             <a href="{{ route('edukasi.index', ['kategori' => 'media']) }}"
                class="px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 border {{ $kategoriAktif === 'media' ? 'bg-primary-600 border-primary-500 text-white shadow-lg shadow-primary-600/30' : 'bg-surface-900/60 border-white/5 text-surface-300 hover:bg-surface-800 hover:text-white' }}">
-                📢 Rilis Media
+                Rilis Media
             </a>
         </div>
 
