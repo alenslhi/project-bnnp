@@ -41,9 +41,9 @@
                     <select name="status_zona" id="status_zona" required
                             class="w-full rounded-xl border border-white/10 bg-surface-950/70 px-4 py-3 text-sm text-white focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500/20 transition @error('status_zona') border-danger-500 @enderror">
                         <option value="">Pilih Status Zona</option>
-                        <option value="merah" {{ old('status_zona') === 'merah' ? 'selected' : '' }}>🔴 Merah (Bahaya / Rawan Tinggi)</option>
-                        <option value="kuning" {{ old('status_zona') === 'kuning' ? 'selected' : '' }}>🟡 Kuning (Waspada / Rawan Sedang)</option>
-                        <option value="hijau" {{ old('status_zona') === 'hijau' ? 'selected' : '' }}>🟢 Hijau (Aman / Rawan Rendah)</option>
+                        <option value="merah" {{ old('status_zona') === 'merah' ? 'selected' : '' }}>Merah (Bahaya / Rawan Tinggi)</option>
+                        <option value="kuning" {{ old('status_zona') === 'kuning' ? 'selected' : '' }}>Kuning (Waspada / Rawan Sedang)</option>
+                        <option value="hijau" {{ old('status_zona') === 'hijau' ? 'selected' : '' }}>Hijau (Aman / Rawan Rendah)</option>
                     </select>
                     @error('status_zona')
                         <p class="mt-1 text-xs text-danger-400">{{ $message }}</p>
