@@ -40,9 +40,9 @@
                     </label>
                     <select name="status_zona" id="status_zona" required
                             class="w-full rounded-xl border border-white/10 bg-surface-950/70 px-4 py-3 text-sm text-white focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500/20 transition @error('status_zona') border-danger-500 @enderror">
-                        <option value="merah" {{ old('status_zona', $zona->status_zona) === 'merah' ? 'selected' : '' }}>🔴 Merah (Bahaya / Rawan Tinggi)</option>
-                        <option value="kuning" {{ old('status_zona', $zona->status_zona) === 'kuning' ? 'selected' : '' }}>🟡 Kuning (Waspada / Rawan Sedang)</option>
-                        <option value="hijau" {{ old('status_zona', $zona->status_zona) === 'hijau' ? 'selected' : '' }}>🟢 Hijau (Aman / Rawan Rendah)</option>
+                        <option value="merah" {{ old('status_zona', $zona->status_zona) === 'merah' ? 'selected' : '' }}>Merah (Bahaya / Rawan Tinggi)</option>
+                        <option value="kuning" {{ old('status_zona', $zona->status_zona) === 'kuning' ? 'selected' : '' }}>Kuning (Waspada / Rawan Sedang)</option>
+                        <option value="hijau" {{ old('status_zona', $zona->status_zona) === 'hijau' ? 'selected' : '' }}>Hijau (Aman / Rawan Rendah)</option>
                     </select>
                     @error('status_zona')
                         <p class="mt-1 text-xs text-danger-400">{{ $message }}</p>
@@ -80,13 +80,16 @@
                     <label for="koordinat_geojson" class="block text-xs font-semibold uppercase tracking-wider text-surface-300">
                         Data Koordinat GeoJSON (Opsional)
                     </label>
-                    <span class="text-[11px] text-emerald-400 font-medium">✓ Poligon Resmi Tersedia</span>
+                    <span class="text-[11px] text-emerald-400 font-medium inline-flex items-center gap-1">
+                        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                        Poligon Resmi Tersedia
+                    </span>
                 </div>
                 <textarea name="koordinat_geojson" id="koordinat_geojson" rows="3"
                           placeholder="Biarkan kosong untuk tetap menggunakan poligon batas wilayah resmi Sulawesi Tengah saat ini."
                           class="font-mono text-xs w-full rounded-xl border border-white/10 bg-surface-950/70 px-4 py-3 text-white placeholder-surface-500 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500/20 transition">{{ old('koordinat_geojson') }}</textarea>
                 <p class="mt-1.5 text-[11px] text-surface-400">
-                    💡 Wilayah ini sudah memiliki batas resmi. <strong>Biarkan kotak di atas kosong</strong> jika hanya ingin memperbarui status kerawanan/warna, jumlah kasus, atau deskripsi.
+                    Wilayah ini sudah memiliki batas resmi. <strong>Biarkan kotak di atas kosong</strong> jika hanya ingin memperbarui status kerawanan/warna, jumlah kasus, atau deskripsi.
                 </p>
                 @error('koordinat_geojson')
                     <p class="mt-1 text-xs text-danger-400">{{ $message }}</p>
