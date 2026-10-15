@@ -15,7 +15,7 @@
     </div>
 
     <div class="rounded-3xl border border-white/10 bg-surface-900/60 backdrop-blur-xl p-6 sm:p-8 shadow-xl">
-        <form action="{{ route('admin.edukasi.store') }}" method="POST" class="space-y-6">
+        <form action="{{ route('admin.edukasi.store') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
             @csrf
 
             {{-- Judul --}}
@@ -61,16 +61,26 @@
                 @enderror
             </div>
 
-            {{-- File Path / URL Lampiran --}}
+            {{-- Upload Lampiran Dokumen --}}
             <div>
-                <label for="file_path" class="block text-xs font-semibold uppercase tracking-wider text-surface-300 mb-2">
-                    Lampiran URL / Dokumen (Opsional)
+                <label for="lampiran" class="block text-xs font-semibold uppercase tracking-wider text-surface-300 mb-2">
+                    Upload Lampiran Dokumen (Opsional)
                 </label>
-                <input type="text" name="file_path" id="file_path" value="{{ old('file_path') }}"
-                       placeholder="Contoh: https://example.com/brosur-rehabilitasi.pdf"
-                       class="w-full rounded-xl border border-white/10 bg-surface-950/70 px-4 py-3 text-sm text-white placeholder-surface-500 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500/20 transition">
-                <p class="mt-1.5 text-[11px] text-surface-500">Tautan dokumen panduan PDF, pamflet, atau infografis pendukung.</p>
-                @error('file_path')
+                <div class="relative">
+                    <input type="file" name="lampiran" id="lampiran"
+                           accept=".pdf,.jpg,.jpeg,.png,.webp"
+                           class="block w-full text-sm text-surface-300
+                                  file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0
+                                  file:text-xs file:font-semibold file:bg-primary-600/20 file:text-primary-400
+                                  hover:file:bg-primary-600/30 file:cursor-pointer file:transition
+                                  rounded-xl border border-white/10 bg-surface-950/70 px-4 py-2.5
+                                  focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500/20 transition
+                                  cursor-pointer @error('lampiran') border-danger-500 @enderror">
+                </div>
+                <p class="mt-1.5 text-[11px] text-surface-500">
+                    Format yang diterima: PDF, JPG, PNG, WEBP. Ukuran maksimal: 10 MB.
+                </p>
+                @error('lampiran')
                     <p class="mt-1 text-xs text-danger-400">{{ $message }}</p>
                 @enderror
             </div>
@@ -88,3 +98,4 @@
     </div>
 </div>
 @endsection
+
