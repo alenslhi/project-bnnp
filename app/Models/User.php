@@ -79,4 +79,18 @@ class User extends Authenticatable
     {
         return $this->role === 'super_admin';
     }
+
+    /**
+     * Mendapatkan label human-readable untuk role.
+     */
+    public function getRoleLabelAttribute(): string
+    {
+        return match ($this->role) {
+            'super_admin' => 'Super Admin',
+            'admin_rehab' => 'Admin Rehabilitasi',
+            'admin_brantas' => 'Admin Pemberantasan',
+            'admin_cegah' => 'Admin Pencegahan',
+            default => 'Admin',
+        };
+    }
 }

@@ -46,9 +46,18 @@
             Kelola Statistik Kasus
         </a>
 
+        <p class="px-3 mt-5 mb-2 text-[10px] font-semibold uppercase tracking-widest text-surface-500">Akun & Pengaturan</p>
+
+        {{-- Profil & Keamanan (Semua Role) --}}
+        <a href="{{ route('admin.profile.index') }}"
+           class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200
+                  {{ request()->routeIs('admin.profile.*') ? 'bg-primary-500/15 text-primary-400 shadow-sm' : 'text-surface-300 hover:bg-white/5 hover:text-white' }}">
+            <svg class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>
+            Profil & Sandi
+        </a>
+
         {{-- Settings (Super Admin only for users/logs) --}}
         @if(auth()->user()->isSuperAdmin())
-        <p class="px-3 mt-5 mb-2 text-[10px] font-semibold uppercase tracking-widest text-surface-500">Pengaturan</p>
         <a href="{{ route('admin.users.index') }}"
            class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200
                   {{ request()->routeIs('admin.users.*') ? 'bg-primary-500/15 text-primary-400 shadow-sm' : 'text-surface-300 hover:bg-white/5 hover:text-white' }}">
@@ -69,13 +78,13 @@
     {{-- User Info --}}
     <div class="shrink-0 border-t border-white/5 p-4">
         <div class="flex items-center gap-3">
-            <div class="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-primary-400 to-accent-500 text-sm font-bold text-white">
+            <a href="{{ route('admin.profile.index') }}" class="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-primary-400 to-accent-500 text-sm font-bold text-white hover:opacity-85 transition" title="Profil & Ubah Sandi">
                 {{ strtoupper(substr(auth()->user()->name ?? 'A', 0, 1)) }}
-            </div>
-            <div class="flex-1 min-w-0">
-                <p class="text-sm font-semibold text-white truncate">{{ auth()->user()->name ?? 'Admin' }}</p>
-                <p class="text-[11px] text-surface-400 truncate">Administrator</p>
-            </div>
+            </a>
+            <a href="{{ route('admin.profile.index') }}" class="flex-1 min-w-0 group" title="Buka Profil & Ubah Sandi">
+                <p class="text-sm font-semibold text-white group-hover:text-primary-400 transition truncate">{{ auth()->user()->name ?? 'Admin' }}</p>
+                <p class="text-[11px] text-surface-400 truncate">{{ auth()->user()->role_label ?? 'Administrator' }}</p>
+            </a>
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
                 <button type="submit" class="p-2 rounded-lg text-surface-400 hover:text-danger-400 hover:bg-danger-500/10 transition" title="Logout">

@@ -6,6 +6,7 @@ use App\Http\Controllers\EdukasiController;
 use App\Http\Controllers\PetaController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\EdukasiController as AdminEdukasiController;
+use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\ZonaController as AdminZonaController;
 use App\Http\Controllers\StatistikController;
 use Illuminate\Support\Facades\Route;
@@ -73,4 +74,9 @@ Route::prefix('admin')
         Route::get('statistik', [\App\Http\Controllers\Admin\StatistikKasusController::class, 'index'])->name('statistik.index');
         Route::post('statistik/import', [\App\Http\Controllers\Admin\StatistikKasusController::class, 'import'])->name('statistik.import');
         Route::delete('statistik/destroy/{nama_dataset}', [\App\Http\Controllers\Admin\StatistikKasusController::class, 'destroyDataset'])->name('statistik.destroy');
+
+        // ── Profil Akun & Ubah Sandi Mandiri (Semua Role) ──
+        Route::get('profile', [ProfileController::class, 'index'])->name('profile.index');
+        Route::put('profile', [ProfileController::class, 'updateProfile'])->name('profile.update');
+        Route::put('profile/password', [ProfileController::class, 'updatePassword'])->name('profile.password');
     });
