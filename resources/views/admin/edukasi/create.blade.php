@@ -39,9 +39,9 @@
                 <select name="kategori" id="kategori" required
                         class="w-full rounded-xl border border-white/10 bg-surface-950/70 px-4 py-3 text-sm text-white focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500/20 transition @error('kategori') border-danger-500 @enderror">
                     <option value="">Pilih Kategori</option>
-                    <option value="artikel" {{ old('kategori') === 'artikel' ? 'selected' : '' }}>📖 Artikel Ilmiah & Edukasi</option>
-                    <option value="kamus" {{ old('kategori') === 'kamus' ? 'selected' : '' }}>🔍 Kamus Istilah Narkoba</option>
-                    <option value="media" {{ old('kategori') === 'media' ? 'selected' : '' }}>📢 Siaran Pers & Rilis Media</option>
+                    <option value="artikel" {{ old('kategori') === 'artikel' ? 'selected' : '' }}>Artikel Ilmiah & Edukasi</option>
+                    <option value="kamus" {{ old('kategori') === 'kamus' ? 'selected' : '' }}>Kamus Istilah Narkoba</option>
+                    <option value="media" {{ old('kategori') === 'media' ? 'selected' : '' }}>Siaran Pers & Rilis Media</option>
                 </select>
                 @error('kategori')
                     <p class="mt-1 text-xs text-danger-400">{{ $message }}</p>
