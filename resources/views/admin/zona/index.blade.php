@@ -199,17 +199,17 @@
                 {{-- Status Counter Pill dengan Penanda Warna --}}
                 <div class="flex items-center gap-2 text-xs bg-surface-950 px-3 py-1.5 rounded-xl border border-white/10 shrink-0">
                     <div class="flex items-center gap-1.5" title="Rawan Tinggi (Merah)">
-                        <span>🔴</span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-red-500 inline-block"></span>
                         <span class="text-white font-semibold">{{ $countMerah }}</span>
                     </div>
                     <span class="text-white/20">•</span>
                     <div class="flex items-center gap-1.5" title="Rawan Sedang (Kuning)">
-                        <span>🟡</span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-amber-500 inline-block"></span>
                         <span class="text-white font-semibold">{{ $countKuning }}</span>
                     </div>
                     <span class="text-white/20">•</span>
                     <div class="flex items-center gap-1.5" title="Rawan Rendah (Hijau)">
-                        <span>🟢</span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block"></span>
                         <span class="text-white font-semibold">{{ $countHijau }}</span>
                     </div>
                 </div>
@@ -280,13 +280,13 @@
                 {{-- Legend Peta Ringkas --}}
                 <div class="flex items-center gap-2 text-xs flex-wrap shrink-0">
                     <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-semibold badge-status-merah">
-                        <span>🔴</span> Rawan Tinggi
+                        <span class="w-2 h-2 rounded-full bg-red-500 inline-block"></span> Rawan Tinggi
                     </span>
                     <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-semibold badge-status-kuning">
-                        <span>🟡</span> Rawan Sedang
+                        <span class="w-2 h-2 rounded-full bg-amber-500 inline-block"></span> Rawan Sedang
                     </span>
                     <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-semibold badge-status-hijau">
-                        <span>🟢</span> Rawan Rendah
+                        <span class="w-2 h-2 rounded-full bg-emerald-500 inline-block"></span> Rawan Rendah
                     </span>
                 </div>
             </div>
@@ -334,15 +334,15 @@
                                     <span class="status-badge" id="badge-zona-{{ $zona->id }}">
                                         @if($zona->status_zona === 'merah')
                                             <span class="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold badge-status-merah">
-                                                <span>🔴</span> Rawan Tinggi
+                                                <span class="w-2 h-2 rounded-full bg-red-500 inline-block"></span> Rawan Tinggi
                                             </span>
                                         @elseif($zona->status_zona === 'kuning')
                                             <span class="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold badge-status-kuning">
-                                                <span>🟡</span> Rawan Sedang
+                                                <span class="w-2 h-2 rounded-full bg-amber-500 inline-block"></span> Rawan Sedang
                                             </span>
                                         @else
                                             <span class="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold badge-status-hijau">
-                                                <span>🟢</span> Rawan Rendah
+                                                <span class="w-2 h-2 rounded-full bg-emerald-500 inline-block"></span> Rawan Rendah
                                             </span>
                                         @endif
                                     </span>
@@ -602,9 +602,9 @@ document.addEventListener('DOMContentLoaded', function() {
     osmLayer.addTo(map);
 
     L.control.layers({
-        "🗺️ OpenStreetMap (Lengkap Perbatasan)": osmLayer,
-        "⛰️ Topografi Detail": esriTopo,
-        "🛰️ Satelit + Batas Wilayah": satelliteLayer,
+        "OpenStreetMap (Lengkap Perbatasan)": osmLayer,
+        "Topografi Detail": esriTopo,
+        "Satelit + Batas Wilayah": satelliteLayer,
     }, null, { position: 'topright' }).addTo(map);
 
     setTimeout(() => { map.invalidateSize(); }, 300);
@@ -818,17 +818,17 @@ function updateTableRow(zona) {
         if (zona.status_zona === 'merah') {
             badgeEl.innerHTML = `
                 <span class="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold badge-status-merah">
-                    <span>🔴</span> Rawan Tinggi
+                    <span class="w-2 h-2 rounded-full bg-red-500 inline-block"></span> Rawan Tinggi
                 </span>`;
         } else if (zona.status_zona === 'kuning') {
             badgeEl.innerHTML = `
                 <span class="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold badge-status-kuning">
-                    <span>🟡</span> Rawan Sedang
+                    <span class="w-2 h-2 rounded-full bg-amber-500 inline-block"></span> Rawan Sedang
                 </span>`;
         } else {
             badgeEl.innerHTML = `
                 <span class="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold badge-status-hijau">
-                    <span>🟢</span> Rawan Rendah
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 inline-block"></span> Rawan Rendah
                 </span>`;
         }
     }
