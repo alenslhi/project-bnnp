@@ -57,7 +57,7 @@
         {{-- Total Zona --}}
         <div class="rounded-2xl border border-white/5 bg-surface-900/60 p-5 backdrop-blur-sm">
             <div class="flex items-center justify-between">
-                <span class="text-xs font-medium text-surface-400">Total Zona Terdata</span>
+                <span class="text-xs font-medium text-surface-400">Total Kab/Kota Terdata</span>
                 <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-primary-500/10 text-primary-400">
                     <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 6.75V15m6-6v8.25m.503 3.498l4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 00-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0z"/></svg>
                 </div>
@@ -79,7 +79,7 @@
                 </div>
             </div>
             <p class="mt-3 text-3xl font-extrabold text-white">{{ number_format($totalKasus) }}</p>
-            <p class="mt-3 text-xs text-surface-500">Tercatat di seluruh wilayah Sulteng</p>
+            <p class="mt-3 text-xs text-surface-500">Akumulasi di 13 Kab/Kota se-Sulteng</p>
         </div>
 
         {{-- Total Edukasi --}}
@@ -136,7 +136,12 @@
                         <tbody class="divide-y divide-white/5">
                             @forelse($zonasTerbaru as $z)
                                 <tr>
-                                    <td class="py-3 font-medium text-white">{{ $z->nama_wilayah }}</td>
+                                    <td class="py-3 font-medium text-white">
+                                        {{ $z->nama_wilayah }}
+                                        @if($z->parent_nama)
+                                            <span class="block text-[11px] text-surface-400 font-normal">{{ $z->parent_nama }}</span>
+                                        @endif
+                                    </td>
                                     <td class="py-3">
                                         @if($z->status_zona === 'merah')
                                             <span class="inline-flex items-center gap-1.5 rounded-full bg-danger-500/15 border border-danger-500/30 px-2.5 py-0.5 text-[11px] font-semibold text-danger-400"><span class="w-1.5 h-1.5 rounded-full bg-danger-500 inline-block"></span> Bahaya</span>

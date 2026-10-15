@@ -12,12 +12,13 @@ class BerandaController extends Controller
      */
     public function index()
     {
-        // Statistik ringkas untuk ditampilkan di beranda
-        $totalZona = Zona::count();
-        $zonaMerah = Zona::merah()->count();
-        $zonaKuning = Zona::kuning()->count();
-        $zonaHijau = Zona::hijau()->count();
-        $totalKasus = Zona::sum('jumlah_kasus');
+        // Statistik ringkas agregasi tingkat Kabupaten/Kota (mencegah double-counting dengan kecamatan/kelurahan)
+        $totalZona = Zona::kabupaten()->count();
+        $zonaMerah = Zona::kabupaten()->merah()->count();
+        $zonaKuning = Zona::kabupaten()->kuning()->count();
+        $zonaHijau = Zona::kabupaten()->hijau()->count();
+        $totalKasus = Zona::kabupaten()->sum('jumlah_kasus');
+        $totalKecamatan = Zona::kecamatan()->count();
 
         // 3 artikel terbaru
         $artikelTerbaru = Edukasi::artikel()
@@ -32,6 +33,7 @@ class BerandaController extends Controller
             'zonaKuning',
             'zonaHijau',
             'totalKasus',
+            'totalKecamatan',
             'artikelTerbaru'
         ));
     }

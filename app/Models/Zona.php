@@ -78,4 +78,36 @@ class Zona extends Model
     {
         return $query->where('status_zona', 'hijau');
     }
+
+    /**
+     * Scope: filter zona berdasarkan tingkat hierarki.
+     */
+    public function scopeTingkat($query, string $tingkat)
+    {
+        return $query->where('tingkat', $tingkat);
+    }
+
+    /**
+     * Scope: tingkat kabupaten/kota.
+     */
+    public function scopeKabupaten($query)
+    {
+        return $query->where('tingkat', 'kabupaten');
+    }
+
+    /**
+     * Scope: tingkat kecamatan.
+     */
+    public function scopeKecamatan($query)
+    {
+        return $query->where('tingkat', 'kecamatan');
+    }
+
+    /**
+     * Scope: tingkat kelurahan/desa.
+     */
+    public function scopeKelurahan($query)
+    {
+        return $query->where('tingkat', 'kelurahan');
+    }
 }

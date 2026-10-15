@@ -58,6 +58,7 @@
                     <span class="text-xs font-medium text-surface-400 uppercase tracking-wider">Total Kasus</span>
                 </div>
                 <p class="text-3xl font-extrabold text-white">{{ number_format($totalKasus) }}</p>
+                <p class="mt-1 text-xs text-surface-400">Kasus di 13 Kab/Kota</p>
             </div>
 
             {{-- Zona Merah --}}
@@ -69,6 +70,7 @@
                     <span class="text-xs font-medium text-surface-400 uppercase tracking-wider">Zona Merah</span>
                 </div>
                 <p class="text-3xl font-extrabold text-danger-400">{{ $zonaMerah }}</p>
+                <p class="mt-1 text-xs text-surface-400">Wilayah Bahaya</p>
             </div>
 
             {{-- Zona Kuning --}}
@@ -80,6 +82,7 @@
                     <span class="text-xs font-medium text-surface-400 uppercase tracking-wider">Zona Kuning</span>
                 </div>
                 <p class="text-3xl font-extrabold text-warning-400">{{ $zonaKuning }}</p>
+                <p class="mt-1 text-xs text-surface-400">Wilayah Waspada</p>
             </div>
 
             {{-- Zona Hijau --}}
@@ -91,6 +94,7 @@
                     <span class="text-xs font-medium text-surface-400 uppercase tracking-wider">Zona Hijau</span>
                 </div>
                 <p class="text-3xl font-extrabold text-accent-400">{{ $zonaHijau }}</p>
+                <p class="mt-1 text-xs text-surface-400">Wilayah Aman</p>
             </div>
         </div>
     </section>

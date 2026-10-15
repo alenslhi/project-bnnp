@@ -23,15 +23,16 @@ class DashboardController extends Controller
     {
         $user = Auth::user();
 
-        // Statistik umum (tersedia untuk semua role)
+        // Statistik umum tingkat Kabupaten/Kota (mencegah double-counting dengan kecamatan/kelurahan)
         $data = [
-            'totalUsers'    => User::count(),
-            'totalZona'     => Zona::count(),
-            'totalEdukasi'  => Edukasi::count(),
-            'totalKasus'    => Zona::sum('jumlah_kasus'),
-            'zonaMerah'     => Zona::merah()->count(),
-            'zonaKuning'    => Zona::kuning()->count(),
-            'zonaHijau'     => Zona::hijau()->count(),
+            'totalUsers'     => User::count(),
+            'totalZona'      => Zona::kabupaten()->count(),
+            'totalKecamatan' => Zona::kecamatan()->count(),
+            'totalEdukasi'   => Edukasi::count(),
+            'totalKasus'     => Zona::kabupaten()->sum('jumlah_kasus'),
+            'zonaMerah'      => Zona::kabupaten()->merah()->count(),
+            'zonaKuning'     => Zona::kabupaten()->kuning()->count(),
+            'zonaHijau'      => Zona::kabupaten()->hijau()->count(),
         ];
 
         // Data tambahan berdasarkan role
