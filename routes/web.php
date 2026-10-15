@@ -36,7 +36,7 @@ Route::get('/statistik', [StatistikController::class, 'index'])->name('statistik
 // ══════════════════════════════════════════════════════════════
 
 Route::get('/admin', [AuthController::class, 'showLogin'])->name('login');
-Route::post('/admin', [AuthController::class, 'login']);
+Route::post('/admin', [AuthController::class, 'login'])->middleware('throttle:login');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // ══════════════════════════════════════════════════════════════
