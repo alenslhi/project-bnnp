@@ -54,8 +54,8 @@
                 
                 {{-- Kiri: Wilayah Info --}}
                 <div class="flex items-center gap-2.5 flex-wrap">
-                    <div id="status-icon-box" class="w-8 h-8 rounded-lg bg-primary-500/20 text-primary-400 flex items-center justify-center font-bold text-sm border border-primary-500/30 shrink-0">
-                        📍
+                    <div id="status-icon-box" class="w-8 h-8 rounded-lg bg-primary-500/20 text-primary-400 flex items-center justify-center border border-primary-500/30 shrink-0">
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                     </div>
                     <div class="flex items-center gap-2 flex-wrap">
                         <span class="text-xs text-surface-400 font-medium">Wilayah:</span>
@@ -73,32 +73,32 @@
                 <div class="flex items-center gap-2 flex-wrap">
                     {{-- Mini Counter Status --}}
                     <div class="flex items-center gap-2 text-xs font-semibold bg-surface-950/80 px-2.5 py-1.5 rounded-xl border border-white/10">
-                        <span class="text-red-400 flex items-center gap-1">🔴 <strong id="stat-m" class="font-bold">0</strong></span>
+                        <span class="text-red-400 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-red-500 inline-block"></span> <strong id="stat-m" class="font-bold">0</strong></span>
                         <span class="text-white/20">•</span>
-                        <span class="text-amber-400 flex items-center gap-1">🟡 <strong id="stat-k" class="font-bold">0</strong></span>
+                        <span class="text-amber-400 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-amber-500 inline-block"></span> <strong id="stat-k" class="font-bold">0</strong></span>
                         <span class="text-white/20">•</span>
-                        <span class="text-emerald-400 flex items-center gap-1">🟢 <strong id="stat-h" class="font-bold">0</strong></span>
+                        <span class="text-emerald-400 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-500 inline-block"></span> <strong id="stat-h" class="font-bold">0</strong></span>
                     </div>
 
                     {{-- Dropdown Filter Status Warna --}}
                     <select id="filter-status" onchange="onStatusChange(this.value)" class="rounded-xl bg-surface-950 border border-white/10 px-3 py-1.5 text-xs text-white focus:border-primary-500 outline-none transition cursor-pointer">
                         <option value="">Semua Status</option>
-                        <option value="merah">🔴 Rawan Tinggi</option>
-                        <option value="kuning">🟡 Rawan Sedang</option>
-                        <option value="hijau">🟢 Rawan Rendah</option>
+                        <option value="merah">Rawan Tinggi (Merah)</option>
+                        <option value="kuning">Rawan Sedang (Kuning)</option>
+                        <option value="hijau">Rawan Rendah (Hijau)</option>
                     </select>
 
-                    {{-- Tombol Reset Cepat (Tampil saat ada kabupaten terpilih) --}}
-                    <button type="button" id="btn-reset-filter" onclick="selectQuickKabupaten('')" class="hidden px-3 py-1.5 rounded-xl border border-white/10 bg-white/5 hover:bg-white/15 text-xs text-surface-200 hover:text-white font-medium transition flex items-center gap-1">
-                        <span>✕</span> Reset Sulteng
+                    <button type="button" id="btn-reset-filter" onclick="selectQuickKabupaten('')" class="hidden px-3 py-1.5 rounded-xl border border-white/10 bg-white/5 hover:bg-white/15 text-xs text-surface-200 hover:text-white font-medium transition flex items-center gap-1.5">
+                        <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+                        <span>Reset Sulteng</span>
                     </button>
                 </div>
             </div>
 
             {{-- Baris 2: Tombol Pilihan Wilayah Kabupaten (Scrollable Horizontal dengan tombol geser & drag) --}}
             <div class="flex items-center gap-2">
-                <span class="text-xs font-bold text-surface-400 shrink-0 hidden md:inline flex items-center gap-1">
-                    <span class="text-primary-400">⚡</span> Pilih:
+                <span class="text-xs font-bold text-surface-400 shrink-0 hidden md:inline">
+                    Pilih Wilayah:
                 </span>
                 
                 {{-- Tombol Geser Kiri --}}
@@ -118,7 +118,7 @@
                             id="quick-kab-all"
                             onclick="selectQuickKabupaten('')" 
                             class="quick-kab-pill active px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition border border-white/10 bg-surface-950 text-surface-300 hover:text-white hover:border-white/20 shrink-0">
-                        🌐 Seluruh Sulteng (167)
+                        Seluruh Sulteng (167)
                     </button>
 
                     {{-- Parigi Moutong (Tanpa Bintang) --}}
@@ -184,7 +184,7 @@
             </div>
 
             <div class="text-[11px] text-surface-400">
-                💡 Klik poligon kecamatan di peta atau kartu di bawah untuk detail
+                Klik poligon kecamatan di peta atau kartu di bawah untuk detail
             </div>
         </div>
 
@@ -197,8 +197,8 @@
         <div id="section-list-kecamatan" class="mt-6 rounded-2xl border border-white/10 bg-surface-900/80 p-5 backdrop-blur-xl shadow-2xl">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-white/10">
                 <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-xl bg-primary-500/20 text-primary-400 flex items-center justify-center font-bold text-lg border border-primary-500/30">
-                        🏘️
+                    <div class="w-10 h-10 rounded-xl bg-primary-500/20 text-primary-400 flex items-center justify-center border border-primary-500/30">
+                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
                     </div>
                     <div>
                         <h3 class="text-base font-bold text-white flex items-center gap-2">
@@ -220,13 +220,13 @@
                         <select id="filter-kabupaten-dropdown" 
                                 onchange="onSelectKabupatenFilter(this.value)" 
                                 class="rounded-xl bg-surface-950 border border-white/15 px-3 py-2 text-xs text-white font-medium focus:border-primary-500 outline-none transition cursor-pointer">
-                            <option value="">🌐 Semua Wilayah (Seluruh Sulteng)</option>
+                            <option value="">Semua Wilayah (Seluruh Sulteng)</option>
                             @foreach($kabupatens as $kab)
                                 @php
                                     $kCount = $kecamatanCounts[$kab->kode_wilayah] ?? 0;
                                 @endphp
                                 <option value="{{ $kab->kode_wilayah }}">
-                                    📍 {{ $kab->nama_wilayah }} ({{ $kCount }} Kec)
+                                    {{ $kab->nama_wilayah }} ({{ $kCount }} Kec)
                                 </option>
                             @endforeach
                         </select>
@@ -387,9 +387,9 @@ document.addEventListener('DOMContentLoaded', function() {
     osmLayer.addTo(map);
 
     const baseLayers = {
-        "🗺️ OpenStreetMap (Lengkap Perbatasan)": osmLayer,
-        "⛰️ Topografi Detail": esriTopo,
-        "🛰️ Satelit + Batas Wilayah": satelliteLayer,
+        "OpenStreetMap (Lengkap Perbatasan)": osmLayer,
+        "Topografi Detail": esriTopo,
+        "Satelit + Batas Wilayah": satelliteLayer,
     };
     L.control.layers(baseLayers, null, { position: 'topright' }).addTo(map);
 
@@ -434,9 +434,9 @@ function loadDataPeta() {
                     layerMapByZonaId[p.id] = layer;
 
                     const statusLabel = {
-                        'merah': '<span style="color:#ef4444;font-weight:700">🔴 MERAH — Rawan Tinggi</span>',
-                        'kuning': '<span style="color:#f59e0b;font-weight:700">🟡 KUNING — Rawan Sedang</span>',
-                        'hijau': '<span style="color:#10b981;font-weight:700">🟢 HIJAU — Rawan Rendah</span>',
+                        'merah': '<span style="color:#ef4444;font-weight:700;display:inline-flex;align-items:center;gap:4px;"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#ef4444;"></span> MERAH — Rawan Tinggi</span>',
+                        'kuning': '<span style="color:#f59e0b;font-weight:700;display:inline-flex;align-items:center;gap:4px;"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#f59e0b;"></span> KUNING — Rawan Sedang</span>',
+                        'hijau': '<span style="color:#10b981;font-weight:700;display:inline-flex;align-items:center;gap:4px;"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#10b981;"></span> HIJAU — Rawan Rendah</span>',
                     };
 
                     // Tooltip saat mouse hover
@@ -492,7 +492,7 @@ function loadDataPeta() {
                             </div>
                             <button type="button" onclick="highlightCardInList(${p.id})"
                                     style="width:100%;background:#0284c7;color:#fff;border:none;border-radius:8px;padding:6px 10px;font-size:11px;font-weight:700;cursor:pointer">
-                                📋 Lihat di Daftar Kecamatan
+                                Lihat di Daftar Kecamatan
                             </button>
                         </div>
                     `);
@@ -538,8 +538,8 @@ function selectQuickKabupaten(kodeWilayah) {
         if (statusBadge) statusBadge.classList.add('hidden');
         if (resetBtn) resetBtn.classList.add('hidden');
         if (iconBox) {
-            iconBox.innerHTML = '📍';
-            iconBox.className = 'w-8 h-8 rounded-lg bg-primary-500/20 text-primary-400 flex items-center justify-center font-bold text-sm border border-primary-500/30 shrink-0';
+            iconBox.innerHTML = '<svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>';
+            iconBox.className = 'w-8 h-8 rounded-lg bg-primary-500/20 text-primary-400 flex items-center justify-center border border-primary-500/30 shrink-0';
         }
     } else {
         const meta = kabMeta[kodeWilayah];
@@ -549,21 +549,21 @@ function selectQuickKabupaten(kodeWilayah) {
             if (resetBtn) resetBtn.classList.remove('hidden');
 
             if (iconBox) {
-                iconBox.innerHTML = '📍';
-                iconBox.className = 'w-8 h-8 rounded-lg bg-primary-500/20 text-primary-400 flex items-center justify-center font-bold text-sm border border-primary-500/30 shrink-0';
+                iconBox.innerHTML = '<svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>';
+                iconBox.className = 'w-8 h-8 rounded-lg bg-primary-500/20 text-primary-400 flex items-center justify-center border border-primary-500/30 shrink-0';
             }
 
             if (statusBadge) {
                 statusBadge.classList.remove('hidden');
                 if (meta.status === 'merah') {
-                    statusBadge.className = 'px-2 py-0.5 rounded-full text-[11px] font-semibold bg-red-500/20 text-red-400 border border-red-500/30';
-                    statusBadge.textContent = `🔴 Rawan Tinggi (${meta.kasus} Kasus)`;
+                    statusBadge.className = 'px-2 py-0.5 rounded-full text-[11px] font-semibold bg-red-500/20 text-red-400 border border-red-500/30 inline-flex items-center gap-1.5';
+                    statusBadge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-red-500 inline-block"></span> Rawan Tinggi (${meta.kasus} Kasus)`;
                 } else if (meta.status === 'kuning') {
-                    statusBadge.className = 'px-2 py-0.5 rounded-full text-[11px] font-semibold bg-amber-500/20 text-amber-400 border border-amber-500/30';
-                    statusBadge.textContent = `🟡 Rawan Sedang (${meta.kasus} Kasus)`;
+                    statusBadge.className = 'px-2 py-0.5 rounded-full text-[11px] font-semibold bg-amber-500/20 text-amber-400 border border-amber-500/30 inline-flex items-center gap-1.5';
+                    statusBadge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-amber-500 inline-block"></span> Rawan Sedang (${meta.kasus} Kasus)`;
                 } else {
-                    statusBadge.className = 'px-2 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30';
-                    statusBadge.textContent = `🟢 Rawan Rendah (${meta.kasus} Kasus)`;
+                    statusBadge.className = 'px-2 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 inline-flex items-center gap-1.5';
+                    statusBadge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block"></span> Rawan Rendah (${meta.kasus} Kasus)`;
                 }
             }
         }
@@ -627,7 +627,7 @@ function renderCurrentPage() {
     if (totalItems === 0) {
         grid.innerHTML = `
             <div class="col-span-full py-10 text-center text-surface-400 text-sm">
-                🔍 Tidak ada kecamatan yang sesuai dengan kriteria filter saat ini.
+                Tidak ada kecamatan yang sesuai dengan kriteria filter saat ini.
             </div>
         `;
         if (paginationWrapper) paginationWrapper.classList.add('hidden');
@@ -647,13 +647,13 @@ function renderCurrentPage() {
         let statusBadge = '';
         let borderClass = 'border-white/10';
         if (k.status_zona === 'merah') {
-            statusBadge = '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-red-500/20 text-red-400 border border-red-500/30">🔴 MERAH</span>';
+            statusBadge = '<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[10px] font-bold bg-red-500/20 text-red-400 border border-red-500/30"><span class="w-1.5 h-1.5 rounded-full bg-red-500 inline-block"></span> MERAH</span>';
             borderClass = 'border-red-500/20 hover:border-red-500/50';
         } else if (k.status_zona === 'kuning') {
-            statusBadge = '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-400 border border-amber-500/30">🟡 KUNING</span>';
+            statusBadge = '<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-400 border border-amber-500/30"><span class="w-1.5 h-1.5 rounded-full bg-amber-500 inline-block"></span> KUNING</span>';
             borderClass = 'border-amber-500/20 hover:border-amber-500/50';
         } else {
-            statusBadge = '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">🟢 HIJAU</span>';
+            statusBadge = '<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block"></span> HIJAU</span>';
             borderClass = 'border-emerald-500/20 hover:border-emerald-500/50';
         }
 
@@ -678,7 +678,8 @@ function renderCurrentPage() {
                 <div class="flex items-center justify-between text-xs text-surface-400 pt-2.5 border-t border-white/5">
                     <span>Kasus: <strong class="text-white font-mono">${k.jumlah_kasus ?? 0}</strong></span>
                     <span class="text-primary-400 text-[11px] font-semibold group-hover:translate-x-0.5 transition flex items-center gap-1">
-                        <span>Sorot di Peta</span> 📍
+                        <span>Sorot di Peta</span>
+                        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                     </span>
                 </div>
             </div>
