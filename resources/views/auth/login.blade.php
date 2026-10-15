@@ -84,22 +84,22 @@
                 <div class="space-y-1.5 text-xs">
                     <button type="button" onclick="fillCreds('superadmin@bnnp-sulteng.go.id', 'password')"
                             class="w-full flex items-center justify-between p-2 rounded-lg bg-white/5 hover:bg-white/10 text-left transition">
-                        <span class="text-surface-300 font-medium">👑 Super Admin</span>
+                        <span class="text-surface-300 font-medium">Super Admin</span>
                         <span class="text-[11px] text-primary-400">klik isi otomatis</span>
                     </button>
                     <button type="button" onclick="fillCreds('brantas@bnnp-sulteng.go.id', 'password')"
                             class="w-full flex items-center justify-between p-2 rounded-lg bg-white/5 hover:bg-white/10 text-left transition">
-                        <span class="text-surface-300 font-medium">🎯 Admin Pemberantasan</span>
+                        <span class="text-surface-300 font-medium">Admin Pemberantasan</span>
                         <span class="text-[11px] text-primary-400">klik isi otomatis</span>
                     </button>
                     <button type="button" onclick="fillCreds('rehab@bnnp-sulteng.go.id', 'password')"
                             class="w-full flex items-center justify-between p-2 rounded-lg bg-white/5 hover:bg-white/10 text-left transition">
-                        <span class="text-surface-300 font-medium">🏥 Admin Rehabilitasi</span>
+                        <span class="text-surface-300 font-medium">Admin Rehabilitasi</span>
                         <span class="text-[11px] text-primary-400">klik isi otomatis</span>
                     </button>
                     <button type="button" onclick="fillCreds('cegah@bnnp-sulteng.go.id', 'password')"
                             class="w-full flex items-center justify-between p-2 rounded-lg bg-white/5 hover:bg-white/10 text-left transition">
-                        <span class="text-surface-300 font-medium">🛡️ Admin Pencegahan</span>
+                        <span class="text-surface-300 font-medium">Admin Pencegahan</span>
                         <span class="text-[11px] text-primary-400">klik isi otomatis</span>
                     </button>
                 </div>
