@@ -12,10 +12,10 @@
             <div>
                 <span class="inline-flex items-center gap-1.5 rounded-full border border-primary-500/30 bg-primary-500/15 px-3 py-1 text-xs font-semibold text-primary-400 mb-2">
                     @switch(auth()->user()->role)
-                        @case('super_admin') 👑 Hak Akses: Super Administrator @break
-                        @case('admin_brantas') 🎯 Hak Akses: Bidang Pemberantasan @break
-                        @case('admin_rehab') 🏥 Hak Akses: Bidang Rehabilitasi @break
-                        @case('admin_cegah') 🛡️ Hak Akses: Bidang Pencegahan & Dayamas @break
+                        @case('super_admin') Hak Akses: Super Administrator @break
+                        @case('admin_brantas') Hak Akses: Bidang Pemberantasan @break
+                        @case('admin_rehab') Hak Akses: Bidang Rehabilitasi @break
+                        @case('admin_cegah') Hak Akses: Bidang Pencegahan & Dayamas @break
                     @endswitch
                 </span>
                 <h2 class="text-2xl font-bold text-white">Selamat Datang, {{ auth()->user()->name }}!</h2>
@@ -64,9 +64,9 @@
             </div>
             <p class="mt-3 text-3xl font-extrabold text-white">{{ $totalZona }}</p>
             <div class="mt-3 flex items-center gap-3 text-xs">
-                <span class="text-danger-400 font-medium">🔴 {{ $zonaMerah }} Merah</span>
-                <span class="text-warning-400 font-medium">🟡 {{ $zonaKuning }} Kuning</span>
-                <span class="text-accent-400 font-medium">🟢 {{ $zonaHijau }} Hijau</span>
+                <span class="text-danger-400 font-medium inline-flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-danger-500 inline-block"></span> {{ $zonaMerah }} Merah</span>
+                <span class="text-warning-400 font-medium inline-flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-warning-500 inline-block"></span> {{ $zonaKuning }} Kuning</span>
+                <span class="text-accent-400 font-medium inline-flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-accent-500 inline-block"></span> {{ $zonaHijau }} Hijau</span>
             </div>
         </div>
 
@@ -139,11 +139,11 @@
                                     <td class="py-3 font-medium text-white">{{ $z->nama_wilayah }}</td>
                                     <td class="py-3">
                                         @if($z->status_zona === 'merah')
-                                            <span class="inline-flex items-center gap-1 rounded-full bg-danger-500/15 border border-danger-500/30 px-2 py-0.5 text-[11px] font-semibold text-danger-400">🔴 Bahaya</span>
+                                            <span class="inline-flex items-center gap-1.5 rounded-full bg-danger-500/15 border border-danger-500/30 px-2.5 py-0.5 text-[11px] font-semibold text-danger-400"><span class="w-1.5 h-1.5 rounded-full bg-danger-500 inline-block"></span> Bahaya</span>
                                         @elseif($z->status_zona === 'kuning')
-                                            <span class="inline-flex items-center gap-1 rounded-full bg-warning-500/15 border border-warning-500/30 px-2 py-0.5 text-[11px] font-semibold text-warning-400">🟡 Waspada</span>
+                                            <span class="inline-flex items-center gap-1.5 rounded-full bg-warning-500/15 border border-warning-500/30 px-2.5 py-0.5 text-[11px] font-semibold text-warning-400"><span class="w-1.5 h-1.5 rounded-full bg-warning-500 inline-block"></span> Waspada</span>
                                         @else
-                                            <span class="inline-flex items-center gap-1 rounded-full bg-accent-500/15 border border-accent-500/30 px-2 py-0.5 text-[11px] font-semibold text-accent-400">🟢 Aman</span>
+                                            <span class="inline-flex items-center gap-1.5 rounded-full bg-accent-500/15 border border-accent-500/30 px-2.5 py-0.5 text-[11px] font-semibold text-accent-400"><span class="w-1.5 h-1.5 rounded-full bg-accent-500 inline-block"></span> Aman</span>
                                         @endif
                                     </td>
                                     <td class="py-3 text-right font-semibold text-surface-300">{{ $z->jumlah_kasus }}</td>
