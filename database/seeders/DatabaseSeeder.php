@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // ──────────────────────────────────────────────
-        // Users (1 Super Admin + 3 Admin Bidang)
+        // Users (1 Super Admin + 1 Akun Admin Tunggal)
         // ──────────────────────────────────────────────
 
         $superAdmin = User::create([
@@ -26,25 +26,11 @@ class DatabaseSeeder extends Seeder
             'role'     => 'super_admin',
         ]);
 
-        $adminRehab = User::create([
-            'name'     => 'Admin Rehabilitasi',
-            'email'    => 'rehab@bnnp-sulteng.go.id',
+        $admin = User::create([
+            'name'     => 'Admin BNNP',
+            'email'    => 'admin@bnnp-sulteng.go.id',
             'password' => Hash::make('password'),
-            'role'     => 'admin_rehab',
-        ]);
-
-        $adminBrantas = User::create([
-            'name'     => 'Admin Pemberantasan',
-            'email'    => 'brantas@bnnp-sulteng.go.id',
-            'password' => Hash::make('password'),
-            'role'     => 'admin_brantas',
-        ]);
-
-        $adminCegah = User::create([
-            'name'     => 'Admin Pencegahan',
-            'email'    => 'cegah@bnnp-sulteng.go.id',
-            'password' => Hash::make('password'),
-            'role'     => 'admin_cegah',
+            'role'     => 'admin',
         ]);
 
         // ──────────────────────────────────────────────
@@ -61,14 +47,14 @@ class DatabaseSeeder extends Seeder
             'judul'      => 'Mengenal Bahaya Narkotika Jenis Sabu',
             'kategori'   => 'artikel',
             'konten'     => 'Sabu-sabu atau metamfetamin adalah narkotika golongan I yang memiliki efek stimulan kuat pada sistem saraf pusat. Penggunaan sabu dapat menyebabkan kerusakan otak permanen, gangguan jantung, dan kematian. BNNP Sulawesi Tengah terus melakukan sosialisasi tentang bahaya narkotika jenis ini kepada masyarakat, khususnya generasi muda.',
-            'penulis_id' => $adminCegah->id,
+            'penulis_id' => $admin->id,
         ]);
 
         Edukasi::create([
             'judul'      => 'Program Rehabilitasi BNNP Sulawesi Tengah',
             'kategori'   => 'artikel',
             'konten'     => 'BNNP Sulawesi Tengah menyediakan layanan rehabilitasi bagi korban penyalahgunaan narkotika. Program ini meliputi rehabilitasi medis dan sosial yang bertujuan memulihkan kondisi fisik dan mental para korban. Layanan ini bersifat gratis dan rahasia.',
-            'penulis_id' => $adminRehab->id,
+            'penulis_id' => $admin->id,
         ]);
 
         Edukasi::create([
@@ -83,7 +69,7 @@ class DatabaseSeeder extends Seeder
             'kategori'   => 'media',
             'konten'     => 'Infografis ini menjelaskan secara visual bagaimana narkotika mempengaruhi fungsi otak manusia, mulai dari gangguan neurotransmitter hingga kerusakan sel-sel otak yang bersifat permanen.',
             'file_path'  => 'edukasi/infografis-dampak-narkotika.jpg',
-            'penulis_id' => $adminCegah->id,
+            'penulis_id' => $admin->id,
         ]);
     }
 }
