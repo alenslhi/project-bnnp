@@ -37,10 +37,10 @@
     {{-- Header --}}
     <section class="mx-auto max-w-7xl px-4 pt-8 pb-3 sm:px-6 lg:px-8">
         <div>
-            <span class="inline-block text-xs font-bold text-primary-600 dark:text-primary-400 uppercase tracking-widest mb-1">Monitoring Geografis BNNP Sulawesi Tengah</span>
+            <span class="inline-block text-xs font-bold text-primary-600 dark:text-primary-400 uppercase tracking-widest mb-1">SKENA • Monitoring Geografis BNNP Sulawesi Tengah</span>
             <h1 class="text-3xl sm:text-4xl font-black text-surface-900 dark:text-white tracking-tight">Peta Zona Kerawanan Narkotika</h1>
             <p class="mt-1 text-surface-600 dark:text-surface-400 text-sm max-w-3xl">
-                Visualisasi interaktif batas geografis zona kerawanan narkotika tingkat kecamatan se-Sulawesi Tengah.
+                Visualisasi interaktif batas geografis zona kerawanan narkotika se-Sulawesi Tengah melalui sistem SKENA (Sistem Informasi Kumpulan Edukasi Narkotika).
             </p>
         </div>
     </section>

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('title', 'Dashboard') — Admin BNNP Sulteng</title>
+    <title>@yield('title', 'Dashboard') — SKENA Admin BNNP Sulteng</title>
 
     {{-- Favicon BNN --}}
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-32x32.png') }}?v=2">

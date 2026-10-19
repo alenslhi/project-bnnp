@@ -5,10 +5,13 @@
 
     {{-- Sidebar Header --}}
     <div class="flex items-center gap-3 px-5 h-16 border-b border-white/15 dark:border-white/5 shrink-0">
-        <img src="{{ asset('images/logo-bnn.png') }}" alt="Logo BNNP Sulteng" class="h-9 w-auto object-contain drop-shadow-lg">
+        <img src="{{ asset('images/logo-bnn.png') }}" alt="Logo SKENA BNNP Sulteng" class="h-9 w-auto object-contain drop-shadow-lg">
         <div>
-            <span class="block text-sm font-bold text-white leading-tight">Admin Panel</span>
-            <span class="block text-[10px] text-primary-200 dark:text-surface-400 font-medium uppercase tracking-wider">BNNP SULTENG</span>
+            <div class="flex items-center gap-1.5">
+                <span class="block text-sm font-black text-white leading-tight tracking-tight">SKENA</span>
+                <span class="text-[9px] font-extrabold px-1.5 py-0.5 rounded bg-white/20 text-white">ADMIN</span>
+            </div>
+            <span class="block text-[10px] text-primary-200 dark:text-surface-400 font-medium truncate max-w-[145px]">Sistem Edukasi Narkotika</span>
         </div>
     </div>
 

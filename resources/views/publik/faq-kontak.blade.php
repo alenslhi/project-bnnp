@@ -7,10 +7,10 @@
     {{-- Header --}}
     <section class="mx-auto max-w-7xl px-4 pt-10 pb-12 sm:px-6 lg:px-8">
         <div class="text-center max-w-3xl mx-auto">
-            <span class="inline-block text-xs font-bold text-primary-600 dark:text-primary-400 uppercase tracking-widest mb-2">Pusat Bantuan & Pengaduan</span>
+            <span class="inline-block text-xs font-bold text-primary-600 dark:text-primary-400 uppercase tracking-widest mb-2">Pusat Bantuan & Layanan SKENA</span>
             <h1 class="text-3xl sm:text-4xl font-black text-surface-900 dark:text-white mb-4">FAQ & Kontak Darurat</h1>
             <p class="text-surface-600 dark:text-surface-400 leading-relaxed text-sm sm:text-base">
-                Temukan jawaban untuk pertanyaan yang sering diajukan seputar layanan BNNP Sulawesi Tengah, prosedur rehabilitasi, dan hubungi kami jika Anda membutuhkan bantuan darurat atau ingin melapor.
+                Temukan jawaban seputar sistem SKENA (Sistem Informasi Kumpulan Edukasi Narkotika), layanan BNNP Sulawesi Tengah, prosedur rehabilitasi, dan kontak darurat pengaduan.
             </p>
         </div>
     </section>
@@ -21,6 +21,32 @@
             {{-- Bagian FAQ (Kiri, 2 Kolom) --}}
             <div class="lg:col-span-2 space-y-4">
                 <h2 class="text-2xl font-bold text-surface-900 dark:text-white mb-6">Pertanyaan Umum (FAQ)</h2>
+
+                {{-- Accordion Item SKENA --}}
+                <div class="rounded-2xl border border-surface-200 dark:border-white/5 bg-white dark:bg-surface-900/50 p-1 shadow-xs" x-data="{ open: true }">
+                    <button @click="open = !open" class="flex w-full items-center justify-between px-5 py-4 text-left">
+                        <span class="font-semibold text-surface-900 dark:text-white">Apa itu sistem SKENA BNNP Sulteng?</span>
+                        <svg class="h-5 w-5 text-surface-500 dark:text-surface-400 transform transition-transform duration-200" :class="{ 'rotate-180': open }" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div x-show="open" x-collapse>
+                        <div class="px-5 pb-5 text-sm text-surface-600 dark:text-surface-300 leading-relaxed pt-2 border-t border-surface-100 dark:border-white/5">
+                            <strong class="text-primary-700 dark:text-primary-400">SKENA</strong> adalah singkatan dari <strong>Sistem Informasi Kumpulan Edukasi Narkotika</strong>. Ini merupakan platform digital resmi BNNP Sulawesi Tengah yang mengintegrasikan pusat literasi edukasi pencegahan narkoba, peta zonasi kerawanan, modul rehabilitasi, dan kanal pelaporan masyarakat dalam mewujudkan Sulawesi Tengah Bersinar (Bersih Narkoba).
+                        </div>
+                    </div>
+                </div>
+
+                {{-- Accordion Item 0 (P4GN) --}}
+                <div class="rounded-2xl border border-surface-200 dark:border-white/5 bg-white dark:bg-surface-900/50 p-1 shadow-xs" x-data="{ open: false }">
+                    <button @click="open = !open" class="flex w-full items-center justify-between px-5 py-4 text-left">
+                        <span class="font-semibold text-surface-900 dark:text-white">Apa itu P4GN dan apa tujuannya?</span>
+                        <svg class="h-5 w-5 text-surface-500 dark:text-surface-400 transform transition-transform duration-200" :class="{ 'rotate-180': open }" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div x-show="open" x-collapse>
+                        <div class="px-5 pb-5 text-sm text-surface-600 dark:text-surface-300 leading-relaxed pt-2 border-t border-surface-100 dark:border-white/5">
+                            <strong class="text-primary-700 dark:text-primary-400">P4GN</strong> adalah singkatan dari <strong>Pencegahan, Pemberantasan, Penyalahgunaan, dan Peredaran Gelap Narkotika</strong>. Ini merupakan gerakan dan rencana aksi nasional terpadu yang dipimpin oleh Badan Narkotika Nasional (BNN) untuk melindungi masyarakat dari bahaya penyalahgunaan zat adiktif dan memutus mata rantai peredaran narkoba demi mewujudkan Indonesia Bersinar (Bersih Narkoba).
+                        </div>
+                    </div>
+                </div>
 
                 {{-- Accordion Item 1 --}}
                 <div class="rounded-2xl border border-surface-200 dark:border-white/5 bg-white dark:bg-surface-900/50 p-1 shadow-xs" x-data="{ open: false }">

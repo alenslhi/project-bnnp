@@ -1,6 +1,6 @@
 @extends('layouts.publik')
 
-@section('title', 'Katalog Edukasi P4GN')
+@section('title', 'Katalog Edukasi SKENA')
 
 @section('content')
 <div class="relative min-h-screen py-12">
@@ -11,13 +11,13 @@
         {{-- Header Section --}}
         <div class="text-center max-w-3xl mx-auto mb-10">
             <span class="inline-flex items-center gap-1.5 rounded-full border border-primary-200 dark:border-primary-500/30 bg-primary-50 dark:bg-primary-500/10 px-3.5 py-1 text-xs font-bold text-primary-700 dark:text-primary-400 mb-4">
-                Pusat Literasi & Informasi P4GN
+                SKENA • Kumpulan Edukasi Narkotika P4GN
             </span>
             <h1 class="text-3xl font-black tracking-tight text-surface-900 dark:text-white sm:text-4xl">
-                Katalog Edukasi & Informasi P4GN
+                Katalog Edukasi SKENA
             </h1>
             <p class="mt-3 text-base text-surface-600 dark:text-surface-400 leading-relaxed">
-                Temukan artikel ilmiah, kamus istilah bahaya narkoba, materi rehabilitasi, dan rilis media resmi dari BNNP Sulawesi Tengah.
+                Pusat literasi resmi sistem <strong class="text-surface-900 dark:text-white">SKENA</strong> (Sistem Informasi Kumpulan Edukasi Narkotika) BNNP Sulawesi Tengah — menyajikan artikel ilmiah, kamus istilah bahaya narkoba, panduan rehabilitasi, dan rilis edukatif terpercaya.
             </p>
         </div>
 

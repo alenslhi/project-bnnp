@@ -1,6 +1,6 @@
 @extends('layouts.publik')
 
-@section('title', 'Statistik Klien & Layanan Rehabilitasi - BNNP Sulawesi Tengah')
+@section('title', 'Statistik SKENA - BNNP Sulawesi Tengah')
 
 @push('styles')
 <style>
@@ -37,12 +37,12 @@
     
     {{-- Header Section --}}
     <div class="mb-10 text-center">
-        <span class="inline-block text-xs font-bold text-primary-600 dark:text-primary-400 uppercase tracking-widest mb-2">Pusat Data Statistik Terpadu</span>
+        <span class="inline-block text-xs font-bold text-primary-600 dark:text-primary-400 uppercase tracking-widest mb-2">SKENA • Pusat Data Statistik Terpadu</span>
         <h1 class="text-3xl font-black text-surface-900 dark:text-white sm:text-4xl">
             Statistik <span class="text-primary-600 dark:text-primary-400">Klien & Layanan Rehabilitasi</span>
         </h1>
         <p class="mt-3 text-base text-surface-600 dark:text-surface-400 max-w-2xl mx-auto leading-relaxed">
-            Informasi agregat sebaran pasien, pola penggunaan narkotika, dan data demografi terkait upaya rehabilitasi BNNP Sulawesi Tengah.
+            Data agregat sebaran pasien, pola penggunaan narkotika, dan demografi terkait upaya rehabilitasi BNNP Sulawesi Tengah dalam sistem <strong class="text-surface-900 dark:text-white">SKENA</strong> (Sistem Informasi Kumpulan Edukasi Narkotika).
         </p>
     </div>
 

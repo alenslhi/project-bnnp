@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Sistem Edukasi dan Informasi BNNP Sulawesi Tengah — Pemetaan zona kerawanan narkotika dan katalog edukasi P4GN.">
+    <meta name="description" content="SKENA (Sistem Informasi Kumpulan Edukasi Narkotika) BNNP Sulawesi Tengah — Pemetaan zona kerawanan narkotika dan katalog edukasi P4GN.">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('title', 'BNNP Sulawesi Tengah') — Sistem Edukasi & Pemetaan Wilayah</title>
+    <title>@yield('title', 'Beranda') — SKENA (Sistem Informasi Kumpulan Edukasi Narkotika) BNNP Sulteng</title>
 
     {{-- Favicon BNN --}}
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-32x32.png') }}?v=2">
@@ -44,10 +44,10 @@
             <div class="flex items-center gap-3">
                 <span class="inline-flex items-center gap-1.5 font-medium tracking-wide">
                     <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-                    Portal Resmi Badan Narkotika Nasional Provinsi Sulawesi Tengah
+                    Portal Resmi SKENA — Badan Narkotika Nasional Provinsi Sulawesi Tengah
                 </span>
                 <span class="text-white/30">|</span>
-                <span class="text-primary-200">P4GN: Pencegahan & Pemberantasan Penyalahgunaan Narkotika</span>
+                <span class="text-primary-200">SKENA: Sistem Informasi Kumpulan Edukasi Narkotika (P4GN)</span>
             </div>
             <div class="flex items-center gap-4 text-primary-100">
                 <span class="flex items-center gap-1.5">
@@ -64,10 +64,10 @@
             <div class="flex h-16 items-center justify-between">
                 {{-- Logo --}}
                 <a href="{{ route('beranda') }}" class="flex items-center gap-3 group">
-                    <img src="{{ asset('images/logo-bnn.png') }}" alt="Logo BNNP Sulteng" class="h-10 w-auto object-contain transition-transform group-hover:scale-105">
+                    <img src="{{ asset('images/logo-bnn.png') }}" alt="Logo SKENA BNNP Sulteng" class="h-10 w-auto object-contain transition-transform group-hover:scale-105">
                     <div>
-                        <span class="block text-base font-black leading-tight text-primary-900 dark:text-white tracking-tight">BNNP SULTENG</span>
-                        <span class="block text-[11px] font-semibold leading-tight text-primary-600 dark:text-primary-400 tracking-wide">P4GN KOTA & KABUPATEN</span>
+                        <span class="block text-lg font-black leading-tight text-primary-900 dark:text-white tracking-tight">SKENA</span>
+                        <span class="block text-[10px] sm:text-[11px] font-semibold leading-tight text-primary-600 dark:text-primary-400 tracking-wide">Sistem Informasi Kumpulan Edukasi Narkotika</span>
                     </div>
                 </a>
 
@@ -170,14 +170,14 @@
                 {{-- Brand --}}
                 <div>
                     <div class="flex items-center gap-3 mb-4">
-                        <img src="{{ asset('images/logo-bnn.png') }}" alt="Logo BNNP Sulteng" class="h-11 w-auto object-contain">
+                        <img src="{{ asset('images/logo-bnn.png') }}" alt="Logo SKENA BNNP Sulteng" class="h-11 w-auto object-contain">
                         <div>
-                            <h3 class="font-bold text-white text-base">BNNP Sulawesi Tengah</h3>
-                            <p class="text-xs text-primary-300">Badan Narkotika Nasional Republik Indonesia</p>
+                            <h3 class="font-bold text-white text-base">SKENA</h3>
+                            <p class="text-xs text-primary-300">Sistem Informasi Kumpulan Edukasi Narkotika</p>
                         </div>
                     </div>
                     <p class="text-sm text-surface-400 leading-relaxed">
-                        Sistem Edukasi dan Informasi untuk mendukung upaya pencegahan, pemberantasan, dan rehabilitasi penyalahgunaan narkotika di wilayah Provinsi Sulawesi Tengah.
+                        <strong class="text-white font-semibold">SKENA</strong> (Sistem Informasi Kumpulan Edukasi Narkotika) adalah platform resmi BNNP Sulawesi Tengah untuk mendukung program Pencegahan, Pemberantasan, Penyalahgunaan, dan Peredaran Gelap Narkotika (P4GN) serta rehabilitasi berbasis data geografis dan literasi publik terpadu.
                     </p>
                 </div>
 

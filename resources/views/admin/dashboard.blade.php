@@ -11,18 +11,20 @@
         <div class="relative flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
                 <span class="inline-flex items-center gap-1.5 rounded-full border border-primary-300 dark:border-primary-500/30 bg-primary-100 dark:bg-primary-500/15 px-3 py-1 text-xs font-semibold text-primary-700 dark:text-primary-400 mb-2">
+                    <strong class="font-black tracking-wide">SKENA</strong>
+                    <span class="text-primary-400 dark:text-primary-500">•</span>
                     @if(auth()->user()->isSuperAdmin())
-                        Hak Akses: Super Administrator
+                        Super Administrator
                     @else
-                        Hak Akses: Administrator
+                        Administrator
                     @endif
                 </span>
-                <h2 class="text-2xl font-bold text-surface-900 dark:text-white">Selamat Datang, {{ auth()->user()->name }}!</h2>
+                <h2 class="text-2xl font-bold text-surface-900 dark:text-white">Selamat Datang di SKENA, {{ auth()->user()->name }}!</h2>
                 <p class="text-sm text-surface-500 dark:text-surface-400 mt-1 max-w-2xl">
                     @if(auth()->user()->isSuperAdmin())
-                        Anda memiliki akses penuh untuk memantau pemetaan zona kerawanan, verifikasi seluruh data konten edukasi, statistik kasus, serta tata kelola akun pengguna.
+                        Dasbor Pengelolaan Sistem Informasi Kumpulan Edukasi Narkotika (SKENA) BNNP Sulawesi Tengah — akses penuh manajemen user, pemetaan zona kerawanan, edukasi, dan statistik kasus.
                     @else
-                        Anda bertugas mengelola pemetaan zona kerawanan, publikasi konten edukasi masyarakat, dan pembaruan statistik kasus narkotika se-Sulawesi Tengah.
+                        Dasbor Pengelolaan Sistem Informasi Kumpulan Edukasi Narkotika (SKENA) BNNP Sulawesi Tengah — kelola pemetaan zona kerawanan, publikasi modul edukasi, dan pembaruan statistik kasus.
                     @endif
                 </p>
             </div>

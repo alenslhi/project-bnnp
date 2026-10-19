@@ -18,7 +18,7 @@
                         <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent-400 opacity-75"></span>
                         <span class="relative inline-flex h-2 w-2 rounded-full bg-accent-400"></span>
                     </span>
-                    <span class="text-xs font-bold text-white uppercase tracking-wider">Portal Informasi P4GN Aktif</span>
+                    <span class="text-xs font-bold text-white uppercase tracking-wider">SKENA • Sistem Informasi Kumpulan Edukasi Narkotika</span>
                 </div>
 
                 <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-[1.15] tracking-tight">
@@ -29,7 +29,7 @@
                 </h1>
 
                 <p class="mt-6 text-base sm:text-lg text-primary-100 dark:text-surface-300 leading-relaxed max-w-2xl">
-                    Sistem Edukasi dan Informasi BNNP Sulawesi Tengah — mendukung upaya pencegahan, pemberantasan, dan rehabilitasi penyalahgunaan narkotika di wilayah Provinsi Sulawesi Tengah berbasis data geografis dan edukasi publik terpadu.
+                    <strong class="text-white font-semibold">SKENA</strong> (Sistem Informasi Kumpulan Edukasi Narkotika) BNNP Sulawesi Tengah — mendukung program Pencegahan, Pemberantasan, Penyalahgunaan, dan Peredaran Gelap Narkotika (P4GN) serta rehabilitasi di wilayah Provinsi Sulawesi Tengah berbasis data geografis dan edukasi publik terpadu.
                 </p>
 
                 <div class="mt-8 flex flex-wrap gap-4">
@@ -39,7 +39,7 @@
                     </a>
                     <a href="{{ route('edukasi.index') }}" class="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/10 dark:bg-white/5 px-6 py-3.5 text-sm font-semibold text-white backdrop-blur-sm transition-all hover:bg-white/20 hover:-translate-y-0.5">
                         <svg class="h-5 w-5 text-primary-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg>
-                        Jelajahi Edukasi P4GN
+                        Jelajahi Edukasi SKENA
                     </a>
                 </div>
             </div>
@@ -126,8 +126,8 @@
                             <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg>
                         </div>
                         <div>
-                            <h3 class="font-bold text-surface-900 dark:text-white">Katalog Edukasi P4GN</h3>
-                            <p class="text-sm text-surface-500 dark:text-surface-400">Materi artikel, kamus istilah narkoba, regulasi hukum, dan panduan rehabilitasi.</p>
+                            <h3 class="font-bold text-surface-900 dark:text-white">Katalog Edukasi SKENA</h3>
+                            <p class="text-sm text-surface-500 dark:text-surface-400">Kumpulan materi artikel edukatif, kamus istilah bahaya narkoba, regulasi hukum, dan panduan rehabilitasi.</p>
                         </div>
                     </div>
                     <div class="flex items-start gap-4">
