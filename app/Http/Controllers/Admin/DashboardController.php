@@ -14,10 +14,8 @@ class DashboardController extends Controller
      * Tampilkan dashboard utama admin.
      *
      * Konten dashboard disesuaikan berdasarkan role user:
-     * - super_admin   : melihat semua statistik
-     * - admin_rehab   : fokus data rehabilitasi
-     * - admin_brantas : fokus data pemberantasan (zona)
-     * - admin_cegah   : fokus data pencegahan (edukasi)
+     * - super_admin : akses penuh statistik, data konten, dan kelola user
+     * - admin       : akses data operasional (zona, edukasi, statistik)
      */
     public function index()
     {
@@ -36,28 +34,13 @@ class DashboardController extends Controller
         ];
 
         // Data tambahan berdasarkan role
-        switch ($user->role) {
-            case 'super_admin':
-                $data['users'] = User::latest()->take(5)->get();
-                $data['zonasTerbaru'] = Zona::latest()->take(5)->get();
-                $data['edukasiTerbaru'] = Edukasi::with('penulis')->latest()->take(5)->get();
-                break;
+        $data['zonasTerbaru'] = Zona::latest()->take(5)->get();
+        $data['edukasiTerbaru'] = Edukasi::with('penulis')->latest()->take(5)->get();
 
-            case 'admin_rehab':
-                // Admin Rehabilitasi fokus pada artikel rehabilitasi
-                $data['edukasiSaya'] = Edukasi::where('penulis_id', $user->id)->latest()->take(5)->get();
-                break;
-
-            case 'admin_brantas':
-                // Admin Pemberantasan fokus pada zona kerawanan
-                $data['zonasTerbaru'] = Zona::latest()->take(10)->get();
-                break;
-
-            case 'admin_cegah':
-                // Admin Pencegahan fokus pada konten edukasi
-                $data['edukasiSaya'] = Edukasi::where('penulis_id', $user->id)->latest()->take(5)->get();
-                $data['edukasiTerbaru'] = Edukasi::with('penulis')->latest()->take(5)->get();
-                break;
+        if ($user->isSuperAdmin()) {
+            $data['users'] = User::latest()->take(5)->get();
+        } else {
+            $data['edukasiSaya'] = Edukasi::where('penulis_id', $user->id)->latest()->take(5)->get();
         }
 
         return view('admin.dashboard', $data);

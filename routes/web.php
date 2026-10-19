@@ -46,10 +46,10 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::prefix('admin')
     ->name('admin.')
-    ->middleware(['auth', 'role:super_admin,admin_rehab,admin_brantas,admin_cegah'])
+    ->middleware(['auth', 'role:super_admin,admin'])
     ->group(function () {
 
-        // Dashboard (semua admin)
+        // Dashboard (Super Admin & Admin)
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
         // ── Manajemen User (Super Admin) ──
@@ -61,12 +61,12 @@ Route::prefix('admin')
             ->name('logs.index')
             ->middleware('role:super_admin');
 
-        // ── Manajemen Zona (Super Admin & Admin Pemberantasan) ──
+        // ── Manajemen Zona (Super Admin & Admin) ──
         Route::resource('zona', AdminZonaController::class)
-            ->middleware('role:super_admin,admin_brantas')
+            ->middleware('role:super_admin,admin')
             ->except(['show']);
 
-        // ── Manajemen Edukasi (Super Admin & semua Admin Bidang) ──
+        // ── Manajemen Edukasi (Super Admin & Admin) ──
         Route::resource('edukasi', AdminEdukasiController::class)
             ->except(['show']);
 

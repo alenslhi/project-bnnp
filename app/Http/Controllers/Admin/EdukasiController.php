@@ -20,11 +20,7 @@ class EdukasiController extends Controller
 
         $query = Edukasi::with('penulis')->latest();
 
-        // Non-super-admin hanya melihat konten milik sendiri
-        if (!$user->isSuperAdmin()) {
-            $query->where('penulis_id', $user->id);
-        }
-
+        // Super Admin dan Admin dapat melihat seluruh materi edukasi
         $edukasis = $query->paginate(10);
 
         return view('admin.edukasi.index', compact('edukasis'));
@@ -146,13 +142,13 @@ class EdukasiController extends Controller
     }
 
     /**
-     * Pastikan user hanya mengakses konten milik sendiri (kecuali super admin).
+     * Pastikan user memiliki izin untuk mengubah konten (Super Admin dan Admin).
      */
     private function authorizeOwnership(Edukasi $edukasi): void
     {
         $user = Auth::user();
 
-        if (!$user->isSuperAdmin() && $edukasi->penulis_id !== $user->id) {
+        if (!$user->isSuperAdmin() && !$user->isAdmin()) {
             abort(403, 'Anda tidak memiliki izin untuk mengakses materi ini.');
         }
     }

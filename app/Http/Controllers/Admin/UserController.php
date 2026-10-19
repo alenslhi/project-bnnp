@@ -13,18 +13,18 @@ class UserController extends Controller
     public function index()
     {
         $users = User::orderBy('id', 'desc')->paginate(10);
-        return view('admin.users.index', compact('users'));
+        $adminCount = User::where('role', 'admin')->count();
+        return view('admin.users.index', compact('users', 'adminCount'));
     }
 
     public function create()
     {
         $roles = [
             'super_admin' => 'Super Admin',
-            'admin_rehab' => 'Admin Rehabilitasi',
-            'admin_brantas' => 'Admin Pemberantasan',
-            'admin_cegah' => 'Admin Pencegahan',
+            'admin' => 'Admin',
         ];
-        return view('admin.users.create', compact('roles'));
+        $adminExists = User::where('role', 'admin')->exists();
+        return view('admin.users.create', compact('roles', 'adminExists'));
     }
 
     public function store(Request $request)
@@ -33,7 +33,15 @@ class UserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
-            'role' => 'required|in:super_admin,admin_rehab,admin_brantas,admin_cegah',
+            'role' => [
+                'required',
+                'in:super_admin,admin',
+                function ($attribute, $value, $fail) {
+                    if ($value === 'admin' && User::where('role', 'admin')->exists()) {
+                        $fail('Hanya diperbolehkan memiliki 1 akun dengan role Admin. Akun admin sudah terdaftar di sistem.');
+                    }
+                },
+            ],
         ]);
 
         $validated['password'] = Hash::make($validated['password']);
@@ -54,11 +62,10 @@ class UserController extends Controller
     {
         $roles = [
             'super_admin' => 'Super Admin',
-            'admin_rehab' => 'Admin Rehabilitasi',
-            'admin_brantas' => 'Admin Pemberantasan',
-            'admin_cegah' => 'Admin Pencegahan',
+            'admin' => 'Admin',
         ];
-        return view('admin.users.edit', compact('user', 'roles'));
+        $otherAdminExists = User::where('role', 'admin')->where('id', '!=', $user->id)->exists();
+        return view('admin.users.edit', compact('user', 'roles', 'otherAdminExists'));
     }
 
     public function update(Request $request, User $user)
@@ -73,7 +80,20 @@ class UserController extends Controller
                 Rule::unique('users')->ignore($user->id),
             ],
             'password' => 'nullable|string|min:8|confirmed',
-            'role' => 'required|in:super_admin,admin_rehab,admin_brantas,admin_cegah',
+            'role' => [
+                'required',
+                'in:super_admin,admin',
+                function ($attribute, $value, $fail) use ($user) {
+                    if ($value === 'admin') {
+                        $otherAdminExists = User::where('role', 'admin')
+                            ->where('id', '!=', $user->id)
+                            ->exists();
+                        if ($otherAdminExists) {
+                            $fail('Hanya diperbolehkan memiliki 1 akun dengan role Admin. Akun admin lain sudah terdaftar di sistem.');
+                        }
+                    }
+                },
+            ],
         ]);
 
         if ($request->filled('password')) {
