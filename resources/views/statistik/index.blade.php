@@ -4,18 +4,27 @@
 
 @push('styles')
 <style>
-    /* Custom styles for ApexCharts in dark mode */
-    .apexcharts-tooltip {
+    /* Tooltip ApexCharts */
+    .dark .apexcharts-tooltip {
         background: #1e293b !important;
         border: 1px solid rgba(255, 255, 255, 0.1) !important;
         color: #fff !important;
         box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5) !important;
     }
-    .apexcharts-tooltip-title {
+    .dark .apexcharts-tooltip-title {
         background: #0f172a !important;
         border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
-        font-family: inherit !important;
-        font-weight: 600 !important;
+    }
+    html:not(.dark) .apexcharts-tooltip {
+        background: #ffffff !important;
+        border: 1px solid #e2e8f0 !important;
+        color: #0f172a !important;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1) !important;
+    }
+    html:not(.dark) .apexcharts-tooltip-title {
+        background: #f8fafc !important;
+        border-bottom: 1px solid #e2e8f0 !important;
+        color: #0f172a !important;
     }
     .apexcharts-text tspan {
         font-family: 'Inter', sans-serif !important;
@@ -24,15 +33,16 @@
 @endpush
 
 @section('content')
-<div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+<div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
     
     {{-- Header Section --}}
     <div class="mb-10 text-center">
-        <h1 class="text-3xl font-extrabold text-white sm:text-4xl">
-            Dashboard Statistik <span class="text-primary-500">SIRENA</span>
+        <span class="inline-block text-xs font-bold text-primary-600 dark:text-primary-400 uppercase tracking-widest mb-2">Pusat Data Statistik Terpadu</span>
+        <h1 class="text-3xl font-black text-surface-900 dark:text-white sm:text-4xl">
+            Dashboard Statistik <span class="text-primary-600 dark:text-primary-400">SIRENA</span>
         </h1>
-        <p class="mt-3 text-lg text-surface-400 max-w-2xl mx-auto">
-            Informasi agregat sebaran pasien, penggunaan narkotika, dan demografi terkait upaya rehabilitasi BNN. Data ini disajikan untuk memberikan wawasan publik yang transparan dan informatif.
+        <p class="mt-3 text-base text-surface-600 dark:text-surface-400 max-w-2xl mx-auto leading-relaxed">
+            Informasi agregat sebaran pasien, penggunaan narkotika, dan demografi terkait upaya rehabilitasi BNNP Sulawesi Tengah.
         </p>
     </div>
 
@@ -40,57 +50,57 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
         {{-- Chart 1: Penggunaan Narkotika (Bar) --}}
-        <div class="col-span-1 lg:col-span-2 bg-surface-900/50 backdrop-blur-md rounded-2xl p-6 border border-white/10 shadow-xl">
-            <h3 class="text-lg font-semibold text-white mb-4 flex items-center gap-2">
-                <svg class="w-5 h-5 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
-                Penggunaan Narkotika
+        <div class="col-span-1 lg:col-span-2 bg-white dark:bg-surface-900/50 backdrop-blur-md rounded-2xl p-6 border border-surface-200 dark:border-white/10 shadow-sm">
+            <h3 class="text-base font-bold text-surface-900 dark:text-white mb-4 flex items-center gap-2">
+                <svg class="w-5 h-5 text-primary-600 dark:text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                Penggunaan Jenis Narkotika
             </h3>
             <div id="chart-penggunaan" class="h-80"></div>
         </div>
 
         {{-- Chart 2: Usia Anak & Dewasa (Pie) --}}
-        <div class="col-span-1 bg-surface-900/50 backdrop-blur-md rounded-2xl p-6 border border-white/10 shadow-xl">
-            <h3 class="text-lg font-semibold text-white mb-4">Usia Anak dan Dewasa</h3>
+        <div class="col-span-1 bg-white dark:bg-surface-900/50 backdrop-blur-md rounded-2xl p-6 border border-surface-200 dark:border-white/10 shadow-sm">
+            <h3 class="text-base font-bold text-surface-900 dark:text-white mb-4">Usia Anak dan Dewasa</h3>
             <div id="chart-usia" class="flex justify-center h-80"></div>
         </div>
 
         {{-- Chart 3: Motif Penggunaan (Bar) --}}
-        <div class="col-span-1 lg:col-span-2 bg-surface-900/50 backdrop-blur-md rounded-2xl p-6 border border-white/10 shadow-xl">
-            <h3 class="text-lg font-semibold text-white mb-4">Motif Penggunaan Narkotika</h3>
+        <div class="col-span-1 lg:col-span-2 bg-white dark:bg-surface-900/50 backdrop-blur-md rounded-2xl p-6 border border-surface-200 dark:border-white/10 shadow-sm">
+            <h3 class="text-base font-bold text-surface-900 dark:text-white mb-4">Motif Penggunaan Narkotika</h3>
             <div id="chart-motif" class="h-80"></div>
         </div>
 
         {{-- Chart 4: Pendidikan (Pie) --}}
-        <div class="col-span-1 bg-surface-900/50 backdrop-blur-md rounded-2xl p-6 border border-white/10 shadow-xl">
-            <h3 class="text-lg font-semibold text-white mb-4">Pendidikan Pasien</h3>
+        <div class="col-span-1 bg-white dark:bg-surface-900/50 backdrop-blur-md rounded-2xl p-6 border border-surface-200 dark:border-white/10 shadow-sm">
+            <h3 class="text-base font-bold text-surface-900 dark:text-white mb-4">Pendidikan Pasien</h3>
             <div id="chart-pendidikan" class="flex justify-center h-80"></div>
         </div>
 
         {{-- Row 3: 3 Pie Charts --}}
-        <div class="col-span-1 bg-surface-900/50 backdrop-blur-md rounded-2xl p-6 border border-white/10 shadow-xl">
-            <h3 class="text-lg font-semibold text-white mb-4">Jenis Kelamin</h3>
+        <div class="col-span-1 bg-white dark:bg-surface-900/50 backdrop-blur-md rounded-2xl p-6 border border-surface-200 dark:border-white/10 shadow-sm">
+            <h3 class="text-base font-bold text-surface-900 dark:text-white mb-4">Jenis Kelamin</h3>
             <div id="chart-gender" class="flex justify-center h-64"></div>
         </div>
 
-        <div class="col-span-1 bg-surface-900/50 backdrop-blur-md rounded-2xl p-6 border border-white/10 shadow-xl">
-            <h3 class="text-lg font-semibold text-white mb-4">Sumber Pasien</h3>
+        <div class="col-span-1 bg-white dark:bg-surface-900/50 backdrop-blur-md rounded-2xl p-6 border border-surface-200 dark:border-white/10 shadow-sm">
+            <h3 class="text-base font-bold text-surface-900 dark:text-white mb-4">Sumber Pasien</h3>
             <div id="chart-sumber" class="flex justify-center h-64"></div>
         </div>
 
-        <div class="col-span-1 bg-surface-900/50 backdrop-blur-md rounded-2xl p-6 border border-white/10 shadow-xl">
-            <h3 class="text-lg font-semibold text-white mb-4">Sumber Biaya</h3>
+        <div class="col-span-1 bg-white dark:bg-surface-900/50 backdrop-blur-md rounded-2xl p-6 border border-surface-200 dark:border-white/10 shadow-sm">
+            <h3 class="text-base font-bold text-surface-900 dark:text-white mb-4">Sumber Pembiayaan</h3>
             <div id="chart-biaya" class="flex justify-center h-64"></div>
         </div>
 
         {{-- Chart 5: Lama Penggunaan (Bar) --}}
-        <div class="col-span-1 lg:col-span-3 bg-surface-900/50 backdrop-blur-md rounded-2xl p-6 border border-white/10 shadow-xl">
-            <h3 class="text-lg font-semibold text-white mb-4">Lama Penggunaan Narkotika</h3>
+        <div class="col-span-1 lg:col-span-3 bg-white dark:bg-surface-900/50 backdrop-blur-md rounded-2xl p-6 border border-surface-200 dark:border-white/10 shadow-sm">
+            <h3 class="text-base font-bold text-surface-900 dark:text-white mb-4">Lama Penggunaan Narkotika</h3>
             <div id="chart-lama" class="h-72"></div>
         </div>
 
-        {{-- Chart 6: Pekerjaan (Bar Vertical/Horizontal) --}}
-        <div class="col-span-1 lg:col-span-3 bg-surface-900/50 backdrop-blur-md rounded-2xl p-6 border border-white/10 shadow-xl">
-            <h3 class="text-lg font-semibold text-white mb-4">Pekerjaan Pasien</h3>
+        {{-- Chart 6: Pekerjaan (Bar) --}}
+        <div class="col-span-1 lg:col-span-3 bg-white dark:bg-surface-900/50 backdrop-blur-md rounded-2xl p-6 border border-surface-200 dark:border-white/10 shadow-sm">
+            <h3 class="text-base font-bold text-surface-900 dark:text-white mb-4">Pekerjaan Pasien</h3>
             <div id="chart-pekerjaan" class="h-[500px]"></div>
         </div>
 
@@ -100,24 +110,27 @@
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
+        const isDark = document.documentElement.classList.contains('dark');
+        const textColor = isDark ? '#94a3b8' : '#475569';
+        const gridColor = isDark ? 'rgba(255, 255, 255, 0.1)' : '#e2e8f0';
         
         const commonOptions = {
             chart: {
-                foreColor: '#94a3b8', // text-slate-400
+                foreColor: textColor,
                 toolbar: { show: false },
                 fontFamily: 'Inter, sans-serif'
             },
             tooltip: {
-                theme: 'dark'
+                theme: isDark ? 'dark' : 'light'
             },
             grid: {
-                borderColor: 'rgba(255, 255, 255, 0.1)',
+                borderColor: gridColor,
                 strokeDashArray: 4,
             }
         };
 
-        const pieColors = ['#e11d48', '#8b5cf6', '#3b82f6', '#10b981', '#f59e0b', '#ec4899', '#0ea5e9'];
-        const barColor = '#ef4444'; // red-500
+        const pieColors = ['#2563eb', '#059669', '#d97706', '#dc2626', '#7c3aed', '#db2777', '#0891b2'];
+        const barColor = '#2563eb';
 
         // 1. Penggunaan Narkotika (Bar)
         new ApexCharts(document.querySelector("#chart-penggunaan"), {
@@ -137,7 +150,7 @@
             series: [29, 45],
             labels: ['Anak (dibawah 19 tahun)', 'Dewasa'],
             chart: { type: 'pie', height: 320, ...commonOptions.chart },
-            colors: ['#e11d48', '#4c1d95'], // red-600, violet-900
+            colors: ['#2563eb', '#1e3a8a'],
             legend: { position: 'bottom' }
         }).render();
 
@@ -147,7 +160,7 @@
             series: [{ name: 'Jumlah', data: [40, 33, 22, 14, 11, 1, 5, 2, 5, 4, 5, 0] }],
             chart: { type: 'bar', height: 320, ...commonOptions.chart },
             plotOptions: { bar: { horizontal: true, borderRadius: 4 } },
-            colors: [barColor],
+            colors: ['#0284c7'],
             xaxis: {
                 categories: ['Ajakan/bujukan teman', 'Ingin mencoba/penasaran', 'Tinggal di lingkungan pengguna', 'Konflik keluarga', 'Bersenang-senang', 'Stress belajar/kerja', 'Penambah stamina', 'Keluarga penyalahguna', 'Perceraian/patah hati', 'Diberikan cuma-cuma', 'Bermain game', 'Berduka']
             }
@@ -169,7 +182,7 @@
             series: [72, 2],
             labels: ['Laki-laki', 'Perempuan'],
             chart: { type: 'pie', height: 260, ...commonOptions.chart },
-            colors: ['#e11d48', '#4c1d95'],
+            colors: ['#2563eb', '#ec4899'],
             legend: { position: 'bottom' }
         }).render();
 
@@ -189,7 +202,7 @@
             series: [74, 0],
             labels: ['APBN', 'PNBP'],
             chart: { type: 'pie', height: 260, ...commonOptions.chart },
-            colors: ['#e11d48', '#4c1d95'],
+            colors: ['#059669', '#d97706'],
             legend: { position: 'bottom' }
         }).render();
 
@@ -199,7 +212,7 @@
             series: [{ name: 'Jumlah', data: [20, 15, 42, 16] }],
             chart: { type: 'bar', height: 280, ...commonOptions.chart },
             plotOptions: { bar: { horizontal: true, borderRadius: 4, barHeight: '50%' } },
-            colors: [barColor],
+            colors: ['#059669'],
             xaxis: { categories: ['0 - 6 bulan', '7 - 12 bulan', '12 - 60 bulan', 'Diatas 60 bulan'] }
         }).render();
 

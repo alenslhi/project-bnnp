@@ -37,9 +37,9 @@
     {{-- Header --}}
     <section class="mx-auto max-w-7xl px-4 pt-8 pb-3 sm:px-6 lg:px-8">
         <div>
-            <span class="inline-block text-xs font-semibold text-primary-400 uppercase tracking-widest mb-1">Monitoring Geografis BNNP Sulawesi Tengah</span>
-            <h1 class="text-3xl sm:text-4xl font-bold text-white tracking-tight">Peta Zona Kerawanan Narkotika</h1>
-            <p class="mt-1 text-surface-400 text-sm max-w-3xl">
+            <span class="inline-block text-xs font-bold text-primary-600 dark:text-primary-400 uppercase tracking-widest mb-1">Monitoring Geografis BNNP Sulawesi Tengah</span>
+            <h1 class="text-3xl sm:text-4xl font-black text-surface-900 dark:text-white tracking-tight">Peta Zona Kerawanan Narkotika</h1>
+            <p class="mt-1 text-surface-600 dark:text-surface-400 text-sm max-w-3xl">
                 Visualisasi interaktif batas geografis zona kerawanan narkotika tingkat kecamatan se-Sulawesi Tengah.
             </p>
         </div>
@@ -47,20 +47,20 @@
 
     {{-- Unified Control Panel (Toolbar Filter Rapi & Kompak) --}}
     <section class="mx-auto max-w-7xl px-4 pb-3 sm:px-6 lg:px-8">
-        <div class="rounded-2xl border border-white/10 bg-surface-900/80 p-3.5 sm:p-4 backdrop-blur-xl shadow-xl space-y-3">
+        <div class="rounded-2xl border border-surface-200 dark:border-white/10 bg-white dark:bg-surface-900/80 p-3.5 sm:p-4 backdrop-blur-xl shadow-sm space-y-3">
             
             {{-- Baris 1: Status Wilayah Aktif & Filter Kerawanan --}}
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-white/10">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-surface-100 dark:border-white/10">
                 
                 {{-- Kiri: Wilayah Info --}}
                 <div class="flex items-center gap-2.5 flex-wrap">
-                    <div id="status-icon-box" class="w-8 h-8 rounded-lg bg-primary-500/20 text-primary-400 flex items-center justify-center border border-primary-500/30 shrink-0">
+                    <div id="status-icon-box" class="w-8 h-8 rounded-lg bg-primary-50 dark:bg-primary-500/20 text-primary-600 dark:text-primary-400 flex items-center justify-center border border-primary-200 dark:border-primary-500/30 shrink-0">
                         <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                     </div>
                     <div class="flex items-center gap-2 flex-wrap">
-                        <span class="text-xs text-surface-400 font-medium">Wilayah:</span>
-                        <h3 id="current-view-title" class="text-sm sm:text-base font-bold text-white">Seluruh Sulawesi Tengah</h3>
-                        <span id="current-view-badge" class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-primary-600/25 text-primary-300 border border-primary-500/30 font-mono">
+                        <span class="text-xs text-surface-500 dark:text-surface-400 font-medium">Wilayah:</span>
+                        <h3 id="current-view-title" class="text-sm sm:text-base font-bold text-surface-900 dark:text-white">Seluruh Sulawesi Tengah</h3>
+                        <span id="current-view-badge" class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-primary-50 dark:bg-primary-600/25 text-primary-700 dark:text-primary-300 border border-primary-200 dark:border-primary-500/30 font-mono">
                             167 Kecamatan
                         </span>
                         <span id="current-view-status" class="hidden px-2.5 py-0.5 rounded-full text-[11px] font-semibold">
@@ -72,32 +72,32 @@
                 {{-- Kanan: Ringkasan Hitungan & Filter Status --}}
                 <div class="flex items-center gap-2 flex-wrap">
                     {{-- Mini Counter Status --}}
-                    <div class="flex items-center gap-2 text-xs font-semibold bg-surface-950/80 px-2.5 py-1.5 rounded-xl border border-white/10">
-                        <span class="text-red-400 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-red-500 inline-block"></span> <strong id="stat-m" class="font-bold">0</strong></span>
-                        <span class="text-white/20">•</span>
-                        <span class="text-amber-400 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-amber-500 inline-block"></span> <strong id="stat-k" class="font-bold">0</strong></span>
-                        <span class="text-white/20">•</span>
-                        <span class="text-emerald-400 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-500 inline-block"></span> <strong id="stat-h" class="font-bold">0</strong></span>
+                    <div class="flex items-center gap-2 text-xs font-semibold bg-surface-100 dark:bg-surface-950/80 px-2.5 py-1.5 rounded-xl border border-surface-200 dark:border-white/10">
+                        <span class="text-danger-600 dark:text-red-400 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-red-500 inline-block"></span> <strong id="stat-m" class="font-bold">0</strong></span>
+                        <span class="text-surface-300 dark:text-white/20">•</span>
+                        <span class="text-amber-600 dark:text-amber-400 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-amber-500 inline-block"></span> <strong id="stat-k" class="font-bold">0</strong></span>
+                        <span class="text-surface-300 dark:text-white/20">•</span>
+                        <span class="text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-500 inline-block"></span> <strong id="stat-h" class="font-bold">0</strong></span>
                     </div>
 
                     {{-- Dropdown Filter Status Warna --}}
-                    <select id="filter-status" onchange="onStatusChange(this.value)" class="rounded-xl bg-surface-950 border border-white/10 px-3 py-1.5 text-xs text-white focus:border-primary-500 outline-none transition cursor-pointer">
+                    <select id="filter-status" onchange="onStatusChange(this.value)" class="rounded-xl bg-surface-50 dark:bg-surface-950 border border-surface-300 dark:border-white/10 px-3 py-1.5 text-xs text-surface-900 dark:text-white focus:border-primary-500 outline-none transition cursor-pointer">
                         <option value="">Semua Status</option>
                         <option value="merah">Rawan Tinggi (Merah)</option>
                         <option value="kuning">Rawan Sedang (Kuning)</option>
                         <option value="hijau">Rawan Rendah (Hijau)</option>
                     </select>
 
-                    <button type="button" id="btn-reset-filter" onclick="selectQuickKabupaten('')" class="hidden px-3 py-1.5 rounded-xl border border-white/10 bg-white/5 hover:bg-white/15 text-xs text-surface-200 hover:text-white font-medium transition flex items-center gap-1.5">
+                    <button type="button" id="btn-reset-filter" onclick="selectQuickKabupaten('')" class="hidden px-3 py-1.5 rounded-xl border border-surface-200 dark:border-white/10 bg-surface-100 dark:bg-white/5 hover:bg-surface-200 dark:hover:bg-white/15 text-xs text-surface-700 dark:text-surface-200 hover:text-surface-900 dark:hover:text-white font-medium transition flex items-center gap-1.5">
                         <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
                         <span>Reset Sulteng</span>
                     </button>
                 </div>
             </div>
 
-            {{-- Baris 2: Tombol Pilihan Wilayah Kabupaten (Scrollable Horizontal dengan tombol geser & drag) --}}
+            {{-- Baris 2: Tombol Pilihan Wilayah Kabupaten (Scrollable Horizontal) --}}
             <div class="flex items-center gap-2">
-                <span class="text-xs font-bold text-surface-400 shrink-0 hidden md:inline">
+                <span class="text-xs font-bold text-surface-500 dark:text-surface-400 shrink-0 hidden md:inline">
                     Pilih Wilayah:
                 </span>
                 
@@ -106,26 +106,26 @@
                         onclick="scrollKabupatenPills(-240)" 
                         aria-label="Geser ke kiri"
                         title="Geser ke kiri"
-                        class="shrink-0 w-7 h-7 rounded-lg border border-white/10 bg-surface-950/90 hover:bg-white/15 text-surface-300 hover:text-white flex items-center justify-center text-sm font-bold transition shadow-sm">
+                        class="shrink-0 w-7 h-7 rounded-lg border border-surface-200 dark:border-white/10 bg-surface-100 dark:bg-surface-950/90 hover:bg-surface-200 dark:hover:bg-white/15 text-surface-600 dark:text-surface-300 hover:text-surface-900 dark:hover:text-white flex items-center justify-center text-sm font-bold transition shadow-xs">
                     ‹
                 </button>
 
-                {{-- Scrollable Container dengan smooth scroll & drag-to-scroll --}}
+                {{-- Scrollable Container --}}
                 <div id="kabupaten-pills-container" 
                      class="flex items-center gap-1.5 overflow-x-auto pb-1 max-w-full scrollbar-none flex-nowrap py-0.5 w-full select-none cursor-grab active:cursor-grabbing">
                     {{-- Seluruh Sulteng --}}
                     <button type="button" 
                             id="quick-kab-all"
                             onclick="selectQuickKabupaten('')" 
-                            class="quick-kab-pill active px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition border border-white/10 bg-surface-950 text-surface-300 hover:text-white hover:border-white/20 shrink-0">
+                            class="quick-kab-pill active px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition border border-surface-200 dark:border-white/10 bg-surface-50 dark:bg-surface-950 text-surface-700 dark:text-surface-300 hover:text-surface-900 dark:hover:text-white hover:border-surface-300 dark:hover:border-white/20 shrink-0">
                         Seluruh Sulteng (167)
                     </button>
 
-                    {{-- Parigi Moutong (Tanpa Bintang) --}}
+                    {{-- Parigi Moutong --}}
                     <button type="button" 
                             id="quick-kab-72_08"
                             onclick="selectQuickKabupaten('72.08')" 
-                            class="quick-kab-pill px-3 py-1.5 rounded-xl text-xs font-medium whitespace-nowrap transition border border-white/10 bg-surface-950 text-surface-300 hover:text-white hover:border-white/20 flex items-center gap-1 shrink-0">
+                            class="quick-kab-pill px-3 py-1.5 rounded-xl text-xs font-medium whitespace-nowrap transition border border-surface-200 dark:border-white/10 bg-surface-50 dark:bg-surface-950 text-surface-700 dark:text-surface-300 hover:text-surface-900 dark:hover:text-white hover:border-surface-300 dark:hover:border-white/20 flex items-center gap-1 shrink-0">
                         <span>Kab. Parigi Moutong</span>
                         <span class="text-[10px] text-surface-400 font-mono">(23)</span>
                     </button>
@@ -140,7 +140,7 @@
                             <button type="button" 
                                     id="quick-kab-{{ $codeSlug }}"
                                     onclick="selectQuickKabupaten('{{ $kab->kode_wilayah }}')" 
-                                    class="quick-kab-pill px-3 py-1.5 rounded-xl text-xs font-medium whitespace-nowrap transition border border-white/10 bg-surface-950 text-surface-300 hover:text-white hover:border-white/20 flex items-center gap-1 shrink-0">
+                                    class="quick-kab-pill px-3 py-1.5 rounded-xl text-xs font-medium whitespace-nowrap transition border border-surface-200 dark:border-white/10 bg-surface-50 dark:bg-surface-950 text-surface-700 dark:text-surface-300 hover:text-surface-900 dark:hover:text-white hover:border-surface-300 dark:hover:border-white/20 flex items-center gap-1 shrink-0">
                                 <span>{{ str_replace(['Kabupaten ', 'Kota '], '', $kab->nama_wilayah) }}</span>
                                 @if($kecCount)
                                     <span class="text-[10px] text-surface-400 font-mono">({{ $kecCount }})</span>
@@ -155,7 +155,7 @@
                         onclick="scrollKabupatenPills(240)" 
                         aria-label="Geser ke kanan"
                         title="Geser ke kanan"
-                        class="shrink-0 w-7 h-7 rounded-lg border border-white/10 bg-surface-950/90 hover:bg-white/15 text-surface-300 hover:text-white flex items-center justify-center text-sm font-bold transition shadow-sm">
+                        class="shrink-0 w-7 h-7 rounded-lg border border-surface-200 dark:border-white/10 bg-surface-100 dark:bg-surface-950/90 hover:bg-surface-200 dark:hover:bg-white/15 text-surface-600 dark:text-surface-300 hover:text-surface-900 dark:hover:text-white flex items-center justify-center text-sm font-bold transition shadow-xs">
                     ›
                 </button>
             </div>
@@ -169,45 +169,45 @@
         {{-- Legend Peta Ringkas --}}
         <div class="flex flex-wrap items-center justify-between gap-3 mb-2 px-1">
             <div class="flex flex-wrap items-center gap-2">
-                <div class="flex items-center gap-1.5 rounded-lg border border-white/5 bg-surface-900/60 px-2.5 py-1 text-xs">
+                <div class="flex items-center gap-1.5 rounded-lg border border-surface-200 dark:border-white/5 bg-white dark:bg-surface-900/60 px-2.5 py-1 text-xs shadow-xs">
                     <span class="legend-color bg-red-500"></span>
-                    <span class="text-surface-200 font-medium">Merah — Rawan Tinggi</span>
+                    <span class="text-surface-700 dark:text-surface-200 font-medium">Merah — Rawan Tinggi</span>
                 </div>
-                <div class="flex items-center gap-1.5 rounded-lg border border-white/5 bg-surface-900/60 px-2.5 py-1 text-xs">
+                <div class="flex items-center gap-1.5 rounded-lg border border-surface-200 dark:border-white/5 bg-white dark:bg-surface-900/60 px-2.5 py-1 text-xs shadow-xs">
                     <span class="legend-color bg-amber-500"></span>
-                    <span class="text-surface-200 font-medium">Kuning — Rawan Sedang</span>
+                    <span class="text-surface-700 dark:text-surface-200 font-medium">Kuning — Rawan Sedang</span>
                 </div>
-                <div class="flex items-center gap-1.5 rounded-lg border border-white/5 bg-surface-900/60 px-2.5 py-1 text-xs">
+                <div class="flex items-center gap-1.5 rounded-lg border border-surface-200 dark:border-white/5 bg-white dark:bg-surface-900/60 px-2.5 py-1 text-xs shadow-xs">
                     <span class="legend-color bg-emerald-500"></span>
-                    <span class="text-surface-200 font-medium">Hijau — Rawan Rendah</span>
+                    <span class="text-surface-700 dark:text-surface-200 font-medium">Hijau — Rawan Rendah</span>
                 </div>
             </div>
 
-            <div class="text-[11px] text-surface-400">
+            <div class="text-[11px] text-surface-500 dark:text-surface-400">
                 Klik poligon kecamatan di peta atau kartu di bawah untuk detail
             </div>
         </div>
 
         {{-- Map Container --}}
-        <div class="rounded-2xl border border-white/10 bg-surface-900/80 p-2 shadow-2xl relative">
+        <div class="rounded-2xl border border-surface-200 dark:border-white/10 bg-white dark:bg-surface-900/80 p-2 shadow-sm relative">
             <div id="peta-zona"></div>
         </div>
 
         {{-- Section: Daftar / List Kecamatan di Wilayah Terpilih --}}
-        <div id="section-list-kecamatan" class="mt-6 rounded-2xl border border-white/10 bg-surface-900/80 p-5 backdrop-blur-xl shadow-2xl">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-white/10">
+        <div id="section-list-kecamatan" class="mt-6 rounded-2xl border border-surface-200 dark:border-white/10 bg-white dark:bg-surface-900/80 p-5 backdrop-blur-xl shadow-sm">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-surface-100 dark:border-white/10">
                 <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-xl bg-primary-500/20 text-primary-400 flex items-center justify-center border border-primary-500/30">
+                    <div class="w-10 h-10 rounded-xl bg-primary-50 dark:bg-primary-500/20 text-primary-600 dark:text-primary-400 flex items-center justify-center border border-primary-200 dark:border-primary-500/30">
                         <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
                     </div>
                     <div>
-                        <h3 class="text-base font-bold text-white flex items-center gap-2">
+                        <h3 class="text-base font-bold text-surface-900 dark:text-white flex items-center gap-2">
                             <span id="list-title">Daftar Kecamatan se-Sulawesi Tengah</span>
-                            <span id="list-count-badge" class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-primary-600/30 text-primary-300 border border-primary-500/30 font-mono">
+                            <span id="list-count-badge" class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-primary-50 dark:bg-primary-600/30 text-primary-700 dark:text-primary-300 border border-primary-200 dark:border-primary-500/30 font-mono">
                                 167 Kecamatan
                             </span>
                         </h3>
-                        <p id="list-subtitle" class="text-xs text-surface-400 mt-0.5">
+                        <p id="list-subtitle" class="text-xs text-surface-500 dark:text-surface-400 mt-0.5">
                             Klik nama kecamatan di bawah untuk menyorot poligon & membuka detailnya di peta Leaflet.
                         </p>
                     </div>
@@ -219,7 +219,7 @@
                     <div class="relative">
                         <select id="filter-kabupaten-dropdown" 
                                 onchange="onSelectKabupatenFilter(this.value)" 
-                                class="rounded-xl bg-surface-950 border border-white/15 px-3 py-2 text-xs text-white font-medium focus:border-primary-500 outline-none transition cursor-pointer">
+                                class="rounded-xl bg-surface-50 dark:bg-surface-950 border border-surface-300 dark:border-white/15 px-3 py-2 text-xs text-surface-900 dark:text-white font-medium focus:border-primary-500 outline-none transition cursor-pointer">
                             <option value="">Semua Wilayah (Seluruh Sulteng)</option>
                             @foreach($kabupatens as $kab)
                                 @php
@@ -235,14 +235,14 @@
                     {{-- Quick Search di List Kecamatan --}}
                     <div class="relative">
                         <input type="text" 
-                               id="search-kecamatan-input" 
-                               oninput="onSearchKecamatan(this.value)" 
-                               placeholder="Cari kecamatan..." 
-                               class="w-36 sm:w-48 rounded-xl bg-surface-950 border border-white/10 px-3.5 py-2 text-xs text-white placeholder-surface-500 focus:border-primary-500 outline-none transition">
+                                id="search-kecamatan-input" 
+                                oninput="onSearchKecamatan(this.value)" 
+                                placeholder="Cari kecamatan..." 
+                                class="w-36 sm:w-48 rounded-xl bg-surface-50 dark:bg-surface-950 border border-surface-300 dark:border-white/10 px-3.5 py-2 text-xs text-surface-900 dark:text-white placeholder-surface-400 dark:placeholder-surface-500 focus:border-primary-500 outline-none transition">
                     </div>
                     <button type="button" 
                             onclick="resetAllKecamatanFilters()" 
-                            class="px-2.5 py-2 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 text-xs text-surface-300 hover:text-white transition font-medium">
+                            class="px-2.5 py-2 rounded-xl border border-surface-200 dark:border-white/10 bg-surface-100 dark:bg-white/5 hover:bg-surface-200 dark:hover:bg-white/10 text-xs text-surface-700 dark:text-surface-300 hover:text-surface-900 dark:hover:text-white transition font-medium">
                         Reset
                     </button>
                 </div>
@@ -253,10 +253,10 @@
                 <!-- Konten 6 kartu digenerate dinamis lewat JavaScript -->
             </div>
 
-            {{-- Filter Halaman / Pagination (Batas 6 per Halaman: 1, 2, 3, 4, 5, dst.) --}}
-            <div id="pagination-wrapper" class="mt-5 pt-4 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
-                <div id="pagination-info" class="text-surface-400">
-                    Menampilkan <strong id="page-start" class="text-white">1</strong> - <strong id="page-end" class="text-white">6</strong> dari <strong id="page-total" class="text-white">167</strong> kecamatan
+            {{-- Filter Halaman / Pagination --}}
+            <div id="pagination-wrapper" class="mt-5 pt-4 border-t border-surface-100 dark:border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
+                <div id="pagination-info" class="text-surface-500 dark:text-surface-400">
+                    Menampilkan <strong id="page-start" class="text-surface-900 dark:text-white">1</strong> - <strong id="page-end" class="text-surface-900 dark:text-white">6</strong> dari <strong id="page-total" class="text-surface-900 dark:text-white">167</strong> kecamatan
                 </div>
                 <div id="pagination-buttons" class="flex items-center gap-1.5 flex-wrap justify-center">
                     <!-- Tombol Prev, 1, 2, 3, 4, 5, Next -->
@@ -272,15 +272,13 @@
 <style>
     /* Quick Filter Pills */
     .quick-kab-pill.active {
-        background-color: #0284c7 !important;
+        background-color: #2563eb !important;
         color: #ffffff !important;
-        border-color: #38bdf8 !important;
-        box-shadow: 0 4px 10px rgba(2, 132, 199, 0.35) !important;
+        border-color: #60a5fa !important;
+        box-shadow: 0 4px 10px rgba(37, 99, 235, 0.35) !important;
         font-weight: 700 !important;
     }
     .quick-kab-pill:not(.active):hover {
-        border-color: rgba(255, 255, 255, 0.3);
-        color: #ffffff;
         transform: translateY(-1px);
     }
 
@@ -291,32 +289,17 @@
         -ms-overflow-style: none;
         scrollbar-width: none;
     }
-    .scrollbar-thin::-webkit-scrollbar {
-        width: 6px;
-    }
-    .scrollbar-thin::-webkit-scrollbar-track {
-        background: rgba(15, 23, 42, 0.6);
-        border-radius: 4px;
-    }
-    .scrollbar-thin::-webkit-scrollbar-thumb {
-        background: rgba(255, 255, 255, 0.2);
-        border-radius: 4px;
-    }
-    .scrollbar-thin::-webkit-scrollbar-thumb:hover {
-        background: rgba(255, 255, 255, 0.4);
-    }
 
     .kecamatan-card {
         transition: all 0.2s ease;
     }
     .kecamatan-card:hover {
         transform: translateY(-2px);
-        border-color: rgba(56, 189, 248, 0.4);
     }
     .kecamatan-card.highlighted {
-        border-color: #38bdf8 !important;
-        box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.5) !important;
-        background-color: rgba(14, 165, 233, 0.1) !important;
+        border-color: #2563eb !important;
+        box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.4) !important;
+        background-color: rgba(37, 99, 235, 0.08) !important;
     }
 </style>
 
@@ -362,7 +345,7 @@ document.addEventListener('DOMContentLoaded', function() {
         scrollWheelZoom: true,
     }).setView([-1.0, 120.5], 7);
 
-    // 2. Definisi Layer Peta (OpenStreetMap Standar lengkap batas, Topografi, Satelit)
+    // 2. Definisi Layer Peta
     const osmLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors',
         maxZoom: 19,
@@ -395,7 +378,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     setTimeout(() => { map.invalidateSize(); }, 250);
 
-    // 3. Inisialisasi scroll horizontal tombol kabupaten (drag & mouse wheel)
+    // 3. Inisialisasi scroll horizontal tombol kabupaten
     initPillsScroll();
 
     // 4. Load data awal per-kecamatan se-Sulteng
@@ -413,7 +396,6 @@ function loadDataPeta() {
             if (geoJsonLayer) {
                 map.removeLayer(geoJsonLayer);
             }
-            // Reset mapping layer
             for (let id in layerMapByZonaId) delete layerMapByZonaId[id];
 
             allLoadedKecamatans = (data.features || []).map(f => f.properties);
@@ -503,18 +485,16 @@ function loadDataPeta() {
                 map.fitBounds(geoJsonLayer.getBounds(), { padding: [25, 25], maxZoom: 13, animate: true });
             }
 
-            // Update statistik banner & render daftar kecamatan
             updateBannerStats();
             renderKecamatanList(allLoadedKecamatans);
         })
         .catch(err => console.error('Gagal memuat data peta:', err));
 }
 
-// Handler Pilihan Cepat Kabupaten (Gambar 4)
+// Handler Pilihan Cepat Kabupaten
 function selectQuickKabupaten(kodeWilayah) {
     currentParentKode = kodeWilayah;
 
-    // 1. Update kelas active pada tombol cepat
     document.querySelectorAll('.quick-kab-pill').forEach(btn => btn.classList.remove('active'));
     if (!kodeWilayah) {
         const allBtn = document.getElementById('quick-kab-all');
@@ -525,7 +505,6 @@ function selectQuickKabupaten(kodeWilayah) {
         if (activeBtn) activeBtn.classList.add('active');
     }
 
-    // 2. Update Header Info Toolbar
     const titleEl = document.getElementById('current-view-title');
     const badgeEl = document.getElementById('current-view-badge');
     const statusBadge = document.getElementById('current-view-status');
@@ -539,7 +518,7 @@ function selectQuickKabupaten(kodeWilayah) {
         if (resetBtn) resetBtn.classList.add('hidden');
         if (iconBox) {
             iconBox.innerHTML = '<svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>';
-            iconBox.className = 'w-8 h-8 rounded-lg bg-primary-500/20 text-primary-400 flex items-center justify-center border border-primary-500/30 shrink-0';
+            iconBox.className = 'w-8 h-8 rounded-lg bg-primary-50 dark:bg-primary-500/20 text-primary-600 dark:text-primary-400 flex items-center justify-center border border-primary-200 dark:border-primary-500/30 shrink-0';
         }
     } else {
         const meta = kabMeta[kodeWilayah];
@@ -550,32 +529,30 @@ function selectQuickKabupaten(kodeWilayah) {
 
             if (iconBox) {
                 iconBox.innerHTML = '<svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>';
-                iconBox.className = 'w-8 h-8 rounded-lg bg-primary-500/20 text-primary-400 flex items-center justify-center border border-primary-500/30 shrink-0';
+                iconBox.className = 'w-8 h-8 rounded-lg bg-primary-50 dark:bg-primary-500/20 text-primary-600 dark:text-primary-400 flex items-center justify-center border border-primary-200 dark:border-primary-500/30 shrink-0';
             }
 
             if (statusBadge) {
                 statusBadge.classList.remove('hidden');
                 if (meta.status === 'merah') {
-                    statusBadge.className = 'px-2 py-0.5 rounded-full text-[11px] font-semibold bg-red-500/20 text-red-400 border border-red-500/30 inline-flex items-center gap-1.5';
+                    statusBadge.className = 'px-2 py-0.5 rounded-full text-[11px] font-semibold bg-red-500/20 text-red-600 dark:text-red-400 border border-red-500/30 inline-flex items-center gap-1.5';
                     statusBadge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-red-500 inline-block"></span> Rawan Tinggi (${meta.kasus} Kasus)`;
                 } else if (meta.status === 'kuning') {
-                    statusBadge.className = 'px-2 py-0.5 rounded-full text-[11px] font-semibold bg-amber-500/20 text-amber-400 border border-amber-500/30 inline-flex items-center gap-1.5';
+                    statusBadge.className = 'px-2 py-0.5 rounded-full text-[11px] font-semibold bg-amber-500/20 text-amber-600 dark:text-amber-400 border border-amber-500/30 inline-flex items-center gap-1.5';
                     statusBadge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-amber-500 inline-block"></span> Rawan Sedang (${meta.kasus} Kasus)`;
                 } else {
-                    statusBadge.className = 'px-2 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 inline-flex items-center gap-1.5';
+                    statusBadge.className = 'px-2 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30 inline-flex items-center gap-1.5';
                     statusBadge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block"></span> Rawan Rendah (${meta.kasus} Kasus)`;
                 }
             }
         }
     }
 
-    // 3. Sinkronkan nilai dropdown pilihan kabupaten di header Daftar Kecamatan
     const kabDropdown = document.getElementById('filter-kabupaten-dropdown');
     if (kabDropdown) {
         kabDropdown.value = kodeWilayah || '';
     }
 
-    // Reset search input jika ada
     const searchInput = document.getElementById('search-kecamatan-input');
     if (searchInput) searchInput.value = '';
 
@@ -598,7 +575,7 @@ function updateBannerStats() {
     }
 }
 
-// Render Grid List Kecamatan dengan Pagination (Maksimal 6 per Halaman)
+// Render Grid List Kecamatan dengan Pagination
 function renderKecamatanList(items, page = 1) {
     currentFilteredKecamatans = items;
     currentPage = page;
@@ -609,7 +586,6 @@ function renderCurrentPage() {
     const grid = document.getElementById('grid-list-kecamatan');
     const titleEl = document.getElementById('list-title');
     const countBadge = document.getElementById('list-count-badge');
-    const indicatorCount = document.getElementById('indicator-kec-count');
     const paginationWrapper = document.getElementById('pagination-wrapper');
 
     if (!grid) return;
@@ -622,11 +598,10 @@ function renderCurrentPage() {
 
     const totalItems = currentFilteredKecamatans.length;
     if (countBadge) countBadge.textContent = `${totalItems} Kecamatan`;
-    if (indicatorCount) indicatorCount.textContent = totalItems;
 
     if (totalItems === 0) {
         grid.innerHTML = `
-            <div class="col-span-full py-10 text-center text-surface-400 text-sm">
+            <div class="col-span-full py-10 text-center text-surface-500 dark:text-surface-400 text-sm">
                 Tidak ada kecamatan yang sesuai dengan kriteria filter saat ini.
             </div>
         `;
@@ -645,16 +620,16 @@ function renderCurrentPage() {
 
     const html = pageItems.map(k => {
         let statusBadge = '';
-        let borderClass = 'border-white/10';
+        let borderClass = 'border-surface-200 dark:border-white/10';
         if (k.status_zona === 'merah') {
-            statusBadge = '<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[10px] font-bold bg-red-500/20 text-red-400 border border-red-500/30"><span class="w-1.5 h-1.5 rounded-full bg-red-500 inline-block"></span> MERAH</span>';
-            borderClass = 'border-red-500/20 hover:border-red-500/50';
+            statusBadge = '<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[10px] font-bold bg-red-50 text-red-600 dark:bg-red-500/20 dark:text-red-400 border border-red-200 dark:border-red-500/30"><span class="w-1.5 h-1.5 rounded-full bg-red-500 inline-block"></span> MERAH</span>';
+            borderClass = 'border-red-200 dark:border-red-500/20 hover:border-red-400';
         } else if (k.status_zona === 'kuning') {
-            statusBadge = '<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-400 border border-amber-500/30"><span class="w-1.5 h-1.5 rounded-full bg-amber-500 inline-block"></span> KUNING</span>';
-            borderClass = 'border-amber-500/20 hover:border-amber-500/50';
+            statusBadge = '<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[10px] font-bold bg-amber-50 text-amber-600 dark:bg-amber-500/20 dark:text-amber-400 border border-amber-200 dark:border-amber-500/30"><span class="w-1.5 h-1.5 rounded-full bg-amber-500 inline-block"></span> KUNING</span>';
+            borderClass = 'border-amber-200 dark:border-amber-500/20 hover:border-amber-400';
         } else {
-            statusBadge = '<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block"></span> HIJAU</span>';
-            borderClass = 'border-emerald-500/20 hover:border-emerald-500/50';
+            statusBadge = '<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-50 text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-500/30"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block"></span> HIJAU</span>';
+            borderClass = 'border-emerald-200 dark:border-emerald-500/20 hover:border-emerald-400';
         }
 
         return `
@@ -662,22 +637,22 @@ function renderCurrentPage() {
                  onclick="focusKecamatan(${k.id})" 
                  onmouseenter="highlightPolygon(${k.id}, true)"
                  onmouseleave="highlightPolygon(${k.id}, false)"
-                 class="kecamatan-card group relative rounded-xl border ${borderClass} bg-surface-950/70 p-4 hover:bg-surface-950 transition cursor-pointer flex flex-col justify-between gap-3 shadow-sm">
+                 class="kecamatan-card group relative rounded-xl border ${borderClass} bg-surface-50 dark:bg-surface-950/70 p-4 hover:bg-white dark:hover:bg-surface-950 transition cursor-pointer flex flex-col justify-between gap-3 shadow-xs">
                 <div>
                     <div class="flex items-start justify-between gap-2 mb-1.5">
-                        <span class="text-[10px] uppercase font-bold text-surface-400 tracking-wider truncate">
+                        <span class="text-[10px] uppercase font-bold text-surface-500 dark:text-surface-400 tracking-wider truncate">
                             ${k.parent_nama || 'Sulawesi Tengah'}
                         </span>
                         ${statusBadge}
                     </div>
-                    <h4 class="text-sm font-bold text-white group-hover:text-primary-400 transition line-clamp-1">
+                    <h4 class="text-sm font-bold text-surface-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition line-clamp-1">
                         ${k.nama_wilayah}
                     </h4>
                 </div>
 
-                <div class="flex items-center justify-between text-xs text-surface-400 pt-2.5 border-t border-white/5">
-                    <span>Kasus: <strong class="text-white font-mono">${k.jumlah_kasus ?? 0}</strong></span>
-                    <span class="text-primary-400 text-[11px] font-semibold group-hover:translate-x-0.5 transition flex items-center gap-1">
+                <div class="flex items-center justify-between text-xs text-surface-500 dark:text-surface-400 pt-2.5 border-t border-surface-200 dark:border-white/5">
+                    <span>Kasus: <strong class="text-surface-900 dark:text-white font-mono font-bold">${k.jumlah_kasus ?? 0}</strong></span>
+                    <span class="text-primary-600 dark:text-primary-400 text-[11px] font-semibold group-hover:translate-x-0.5 transition flex items-center gap-1">
                         <span>Sorot di Peta</span>
                         <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                     </span>
@@ -687,8 +662,6 @@ function renderCurrentPage() {
     }).join('');
 
     grid.innerHTML = html;
-
-    // Render kontrol pagination (1, 2, 3, 4, 5, dst.)
     renderPagination(totalItems, currentPage);
 }
 
@@ -717,12 +690,12 @@ function renderPagination(totalItems, activePage) {
     let buttonsHtml = '';
 
     // Tombol Prev
-    const prevDisabled = activePage === 1 ? 'disabled opacity-30 cursor-not-allowed' : 'hover:bg-white/10 text-white cursor-pointer';
+    const prevDisabled = activePage === 1 ? 'disabled opacity-30 cursor-not-allowed' : 'hover:bg-surface-200 dark:hover:bg-white/10 text-surface-700 dark:text-white cursor-pointer';
     buttonsHtml += `
         <button type="button" 
                 onclick="goToPage(${activePage - 1})" 
                 ${activePage === 1 ? 'disabled' : ''}
-                class="px-2.5 py-1.5 rounded-lg border border-white/10 bg-surface-950 text-surface-300 ${prevDisabled} transition font-semibold text-xs flex items-center gap-1">
+                class="px-2.5 py-1.5 rounded-lg border border-surface-200 dark:border-white/10 bg-surface-100 dark:bg-surface-950 text-surface-700 dark:text-surface-300 ${prevDisabled} transition font-semibold text-xs flex items-center gap-1">
             ◀ Prev
         </button>
     `;
@@ -750,12 +723,12 @@ function renderPagination(totalItems, activePage) {
 
     pages.forEach(p => {
         if (p === '...') {
-            buttonsHtml += `<span class="px-2 py-1 text-surface-500 font-bold select-none text-xs">...</span>`;
+            buttonsHtml += `<span class="px-2 py-1 text-surface-400 font-bold select-none text-xs">...</span>`;
         } else {
             const isActive = p === activePage;
             const btnClass = isActive 
-                ? 'bg-primary-600 text-white border-primary-500 font-bold shadow-md shadow-primary-500/30 ring-1 ring-primary-400' 
-                : 'bg-surface-950 text-surface-300 hover:text-white hover:bg-white/10 border-white/10 font-medium';
+                ? 'bg-primary-600 text-white border-primary-500 font-bold shadow-sm shadow-primary-500/30 ring-1 ring-primary-400' 
+                : 'bg-surface-100 dark:bg-surface-950 text-surface-700 dark:text-surface-300 hover:text-surface-900 dark:hover:text-white hover:bg-surface-200 dark:hover:bg-white/10 border-surface-200 dark:border-white/10 font-medium';
             buttonsHtml += `
                 <button type="button" 
                         onclick="goToPage(${p})" 
@@ -767,12 +740,12 @@ function renderPagination(totalItems, activePage) {
     });
 
     // Tombol Next
-    const nextDisabled = activePage === totalPages ? 'disabled opacity-30 cursor-not-allowed' : 'hover:bg-white/10 text-white cursor-pointer';
+    const nextDisabled = activePage === totalPages ? 'disabled opacity-30 cursor-not-allowed' : 'hover:bg-surface-200 dark:hover:bg-white/10 text-surface-700 dark:text-white cursor-pointer';
     buttonsHtml += `
         <button type="button" 
                 onclick="goToPage(${activePage + 1})" 
                 ${activePage === totalPages ? 'disabled' : ''}
-                class="px-2.5 py-1.5 rounded-lg border border-white/10 bg-surface-950 text-surface-300 ${nextDisabled} transition font-semibold text-xs flex items-center gap-1">
+                class="px-2.5 py-1.5 rounded-lg border border-surface-200 dark:border-white/10 bg-surface-100 dark:bg-surface-950 text-surface-700 dark:text-surface-300 ${nextDisabled} transition font-semibold text-xs flex items-center gap-1">
             Next ▶
         </button>
     `;
@@ -813,7 +786,6 @@ function focusKecamatan(zonaId) {
             }, 2500);
         }, 200);
 
-        // Scroll peta ke view jika di mobile
         if (window.innerWidth < 768) {
             const mapEl = document.getElementById('peta-zona');
             if (mapEl) mapEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -836,7 +808,7 @@ function highlightPolygon(zonaId, isHover) {
     }
 }
 
-// Sorot card di list saat polygon di peta diklik (Otomatis lompat ke halaman yang memuat kecamatan)
+// Sorot card di list saat polygon di peta diklik
 function highlightCardInList(zonaId) {
     const index = currentFilteredKecamatans.findIndex(k => k.id == zonaId);
     if (index !== -1) {
@@ -877,7 +849,6 @@ function resetSearchKecamatan() {
     renderKecamatanList(allLoadedKecamatans, 1);
 }
 
-// Handler Dropdown Filter Kabupaten di Header Daftar Kecamatan
 function onSelectKabupatenFilter(kodeWilayah) {
     selectQuickKabupaten(kodeWilayah);
 }
@@ -903,12 +874,11 @@ function resetToProvince() {
     selectQuickKabupaten('');
 }
 
-// Fitur Geser Horizontal Tombol Kabupaten (Tombol, Drag Mouse, dan Mouse Wheel)
+// Fitur Geser Horizontal Tombol Kabupaten
 function initPillsScroll() {
     const container = document.getElementById('kabupaten-pills-container');
     if (!container) return;
 
-    // 1. Mouse wheel horizontal scroll
     container.addEventListener('wheel', (e) => {
         if (e.deltaY !== 0) {
             e.preventDefault();
@@ -916,7 +886,6 @@ function initPillsScroll() {
         }
     }, { passive: false });
 
-    // 2. Drag-to-scroll dengan klik & tahan mouse
     let isDown = false;
     let startX = 0;
     let scrollLeft = 0;

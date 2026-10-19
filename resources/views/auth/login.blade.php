@@ -3,19 +3,19 @@
 @section('title', 'Masuk Dasbor Petugas')
 
 @section('content')
-<div class="relative min-h-[calc(100vh-16rem)] flex items-center justify-center py-16 px-4 sm:px-6 lg:px-8">
+<div class="relative min-h-[calc(100vh-16rem)] flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
     {{-- Background decorative glows --}}
-    <div class="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 w-96 h-96 bg-primary-600/15 blur-[130px] rounded-full"></div>
+    <div class="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 w-96 h-96 bg-primary-500/10 dark:bg-primary-600/15 blur-[130px] rounded-full"></div>
     <div class="pointer-events-none absolute bottom-10 right-1/4 w-80 h-80 bg-accent-500/10 blur-[120px] rounded-full"></div>
 
     <div class="relative w-full max-w-md">
         {{-- Card --}}
-        <div class="rounded-3xl border border-white/10 bg-surface-900/80 backdrop-blur-2xl p-8 sm:p-10 shadow-2xl">
+        <div class="rounded-3xl border border-surface-200 dark:border-white/10 bg-white dark:bg-surface-900/80 backdrop-blur-2xl p-8 sm:p-10 shadow-xl dark:shadow-2xl">
             {{-- Header --}}
             <div class="text-center mb-8">
-                <img src="{{ asset('images/logo-bnn.png') }}" alt="Logo BNNP Sulteng" class="mx-auto h-16 w-auto object-contain mb-4 drop-shadow-xl">
-                <h1 class="text-2xl font-extrabold text-white">Login Admin & Petugas</h1>
-                <p class="text-xs text-surface-400 mt-1">Sistem Edukasi & Pemetaan BNNP Sulawesi Tengah</p>
+                <img src="{{ asset('images/logo-bnn.png') }}" alt="Logo BNNP Sulteng" class="mx-auto h-16 w-auto object-contain mb-4 drop-shadow-md">
+                <h1 class="text-2xl font-black text-surface-900 dark:text-white tracking-tight">Login Admin & Petugas</h1>
+                <p class="text-xs font-medium text-surface-500 dark:text-surface-400 mt-1">Sistem Edukasi & Pemetaan BNNP Sulawesi Tengah</p>
             </div>
 
             {{-- Form --}}
@@ -24,7 +24,7 @@
 
                 {{-- Email Field --}}
                 <div>
-                    <label for="email" class="block text-xs font-semibold uppercase tracking-wider text-surface-300 mb-2">
+                    <label for="email" class="block text-xs font-semibold uppercase tracking-wider text-surface-700 dark:text-surface-300 mb-2">
                         Alamat Email
                     </label>
                     <div class="relative">
@@ -34,17 +34,17 @@
                             </svg>
                         </div>
                         <input type="email" name="email" id="email" value="{{ old('email') }}" required autofocus
-                               class="w-full rounded-xl border border-white/10 bg-surface-950/70 pl-11 pr-4 py-3 text-sm text-white placeholder-surface-500 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500/20 transition @error('email') border-danger-500 @enderror"
-                               placeholder="admin@bnnp.go.id">
+                               class="w-full rounded-xl border border-surface-300 dark:border-white/10 bg-surface-50 dark:bg-surface-950/70 pl-11 pr-4 py-3 text-sm text-surface-900 dark:text-white placeholder-surface-400 dark:placeholder-surface-500 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500/20 transition @error('email') border-danger-500 @enderror"
+                               placeholder="admin@bnnp-sulteng.go.id">
                     </div>
                     @error('email')
-                        <p class="mt-1.5 text-xs text-danger-400">{{ $message }}</p>
+                        <p class="mt-1.5 text-xs text-danger-500">{{ $message }}</p>
                     @enderror
                 </div>
 
                 {{-- Password Field --}}
                 <div>
-                    <label for="password" class="block text-xs font-semibold uppercase tracking-wider text-surface-300 mb-2">
+                    <label for="password" class="block text-xs font-semibold uppercase tracking-wider text-surface-700 dark:text-surface-300 mb-2">
                         Kata Sandi
                     </label>
                     <div class="relative">
@@ -54,49 +54,49 @@
                             </svg>
                         </div>
                         <input type="password" name="password" id="password" required
-                               class="w-full rounded-xl border border-white/10 bg-surface-950/70 pl-11 pr-4 py-3 text-sm text-white placeholder-surface-500 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500/20 transition @error('password') border-danger-500 @enderror"
+                               class="w-full rounded-xl border border-surface-300 dark:border-white/10 bg-surface-50 dark:bg-surface-950/70 pl-11 pr-4 py-3 text-sm text-surface-900 dark:text-white placeholder-surface-400 dark:placeholder-surface-500 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500/20 transition @error('password') border-danger-500 @enderror"
                                placeholder="••••••••">
                     </div>
                     @error('password')
-                        <p class="mt-1.5 text-xs text-danger-400">{{ $message }}</p>
+                        <p class="mt-1.5 text-xs text-danger-500">{{ $message }}</p>
                     @enderror
                 </div>
 
                 {{-- Remember Me --}}
                 <div class="flex items-center justify-between">
                     <label class="flex items-center gap-2 cursor-pointer">
-                        <input type="checkbox" name="remember" class="rounded border-white/20 bg-surface-950 text-primary-600 focus:ring-primary-500 focus:ring-offset-surface-900">
-                        <span class="text-xs text-surface-300">Ingat saya</span>
+                        <input type="checkbox" name="remember" class="rounded border-surface-300 dark:border-white/20 bg-surface-50 dark:bg-surface-950 text-primary-600 focus:ring-primary-500">
+                        <span class="text-xs font-medium text-surface-600 dark:text-surface-300">Ingat saya</span>
                     </label>
                     <span class="text-xs text-surface-500">Khusus Personel BNNP</span>
                 </div>
 
                 {{-- Submit Button --}}
                 <button type="submit"
-                        class="w-full rounded-xl bg-gradient-to-r from-primary-600 to-primary-700 py-3 px-4 text-sm font-bold text-white shadow-lg shadow-primary-600/30 hover:from-primary-500 hover:to-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500/50 transition">
+                        class="w-full rounded-xl bg-primary-600 hover:bg-primary-700 py-3 px-4 text-sm font-bold text-white shadow-lg shadow-primary-600/30 focus:outline-none focus:ring-2 focus:ring-primary-500/50 transition">
                     Masuk ke Dasbor
                 </button>
             </form>
 
             {{-- Info Demo Akun RBAC --}}
-            <div class="mt-8 pt-6 border-t border-white/10">
-                <p class="text-[11px] font-semibold uppercase tracking-wider text-surface-400 mb-3 text-center">Akun Percobaan (Seeder)</p>
+            <div class="mt-8 pt-6 border-t border-surface-200 dark:border-white/10">
+                <p class="text-[11px] font-bold uppercase tracking-wider text-surface-500 dark:text-surface-400 mb-3 text-center">Akun Percobaan (Seeder)</p>
                 <div class="space-y-2 text-xs">
                     <button type="button" onclick="fillCreds('superadmin@bnnp-sulteng.go.id', 'password')"
-                            class="w-full flex items-center justify-between p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-left transition border border-white/5">
+                            class="w-full flex items-center justify-between p-2.5 rounded-xl bg-surface-50 dark:bg-white/5 hover:bg-surface-100 dark:hover:bg-white/10 text-left transition border border-surface-200 dark:border-white/5">
                         <div>
-                            <span class="text-white font-semibold block">Super Admin</span>
-                            <span class="text-[11px] text-surface-400">Akses penuh & manajemen user</span>
+                            <span class="text-surface-900 dark:text-white font-bold block">Super Admin</span>
+                            <span class="text-[11px] text-surface-500 dark:text-surface-400">Akses penuh & manajemen user</span>
                         </div>
-                        <span class="text-[11px] text-primary-400 font-medium">isi otomatis &rarr;</span>
+                        <span class="text-[11px] text-primary-600 dark:text-primary-400 font-semibold">isi otomatis &rarr;</span>
                     </button>
                     <button type="button" onclick="fillCreds('admin@bnnp-sulteng.go.id', 'password')"
-                            class="w-full flex items-center justify-between p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-left transition border border-white/5">
+                            class="w-full flex items-center justify-between p-2.5 rounded-xl bg-surface-50 dark:bg-white/5 hover:bg-surface-100 dark:hover:bg-white/10 text-left transition border border-surface-200 dark:border-white/5">
                         <div>
-                            <span class="text-white font-semibold block">Admin (Akun Tunggal)</span>
-                            <span class="text-[11px] text-surface-400">Pengelola zona, edukasi, & statistik</span>
+                            <span class="text-surface-900 dark:text-white font-bold block">Admin (Akun Tunggal)</span>
+                            <span class="text-[11px] text-surface-500 dark:text-surface-400">Pengelola zona, edukasi, & statistik</span>
                         </div>
-                        <span class="text-[11px] text-primary-400 font-medium">isi otomatis &rarr;</span>
+                        <span class="text-[11px] text-primary-600 dark:text-primary-400 font-semibold">isi otomatis &rarr;</span>
                     </button>
                 </div>
             </div>
