@@ -1,6 +1,6 @@
 @extends('layouts.publik')
 
-@section('title', 'Masuk Dasbor Petugas')
+@section('title', 'Login')
 
 @section('content')
 <div class="relative min-h-[calc(100vh-16rem)] flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
@@ -14,8 +14,12 @@
             {{-- Header --}}
             <div class="text-center mb-8">
                 <img src="{{ asset('images/logo-bnn.png') }}" alt="Logo BNNP Sulteng" class="mx-auto h-16 w-auto object-contain mb-4 drop-shadow-md">
-                <h1 class="text-2xl font-black text-surface-900 dark:text-white tracking-tight">Login Admin & Petugas</h1>
-                <p class="text-xs font-medium text-surface-500 dark:text-surface-400 mt-1">Sistem Edukasi & Pemetaan BNNP Sulawesi Tengah</p>
+                <h1 class="text-2xl font-black text-surface-900 dark:text-white tracking-tight">Login</h1>
+                <div class="inline-flex items-center gap-1.5 mt-2 px-2.5 py-0.5 rounded-md bg-primary-50 dark:bg-primary-500/10 border border-primary-200 dark:border-primary-500/20">
+                    <span class="text-xs font-black text-primary-700 dark:text-primary-300 tracking-wider">SKENA</span>
+                    <span class="text-[10px] text-primary-600 dark:text-primary-400 font-semibold">• BNNP Sulteng</span>
+                </div>
+                <p class="text-xs font-medium text-surface-500 dark:text-surface-400 mt-1">Sistem Informasi Kumpulan Edukasi Narkotika</p>
             </div>
 
             {{-- Form --}}
@@ -35,7 +39,7 @@
                         </div>
                         <input type="email" name="email" id="email" value="{{ old('email') }}" required autofocus
                                class="w-full rounded-xl border border-surface-300 dark:border-white/10 bg-surface-50 dark:bg-surface-950/70 pl-11 pr-4 py-3 text-sm text-surface-900 dark:text-white placeholder-surface-400 dark:placeholder-surface-500 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500/20 transition @error('email') border-danger-500 @enderror"
-                               placeholder="admin@bnnp-sulteng.go.id">
+                               placeholder="admin@bnn.id">
                     </div>
                     @error('email')
                         <p class="mt-1.5 text-xs text-danger-500">{{ $message }}</p>
@@ -68,7 +72,6 @@
                         <input type="checkbox" name="remember" class="rounded border-surface-300 dark:border-white/20 bg-surface-50 dark:bg-surface-950 text-primary-600 focus:ring-primary-500">
                         <span class="text-xs font-medium text-surface-600 dark:text-surface-300">Ingat saya</span>
                     </label>
-                    <span class="text-xs text-surface-500">Khusus Personel BNNP</span>
                 </div>
 
                 {{-- Submit Button --}}
@@ -77,37 +80,7 @@
                     Masuk ke Dasbor
                 </button>
             </form>
-
-            {{-- Info Demo Akun RBAC --}}
-            <div class="mt-8 pt-6 border-t border-surface-200 dark:border-white/10">
-                <p class="text-[11px] font-bold uppercase tracking-wider text-surface-500 dark:text-surface-400 mb-3 text-center">Akun Percobaan (Seeder)</p>
-                <div class="space-y-2 text-xs">
-                    <button type="button" onclick="fillCreds('superadmin@bnnp-sulteng.go.id', 'password')"
-                            class="w-full flex items-center justify-between p-2.5 rounded-xl bg-surface-50 dark:bg-white/5 hover:bg-surface-100 dark:hover:bg-white/10 text-left transition border border-surface-200 dark:border-white/5">
-                        <div>
-                            <span class="text-surface-900 dark:text-white font-bold block">Super Admin</span>
-                            <span class="text-[11px] text-surface-500 dark:text-surface-400">Akses penuh & manajemen user</span>
-                        </div>
-                        <span class="text-[11px] text-primary-600 dark:text-primary-400 font-semibold">isi otomatis &rarr;</span>
-                    </button>
-                    <button type="button" onclick="fillCreds('admin@bnnp-sulteng.go.id', 'password')"
-                            class="w-full flex items-center justify-between p-2.5 rounded-xl bg-surface-50 dark:bg-white/5 hover:bg-surface-100 dark:hover:bg-white/10 text-left transition border border-surface-200 dark:border-white/5">
-                        <div>
-                            <span class="text-surface-900 dark:text-white font-bold block">Admin (Akun Tunggal)</span>
-                            <span class="text-[11px] text-surface-500 dark:text-surface-400">Pengelola zona, edukasi, & statistik</span>
-                        </div>
-                        <span class="text-[11px] text-primary-600 dark:text-primary-400 font-semibold">isi otomatis &rarr;</span>
-                    </button>
-                </div>
-            </div>
         </div>
     </div>
 </div>
-
-<script>
-function fillCreds(email, password) {
-    document.getElementById('email').value = email;
-    document.getElementById('password').value = password;
-}
-</script>
 @endsection
