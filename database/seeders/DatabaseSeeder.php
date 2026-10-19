@@ -21,15 +21,15 @@ class DatabaseSeeder extends Seeder
 
         $superAdmin = User::create([
             'name'     => 'Super Admin BNNP',
-            'email'    => 'superadmin@bnnp-sulteng.go.id',
-            'password' => Hash::make('password'),
+            'email'    => 'superadmin@bnn.id',
+            'password' => Hash::make('12345678'),
             'role'     => 'super_admin',
         ]);
 
         $admin = User::create([
             'name'     => 'Admin BNNP',
-            'email'    => 'admin@bnnp-sulteng.go.id',
-            'password' => Hash::make('password'),
+            'email'    => 'admin@bnn.id',
+            'password' => Hash::make('12345678'),
             'role'     => 'admin',
         ]);
 
