@@ -81,26 +81,22 @@
             {{-- Info Demo Akun RBAC --}}
             <div class="mt-8 pt-6 border-t border-white/10">
                 <p class="text-[11px] font-semibold uppercase tracking-wider text-surface-400 mb-3 text-center">Akun Percobaan (Seeder)</p>
-                <div class="space-y-1.5 text-xs">
+                <div class="space-y-2 text-xs">
                     <button type="button" onclick="fillCreds('superadmin@bnnp-sulteng.go.id', 'password')"
-                            class="w-full flex items-center justify-between p-2 rounded-lg bg-white/5 hover:bg-white/10 text-left transition">
-                        <span class="text-surface-300 font-medium">Super Admin</span>
-                        <span class="text-[11px] text-primary-400">klik isi otomatis</span>
+                            class="w-full flex items-center justify-between p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-left transition border border-white/5">
+                        <div>
+                            <span class="text-white font-semibold block">Super Admin</span>
+                            <span class="text-[11px] text-surface-400">Akses penuh & manajemen user</span>
+                        </div>
+                        <span class="text-[11px] text-primary-400 font-medium">isi otomatis &rarr;</span>
                     </button>
-                    <button type="button" onclick="fillCreds('brantas@bnnp-sulteng.go.id', 'password')"
-                            class="w-full flex items-center justify-between p-2 rounded-lg bg-white/5 hover:bg-white/10 text-left transition">
-                        <span class="text-surface-300 font-medium">Admin Pemberantasan</span>
-                        <span class="text-[11px] text-primary-400">klik isi otomatis</span>
-                    </button>
-                    <button type="button" onclick="fillCreds('rehab@bnnp-sulteng.go.id', 'password')"
-                            class="w-full flex items-center justify-between p-2 rounded-lg bg-white/5 hover:bg-white/10 text-left transition">
-                        <span class="text-surface-300 font-medium">Admin Rehabilitasi</span>
-                        <span class="text-[11px] text-primary-400">klik isi otomatis</span>
-                    </button>
-                    <button type="button" onclick="fillCreds('cegah@bnnp-sulteng.go.id', 'password')"
-                            class="w-full flex items-center justify-between p-2 rounded-lg bg-white/5 hover:bg-white/10 text-left transition">
-                        <span class="text-surface-300 font-medium">Admin Pencegahan</span>
-                        <span class="text-[11px] text-primary-400">klik isi otomatis</span>
+                    <button type="button" onclick="fillCreds('admin@bnnp-sulteng.go.id', 'password')"
+                            class="w-full flex items-center justify-between p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-left transition border border-white/5">
+                        <div>
+                            <span class="text-white font-semibold block">Admin (Akun Tunggal)</span>
+                            <span class="text-[11px] text-surface-400">Pengelola zona, edukasi, & statistik</span>
+                        </div>
+                        <span class="text-[11px] text-primary-400 font-medium">isi otomatis &rarr;</span>
                     </button>
                 </div>
             </div>

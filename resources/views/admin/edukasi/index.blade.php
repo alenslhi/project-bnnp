@@ -10,11 +10,7 @@
         <div>
             <h2 class="text-xl font-bold text-white">Daftar Materi & Publikasi</h2>
             <p class="text-xs text-surface-400 mt-1">
-                @if(auth()->user()->isSuperAdmin())
-                    Memantau seluruh materi artikel, kamus narkoba, dan rilis media yang diterbitkan semua bidang.
-                @else
-                    Daftar materi edukasi dan informasi yang diterbitkan oleh akun Anda.
-                @endif
+                Kelola dan terbitkan materi artikel, kamus bahaya narkoba, serta siaran media informasi BNNP Sulteng.
             </p>
         </div>
 
@@ -75,8 +71,8 @@
                             </td>
                             <td class="py-4 px-6 text-right">
                                 <div class="inline-flex items-center gap-2">
-                                    {{-- Edit (Super admin can edit all, others can edit theirs) --}}
-                                    @if(auth()->user()->isSuperAdmin() || $item->penulis_id === auth()->id())
+                                    {{-- Edit & Hapus (Super admin dan Admin) --}}
+                                    @if(auth()->user()->isSuperAdmin() || auth()->user()->isAdmin())
                                         <a href="{{ route('admin.edukasi.edit', $item->id) }}"
                                            class="p-2 rounded-lg bg-white/5 text-surface-300 hover:text-white hover:bg-white/10 transition"
                                            title="Edit Materi">

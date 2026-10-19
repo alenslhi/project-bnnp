@@ -56,9 +56,7 @@
                             @if(isset($edukasi->penulis->role))
                                 @switch($edukasi->penulis->role)
                                     @case('super_admin') Super Admin BNNP @break
-                                    @case('admin_rehab') Bidang Rehabilitasi @break
-                                    @case('admin_brantas') Bidang Pemberantasan @break
-                                    @case('admin_cegah') Bidang Pencegahan & Dayamas @break
+                                    @case('admin') Admin BNNP @break
                                     @default Kontributor BNNP
                                 @endswitch
                             @else

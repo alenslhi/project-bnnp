@@ -18,9 +18,7 @@
                     <h2 class="text-xl sm:text-2xl font-bold text-white">{{ $user->name }}</h2>
                     <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold
                         @if($user->role === 'super_admin') bg-danger-500/10 text-danger-400 border border-danger-500/20
-                        @elseif($user->role === 'admin_brantas') bg-amber-500/10 text-amber-400 border border-amber-500/20
-                        @elseif($user->role === 'admin_rehab') bg-primary-500/10 text-primary-400 border border-primary-500/20
-                        @else bg-accent-500/10 text-accent-400 border border-accent-500/20 @endif">
+                        @else bg-primary-500/10 text-primary-400 border border-primary-500/20 @endif">
                         {{ $user->role_label }}
                     </span>
                 </div>

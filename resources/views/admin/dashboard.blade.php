@@ -11,34 +11,24 @@
         <div class="relative flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
                 <span class="inline-flex items-center gap-1.5 rounded-full border border-primary-500/30 bg-primary-500/15 px-3 py-1 text-xs font-semibold text-primary-400 mb-2">
-                    @switch(auth()->user()->role)
-                        @case('super_admin') Hak Akses: Super Administrator @break
-                        @case('admin_brantas') Hak Akses: Bidang Pemberantasan @break
-                        @case('admin_rehab') Hak Akses: Bidang Rehabilitasi @break
-                        @case('admin_cegah') Hak Akses: Bidang Pencegahan & Dayamas @break
-                    @endswitch
+                    @if(auth()->user()->isSuperAdmin())
+                        Hak Akses: Super Administrator
+                    @else
+                        Hak Akses: Administrator
+                    @endif
                 </span>
                 <h2 class="text-2xl font-bold text-white">Selamat Datang, {{ auth()->user()->name }}!</h2>
                 <p class="text-sm text-surface-400 mt-1 max-w-2xl">
-                    @switch(auth()->user()->role)
-                        @case('super_admin')
-                            Anda memiliki akses penuh untuk memantau pemetaan zona kerawanan, verifikasi seluruh data konten edukasi, dan tata kelola akun admin bidang.
-                            @break
-                        @case('admin_brantas')
-                            Fokus dasbor Anda adalah memperbarui data wilayah, status zona kerawanan (Merah, Kuning, Hijau), serta total kasus narkotika se-Sulawesi Tengah.
-                            @break
-                        @case('admin_rehab')
-                            Fokus dasbor Anda adalah menyusun serta memperbarui artikel, panduan layanan rehabilitasi medis, dan informasi pemulihan korban penyalahgunaan.
-                            @break
-                        @case('admin_cegah')
-                            Fokus dasbor Anda adalah memperkaya katalog edukasi, kamus istilah bahaya narkoba, dan materi pencegahan dini bagi masyarakat.
-                            @break
-                    @endswitch
+                    @if(auth()->user()->isSuperAdmin())
+                        Anda memiliki akses penuh untuk memantau pemetaan zona kerawanan, verifikasi seluruh data konten edukasi, statistik kasus, serta tata kelola akun pengguna.
+                    @else
+                        Anda bertugas mengelola pemetaan zona kerawanan, publikasi konten edukasi masyarakat, dan pembaruan statistik kasus narkotika se-Sulawesi Tengah.
+                    @endif
                 </p>
             </div>
 
             <div class="flex items-center gap-3 shrink-0">
-                @if(auth()->user()->isSuperAdmin() || auth()->user()->role === 'admin_brantas')
+                @if(auth()->user()->isSuperAdmin() || auth()->user()->isAdmin())
                     <a href="{{ route('admin.zona.create') }}" class="inline-flex items-center gap-2 rounded-xl bg-primary-600 px-4 py-2.5 text-xs font-bold text-white shadow-lg shadow-primary-600/30 hover:bg-primary-500 transition">
                         <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
                         Tambah Zona
@@ -103,13 +93,13 @@
                 </div>
             </div>
             <p class="mt-3 text-3xl font-extrabold text-white">{{ $totalUsers }}</p>
-            <p class="mt-3 text-xs text-surface-500">Terdistribusi ke 3 bidang admin</p>
+            <p class="mt-3 text-xs text-surface-500">Super Admin & Admin BNNP</p>
         </div>
     </div>
 
-    {{-- Role Specific Content Grids --}}
+    {{-- Content Grids --}}
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {{-- Section 1: Zona Kerawanan (Tampil untuk Super Admin & Admin Pemberantasan) --}}
+        {{-- Section 1: Zona Kerawanan --}}
         @if(isset($zonasTerbaru))
             <div class="rounded-3xl border border-white/5 bg-surface-900/60 p-6 backdrop-blur-xl">
                 <div class="flex items-center justify-between mb-5">
@@ -117,7 +107,7 @@
                         <h3 class="text-base font-bold text-white">Status Zona Terkini</h3>
                         <p class="text-xs text-surface-400">Daftar wilayah kerawanan narkotika</p>
                     </div>
-                    @if(auth()->user()->isSuperAdmin() || auth()->user()->role === 'admin_brantas')
+                    @if(auth()->user()->isSuperAdmin() || auth()->user()->isAdmin())
                         <a href="{{ route('admin.zona.index') }}" class="text-xs font-semibold text-primary-400 hover:text-primary-300">
                             Kelola Semua &rarr;
                         </a>
