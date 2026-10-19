@@ -5,44 +5,80 @@
 @source "../**/*.blade.php";
 @source "../**/*.js";
 
+/* ── Class-based dark mode for Tailwind v4 ── */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
     --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
+
+    /* BNN Official Blue Palette */
     --color-primary-50: #eff6ff;
     --color-primary-100: #dbeafe;
     --color-primary-200: #bfdbfe;
     --color-primary-300: #93c5fd;
     --color-primary-400: #60a5fa;
-    --color-primary-500: #3b82f6;
-    --color-primary-600: #2563eb;
-    --color-primary-700: #1d4ed8;
-    --color-primary-800: #1e40af;
-    --color-primary-900: #1e3a8a;
+    --color-primary-500: #2563eb;
+    --color-primary-600: #1d4ed8;
+    --color-primary-700: #1e40af;
+    --color-primary-800: #1e3a8a;
+    --color-primary-900: #1e3a5f;
     --color-primary-950: #172554;
+
+    /* Accent – Emerald */
     --color-accent-400: #34d399;
     --color-accent-500: #10b981;
     --color-accent-600: #059669;
+
+    /* Danger */
     --color-danger-400: #f87171;
     --color-danger-500: #ef4444;
     --color-danger-600: #dc2626;
+
+    /* Warning */
     --color-warning-400: #fbbf24;
     --color-warning-500: #f59e0b;
+
+    /* Surface (Slate) */
     --color-surface-50: #f8fafc;
     --color-surface-100: #f1f5f9;
     --color-surface-200: #e2e8f0;
+    --color-surface-300: #cbd5e1;
+    --color-surface-400: #94a3b8;
+    --color-surface-500: #64748b;
+    --color-surface-600: #475569;
     --color-surface-700: #334155;
     --color-surface-800: #1e293b;
     --color-surface-900: #0f172a;
     --color-surface-950: #020617;
 }
 
-/* ── Scrollbar ── */
+/* ── Scrollbar (light default) ── */
 ::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: var(--color-surface-900); }
-::-webkit-scrollbar-thumb { background: var(--color-surface-700); border-radius: 999px; }
+::-webkit-scrollbar-track { background: #f1f5f9; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+.dark ::-webkit-scrollbar-track { background: var(--color-surface-900); }
+.dark ::-webkit-scrollbar-thumb { background: var(--color-surface-700); }
+.dark ::-webkit-scrollbar-thumb:hover { background: var(--color-surface-600); }
 
 /* ── Smooth scroll ── */
 html { scroll-behavior: smooth; }
 
 /* ── Leaflet fix ── */
 .leaflet-container { z-index: 1; }
+
+/* ── Smooth theme transition ── */
+html.theme-transition,
+html.theme-transition *,
+html.theme-transition *::before,
+html.theme-transition *::after {
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.15s ease, box-shadow 0.3s ease !important;
+}
+
+/* ── Form elements dark mode fix ── */
+.dark select option {
+    background-color: var(--color-surface-800);
+    color: white;
+}
