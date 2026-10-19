@@ -116,19 +116,6 @@
                         </svg>
                     </button>
 
-                    @auth
-                        <a href="{{ route('admin.dashboard') }}"
-                           class="inline-flex items-center gap-2 rounded-xl bg-primary-600 hover:bg-primary-700 px-4 py-2 text-xs font-bold text-white shadow-md shadow-primary-600/25 transition">
-                            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z"/></svg>
-                            Panel Dasbor
-                        </a>
-                    @else
-                        <a href="{{ route('login') }}"
-                           class="inline-flex items-center gap-2 rounded-xl border border-primary-600/30 dark:border-primary-500/30 bg-primary-50 dark:bg-primary-500/10 px-3.5 py-2 text-xs font-bold text-primary-700 dark:text-primary-300 hover:bg-primary-600 hover:text-white dark:hover:bg-primary-600 transition">
-                            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75"/></svg>
-                            Login Petugas
-                        </a>
-                    @endauth
 
                     {{-- Mobile Menu Toggle --}}
                     <button id="mobile-menu-btn" class="md:hidden p-2 rounded-xl text-surface-600 dark:text-surface-400 hover:text-primary-600 dark:hover:text-white hover:bg-surface-100 dark:hover:bg-white/5 transition">
