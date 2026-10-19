@@ -39,16 +39,23 @@
             <select name="role" id="role" required
                     class="w-full rounded-xl bg-surface-50 dark:bg-surface-950 border border-surface-300 dark:border-white/10 px-4 py-2.5 text-surface-900 dark:text-white focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition outline-none appearance-none">
                 <option value="">-- Pilih Role --</option>
-                <option value="super_admin" {{ old('role') == 'super_admin' ? 'selected' : '' }}>Super Admin</option>
-                <option value="admin" {{ old('role') == 'admin' ? 'selected' : '' }} {{ $adminExists ? 'disabled' : '' }}>
-                    Admin {{ $adminExists ? '(Sudah Ada - Kuota 1 Akun Penuh)' : '(Maksimal 1 Akun)' }}
+                <option value="super_admin" disabled class="text-surface-400 bg-surface-100 dark:bg-surface-800">
+                    Super Admin (Terkunci - Hanya 1 Akun Utama & Tidak Dapat Ditambah)
+                </option>
+                <option value="admin" {{ (old('role') == 'admin' || !old('role')) && $adminCount < 2 ? 'selected' : '' }} {{ $adminCount >= 2 ? 'disabled' : '' }}>
+                    Admin {{ $adminCount >= 2 ? '(Sudah Ada - Kuota 2 Akun Penuh)' : '(Maksimal 2 Akun - Tersedia ' . (2 - $adminCount) . ' Slot)' }}
                 </option>
             </select>
             @error('role') <p class="mt-1 text-sm text-danger-500">{{ $message }}</p> @enderror
-            @if($adminExists)
+            @if($adminCount >= 2)
                 <p class="mt-2 text-xs text-amber-600 dark:text-amber-400 flex items-center gap-1.5 bg-amber-50 dark:bg-amber-500/10 border border-amber-200 dark:border-amber-500/20 p-2.5 rounded-lg">
                     <svg class="h-4 w-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
-                    Sistem dibatasi hanya untuk 1 user akun Admin. Akun admin sudah terdaftar.
+                    Kuota akun role Admin sudah penuh (2 dari maksimal 2 akun). Hapus salah satu akun admin jika ingin menambah akun baru.
+                </p>
+            @else
+                <p class="mt-2 text-xs text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5">
+                    <svg class="h-4 w-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    Sistem mengizinkan penambahan akun Admin (saat ini terisi {{ $adminCount }}/2 akun). Akun Super Admin dibatasi permanen 1 akun.
                 </p>
             @endif
         </div>
@@ -69,7 +76,8 @@
         </div>
 
         <div class="pt-4 border-t border-surface-100 dark:border-white/5 flex justify-end">
-            <button type="submit" class="px-6 py-2.5 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded-xl transition-all shadow-md shadow-primary-500/25">
+            <button type="submit" {{ $adminCount >= 2 ? 'disabled' : '' }}
+                    class="px-6 py-2.5 {{ $adminCount >= 2 ? 'bg-surface-300 dark:bg-surface-700 cursor-not-allowed text-surface-500' : 'bg-primary-600 hover:bg-primary-700 text-white shadow-md shadow-primary-500/25' }} font-medium rounded-xl transition-all">
                 Simpan User
             </button>
         </div>

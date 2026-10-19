@@ -10,9 +10,9 @@
         <p class="text-sm text-surface-500 dark:text-surface-400 mt-1">Kelola akses akun admin untuk sistem BNNP Sulteng.</p>
     </div>
     <div class="flex items-center gap-3">
-        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl border {{ ($adminCount ?? 0) >= 1 ? 'border-primary-300 dark:border-primary-500/30 bg-primary-50 dark:bg-primary-500/10 text-primary-700 dark:text-primary-400' : 'border-emerald-300 dark:border-emerald-500/30 bg-emerald-50 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-400' }} text-xs font-semibold">
-            <span class="w-2 h-2 rounded-full {{ ($adminCount ?? 0) >= 1 ? 'bg-primary-500' : 'bg-emerald-500' }}"></span>
-            Kuota Akun Admin: {{ $adminCount ?? 0 }}/1 {{ ($adminCount ?? 0) >= 1 ? '(Terisi)' : '(Tersedia)' }}
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl border {{ ($adminCount ?? 0) >= 2 ? 'border-amber-300 dark:border-amber-500/30 bg-amber-50 dark:bg-amber-500/10 text-amber-700 dark:text-amber-400' : 'border-emerald-300 dark:border-emerald-500/30 bg-emerald-50 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-400' }} text-xs font-semibold">
+            <span class="w-2 h-2 rounded-full {{ ($adminCount ?? 0) >= 2 ? 'bg-amber-500' : 'bg-emerald-500' }}"></span>
+            Kuota Akun Admin: {{ $adminCount ?? 0 }}/2 {{ ($adminCount ?? 0) >= 2 ? '(Penuh)' : '(Tersedia ' . (2 - ($adminCount ?? 0)) . ' Slot)' }}
         </div>
         <a href="{{ route('admin.users.create') }}" class="inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-primary-600 hover:bg-primary-500 text-white text-sm font-medium rounded-xl transition-all shadow-lg shadow-primary-500/25">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
@@ -60,7 +60,7 @@
                                     <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"/></svg>
                                 </a>
                                 
-                                @if(auth()->id() !== $user->id)
+                                @if(auth()->id() !== $user->id && $user->role !== 'super_admin')
                                 <form action="{{ route('admin.users.destroy', $user) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus user ini?');">
                                     @csrf
                                     @method('DELETE')

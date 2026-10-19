@@ -14,17 +14,15 @@ class UserController extends Controller
     {
         $users = User::orderBy('id', 'desc')->paginate(10);
         $adminCount = User::where('role', 'admin')->count();
-        return view('admin.users.index', compact('users', 'adminCount'));
+        $superAdminCount = User::where('role', 'super_admin')->count();
+        return view('admin.users.index', compact('users', 'adminCount', 'superAdminCount'));
     }
 
     public function create()
     {
-        $roles = [
-            'super_admin' => 'Super Admin',
-            'admin' => 'Admin',
-        ];
-        $adminExists = User::where('role', 'admin')->exists();
-        return view('admin.users.create', compact('roles', 'adminExists'));
+        $adminCount = User::where('role', 'admin')->count();
+        $superAdminCount = User::where('role', 'super_admin')->count();
+        return view('admin.users.create', compact('adminCount', 'superAdminCount'));
     }
 
     public function store(Request $request)
@@ -35,14 +33,17 @@ class UserController extends Controller
             'password' => 'required|string|min:8|confirmed',
             'role' => [
                 'required',
-                'in:super_admin,admin',
-                function ($attribute, $value, $fail) {
-                    if ($value === 'admin' && User::where('role', 'admin')->exists()) {
-                        $fail('Hanya diperbolehkan memiliki 1 akun dengan role Admin. Akun admin sudah terdaftar di sistem.');
-                    }
-                },
+                'in:admin',
             ],
+        ], [
+            'role.in' => 'Super Admin dibatasi permanen hanya 1 akun dan tidak dapat ditambah. Anda hanya dapat menambahkan akun dengan role Admin.',
         ]);
+
+        if (User::where('role', 'admin')->count() >= 2) {
+            return back()->withInput()->withErrors([
+                'role' => 'Maksimal hanya diperbolehkan 2 akun dengan role Admin. Kuota akun Admin sudah penuh (2/2).',
+            ]);
+        }
 
         $validated['password'] = Hash::make($validated['password']);
 
@@ -50,7 +51,7 @@ class UserController extends Controller
 
         \App\Models\ActivityLog::record('CREATE_USER', "Menambahkan user baru: {$user->name} ({$user->role})");
 
-        return redirect()->route('admin.users.index')->with('success', 'User berhasil ditambahkan.');
+        return redirect()->route('admin.users.index')->with('success', 'User Admin berhasil ditambahkan.');
     }
 
     public function show(string $id)
@@ -60,12 +61,9 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
-        $roles = [
-            'super_admin' => 'Super Admin',
-            'admin' => 'Admin',
-        ];
-        $otherAdminExists = User::where('role', 'admin')->where('id', '!=', $user->id)->exists();
-        return view('admin.users.edit', compact('user', 'roles', 'otherAdminExists'));
+        $adminCount = User::where('role', 'admin')->count();
+        $superAdminCount = User::where('role', 'super_admin')->count();
+        return view('admin.users.edit', compact('user', 'adminCount', 'superAdminCount'));
     }
 
     public function update(Request $request, User $user)
@@ -84,12 +82,16 @@ class UserController extends Controller
                 'required',
                 'in:super_admin,admin',
                 function ($attribute, $value, $fail) use ($user) {
-                    if ($value === 'admin') {
-                        $otherAdminExists = User::where('role', 'admin')
-                            ->where('id', '!=', $user->id)
-                            ->exists();
-                        if ($otherAdminExists) {
-                            $fail('Hanya diperbolehkan memiliki 1 akun dengan role Admin. Akun admin lain sudah terdaftar di sistem.');
+                    if ($user->role === 'super_admin' && $value !== 'super_admin') {
+                        $fail('Akun Super Admin utama tidak dapat diubah rolenya.');
+                    }
+                    if ($user->role !== 'super_admin' && $value === 'super_admin') {
+                        $fail('Tidak dapat mengubah role menjadi Super Admin karena Super Admin hanya boleh 1 akun.');
+                    }
+                    if ($value === 'admin' && $user->role !== 'admin') {
+                        $currentAdminCount = User::where('role', 'admin')->where('id', '!=', $user->id)->count();
+                        if ($currentAdminCount >= 2) {
+                            $fail('Maksimal hanya diperbolehkan 2 akun dengan role Admin.');
                         }
                     }
                 },
@@ -113,6 +115,10 @@ class UserController extends Controller
     {
         if ($user->id === auth()->id()) {
             return redirect()->route('admin.users.index')->with('error', 'Tidak bisa menghapus akun Anda sendiri.');
+        }
+
+        if ($user->role === 'super_admin') {
+            return redirect()->route('admin.users.index')->with('error', 'Akun Super Admin utama tidak dapat dihapus.');
         }
 
         $userName = $user->name;
