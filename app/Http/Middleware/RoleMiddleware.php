@@ -12,7 +12,7 @@ class RoleMiddleware
      * Handle an incoming request.
      *
      * Menerima satu atau lebih role yang diizinkan.
-     * Contoh penggunaan di route: middleware('role:super_admin,admin_rehab')
+     * Contoh penggunaan di route: middleware('role:super_admin,admin')
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
