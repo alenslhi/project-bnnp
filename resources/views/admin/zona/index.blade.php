@@ -46,15 +46,13 @@
         cursor: pointer;
     }
     .quick-kab-pill.active {
-        background-color: #0284c7 !important;
+        background-color: #2563eb !important;
         color: #ffffff !important;
-        border-color: #38bdf8 !important;
-        box-shadow: 0 4px 10px rgba(2, 132, 199, 0.35) !important;
+        border-color: #60a5fa !important;
+        box-shadow: 0 4px 10px rgba(37, 99, 235, 0.35) !important;
         font-weight: 700 !important;
     }
     .quick-kab-pill:not(.active):hover {
-        border-color: rgba(255, 255, 255, 0.3);
-        color: #ffffff;
         transform: translateY(-1px);
     }
     .scrollbar-none::-webkit-scrollbar {
@@ -65,16 +63,31 @@
         scrollbar-width: none;
     }
     .badge-status-merah {
+        background-color: rgba(239, 68, 68, 0.15) !important;
+        border: 1px solid rgba(239, 68, 68, 0.35) !important;
+        color: #dc2626 !important;
+    }
+    .dark .badge-status-merah {
         background-color: rgba(239, 68, 68, 0.18) !important;
         border: 1px solid rgba(239, 68, 68, 0.45) !important;
         color: #f87171 !important;
     }
     .badge-status-kuning {
+        background-color: rgba(245, 158, 11, 0.15) !important;
+        border: 1px solid rgba(245, 158, 11, 0.35) !important;
+        color: #d97706 !important;
+    }
+    .dark .badge-status-kuning {
         background-color: rgba(245, 158, 11, 0.18) !important;
         border: 1px solid rgba(245, 158, 11, 0.45) !important;
         color: #fbbf24 !important;
     }
     .badge-status-hijau {
+        background-color: rgba(16, 185, 129, 0.15) !important;
+        border: 1px solid rgba(16, 185, 129, 0.35) !important;
+        color: #059669 !important;
+    }
+    .dark .badge-status-hijau {
         background-color: rgba(16, 185, 129, 0.18) !important;
         border: 1px solid rgba(16, 185, 129, 0.45) !important;
         color: #34d399 !important;
@@ -87,7 +100,7 @@
 
     {{-- Toast Notification --}}
     <div id="toast-notif" class="fixed top-6 right-6 z-50 hidden transition-all duration-300 transform translate-y-[-20px] opacity-0">
-        <div class="flex items-center gap-3 px-5 py-3.5 rounded-2xl bg-emerald-500/90 text-white font-medium shadow-2xl backdrop-blur-xl border border-white/20">
+        <div class="flex items-center gap-3 px-5 py-3.5 rounded-2xl bg-emerald-600 text-white font-medium shadow-2xl backdrop-blur-xl border border-white/20">
             <svg class="h-5 w-5 text-white shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd"/></svg>
             <span id="toast-text">Perubahan berhasil disimpan!</span>
         </div>
@@ -96,24 +109,24 @@
     {{-- Header Actions --}}
     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 min-w-0 max-w-full pb-1">
         <div class="min-w-0">
-            <h2 class="text-xl sm:text-2xl font-bold text-white tracking-tight">
+            <h2 class="text-xl sm:text-2xl font-bold text-surface-900 dark:text-white tracking-tight">
                 Zona Kerawanan
             </h2>
-            <p class="text-xs sm:text-sm text-surface-400 mt-0.5">
+            <p class="text-xs sm:text-sm text-surface-500 dark:text-surface-400 mt-0.5">
                 Monitoring status kerawanan wilayah Sulawesi Tengah tingkat kecamatan & kelurahan
             </p>
         </div>
 
         <div class="flex items-center gap-2.5 shrink-0">
             <a href="{{ route('peta') }}" target="_blank"
-               class="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3.5 py-2 text-xs font-medium text-surface-300 hover:text-white hover:bg-white/10 transition">
+               class="inline-flex items-center gap-2 rounded-xl border border-surface-200 dark:border-white/10 bg-white dark:bg-white/5 px-3.5 py-2 text-xs font-semibold text-surface-700 dark:text-surface-300 hover:text-surface-900 dark:hover:text-white hover:bg-surface-100 dark:hover:bg-white/10 transition shadow-sm">
                 <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/>
                 </svg>
                 Lihat Peta Publik
             </a>
             <a href="{{ route('admin.zona.create') }}"
-               class="inline-flex items-center gap-2 rounded-xl bg-primary-600 px-3.5 py-2 text-xs font-semibold text-white shadow-md shadow-primary-600/20 hover:bg-primary-500 transition">
+               class="inline-flex items-center gap-2 rounded-xl bg-primary-600 px-3.5 py-2 text-xs font-semibold text-white shadow-md shadow-primary-600/25 hover:bg-primary-700 transition">
                 <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/>
                 </svg>
@@ -129,13 +142,13 @@
         $countHijau = $allZonas->where('status_zona', 'hijau')->count();
         $activeKab = $parentKode ? $kabupatens->firstWhere('kode_wilayah', $parentKode) : null;
     @endphp
-    <div class="rounded-2xl border border-white/10 bg-surface-900/60 p-3 sm:p-3.5 backdrop-blur-xl shadow-lg space-y-3 min-w-0 max-w-full">
+    <div class="rounded-2xl border border-surface-200 dark:border-white/10 bg-white dark:bg-surface-900/60 p-3 sm:p-3.5 backdrop-blur-xl shadow-sm space-y-3 min-w-0 max-w-full">
         
         {{-- Baris 1: Mode Switcher, Filter & Status Counter --}}
         <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 min-w-0 max-w-full">
             
             {{-- Kiri: Switcher Tab (Peta vs Tabel) --}}
-            <div class="flex items-center gap-1 p-1 rounded-xl bg-surface-950 border border-white/10 w-fit shrink-0">
+            <div class="flex items-center gap-1 p-1 rounded-xl bg-surface-100 dark:bg-surface-950 border border-surface-200 dark:border-white/10 w-fit shrink-0">
                 <button type="button" 
                         id="tab-btn-peta"
                         onclick="switchAdminView('peta')" 
@@ -148,7 +161,7 @@
                 <button type="button" 
                         id="tab-btn-tabel"
                         onclick="switchAdminView('tabel')" 
-                        class="px-3.5 py-1.5 rounded-lg text-xs font-medium transition flex items-center gap-2 text-surface-400 hover:text-white hover:bg-white/5">
+                        class="px-3.5 py-1.5 rounded-lg text-xs font-medium transition flex items-center gap-2 text-surface-600 dark:text-surface-400 hover:text-surface-900 dark:hover:text-white hover:bg-white dark:hover:bg-white/5">
                     <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
                     </svg>
@@ -162,7 +175,7 @@
                     <input type="hidden" name="tingkat" value="{{ $tingkat }}">
 
                     {{-- Dropdown Pilih Kabupaten --}}
-                    <select name="parent_kode" onchange="this.form.submit()" class="rounded-xl bg-surface-950 border border-white/10 px-3 py-1.5 text-xs text-white focus:border-primary-500 outline-none transition cursor-pointer max-w-[190px]">
+                    <select name="parent_kode" onchange="this.form.submit()" class="rounded-xl bg-surface-50 dark:bg-surface-950 border border-surface-300 dark:border-white/10 px-3 py-1.5 text-xs text-surface-900 dark:text-white focus:border-primary-500 outline-none transition cursor-pointer max-w-[190px]">
                         <option value="">Semua Kabupaten</option>
                         @foreach($kabupatens as $kab)
                             @php $kCount = $kecamatanCounts[$kab->kode_wilayah] ?? 0; @endphp
@@ -174,22 +187,22 @@
 
                     {{-- Input Cari dengan Icon --}}
                     <div class="relative">
-                        <span class="absolute inset-y-0 left-0 pl-2.5 flex items-center pointer-events-none text-surface-500">
+                        <span class="absolute inset-y-0 left-0 pl-2.5 flex items-center pointer-events-none text-surface-400 dark:text-surface-500">
                             <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/>
                             </svg>
                         </span>
                         <input type="text" name="search" value="{{ $search }}" placeholder="Cari wilayah..."
-                               class="w-32 sm:w-36 rounded-xl border border-white/10 bg-surface-950 pl-8 pr-3 py-1.5 text-xs text-white placeholder-surface-500 focus:border-primary-500 outline-none transition">
+                               class="w-32 sm:w-36 rounded-xl border border-surface-300 dark:border-white/10 bg-surface-50 dark:bg-surface-950 pl-8 pr-3 py-1.5 text-xs text-surface-900 dark:text-white placeholder-surface-400 dark:placeholder-surface-500 focus:border-primary-500 outline-none transition">
                     </div>
 
-                    <button type="submit" class="px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-xs font-medium text-white transition shrink-0">
+                    <button type="submit" class="px-3 py-1.5 rounded-xl bg-primary-600 dark:bg-white/10 hover:bg-primary-700 dark:hover:bg-white/20 text-xs font-semibold text-white transition shrink-0">
                         Cari
                     </button>
 
                     @if($search || $parentKode || $tingkat !== 'kecamatan')
                         <a href="{{ route('admin.zona.index', ['tingkat' => 'kecamatan']) }}" 
-                           class="px-2.5 py-1.5 rounded-xl border border-white/10 bg-white/5 hover:bg-white/15 text-xs text-surface-300 hover:text-white font-medium transition shrink-0"
+                           class="px-2.5 py-1.5 rounded-xl border border-surface-200 dark:border-white/10 bg-surface-100 dark:bg-white/5 hover:bg-surface-200 dark:hover:bg-white/15 text-xs text-surface-700 dark:text-surface-300 hover:text-surface-900 dark:hover:text-white font-medium transition shrink-0"
                            title="Reset filter">
                             Reset
                         </a>
@@ -197,20 +210,20 @@
                 </form>
 
                 {{-- Status Counter Pill dengan Penanda Warna --}}
-                <div class="flex items-center gap-2 text-xs bg-surface-950 px-3 py-1.5 rounded-xl border border-white/10 shrink-0">
+                <div class="flex items-center gap-2 text-xs bg-surface-50 dark:bg-surface-950 px-3 py-1.5 rounded-xl border border-surface-200 dark:border-white/10 shrink-0">
                     <div class="flex items-center gap-1.5" title="Rawan Tinggi (Merah)">
                         <span class="w-2.5 h-2.5 rounded-full bg-red-500 inline-block"></span>
-                        <span class="text-white font-semibold">{{ $countMerah }}</span>
+                        <span class="text-surface-900 dark:text-white font-bold">{{ $countMerah }}</span>
                     </div>
-                    <span class="text-white/20">•</span>
+                    <span class="text-surface-300 dark:text-white/20">•</span>
                     <div class="flex items-center gap-1.5" title="Rawan Sedang (Kuning)">
                         <span class="w-2.5 h-2.5 rounded-full bg-amber-500 inline-block"></span>
-                        <span class="text-white font-semibold">{{ $countKuning }}</span>
+                        <span class="text-surface-900 dark:text-white font-bold">{{ $countKuning }}</span>
                     </div>
-                    <span class="text-white/20">•</span>
+                    <span class="text-surface-300 dark:text-white/20">•</span>
                     <div class="flex items-center gap-1.5" title="Rawan Rendah (Hijau)">
                         <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block"></span>
-                        <span class="text-white font-semibold">{{ $countHijau }}</span>
+                        <span class="text-surface-900 dark:text-white font-bold">{{ $countHijau }}</span>
                     </div>
                 </div>
 
@@ -218,11 +231,11 @@
         </div>
 
         {{-- Baris 2: Quick Filter Kabupaten Scrollable --}}
-        <div class="flex items-center gap-2 pt-2 border-t border-white/5 min-w-0 max-w-full overflow-hidden">
+        <div class="flex items-center gap-2 pt-2 border-t border-surface-100 dark:border-white/5 min-w-0 max-w-full overflow-hidden">
             <button type="button" 
                     onclick="scrollAdminPills(-240)" 
                     aria-label="Geser ke kiri"
-                    class="shrink-0 w-6 h-6 rounded-lg border border-white/10 bg-surface-950/90 hover:bg-white/15 text-surface-400 hover:text-white flex items-center justify-center text-xs font-bold transition">
+                    class="shrink-0 w-6 h-6 rounded-lg border border-surface-200 dark:border-white/10 bg-surface-100 dark:bg-surface-950/90 hover:bg-surface-200 dark:hover:bg-white/15 text-surface-600 dark:text-surface-400 hover:text-surface-900 dark:hover:text-white flex items-center justify-center text-xs font-bold transition">
                 ‹
             </button>
 
@@ -230,12 +243,12 @@
                  class="flex-1 min-w-0 flex items-center gap-1.5 overflow-x-auto pb-0.5 scrollbar-none flex-nowrap py-0.5 select-none cursor-grab active:cursor-grabbing">
                 
                 <a href="{{ route('admin.zona.index', ['tingkat' => 'kecamatan', 'search' => $search]) }}"
-                   class="quick-kab-pill {{ empty($parentKode) && $tingkat === 'kecamatan' ? 'active' : '' }} px-2.5 py-1 rounded-lg text-xs font-medium whitespace-nowrap transition border border-white/5 bg-surface-950 text-surface-400 hover:text-white hover:border-white/20 shrink-0">
+                   class="quick-kab-pill {{ empty($parentKode) && $tingkat === 'kecamatan' ? 'active' : '' }} px-2.5 py-1 rounded-lg text-xs font-medium whitespace-nowrap transition border border-surface-200 dark:border-white/5 bg-surface-50 dark:bg-surface-950 text-surface-700 dark:text-surface-400 hover:text-surface-900 dark:hover:text-white hover:border-surface-300 dark:hover:border-white/20 shrink-0">
                     Semua Wilayah ({{ $allZonas->count() }})
                 </a>
 
                 <a href="{{ route('admin.zona.index', ['tingkat' => 'kecamatan', 'parent_kode' => '72.08', 'search' => $search]) }}"
-                   class="quick-kab-pill {{ $parentKode === '72.08' && $tingkat === 'kecamatan' ? 'active' : '' }} px-2.5 py-1 rounded-lg text-xs font-medium whitespace-nowrap transition border border-white/5 bg-surface-950 text-surface-400 hover:text-white hover:border-white/20 flex items-center gap-1 shrink-0">
+                   class="quick-kab-pill {{ $parentKode === '72.08' && $tingkat === 'kecamatan' ? 'active' : '' }} px-2.5 py-1 rounded-lg text-xs font-medium whitespace-nowrap transition border border-surface-200 dark:border-white/5 bg-surface-50 dark:bg-surface-950 text-surface-700 dark:text-surface-400 hover:text-surface-900 dark:hover:text-white hover:border-surface-300 dark:hover:border-white/20 flex items-center gap-1 shrink-0">
                     <span>Parigi Moutong</span>
                     <span class="text-[10px] text-surface-500 font-mono">(23)</span>
                 </a>
@@ -244,7 +257,7 @@
                     @if($kab->kode_wilayah !== '72.08')
                         @php $kecCount = $kecamatanCounts[$kab->kode_wilayah] ?? null; @endphp
                         <a href="{{ route('admin.zona.index', ['tingkat' => 'kecamatan', 'parent_kode' => $kab->kode_wilayah, 'search' => $search]) }}"
-                           class="quick-kab-pill {{ $parentKode === $kab->kode_wilayah && $tingkat === 'kecamatan' ? 'active' : '' }} px-2.5 py-1 rounded-lg text-xs font-medium whitespace-nowrap transition border border-white/5 bg-surface-950 text-surface-400 hover:text-white hover:border-white/20 flex items-center gap-1 shrink-0">
+                           class="quick-kab-pill {{ $parentKode === $kab->kode_wilayah && $tingkat === 'kecamatan' ? 'active' : '' }} px-2.5 py-1 rounded-lg text-xs font-medium whitespace-nowrap transition border border-surface-200 dark:border-white/5 bg-surface-50 dark:bg-surface-950 text-surface-700 dark:text-surface-400 hover:text-surface-900 dark:hover:text-white hover:border-surface-300 dark:hover:border-white/20 flex items-center gap-1 shrink-0">
                             <span>{{ str_replace(['Kabupaten ', 'Kota '], '', $kab->nama_wilayah) }}</span>
                             @if($kecCount)
                                 <span class="text-[10px] text-surface-500 font-mono">({{ $kecCount }})</span>
@@ -257,7 +270,7 @@
             <button type="button" 
                     onclick="scrollAdminPills(240)" 
                     aria-label="Geser ke kanan"
-                    class="shrink-0 w-6 h-6 rounded-lg border border-white/10 bg-surface-950/90 hover:bg-white/15 text-surface-400 hover:text-white flex items-center justify-center text-xs font-bold transition">
+                    class="shrink-0 w-6 h-6 rounded-lg border border-surface-200 dark:border-white/10 bg-surface-100 dark:bg-surface-950/90 hover:bg-surface-200 dark:hover:bg-white/15 text-surface-600 dark:text-surface-400 hover:text-surface-900 dark:hover:text-white flex items-center justify-center text-xs font-bold transition">
                 ›
             </button>
         </div>
@@ -266,13 +279,13 @@
 
     {{-- 1. Container Tampilan Peta (Fit Screen) --}}
     <div id="view-peta-container" class="space-y-3 min-w-0 max-w-full overflow-hidden">
-        <div class="rounded-2xl border border-white/10 bg-surface-900/60 backdrop-blur-xl p-3.5 sm:p-4 shadow-lg min-w-0 max-w-full overflow-hidden">
+        <div class="rounded-2xl border border-surface-200 dark:border-white/10 bg-white dark:bg-surface-900/60 backdrop-blur-xl p-3.5 sm:p-4 shadow-sm min-w-0 max-w-full overflow-hidden">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 mb-3 min-w-0 max-w-full">
                 <div class="min-w-0 flex-1">
-                    <h3 class="text-sm font-semibold text-white flex items-center gap-2 truncate">
+                    <h3 class="text-sm font-bold text-surface-900 dark:text-white flex items-center gap-2 truncate">
                         Peta Interaktif — {{ $activeKab ? $activeKab->nama_wilayah : ($tingkat === 'kelurahan' ? 'Kelurahan Kota Palu' : 'Sulawesi Tengah') }}
                     </h3>
-                    <p class="text-xs text-surface-400 mt-0.5">
+                    <p class="text-xs text-surface-500 dark:text-surface-400 mt-0.5">
                         Klik poligon wilayah untuk mengubah status kerawanan dan jumlah kasus.
                     </p>
                 </div>
@@ -291,22 +304,22 @@
                 </div>
             </div>
 
-            <div id="admin-peta-zona" class="shadow-inner w-full max-w-full overflow-hidden"></div>
+            <div id="admin-peta-zona" class="shadow-inner w-full max-w-full overflow-hidden border border-surface-200 dark:border-white/10"></div>
         </div>
     </div>
 
     {{-- 2. Container Tampilan Tabel Data --}}
     <div id="view-tabel-container" class="hidden space-y-3 min-w-0 max-w-full overflow-hidden">
-        <div class="rounded-2xl border border-white/10 bg-surface-900/60 backdrop-blur-xl overflow-hidden shadow-lg min-w-0 max-w-full">
-            <div class="p-4 sm:p-5 border-b border-white/10 flex items-center justify-between min-w-0">
+        <div class="rounded-2xl border border-surface-200 dark:border-white/10 bg-white dark:bg-surface-900/60 backdrop-blur-xl overflow-hidden shadow-sm min-w-0 max-w-full">
+            <div class="p-4 sm:p-5 border-b border-surface-100 dark:border-white/10 flex items-center justify-between min-w-0">
                 <div class="min-w-0 flex-1">
-                    <h3 class="text-sm sm:text-base font-semibold text-white truncate">Daftar Data Wilayah</h3>
-                    <p class="text-xs text-surface-400 mt-0.5 truncate">Total {{ $allZonas->count() }} wilayah {{ $tingkat }} yang tersaring.</p>
+                    <h3 class="text-sm sm:text-base font-bold text-surface-900 dark:text-white truncate">Daftar Data Wilayah</h3>
+                    <p class="text-xs text-surface-500 dark:text-surface-400 mt-0.5 truncate">Total {{ $allZonas->count() }} wilayah {{ $tingkat }} yang tersaring.</p>
                 </div>
             </div>
             <div class="overflow-x-auto">
                 <table class="w-full text-left text-sm" id="table-zonas">
-                    <thead class="bg-surface-950/60 text-xs uppercase tracking-wider text-surface-400 border-b border-white/5">
+                    <thead class="bg-surface-50 dark:bg-surface-950/60 text-xs uppercase tracking-wider text-surface-600 dark:text-surface-400 border-b border-surface-200 dark:border-white/5">
                         <tr>
                             <th class="py-3 px-4 font-semibold">Nama Wilayah</th>
                             <th class="py-3 px-4 font-semibold">Tingkat / Induk</th>
@@ -315,19 +328,19 @@
                             <th class="py-3 px-4 font-semibold text-right">Aksi</th>
                         </tr>
                     </thead>
-                    <tbody class="divide-y divide-white/5">
+                    <tbody class="divide-y divide-surface-200 dark:divide-white/5">
                         @forelse($zonas as $zona)
-                            <tr class="hover:bg-white/[0.02] transition" id="row-zona-{{ $zona->id }}">
+                            <tr class="hover:bg-surface-50 dark:hover:bg-white/[0.02] transition" id="row-zona-{{ $zona->id }}">
                                 <td class="py-3 px-4">
-                                    <span class="font-semibold text-white block nama-wilayah-text">{{ $zona->nama_wilayah }}</span>
-                                    <span class="text-xs text-surface-400 line-clamp-1 deskripsi-text">{{ $zona->deskripsi ?? '-' }}</span>
+                                    <span class="font-bold text-surface-900 dark:text-white block nama-wilayah-text">{{ $zona->nama_wilayah }}</span>
+                                    <span class="text-xs text-surface-500 dark:text-surface-400 line-clamp-1 deskripsi-text">{{ $zona->deskripsi ?? '-' }}</span>
                                 </td>
                                 <td class="py-3 px-4">
-                                    <span class="inline-block px-2 py-0.5 rounded text-[11px] font-medium bg-white/5 text-primary-300 border border-white/10">
+                                    <span class="inline-block px-2 py-0.5 rounded text-[11px] font-semibold bg-surface-100 dark:bg-white/5 text-primary-700 dark:text-primary-300 border border-surface-200 dark:border-white/10">
                                         {{ ucfirst($zona->tingkat) }}
                                     </span>
                                     @if($zona->parent_nama)
-                                        <span class="block text-xs text-surface-400 mt-0.5">{{ $zona->parent_nama }}</span>
+                                        <span class="block text-xs text-surface-500 dark:text-surface-400 mt-0.5">{{ $zona->parent_nama }}</span>
                                     @endif
                                 </td>
                                 <td class="py-3 px-4">
@@ -347,22 +360,22 @@
                                         @endif
                                     </span>
                                 </td>
-                                <td class="py-3 px-4 text-center font-medium text-white jumlah-kasus-text">
+                                <td class="py-3 px-4 text-center font-bold text-surface-900 dark:text-white jumlah-kasus-text">
                                     {{ number_format($zona->jumlah_kasus) }}
                                 </td>
                                 <td class="py-3 px-4 text-right">
                                     <div class="inline-flex items-center gap-2">
                                         <button type="button"
                                                 onclick="openEditModal({{ $zona->id }})"
-                                                class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 text-xs font-medium text-surface-200 hover:text-white transition"
+                                                class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-surface-100 dark:bg-white/5 border border-surface-200 dark:border-white/10 hover:bg-surface-200 dark:hover:bg-white/10 text-xs font-semibold text-surface-700 dark:text-surface-200 hover:text-surface-900 dark:hover:text-white transition"
                                                 title="Ubah Status Wilayah">
-                                            <svg class="h-3.5 w-3.5 text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                            <svg class="h-3.5 w-3.5 text-primary-600 dark:text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                                 <path stroke-linecap="round" stroke-linejoin="round" d="M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.395m3.42 3.42a15.995 15.995 0 004.764-4.648l3.876-3.877a2.25 2.25 0 00-3.182-3.182l-3.877 3.877a15.995 15.995 0 00-4.647 4.764m3.046.066l.004-.004"/>
                                             </svg>
                                             Ubah Status
                                         </button>
                                         <a href="{{ route('admin.zona.edit', $zona->id) }}"
-                                           class="p-1.5 rounded-lg bg-white/5 text-surface-400 hover:text-white hover:bg-white/10 transition"
+                                           class="p-1.5 rounded-lg bg-surface-100 dark:bg-white/5 text-surface-600 dark:text-surface-400 hover:text-surface-900 dark:hover:text-white hover:bg-surface-200 dark:hover:bg-white/10 transition"
                                            title="Edit Detail Form">
                                             <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                                 <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"/>
@@ -383,7 +396,7 @@
             </div>
 
             @if($zonas->hasPages())
-                <div class="p-3.5 border-t border-white/5">
+                <div class="p-3.5 border-t border-surface-200 dark:border-white/5 bg-surface-50/50 dark:bg-transparent">
                     {{ $zonas->links() }}
                 </div>
             @endif
@@ -392,22 +405,22 @@
 </div>
 
 {{-- ═══ MODAL CEPAT UBAH WARNA & STATUS ZONA ═══ --}}
-<div id="modal-edit-zona" class="fixed inset-0 z-50 hidden overflow-y-auto bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
-    <div class="w-full max-w-lg rounded-3xl border border-white/15 bg-surface-900 p-6 sm:p-7 shadow-2xl relative transform transition-all duration-300">
+<div id="modal-edit-zona" class="fixed inset-0 z-50 hidden overflow-y-auto bg-black/60 dark:bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="w-full max-w-lg rounded-3xl border border-surface-200 dark:border-white/15 bg-white dark:bg-surface-900 p-6 sm:p-7 shadow-2xl relative transform transition-all duration-300">
         
         {{-- Close Button --}}
-        <button type="button" onclick="closeEditModal()" class="absolute top-5 right-5 text-surface-400 hover:text-white p-2 rounded-xl bg-white/5 hover:bg-white/10 transition">
+        <button type="button" onclick="closeEditModal()" class="absolute top-5 right-5 text-surface-400 hover:text-surface-700 dark:hover:text-white p-2 rounded-xl bg-surface-100 dark:bg-white/5 hover:bg-surface-200 dark:hover:bg-white/10 transition">
             <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
             </svg>
         </button>
 
         <div class="mb-5">
-            <span class="inline-block px-2.5 py-1 rounded-md text-[11px] font-semibold uppercase tracking-wider bg-primary-500/20 text-primary-400 border border-primary-500/30 mb-2" id="modal-tingkat-label">
+            <span class="inline-block px-2.5 py-1 rounded-md text-[11px] font-semibold uppercase tracking-wider bg-primary-50 dark:bg-primary-500/20 text-primary-700 dark:text-primary-400 border border-primary-200 dark:border-primary-500/30 mb-2" id="modal-tingkat-label">
                 Wilayah
             </span>
-            <h3 class="text-xl font-bold text-white" id="modal-nama-wilayah">Nama Wilayah</h3>
-            <p class="text-xs text-surface-400 mt-1">Pilih warna status kerawanan untuk diterapkan pada seluruh batas wilayah ini.</p>
+            <h3 class="text-xl font-bold text-surface-900 dark:text-white" id="modal-nama-wilayah">Nama Wilayah</h3>
+            <p class="text-xs text-surface-500 dark:text-surface-400 mt-1">Pilih warna status kerawanan untuk diterapkan pada seluruh batas wilayah ini.</p>
         </div>
 
         <form id="form-edit-zona" onsubmit="submitEditZona(event)" class="space-y-5">
@@ -415,37 +428,37 @@
 
             {{-- Pilihan Warna / Status Kerawanan (Radio Cards) --}}
             <div>
-                <label class="block text-xs font-semibold uppercase tracking-wider text-surface-300 mb-2.5">
-                    Pilih Warna & Status Kerawanan <span class="text-danger-400">*</span>
+                <label class="block text-xs font-semibold uppercase tracking-wider text-surface-700 dark:text-surface-300 mb-2.5">
+                    Pilih Warna & Status Kerawanan <span class="text-danger-500">*</span>
                 </label>
                 <div class="grid grid-cols-3 gap-3">
                     {{-- Merah --}}
                     <label class="cursor-pointer">
                         <input type="radio" name="modal_status_zona" value="merah" class="peer sr-only">
-                        <div class="rounded-2xl border-2 border-white/10 bg-surface-950/60 p-3.5 text-center transition-all peer-checked:border-red-500 peer-checked:bg-red-500/15 peer-checked:shadow-lg peer-checked:shadow-red-500/25 hover:border-white/20">
+                        <div class="rounded-2xl border-2 border-surface-200 dark:border-white/10 bg-surface-50 dark:bg-surface-950/60 p-3.5 text-center transition-all peer-checked:border-red-500 peer-checked:bg-red-50 dark:peer-checked:bg-red-500/15 peer-checked:shadow-lg peer-checked:shadow-red-500/25 hover:border-surface-300 dark:hover:border-white/20">
                             <span class="h-6 w-6 rounded-full bg-red-500 inline-block shadow-md shadow-red-500/50 mb-1.5"></span>
-                            <div class="font-bold text-xs text-white">Merah</div>
-                            <div class="text-[10px] text-red-400 mt-0.5">Rawan Tinggi</div>
+                            <div class="font-bold text-xs text-surface-900 dark:text-white">Merah</div>
+                            <div class="text-[10px] text-red-600 dark:text-red-400 font-semibold mt-0.5">Rawan Tinggi</div>
                         </div>
                     </label>
 
                     {{-- Kuning --}}
                     <label class="cursor-pointer">
                         <input type="radio" name="modal_status_zona" value="kuning" class="peer sr-only">
-                        <div class="rounded-2xl border-2 border-white/10 bg-surface-950/60 p-3.5 text-center transition-all peer-checked:border-amber-500 peer-checked:bg-amber-500/15 peer-checked:shadow-lg peer-checked:shadow-amber-500/25 hover:border-white/20">
+                        <div class="rounded-2xl border-2 border-surface-200 dark:border-white/10 bg-surface-50 dark:bg-surface-950/60 p-3.5 text-center transition-all peer-checked:border-amber-500 peer-checked:bg-amber-50 dark:peer-checked:bg-amber-500/15 peer-checked:shadow-lg peer-checked:shadow-amber-500/25 hover:border-surface-300 dark:hover:border-white/20">
                             <span class="h-6 w-6 rounded-full bg-amber-500 inline-block shadow-md shadow-amber-500/50 mb-1.5"></span>
-                            <div class="font-bold text-xs text-white">Kuning</div>
-                            <div class="text-[10px] text-amber-400 mt-0.5">Rawan Sedang</div>
+                            <div class="font-bold text-xs text-surface-900 dark:text-white">Kuning</div>
+                            <div class="text-[10px] text-amber-600 dark:text-amber-400 font-semibold mt-0.5">Rawan Sedang</div>
                         </div>
                     </label>
 
                     {{-- Hijau --}}
                     <label class="cursor-pointer">
                         <input type="radio" name="modal_status_zona" value="hijau" class="peer sr-only">
-                        <div class="rounded-2xl border-2 border-white/10 bg-surface-950/60 p-3.5 text-center transition-all peer-checked:border-emerald-500 peer-checked:bg-emerald-500/15 peer-checked:shadow-lg peer-checked:shadow-emerald-500/25 hover:border-white/20">
+                        <div class="rounded-2xl border-2 border-surface-200 dark:border-white/10 bg-surface-50 dark:bg-surface-950/60 p-3.5 text-center transition-all peer-checked:border-emerald-500 peer-checked:bg-emerald-50 dark:peer-checked:bg-emerald-500/15 peer-checked:shadow-lg peer-checked:shadow-emerald-500/25 hover:border-surface-300 dark:hover:border-white/20">
                             <span class="h-6 w-6 rounded-full bg-emerald-500 inline-block shadow-md shadow-emerald-500/50 mb-1.5"></span>
-                            <div class="font-bold text-xs text-white">Hijau</div>
-                            <div class="text-[10px] text-emerald-400 mt-0.5">Rawan Rendah</div>
+                            <div class="font-bold text-xs text-surface-900 dark:text-white">Hijau</div>
+                            <div class="text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold mt-0.5">Rawan Rendah</div>
                         </div>
                     </label>
                 </div>
@@ -453,28 +466,28 @@
 
             {{-- Input Jumlah Kasus --}}
             <div>
-                <label for="modal-jumlah-kasus" class="block text-xs font-semibold uppercase tracking-wider text-surface-300 mb-1.5">
-                    Jumlah Kasus Tercatat <span class="text-danger-400">*</span>
+                <label for="modal-jumlah-kasus" class="block text-xs font-semibold uppercase tracking-wider text-surface-700 dark:text-surface-300 mb-1.5">
+                    Jumlah Kasus Tercatat <span class="text-danger-500">*</span>
                 </label>
                 <input type="number" id="modal-jumlah-kasus" min="0" required
-                       class="w-full rounded-xl border border-white/10 bg-surface-950/80 px-4 py-2.5 text-sm text-white focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500/20 transition">
+                       class="w-full rounded-xl border border-surface-300 dark:border-white/10 bg-surface-50 dark:bg-surface-950/80 px-4 py-2.5 text-sm text-surface-900 dark:text-white focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500/20 transition">
             </div>
 
             {{-- Input Deskripsi / Catatan --}}
             <div>
-                <label for="modal-deskripsi" class="block text-xs font-semibold uppercase tracking-wider text-surface-300 mb-1.5">
+                <label for="modal-deskripsi" class="block text-xs font-semibold uppercase tracking-wider text-surface-700 dark:text-surface-300 mb-1.5">
                     Deskripsi / Catatan Lapangan (Opsional)
                 </label>
                 <textarea id="modal-deskripsi" rows="3"
-                          class="w-full rounded-xl border border-white/10 bg-surface-950/80 px-4 py-2.5 text-sm text-white placeholder-surface-500 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500/20 transition"></textarea>
+                          class="w-full rounded-xl border border-surface-300 dark:border-white/10 bg-surface-50 dark:bg-surface-950/80 px-4 py-2.5 text-sm text-surface-900 dark:text-white placeholder-surface-400 dark:placeholder-surface-500 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500/20 transition"></textarea>
             </div>
 
             {{-- Actions --}}
-            <div class="pt-4 border-t border-white/10 flex items-center justify-end gap-3">
-                <button type="button" onclick="closeEditModal()" class="px-4 py-2 rounded-xl border border-white/10 bg-white/5 text-xs font-medium text-surface-300 hover:bg-white/10 hover:text-white transition">
+            <div class="pt-4 border-t border-surface-200 dark:border-white/10 flex items-center justify-end gap-3">
+                <button type="button" onclick="closeEditModal()" class="px-4 py-2 rounded-xl border border-surface-300 dark:border-white/10 bg-surface-100 dark:bg-white/5 text-xs font-medium text-surface-700 dark:text-surface-300 hover:bg-surface-200 dark:hover:bg-white/10 transition">
                     Batal
                 </button>
-                <button type="submit" id="btn-save-modal" class="px-5 py-2 rounded-xl bg-primary-600 text-xs font-semibold text-white shadow-md shadow-primary-600/20 hover:bg-primary-500 transition">
+                <button type="submit" id="btn-save-modal" class="px-5 py-2 rounded-xl bg-primary-600 text-xs font-semibold text-white shadow-md shadow-primary-600/20 hover:bg-primary-700 transition">
                     Simpan Perubahan
                 </button>
             </div>
@@ -518,7 +531,7 @@ function switchAdminView(view) {
     if (!petaContainer || !tabelContainer || !btnPeta || !btnTabel) return;
 
     const activeClass = "px-3.5 py-1.5 rounded-lg text-xs font-semibold transition flex items-center gap-2 bg-primary-600 text-white shadow-sm";
-    const inactiveClass = "px-3.5 py-1.5 rounded-lg text-xs font-medium transition flex items-center gap-2 text-surface-400 hover:text-white hover:bg-white/5";
+    const inactiveClass = "px-3.5 py-1.5 rounded-lg text-xs font-medium transition flex items-center gap-2 text-surface-600 dark:text-surface-400 hover:text-surface-900 dark:hover:text-white hover:bg-white dark:hover:bg-white/5";
 
     if (view === 'tabel') {
         petaContainer.classList.add('hidden');
@@ -563,7 +576,7 @@ document.addEventListener('DOMContentLoaded', function() {
         switchAdminView('peta');
     }
 
-    // 1. Inisialisasi Peta Leaflet Admin dengan batas wilayah terkunci (Fit Sulteng, tidak bisa digeser ke pulau lain)
+    // 1. Inisialisasi Peta Leaflet Admin dengan batas wilayah terkunci
     const sultengBounds = L.latLngBounds(
         L.latLng(-3.8, 119.0), // Barat daya Sulteng
         L.latLng(1.6, 124.5)   // Timur laut Sulteng
@@ -577,7 +590,7 @@ document.addEventListener('DOMContentLoaded', function() {
         maxBoundsViscosity: 0.9,
     }).setView([-1.0, 120.5], 7);
 
-    // 2. Base Tile Layers (OpenStreetMap resmi lengkap perbatasan)
+    // 2. Base Tile Layers
     const osmLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; OpenStreetMap contributors',
         maxZoom: 19,
@@ -865,12 +878,11 @@ function showToast(msg) {
     }, 3500);
 }
 
-// Fitur Geser Horizontal Tombol Kabupaten Admin (Tombol, Drag Mouse, dan Mouse Wheel)
+// Fitur Geser Horizontal Tombol Kabupaten Admin
 function initAdminPillsScroll() {
     const container = document.getElementById('admin-pills-container');
     if (!container) return;
 
-    // 1. Mouse wheel horizontal scroll
     container.addEventListener('wheel', (e) => {
         if (e.deltaY !== 0) {
             e.preventDefault();
@@ -878,7 +890,6 @@ function initAdminPillsScroll() {
         }
     }, { passive: false });
 
-    // 2. Drag-to-scroll dengan klik & tahan mouse
     let isDown = false;
     let startX = 0;
     let scrollLeft = 0;
@@ -908,7 +919,6 @@ function initAdminPillsScroll() {
         container.scrollLeft = scrollLeft - walk;
     });
 
-    // Otomatis geser tombol aktif ke tengah
     const activePill = container.querySelector('.quick-kab-pill.active');
     if (activePill) {
         activePill.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
