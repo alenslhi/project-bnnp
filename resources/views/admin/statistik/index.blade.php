@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
-@section('title', 'Kelola Statistik Kasus')
-@section('page-title', 'Kelola Data Statistik Kasus (Dari CSV)')
+@section('title', 'Kelola Statistik Rehabilitasi')
+@section('page-title', 'Kelola Data Statistik Klien & Layanan Rehabilitasi')
 
 @section('content')
 <div class="space-y-6">
@@ -10,7 +10,7 @@
     <div class="bg-white dark:bg-surface-900 border border-surface-200 dark:border-white/10 rounded-2xl overflow-hidden shadow-sm">
         <div class="p-6 border-b border-surface-100 dark:border-white/5 bg-surface-50/50 dark:bg-surface-800/30">
             <h2 class="text-lg font-bold text-surface-900 dark:text-white">Upload Dataset Baru</h2>
-            <p class="text-sm text-surface-500 dark:text-surface-400 mt-1">Unggah file CSV berisi data statistik kasus. Anda bisa mengunduh template CSV <a href="{{ asset('excel_templates/template_data_kasus.csv') }}" class="text-primary-600 dark:text-primary-400 font-medium hover:underline" download>di sini</a>.</p>
+            <p class="text-sm text-surface-500 dark:text-surface-400 mt-1">Unggah file CSV berisi data statistik klien dan layanan rehabilitasi. Anda bisa mengunduh template CSV <a href="{{ asset('excel_templates/template_data_kasus.csv') }}" class="text-primary-600 dark:text-primary-400 font-medium hover:underline" download>di sini</a>.</p>
         </div>
         <div class="p-6">
             <form action="{{ route('admin.statistik.import') }}" method="POST" enctype="multipart/form-data" class="space-y-5">

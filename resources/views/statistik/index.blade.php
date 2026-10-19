@@ -1,6 +1,6 @@
 @extends('layouts.publik')
 
-@section('title', 'Dashboard Statistik Informasi BNN')
+@section('title', 'Statistik Klien & Layanan Rehabilitasi - BNNP Sulawesi Tengah')
 
 @push('styles')
 <style>
@@ -39,10 +39,10 @@
     <div class="mb-10 text-center">
         <span class="inline-block text-xs font-bold text-primary-600 dark:text-primary-400 uppercase tracking-widest mb-2">Pusat Data Statistik Terpadu</span>
         <h1 class="text-3xl font-black text-surface-900 dark:text-white sm:text-4xl">
-            Dashboard Statistik <span class="text-primary-600 dark:text-primary-400">SIRENA</span>
+            Statistik <span class="text-primary-600 dark:text-primary-400">Klien & Layanan Rehabilitasi</span>
         </h1>
         <p class="mt-3 text-base text-surface-600 dark:text-surface-400 max-w-2xl mx-auto leading-relaxed">
-            Informasi agregat sebaran pasien, penggunaan narkotika, dan demografi terkait upaya rehabilitasi BNNP Sulawesi Tengah.
+            Informasi agregat sebaran pasien, pola penggunaan narkotika, dan data demografi terkait upaya rehabilitasi BNNP Sulawesi Tengah.
         </p>
     </div>
 

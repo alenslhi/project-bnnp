@@ -77,6 +77,14 @@
                 @endif
             </div>
 
+            {{-- Featured Image Banner jika ada (Full dan tidak terpotong) --}}
+            @if($edukasi->gambar)
+                <div class="mb-8 overflow-hidden rounded-2xl border border-surface-200 dark:border-white/10 bg-surface-50 dark:bg-surface-950/40 p-2 sm:p-3 shadow-sm flex items-center justify-center">
+                    <img src="{{ $edukasi->gambar_url }}" alt="{{ $edukasi->judul }}"
+                         class="w-full h-auto rounded-xl object-contain max-w-full">
+                </div>
+            @endif
+
             {{-- Main Content Body --}}
             <div class="text-surface-800 dark:text-surface-200 text-base leading-relaxed space-y-4 font-normal">
                 {!! nl2br(e($edukasi->konten)) !!}

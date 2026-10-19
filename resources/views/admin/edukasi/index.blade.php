@@ -40,13 +40,28 @@
                     @forelse($edukasis as $item)
                         <tr class="hover:bg-primary-50/50 dark:hover:bg-white/[0.02] transition">
                             <td class="py-4 px-6">
-                                <a href="{{ route('edukasi.show', $item->id) }}" target="_blank"
-                                   class="font-bold text-surface-900 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 transition block line-clamp-1">
-                                    {{ $item->judul }}
-                                </a>
-                                <span class="text-xs text-surface-400 line-clamp-1 mt-0.5">
-                                    {{ Str::limit(strip_tags($item->konten), 80) }}
-                                </span>
+                                <div class="flex items-center gap-3">
+                                    @if($item->gambar)
+                                        <div class="h-10 w-14 rounded-lg overflow-hidden bg-surface-100 dark:bg-surface-800 shrink-0 border border-surface-200 dark:border-white/10">
+                                            <img src="{{ $item->gambar_url }}" alt="{{ $item->judul }}" class="h-full w-full object-cover">
+                                        </div>
+                                    @else
+                                        <div class="h-10 w-14 rounded-lg bg-surface-100 dark:bg-white/5 flex items-center justify-center text-surface-400 shrink-0 border border-surface-200 dark:border-white/5">
+                                            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"/>
+                                            </svg>
+                                        </div>
+                                    @endif
+                                    <div class="min-w-0 flex-1">
+                                        <a href="{{ route('edukasi.show', $item->id) }}" target="_blank"
+                                           class="font-bold text-surface-900 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 transition block line-clamp-1">
+                                            {{ $item->judul }}
+                                        </a>
+                                        <span class="text-xs text-surface-400 line-clamp-1 mt-0.5">
+                                            {{ Str::limit(strip_tags($item->konten), 70) }}
+                                        </span>
+                                    </div>
+                                </div>
                             </td>
                             <td class="py-4 px-6">
                                 @if($item->kategori === 'artikel')

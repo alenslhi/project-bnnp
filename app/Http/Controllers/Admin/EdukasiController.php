@@ -43,15 +43,22 @@ class EdukasiController extends Controller
             'judul'     => ['required', 'string', 'max:255'],
             'kategori'  => ['required', 'in:artikel,kamus,media'],
             'konten'    => ['required', 'string'],
+            'gambar'    => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:5120'],
             'lampiran'  => ['nullable', 'file', 'mimes:pdf,jpg,jpeg,png,webp', 'max:10240'],
         ]);
 
         $validated['penulis_id'] = Auth::id();
 
+        // Handle upload gambar sampul
+        if ($request->hasFile('gambar')) {
+            $validated['gambar'] = $request->file('gambar')
+                ->store('edukasi/gambar', 'public');
+        }
+
         // Handle file upload lampiran
         if ($request->hasFile('lampiran')) {
             $validated['file_path'] = $request->file('lampiran')
-                ->store('edukasi', 'public');
+                ->store('edukasi/lampiran', 'public');
         }
 
         // Hapus key 'lampiran' agar tidak masuk mass-assignment
@@ -87,8 +94,27 @@ class EdukasiController extends Controller
             'judul'     => ['required', 'string', 'max:255'],
             'kategori'  => ['required', 'in:artikel,kamus,media'],
             'konten'    => ['required', 'string'],
+            'gambar'    => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:5120'],
             'lampiran'  => ['nullable', 'file', 'mimes:pdf,jpg,jpeg,png,webp', 'max:10240'],
         ]);
+
+        // Handle upload gambar baru (hapus gambar lama jika ada)
+        if ($request->hasFile('gambar')) {
+            if ($edukasi->gambar && Storage::disk('public')->exists($edukasi->gambar)) {
+                Storage::disk('public')->delete($edukasi->gambar);
+            }
+
+            $validated['gambar'] = $request->file('gambar')
+                ->store('edukasi/gambar', 'public');
+        }
+
+        // Hapus gambar jika user mencentang "hapus gambar"
+        if ($request->boolean('hapus_gambar') && !$request->hasFile('gambar')) {
+            if ($edukasi->gambar && Storage::disk('public')->exists($edukasi->gambar)) {
+                Storage::disk('public')->delete($edukasi->gambar);
+            }
+            $validated['gambar'] = null;
+        }
 
         // Handle file upload lampiran baru (hapus file lama jika ada)
         if ($request->hasFile('lampiran')) {
@@ -98,7 +124,7 @@ class EdukasiController extends Controller
             }
 
             $validated['file_path'] = $request->file('lampiran')
-                ->store('edukasi', 'public');
+                ->store('edukasi/lampiran', 'public');
         }
 
         // Hapus lampiran jika user mencentang "hapus lampiran"
@@ -109,8 +135,8 @@ class EdukasiController extends Controller
             $validated['file_path'] = null;
         }
 
-        // Hapus key 'lampiran' dan 'hapus_lampiran' agar tidak masuk mass-assignment
-        unset($validated['lampiran']);
+        // Hapus key form non-kolom
+        unset($validated['lampiran'], $validated['hapus_lampiran'], $validated['hapus_gambar']);
 
         $edukasi->update($validated);
 
@@ -126,6 +152,11 @@ class EdukasiController extends Controller
     public function destroy(Edukasi $edukasi)
     {
         $this->authorizeOwnership($edukasi);
+
+        // Hapus gambar dari storage
+        if ($edukasi->gambar && Storage::disk('public')->exists($edukasi->gambar)) {
+            Storage::disk('public')->delete($edukasi->gambar);
+        }
 
         // Hapus file lampiran dari storage
         if ($edukasi->file_path && Storage::disk('public')->exists($edukasi->file_path)) {

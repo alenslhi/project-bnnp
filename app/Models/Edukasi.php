@@ -24,9 +24,26 @@ class Edukasi extends Model
         'judul',
         'kategori',
         'konten',
+        'gambar',
         'file_path',
         'penulis_id',
     ];
+
+    /**
+     * URL publik untuk gambar sampul/thumbnail.
+     */
+    public function getGambarUrlAttribute(): ?string
+    {
+        if (!$this->gambar) {
+            return null;
+        }
+
+        if (str_starts_with($this->gambar, 'http://') || str_starts_with($this->gambar, 'https://')) {
+            return $this->gambar;
+        }
+
+        return asset('storage/' . $this->gambar);
+    }
 
     // ──────────────────────────────────────────────
     // Relationships

@@ -45,9 +45,16 @@
         @if($edukasis->count() > 0)
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach($edukasis as $item)
-                    <article class="group flex flex-col rounded-2xl border border-surface-200 dark:border-white/10 bg-white dark:bg-surface-900/50 backdrop-blur-sm p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary-500/40 hover:shadow-xl shadow-xs">
+                    <article class="group flex flex-col rounded-2xl border border-surface-200 dark:border-white/10 bg-white dark:bg-surface-900/50 backdrop-blur-sm p-5 sm:p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary-500/40 hover:shadow-xl shadow-xs overflow-hidden">
+                        {{-- Thumbnail Image jika ada --}}
+                        @if($item->gambar)
+                            <a href="{{ route('edukasi.show', $item->id) }}" class="block mb-4 overflow-hidden rounded-xl aspect-[16/10] bg-surface-100 dark:bg-surface-800 -mx-1 -mt-1 sm:mx-0 sm:mt-0">
+                                <img src="{{ $item->gambar_url }}" alt="{{ $item->judul }}" class="h-full w-full object-cover group-hover:scale-105 transition-transform duration-300">
+                            </a>
+                        @endif
+
                         {{-- Header / Badges --}}
-                        <div class="flex items-center justify-between gap-2 mb-4">
+                        <div class="flex items-center justify-between gap-2 mb-3">
                             @if($item->kategori === 'artikel')
                                 <span class="inline-flex items-center gap-1 rounded-lg border border-primary-200 dark:border-primary-500/30 bg-primary-50 dark:bg-primary-500/10 px-2.5 py-1 text-xs font-bold text-primary-700 dark:text-primary-400">
                                     Artikel

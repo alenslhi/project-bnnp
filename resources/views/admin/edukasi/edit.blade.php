@@ -59,6 +59,61 @@
                 @enderror
             </div>
 
+            {{-- Upload Gambar Sampul --}}
+            <div>
+                <label for="gambar" class="block text-xs font-semibold uppercase tracking-wider text-surface-600 dark:text-surface-300 mb-2">
+                    Foto / Gambar Sampul (Opsional)
+                </label>
+
+                {{-- Tampilkan gambar yang sudah ada --}}
+                @if($edukasi->gambar)
+                    <div class="mb-3 flex items-center gap-3 rounded-2xl border border-surface-200 dark:border-white/10 bg-surface-50 dark:bg-surface-950/50 p-3">
+                        <div class="h-16 w-24 rounded-xl overflow-hidden bg-surface-200 dark:bg-surface-800 shrink-0">
+                            <img src="{{ $edukasi->gambar_url }}" alt="{{ $edukasi->judul }}" class="h-full w-full object-cover">
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <p class="text-xs font-semibold text-surface-700 dark:text-surface-200 truncate">{{ basename($edukasi->gambar) }}</p>
+                            <a href="{{ $edukasi->gambar_url }}" target="_blank"
+                               class="text-[11px] text-primary-600 dark:text-primary-400 hover:text-primary-500 transition">
+                                Buka Gambar Ukuran Penuh
+                            </a>
+                        </div>
+                        <label class="flex items-center gap-1.5 cursor-pointer shrink-0 px-2 py-1 rounded-lg hover:bg-danger-50 dark:hover:bg-danger-500/10 transition">
+                            <input type="checkbox" name="hapus_gambar" value="1"
+                                   class="rounded border-surface-300 dark:border-white/20 bg-white dark:bg-surface-950 text-danger-500 focus:ring-danger-500">
+                            <span class="text-[11px] font-medium text-danger-500 dark:text-danger-400">Hapus Gambar</span>
+                        </label>
+                    </div>
+                @endif
+
+                <div class="relative">
+                    <input type="file" name="gambar" id="gambar"
+                           accept="image/jpeg,image/png,image/webp,image/jpg"
+                           onchange="previewGambar(this)"
+                           class="block w-full text-sm text-surface-600 dark:text-surface-300
+                                  file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0
+                                  file:text-xs file:font-semibold file:bg-primary-100 dark:file:bg-primary-600/20 file:text-primary-700 dark:file:text-primary-400
+                                  hover:file:bg-primary-200 dark:hover:file:bg-primary-600/30 file:cursor-pointer file:transition
+                                  rounded-xl border border-surface-300 dark:border-white/10 bg-surface-50 dark:bg-surface-950/70 px-4 py-2.5
+                                  focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500/20 transition
+                                  cursor-pointer @error('gambar') border-danger-500 @enderror">
+                </div>
+                <p class="mt-1.5 text-[11px] text-surface-400 dark:text-surface-500">
+                    Format: JPG, PNG, WEBP. Maksimal: 5 MB. @if($edukasi->gambar) Mengunggah gambar baru akan menggantikan gambar yang ada saat ini. @endif
+                </p>
+                @error('gambar')
+                    <p class="mt-1 text-xs text-danger-500 dark:text-danger-400">{{ $message }}</p>
+                @enderror
+
+                {{-- Live Image Preview --}}
+                <div id="preview-container" class="hidden mt-3">
+                    <p class="text-xs font-medium text-surface-500 dark:text-surface-400 mb-1.5">Pratinjau Gambar Baru:</p>
+                    <div class="relative w-full max-w-sm h-48 rounded-2xl overflow-hidden border border-surface-200 dark:border-white/10 shadow-sm bg-surface-100 dark:bg-surface-950">
+                        <img id="image-preview" src="#" alt="Pratinjau Gambar Baru" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+
             {{-- Upload Lampiran Dokumen --}}
             <div>
                 <label for="lampiran" class="block text-xs font-semibold uppercase tracking-wider text-surface-600 dark:text-surface-300 mb-2">
@@ -120,4 +175,23 @@
         </form>
     </div>
 </div>
+
+@push('scripts')
+<script>
+    function previewGambar(input) {
+        const container = document.getElementById('preview-container');
+        const preview = document.getElementById('image-preview');
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                preview.src = e.target.result;
+                container.classList.remove('hidden');
+            }
+            reader.readAsDataURL(input.files[0]);
+        } else {
+            container.classList.add('hidden');
+        }
+    }
+</script>
+@endpush
 @endsection

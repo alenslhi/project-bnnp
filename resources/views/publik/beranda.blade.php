@@ -173,8 +173,13 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             @foreach($artikelTerbaru as $artikel)
                 <a href="{{ route('edukasi.show', $artikel) }}"
-                   class="group rounded-2xl border border-surface-200 dark:border-white/5 bg-white dark:bg-surface-900/60 p-6 transition-all duration-300 hover:border-primary-500/40 hover:shadow-xl hover:-translate-y-1 shadow-sm">
-                    <div class="flex items-center gap-2 mb-4">
+                   class="group flex flex-col rounded-2xl border border-surface-200 dark:border-white/10 bg-white dark:bg-surface-900/60 p-5 sm:p-6 transition-all duration-300 hover:border-primary-500/40 hover:shadow-xl hover:-translate-y-1 shadow-sm overflow-hidden">
+                    @if($artikel->gambar)
+                        <div class="mb-4 overflow-hidden rounded-xl aspect-[16/10] bg-surface-100 dark:bg-surface-800 -mx-1 -mt-1 sm:mx-0 sm:mt-0">
+                            <img src="{{ $artikel->gambar_url }}" alt="{{ $artikel->judul }}" class="h-full w-full object-cover group-hover:scale-105 transition-transform duration-300">
+                        </div>
+                    @endif
+                    <div class="flex items-center gap-2 mb-3">
                         <span class="inline-flex items-center rounded-lg px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider
                             {{ $artikel->kategori === 'artikel' ? 'bg-primary-50 text-primary-700 dark:bg-primary-500/10 dark:text-primary-400' : ($artikel->kategori === 'kamus' ? 'bg-emerald-50 text-emerald-700 dark:bg-accent-500/10 dark:text-accent-400' : 'bg-amber-50 text-amber-700 dark:bg-warning-500/10 dark:text-warning-400') }}">
                             {{ $artikel->kategori }}
