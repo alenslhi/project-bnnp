@@ -23,9 +23,7 @@
 
                 <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-[1.15] tracking-tight">
                     Bersama Lawan <br class="hidden sm:block">
-                    <span class="bg-gradient-to-r from-blue-200 via-white to-accent-300 bg-clip-text text-transparent">
-                        Peredaran Narkotika
-                    </span>
+                    Peredaran Narkotika
                 </h1>
 
                 <p class="mt-6 text-base sm:text-lg text-primary-100 dark:text-surface-300 leading-relaxed max-w-2xl">

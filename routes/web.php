@@ -15,22 +15,27 @@ use Illuminate\Support\Facades\Route;
 // ROUTE PUBLIK (tanpa autentikasi)
 // ══════════════════════════════════════════════════════════════
 
-// Beranda
-Route::get('/', [BerandaController::class, 'index'])->name('beranda');
+Route::middleware(['track.visitor'])->group(function () {
+    // Beranda
+    Route::get('/', [BerandaController::class, 'index'])->name('beranda');
 
-// Peta Interaktif
-Route::get('/peta', [PetaController::class, 'index'])->name('peta');
+    // Peta Interaktif
+    Route::get('/peta', [PetaController::class, 'index'])->name('peta');
+
+    // Katalog Edukasi
+    Route::get('/edukasi', [EdukasiController::class, 'index'])->name('edukasi.index');
+    Route::get('/edukasi/{edukasi}', [EdukasiController::class, 'show'])->name('edukasi.show');
+
+    // FAQ & Kontak
+    Route::get('/faq-kontak', [\App\Http\Controllers\FaqKontakController::class, 'index'])->name('faq-kontak');
+
+    // Statistik Dashboard
+    Route::get('/statistik', [StatistikController::class, 'index'])->name('statistik');
+});
+
+// API Publik
 Route::get('/api/peta/geojson', [PetaController::class, 'geoJson'])->name('peta.geojson');
-
-// Katalog Edukasi
-Route::get('/edukasi', [EdukasiController::class, 'index'])->name('edukasi.index');
-Route::get('/edukasi/{edukasi}', [EdukasiController::class, 'show'])->name('edukasi.show');
-
-// FAQ & Kontak
-Route::get('/faq-kontak', [\App\Http\Controllers\FaqKontakController::class, 'index'])->name('faq-kontak');
-
-// Statistik Dashboard
-Route::get('/statistik', [StatistikController::class, 'index'])->name('statistik');
+Route::get('/api/pengunjung/statistik', [\App\Http\Controllers\PengunjungController::class, 'statistik'])->name('pengunjung.statistik');
 
 // ══════════════════════════════════════════════════════════════
 // AUTENTIKASI
@@ -74,6 +79,10 @@ Route::prefix('admin')
         Route::get('statistik', [\App\Http\Controllers\Admin\StatistikKasusController::class, 'index'])->name('statistik.index');
         Route::post('statistik/import', [\App\Http\Controllers\Admin\StatistikKasusController::class, 'import'])->name('statistik.import');
         Route::delete('statistik/destroy/{nama_dataset}', [\App\Http\Controllers\Admin\StatistikKasusController::class, 'destroyDataset'])->name('statistik.destroy');
+
+        // ── Riwayat Pengunjung (Super Admin & Admin) ──
+        Route::get('pengunjung', [\App\Http\Controllers\Admin\PengunjungController::class, 'index'])->name('pengunjung.index');
+        Route::delete('pengunjung/reset', [\App\Http\Controllers\Admin\PengunjungController::class, 'reset'])->name('pengunjung.reset');
 
         // ── Profil Akun & Ubah Sandi Mandiri (Semua Role) ──
         Route::get('profile', [ProfileController::class, 'index'])->name('profile.index');

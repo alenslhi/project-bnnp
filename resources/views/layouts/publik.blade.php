@@ -227,8 +227,17 @@
                 </div>
             </div>
 
-            <div class="mt-8 border-t border-white/10 pt-6 text-center">
+            <div class="mt-8 border-t border-white/10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
                 <p class="text-xs text-primary-300">&copy; {{ date('Y') }} Badan Narkotika Nasional Provinsi (BNNP) Sulawesi Tengah. Seluruh hak cipta dilindungi undang-undang.</p>
+                {{-- Quick visitor button trigger in footer --}}
+                <button type="button"
+                        onclick="openVisitorModal()"
+                        class="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 px-3.5 py-1.5 text-xs text-surface-300 hover:text-white transition cursor-pointer group"
+                        title="Klik untuk melihat statistik lengkap pengunjung website">
+                    <span class="w-2 h-2 rounded-full bg-primary-400 group-hover:animate-ping"></span>
+                    <span>Pengunjung: <strong class="text-white font-bold">{{ number_format($totalPengunjung ?? 0, 0, ',', '.') }}</strong></span>
+                    <span class="text-primary-300 font-semibold">(↑ {{ $pengunjungHariIni ?? 0 }} hari ini)</span>
+                </button>
             </div>
         </div>
     </footer>
@@ -265,6 +274,12 @@
             document.getElementById('mobile-menu')?.classList.toggle('hidden');
         });
     </script>
+
+    {{-- Floating Draggable Visitor Bubble (Bisa Digeser di Mana Saja) --}}
+    @include('components.visitor-bubble')
+
+    {{-- Modal Statistik Pengunjung --}}
+    @include('components.visitor-modal')
 
     @stack('scripts')
 </body>

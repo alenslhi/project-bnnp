@@ -42,5 +42,45 @@ class AppServiceProvider extends ServiceProvider
                         ]);
                 });
         });
+
+        // View Composer untuk Statistik Pengunjung Website
+        \Illuminate\Support\Facades\View::composer(['layouts.publik', 'publik.*'], function ($view) {
+            try {
+                if (\Illuminate\Support\Facades\Schema::hasTable('pengunjungs')) {
+                    $stats = \App\Http\Controllers\PengunjungController::getPublicStats();
+                    $view->with([
+                        'visitorStats'       => $stats,
+                        'totalPengunjung'    => $stats['totalPengunjung'],
+                        'pengunjungHariIni'  => $stats['pengunjungHariIni'],
+                        'pengunjungBulanIni' => $stats['pengunjungBulanIni'],
+                        'availableYears'     => $stats['availableYears'],
+                        'currentYear'        => $stats['currentYear'],
+                        'currentMonth'       => $stats['currentMonth'],
+                    ]);
+                    return;
+                }
+            } catch (\Throwable $e) {
+                // Fallback jika database belum dimigrasi
+            }
+
+            $currentYear = (int) date('Y');
+            $currentMonth = (int) date('n');
+            $view->with([
+                'visitorStats'       => [
+                    'totalPengunjung'    => 0,
+                    'pengunjungHariIni'  => 0,
+                    'pengunjungBulanIni' => 0,
+                    'availableYears'     => [$currentYear],
+                    'currentYear'        => $currentYear,
+                    'currentMonth'       => $currentMonth,
+                ],
+                'totalPengunjung'    => 0,
+                'pengunjungHariIni'  => 0,
+                'pengunjungBulanIni' => 0,
+                'availableYears'     => [$currentYear],
+                'currentYear'        => $currentYear,
+                'currentMonth'       => $currentMonth,
+            ]);
+        });
     }
 }
