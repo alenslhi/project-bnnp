@@ -438,7 +438,7 @@
                     <div class="flex items-center justify-between gap-2 mb-2">
                         <div class="flex items-center gap-1.5">
                             <span class="text-lg">🏆</span>
-                            <h3 class="text-xs sm:text-sm font-black text-white">Catat Namamu di Top 10 Hari Ini</h3>
+                            <h3 id="leaderboard-card-title" class="text-xs sm:text-sm font-black text-white">Catat Namamu di Top 10 Hari Ini</h3>
                         </div>
                         <span class="text-[10px] text-amber-300 font-bold">Reset 07:00 WITA</span>
                     </div>
@@ -461,17 +461,25 @@
                         </div>
                     </form>
 
-                    {{-- Feedback Success Banner --}}
-                    <div id="leaderboard-submit-success" class="hidden mt-2 p-2.5 rounded-xl bg-emerald-500/15 border border-emerald-400/30 text-emerald-300 text-xs">
+                    {{-- Feedback Success Card / Status Sudah Tercatat --}}
+                    <div id="leaderboard-submit-success" class="hidden mt-2 p-3 rounded-xl bg-emerald-500/15 border border-emerald-400/30 text-emerald-300 text-xs">
                         <div class="flex items-center justify-between gap-2 flex-wrap">
-                            <div class="flex items-center gap-1.5">
-                                <span class="text-base">🎉</span>
-                                <span id="leaderboard-success-title" class="font-bold text-white text-xs">Skor Berhasil Masuk!</span>
+                            <div class="flex items-center gap-2">
+                                <span class="text-xl">✅</span>
+                                <div>
+                                    <h4 id="leaderboard-success-title" class="font-black text-white text-xs sm:text-sm">Skor Berhasil Masuk!</h4>
+                                    <p id="leaderboard-success-subtitle" class="text-[11px] text-emerald-300/90 mt-0.5">Tercatat sebagai: <span id="leaderboard-submitted-name-badge" class="font-bold underline text-white">...</span></p>
+                                </div>
                             </div>
-                            <button id="btn-view-lb-after-submit" type="button" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-[11px] transition cursor-pointer shadow">
-                                <span>Lihat Peringkat</span>
-                                <span>→</span>
-                            </button>
+                            <div class="flex items-center gap-1.5 ml-auto">
+                                <button id="btn-change-player-name" type="button" class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg border border-white/20 bg-white/5 hover:bg-white/10 text-surface-300 hover:text-white font-semibold text-[11px] transition cursor-pointer" title="Ubah nama tampilan">
+                                    <span>✏️ Ganti Nama</span>
+                                </button>
+                                <button id="btn-view-lb-after-submit" type="button" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs transition cursor-pointer shadow">
+                                    <span>🏆 Buka Peringkat</span>
+                                    <span>→</span>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -510,18 +518,26 @@
                     </a>
                 </div>
 
-                {{-- Action Buttons (Thumb-friendly & Kompak untuk HP) --}}
-                <div class="flex items-center justify-center gap-2 mt-4 flex-wrap">
-                    <button id="btn-open-leaderboard-result" type="button" class="flex-1 min-w-[110px] inline-flex items-center justify-center gap-1.5 rounded-xl border border-amber-400/40 bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 font-bold px-3 py-2.5 text-xs shadow transition cursor-pointer">
-                        <span>🏆 Top 10</span>
+                {{-- Action Buttons (Promosi & Share WhatsApp Lebih Menarik) --}}
+                <div class="space-y-2.5 mt-5 max-w-md mx-auto">
+                    {{-- Tombol Utama: Share WhatsApp (Tantang Teman & Promosi) --}}
+                    <button id="btn-share-score" type="button" class="w-full inline-flex items-center justify-center gap-2.5 rounded-2xl bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-400 hover:to-green-500 text-white font-black px-5 py-3.5 text-sm shadow-xl hover:shadow-emerald-500/25 transition-all hover:scale-[1.01] active:scale-[0.99] cursor-pointer">
+                        <svg class="w-5 h-5 fill-current shrink-0" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+                        <span id="btn-share-text">Bagikan Skor & Tantang di WhatsApp</span>
                     </button>
-                    <button id="btn-share-score" type="button" class="flex-1 min-w-[120px] inline-flex items-center justify-center gap-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-3 py-2.5 text-xs shadow transition cursor-pointer">
-                        <span>📱</span>
-                        <span id="btn-share-text">Bagikan WA</span>
-                    </button>
-                    <button id="btn-restart-game" type="button" class="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-surface-950 font-black px-4 py-2.5 text-xs shadow transition cursor-pointer">
-                        <span>🔄 Mengulang</span>
-                    </button>
+
+                    <div class="flex items-center gap-2">
+                        <button id="btn-open-leaderboard-result" type="button" class="flex-1 inline-flex items-center justify-center gap-1.5 rounded-xl border border-amber-400/40 bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 font-bold px-3 py-2.5 text-xs shadow transition cursor-pointer hover:scale-[1.01]">
+                            <span>🏆 Papan Peringkat</span>
+                        </button>
+                        <button id="btn-restart-game" type="button" class="flex-1 inline-flex items-center justify-center gap-1.5 rounded-xl border border-white/20 bg-white/5 hover:bg-white/10 text-white font-bold px-3 py-2.5 text-xs shadow transition cursor-pointer hover:scale-[1.01]">
+                            <span>🔄 Main Lagi</span>
+                        </button>
+                    </div>
+
+                    <p class="text-[11px] text-surface-400 text-center">
+                        📢 Ajak teman bersaing di Top 10 harian sambil menguji wawasan anti-narkoba!
+                    </p>
                 </div>
             </div>
         </div>
@@ -1525,6 +1541,12 @@
                 quizFirstTryCorrect = score.quiz_correct_count;
                 retryCount = score.retry_count;
 
+                // PULIHKAN SEMUA VARIABEL GAME KE MEMORY AGAR TIDAK KOSONG SAAT REFRESH
+                word1Won = (record.word1Won !== undefined) ? Boolean(record.word1Won) : true;
+                word2Won = (record.word2Won !== undefined) ? Boolean(record.word2Won) : true;
+                wordGuesses = record.wordGuesses || [[], []];
+                if (record.targetWords) targetWords = record.targetWords;
+
                 // Tampilkan Score Section
                 if (scoreSection) {
                     scoreSection.classList.remove('hidden');
@@ -1555,12 +1577,47 @@
                     }
                 }
 
-                // Tampilkan Form Input Nama Leaderboard
+                // Tampilkan Form Input Nama Leaderboard / Status Terdaftar
                 if (lbEntryCard) {
                     lbEntryCard.classList.remove('hidden');
-                    const savedName = localStorage.getItem('skena_player_name') || '';
+                    const savedName = record.submittedPlayerName || localStorage.getItem('skena_player_name') || '';
                     const nameField = document.getElementById('input-player-name');
                     if (nameField && savedName) nameField.value = savedName;
+
+                    const formLb = document.getElementById('form-submit-leaderboard');
+                    const successCard = document.getElementById('leaderboard-submit-success');
+                    const cardTitle = document.getElementById('leaderboard-card-title');
+                    const isAlreadySubmitted = Boolean(record.hasSubmittedLeaderboard || hasSubmittedLeaderboard);
+
+                    if (isAlreadySubmitted) {
+                        hasSubmittedLeaderboard = true;
+                        if (formLb) formLb.classList.add('hidden');
+                        if (cardTitle) cardTitle.innerText = 'Papan Peringkat Harian (Sudah Tercatat)';
+                        if (successCard) {
+                            successCard.classList.remove('hidden');
+                            const titleEl = document.getElementById('leaderboard-success-title');
+                            const rankNum = record.submittedRank;
+                            if (titleEl) {
+                                if (rankNum && rankNum <= 3) {
+                                    titleEl.innerText = '🏆 Luar Biasa! Kamu Masuk Top 3 (Peringkat #' + rankNum + ')!';
+                                } else if (rankNum && rankNum <= 10) {
+                                    titleEl.innerText = '⭐ Hebat! Kamu Masuk Top 10 (Peringkat #' + rankNum + ')!';
+                                } else if (rankNum) {
+                                    titleEl.innerText = '🎉 Skormu Tercatat di Peringkat #' + rankNum + '!';
+                                } else {
+                                    titleEl.innerText = '✓ Skormu Sudah Tercatat di Papan Peringkat!';
+                                }
+                            }
+                            const nameBadge = document.getElementById('leaderboard-submitted-name-badge');
+                            if (nameBadge) {
+                                nameBadge.innerText = (record.submittedPlayerName || savedName || 'Pemain') + (rankNum ? ' (Peringkat #' + rankNum + ')' : '');
+                            }
+                        }
+                    } else {
+                        if (formLb) formLb.classList.remove('hidden');
+                        if (cardTitle) cardTitle.innerText = 'Catat Namamu di Top 10 Hari Ini';
+                        if (successCard) successCard.classList.add('hidden');
+                    }
                 }
 
                 // Tampilkan kata jika menang (karena pemain sudah berhasil menebaknya)
@@ -1606,6 +1663,79 @@
             startCountdown();
         }
 
+        function buildShareMessage(record) {
+            const w1Target = (record.targetWords ? record.targetWords[0].word : activePuzzle.words[0].word).toUpperCase();
+            const w2Target = (record.targetWords ? record.targetWords[1].word : activePuzzle.words[1].word).toUpperCase();
+            const guesses1 = record.wordGuesses ? record.wordGuesses[0] || [] : [];
+            const guesses2 = record.wordGuesses ? record.wordGuesses[1] || [] : [];
+
+            const currentName = document.getElementById('input-player-name')?.value?.trim() ||
+                                localStorage.getItem('skena_player_name') ||
+                                'Pemain SKENA';
+
+            const score = currentComputedScore || calculateScore(
+                record.quizFirstTryCorrect ?? 5,
+                record.word1Won ?? true,
+                record.w1Attempts ?? 2,
+                record.word2Won ?? true,
+                record.w2Attempts ?? 2,
+                record.durationSeconds ?? 60,
+                record.retryCount ?? 0
+            );
+
+            let grid1 = '';
+            guesses1.forEach(g => {
+                grid1 += evaluateToEmojis(g, w1Target) + '\n';
+            });
+
+            let grid2 = '';
+            if (guesses2.length > 0) {
+                guesses2.forEach(g => {
+                    grid2 += evaluateToEmojis(g, w2Target) + '\n';
+                });
+            }
+
+            const gameUrl = window.location.origin + window.location.pathname;
+            const formattedTotalScore = Number(score.total_score).toLocaleString('id-ID');
+            const durationText = formatDuration(score.duration_seconds);
+
+            let msg = `🚨 *TANTANGAN MINI GAMES SKENA BNNP SULTENG* 🚨\n`;
+            msg += `_Edukasi Pencegahan Narkoba & Asah Otak Harian_\n\n`;
+
+            msg += `🏆 *HASIL SKOR SAYA HARI INI:*\n`;
+            msg += `👤 Nama: *${currentName}*\n`;
+            msg += `⭐ Total Skor: *${formattedTotalScore} PTS*\n`;
+            msg += `🎖️ Gelar: *${score.badge_title}* ${score.badge_icon}\n`;
+            msg += `⏱️ Waktu Selesai: *${durationText}*\n`;
+            msg += `🎯 Mitos atau Fakta: *${score.quiz_correct_count}/5 Benar (Babak 1)*\n\n`;
+
+            msg += `🧩 *PAPAN TEBAK KATA (WORDLE):*\n`;
+            msg += `Kata 1 (${record.word1Won ? guesses1.length : 'X'}/6):\n${grid1}`;
+            if (grid2) {
+                msg += `Kata 2 (${record.word2Won ? guesses2.length : 'X'}/6):\n${grid2}`;
+            }
+
+            msg += `\n🔥 *BERANI KALAHKAN SKORKU?*\n`;
+            msg += `Buktikan wawasanmu dan rebut posisi Top 10 di Papan Peringkat Harian BNNP Sulteng! Reset setiap jam 07:00 WITA.\n\n`;
+            msg += `👉 *Ayo Mainkan Sekarang (Gratis & Seru):*\n${gameUrl}\n\n`;
+            msg += `#SKENABNNP #BNNPSulteng #WarOnDrugs #IndonesiaBersinar #TolakNarkoba`;
+
+            return msg;
+        }
+
+        function openWhatsAppShare(text) {
+            const btnShareText = document.getElementById('btn-share-text');
+            if (btnShareText) {
+                btnShareText.innerText = 'Membuka WhatsApp... ✓';
+                setTimeout(() => {
+                    btnShareText.innerText = 'Bagikan Skor & Tantang di WhatsApp';
+                }, 3000);
+            }
+            // Menggunakan universal link resmi wa.me yang kompatibel penuh dengan emoji di WA Web & WA Mobile
+            const waUrl = 'https://wa.me/?text=' + encodeURIComponent(text);
+            window.open(waUrl, '_blank');
+        }
+
         function generateEmojiGrid(record) {
             const container = document.getElementById('result-emoji-grid');
             container.innerHTML = '';
@@ -1615,52 +1745,59 @@
             const guesses1 = record.wordGuesses ? record.wordGuesses[0] || [] : [];
             const guesses2 = record.wordGuesses ? record.wordGuesses[1] || [] : [];
 
-            let fullShareText = '🎮 SKENA Wordle BNNP Sulteng\n📅 ' + TODAY_DATE + '\n\n';
-            fullShareText += 'Kata 1 (' + (record.word1Won ? guesses1.length : 'X') + '/6):\n';
-
             guesses1.forEach(guess => {
                 const rowStr = evaluateToEmojis(guess, w1Target);
-                fullShareText += rowStr + '\n';
                 const div = document.createElement('div');
                 div.innerText = rowStr;
                 container.appendChild(div);
             });
 
             if (guesses2.length > 0) {
-                fullShareText += '\nKata 2 (' + (record.word2Won ? guesses2.length : 'X') + '/6):\n';
                 const sep = document.createElement('div');
                 sep.className = 'my-1 border-t border-white/10';
                 container.appendChild(sep);
 
                 guesses2.forEach(guess => {
                     const rowStr = evaluateToEmojis(guess, w2Target);
-                    fullShareText += rowStr + '\n';
                     const div = document.createElement('div');
                     div.innerText = rowStr;
                     container.appendChild(div);
                 });
             }
 
-            fullShareText += '\nMainkan di: ' + window.location.href + '\n#SKENABNNP #TolakNarkoba #WarOnDrugs';
-
             // Setup share button
             const btnShare = document.getElementById('btn-share-score');
             const btnShareText = document.getElementById('btn-share-text');
 
-            btnShare.onclick = () => {
-                playSound('click');
-                if (navigator.clipboard) {
-                    navigator.clipboard.writeText(fullShareText).then(() => {
-                        btnShareText.innerText = 'Tersalin ke Clipboard! ✓';
-                        setTimeout(() => {
-                            btnShareText.innerText = 'Bagikan Skor ke WhatsApp / Salin';
-                        }, 3000);
-                    });
-                }
-                // Also open WhatsApp share if available
-                const waUrl = 'https://api.whatsapp.com/send?text=' + encodeURIComponent(fullShareText);
-                window.open(waUrl, '_blank');
-            };
+            if (btnShare) {
+                btnShare.onclick = () => {
+                    playSound('click');
+                    const fullShareText = buildShareMessage(record);
+
+                    // 1. Selalu salin ke clipboard untuk kemudahan pemain
+                    if (navigator.clipboard) {
+                        navigator.clipboard.writeText(fullShareText).catch(() => {});
+                    }
+
+                    // 2. Jika di smartphone, utamakan Web Share API agar membuka WhatsApp langsung
+                    if (navigator.share && /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) {
+                        navigator.share({
+                            title: 'Skor Mini Games SKENA BNNP Sulteng',
+                            text: fullShareText
+                        }).then(() => {
+                            if (btnShareText) btnShareText.innerText = 'Tersalin & Berhasil Dibagikan! ✓';
+                            setTimeout(() => {
+                                if (btnShareText) btnShareText.innerText = 'Bagikan Skor & Tantang di WhatsApp';
+                            }, 3000);
+                        }).catch(() => {
+                            openWhatsAppShare(fullShareText);
+                        });
+                    } else {
+                        // Desktop: buka wa.me
+                        openWhatsAppShare(fullShareText);
+                    }
+                };
+            }
         }
 
         function evaluateToEmojis(guess, target) {
@@ -1859,11 +1996,6 @@
             if (modalLeaderboard) {
                 modalLeaderboard.classList.remove('hidden');
                 lockBodyScrollForLb();
-
-                // Sembunyikan floating visitor bubble agar tidak menutupi modal & gesture di mobile
-                const visitorBubble = document.getElementById('visitor-draggable-bubble');
-                if (visitorBubble) visitorBubble.style.display = 'none';
-
                 loadLeaderboardData(highlightPlayerName);
             }
         }
@@ -1872,10 +2004,6 @@
             if (modalLeaderboard) {
                 modalLeaderboard.classList.add('hidden');
                 unlockBodyScrollForLb();
-
-                // Kembalikan floating visitor bubble
-                const visitorBubble = document.getElementById('visitor-draggable-bubble');
-                if (visitorBubble) visitorBubble.style.display = '';
             }
             if (lbResetInterval) {
                 clearInterval(lbResetInterval);
@@ -2164,20 +2292,31 @@
 
                 playSound('click');
                 btnSubmit.disabled = true;
-                btnSubmit.innerHTML = '<span>Mengirim...</span><span class="animate-spin">⏳</span>';
+                btnSubmit.innerHTML = '<span>Menyimpan...</span><span class="animate-spin">⏳</span>';
 
                 // Simpan nama di localStorage
                 localStorage.setItem('skena_player_name', nameVal);
+
+                // Pastikan attempts & status menang akurat dan tidak pernah 0 jika menang
+                let w1Attempts = (wordGuesses[0] && wordGuesses[0].length) ? wordGuesses[0].length : 0;
+                let w2Attempts = (wordGuesses[1] && wordGuesses[1].length) ? wordGuesses[1].length : 0;
+                if (!w1Attempts && currentComputedScore) w1Attempts = currentComputedScore.word1_attempts;
+                if (!w2Attempts && currentComputedScore) w2Attempts = currentComputedScore.word2_attempts;
+                if (!w1Attempts) w1Attempts = 1;
+                if (!w2Attempts) w2Attempts = 1;
+
+                const isW1Won = (word1Won !== undefined && word1Won !== false) ? Boolean(word1Won) : true;
+                const isW2Won = (word2Won !== undefined && word2Won !== false) ? Boolean(word2Won) : true;
 
                 const payload = {
                     player_name: nameVal,
                     player_organization: null,
                     quiz_correct_count: quizFirstTryCorrect,
-                    word1_attempts: (wordGuesses[0] && wordGuesses[0].length) ? wordGuesses[0].length : 6,
-                    word2_attempts: (wordGuesses[1] && wordGuesses[1].length) ? wordGuesses[1].length : 6,
-                    word1_won: word1Won,
-                    word2_won: word2Won,
-                    duration_seconds: durationSeconds,
+                    word1_attempts: w1Attempts,
+                    word2_attempts: w2Attempts,
+                    word1_won: isW1Won,
+                    word2_won: isW2Won,
+                    duration_seconds: durationSeconds || (currentComputedScore ? currentComputedScore.duration_seconds : 60),
                     retry_count: retryCount,
                     device_fingerprint: getDeviceFingerprint()
                 };
@@ -2194,8 +2333,26 @@
                 .then(data => {
                     if (data.success) {
                         hasSubmittedLeaderboard = true;
-                        btnSubmit.innerHTML = '<span>✓ Terkirim ke Peringkat #' + data.rank + '</span>';
-                        btnSubmit.className = 'flex-1 inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-600 text-white font-black px-6 py-3.5 text-sm cursor-default';
+
+                        // Simpan status sudah terdaftar & detailnya ke localStorage agar persisten saat refresh!
+                        try {
+                            const saved = localStorage.getItem(STORAGE_KEY_TODAY);
+                            if (saved) {
+                                const rec = JSON.parse(saved);
+                                rec.hasSubmittedLeaderboard = true;
+                                rec.submittedPlayerName = nameVal;
+                                rec.submittedRank = data.rank;
+                                rec.submittedScore = data.total_score || (currentComputedScore ? currentComputedScore.total_score : null);
+                                localStorage.setItem(STORAGE_KEY_TODAY, JSON.stringify(rec));
+                            }
+                        } catch (e) {}
+
+                        // Sembunyikan form input dan tampilkan status sudah terdaftar
+                        const formLb = document.getElementById('form-submit-leaderboard');
+                        if (formLb) formLb.classList.add('hidden');
+
+                        const cardTitle = document.getElementById('leaderboard-card-title');
+                        if (cardTitle) cardTitle.innerText = 'Papan Peringkat Harian (Sudah Tercatat)';
 
                         const successCard = document.getElementById('leaderboard-submit-success');
                         if (successCard) {
@@ -2206,6 +2363,10 @@
                                     (data.is_top_10 ? '⭐ Hebat! Kamu Masuk Top 10 (Peringkat #' + data.rank + ')!' :
                                     '🎉 Skormu Berhasil Tercatat di Peringkat #' + data.rank + '!'));
                             }
+                            const nameBadge = document.getElementById('leaderboard-submitted-name-badge');
+                            if (nameBadge) {
+                                nameBadge.innerText = nameVal + (data.rank ? ' (Peringkat #' + data.rank + ')' : '');
+                            }
                         }
 
                         // Otomatis buka papan peringkat setelah 1.2 detik
@@ -2214,15 +2375,42 @@
                         }, 1200);
                     } else {
                         btnSubmit.disabled = false;
-                        btnSubmit.innerHTML = '<span>Kirim Skor ke Leaderboard</span><span>🚀</span>';
+                        btnSubmit.innerHTML = '<span>Kirim Skor</span><span>🚀</span>';
                         alert(data.message || 'Gagal mengirim skor.');
                     }
                 })
                 .catch(() => {
                     btnSubmit.disabled = false;
-                    btnSubmit.innerHTML = '<span>Kirim Skor ke Leaderboard</span><span>🚀</span>';
+                    btnSubmit.innerHTML = '<span>Kirim Skor</span><span>🚀</span>';
                     alert('Terjadi kesalahan koneksi saat mengirim skor.');
                 });
+            });
+        }
+
+        // Tombol Ganti Nama Pemain
+        const btnChangePlayerName = document.getElementById('btn-change-player-name');
+        if (btnChangePlayerName) {
+            btnChangePlayerName.addEventListener('click', () => {
+                playSound('click');
+                hasSubmittedLeaderboard = false; // Buka kunci pengiriman untuk ganti nama
+                const formLb = document.getElementById('form-submit-leaderboard');
+                const successCard = document.getElementById('leaderboard-submit-success');
+                const cardTitle = document.getElementById('leaderboard-card-title');
+                if (cardTitle) cardTitle.innerText = 'Ganti Nama di Papan Peringkat';
+                if (formLb) formLb.classList.remove('hidden');
+                if (successCard) successCard.classList.add('hidden');
+
+                const nameField = document.getElementById('input-player-name');
+                if (nameField) {
+                    nameField.focus();
+                    nameField.select();
+                }
+                const btnSubmit = document.getElementById('btn-submit-score-lb');
+                if (btnSubmit) {
+                    btnSubmit.disabled = false;
+                    btnSubmit.innerHTML = '<span>Perbarui Nama</span><span>✏️</span>';
+                    btnSubmit.className = 'flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-surface-950 font-black px-4 py-2.5 text-xs sm:text-sm shadow-md transition-all active:scale-95 cursor-pointer shrink-0';
+                }
             });
         }
 

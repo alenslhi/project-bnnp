@@ -782,23 +782,28 @@ class GameController extends Controller
         $ip = $request->ip();
 
         // Cek rekor pemain pada periode aktif hari ini
-        $existing = GameLeaderboard::where('period_date', $periodDate)
-            ->where('player_name', $playerName)
-            ->where(function ($q) use ($fingerprint, $ip) {
-                if ($fingerprint) {
-                    $q->where('device_fingerprint', $fingerprint);
-                } else {
-                    $q->where('ip_address', $ip);
-                }
-            })
-            ->first();
+        // Utamakan pencarian berdasarkan device_fingerprint agar pemain/perangkat yang sama tidak menduplikasi diri atau menurunkan skor
+        $existing = null;
+        if (!empty($fingerprint)) {
+            $existing = GameLeaderboard::where('period_date', $periodDate)
+                ->where('device_fingerprint', $fingerprint)
+                ->first();
+        }
+        if (!$existing) {
+            $existing = GameLeaderboard::where('period_date', $periodDate)
+                ->where('player_name', $playerName)
+                ->where('ip_address', $ip)
+                ->first();
+        }
 
         $savedRecord = null;
         $isImprovement = false;
 
         if ($existing) {
             if ($computed['total_score'] >= $existing->total_score) {
+                // Skor baru lebih tinggi atau sama: perbarui rekor dan nama jika ada perubahan
                 $existing->update([
+                    'player_name' => $playerName,
                     'player_organization' => $playerOrg ?: $existing->player_organization,
                     'total_score' => $computed['total_score'],
                     'quiz_score' => $computed['quiz_score'],
@@ -815,6 +820,12 @@ class GameController extends Controller
                 $savedRecord = $existing;
                 $isImprovement = true;
             } else {
+                // Skor baru lebih rendah: JANGAN downgrade skor! Pertahankan skor tertinggi yang sah,
+                // cukup update nama pemain jika ada perubahan nama/alias
+                $existing->update([
+                    'player_name' => $playerName,
+                    'player_organization' => $playerOrg ?: $existing->player_organization,
+                ]);
                 $savedRecord = $existing;
             }
         } else {
@@ -862,7 +873,20 @@ class GameController extends Controller
             'rank' => $rank,
             'is_top_3' => ($rank <= 3),
             'is_top_10' => ($rank <= 10),
-            'score_details' => $computed,
+            'total_score' => $savedRecord->total_score,
+            'score_details' => [
+                'total_score' => $savedRecord->total_score,
+                'quiz_score' => $savedRecord->quiz_score,
+                'quiz_correct_count' => $savedRecord->quiz_correct_count,
+                'word1_score' => $savedRecord->word1_score,
+                'word1_attempts' => $savedRecord->word1_attempts,
+                'word2_score' => $savedRecord->word2_score,
+                'word2_attempts' => $savedRecord->word2_attempts,
+                'speed_bonus' => $savedRecord->speed_bonus,
+                'retry_penalty' => $savedRecord->retry_penalty,
+                'retry_count' => $savedRecord->retry_count,
+                'duration_seconds' => $savedRecord->duration_seconds,
+            ],
             'player_name' => $savedRecord->player_name,
             'player_organization' => $savedRecord->player_organization,
         ]);

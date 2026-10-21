@@ -284,8 +284,6 @@
         });
     </script>
 
-    {{-- Floating Draggable Visitor Bubble (Bisa Digeser di Mana Saja) --}}
-    @include('components.visitor-bubble')
 
     {{-- Modal Statistik Pengunjung --}}
     @include('components.visitor-modal')
