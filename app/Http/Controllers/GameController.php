@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\GameLeaderboard;
 use App\Models\GameMitosFakta;
 use App\Models\GameWordle;
 use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\View\View;
 
 class GameController extends Controller
@@ -520,11 +522,9 @@ class GameController extends Controller
                     ->take(5)
                     ->get();
 
-                // 100 kata dibagi 2 per hari = 50 pasang kata unik sebelum rotasi
-                $wordPairCount = max(1, intdiv($totalWords, 2));
-                $wordPairIndex = (($dayOfYear - 1) + $customOffset) % $wordPairCount;
-                if ($wordPairIndex < 0) $wordPairIndex += $wordPairCount;
-                $wOffset = $wordPairIndex * 2;
+                // 2 kata Wordle per hari dikorelasikan langsung dengan 5 soal Mitos/Fakta hari tersebut
+                // Setiap set soal (Set 1 s.d. 20) berpasangan langsung dengan kata Wordle (Kata 1 s.d. 40)
+                $wOffset = ($setIndex * 2) % max(1, $totalWords - 1);
 
                 $words = GameWordle::where('is_active', true)
                     ->orderBy('id', 'asc')
@@ -671,6 +671,200 @@ class GameController extends Controller
             'message' => 'Upaya permainan berhasil dicatat.',
             'date' => $today,
             'status' => $status
+        ]);
+    }
+
+    /**
+     * Endpoint Mengambil Data Papan Peringkat (Leaderboard).
+     * Direset setiap hari pukul 07:00 WITA.
+     */
+    public function leaderboardData(Request $request): JsonResponse
+    {
+        $currentPeriod = GameLeaderboard::getCurrentPeriodDate();
+        $requestedPeriod = $request->query('period', $currentPeriod);
+
+        if (!preg_match('/^\d{4}-\d{2}-\d{2}$/', $requestedPeriod)) {
+            $requestedPeriod = $currentPeriod;
+        }
+
+        $nextResetCarbon = GameLeaderboard::getNextResetCarbon();
+        $nowWita = Carbon::now('Asia/Makassar');
+        $secondsUntilReset = max(0, $nowWita->diffInSeconds($nextResetCarbon, false));
+
+        $query = GameLeaderboard::where('period_date', $requestedPeriod)
+            ->orderBy('total_score', 'desc')
+            ->orderBy('duration_seconds', 'asc')
+            ->orderBy('created_at', 'asc');
+
+        $totalParticipants = $query->count();
+        $entries = $query->take(50)->get();
+
+        $rankedList = $entries->values()->map(function ($item, $index) {
+            $rank = $index + 1;
+            return [
+                'id' => $item->id,
+                'rank' => $rank,
+                'player_name' => $item->player_name,
+                'player_organization' => $item->player_organization,
+                'total_score' => (int) $item->total_score,
+                'duration_seconds' => (int) $item->duration_seconds,
+                'duration_formatted' => sprintf('%02d:%02d', intdiv($item->duration_seconds, 60), $item->duration_seconds % 60),
+                'quiz_score' => (int) $item->quiz_score,
+                'quiz_correct_count' => (int) $item->quiz_correct_count,
+                'word1_score' => (int) $item->word1_score,
+                'word1_attempts' => (int) $item->word1_attempts,
+                'word2_score' => (int) $item->word2_score,
+                'word2_attempts' => (int) $item->word2_attempts,
+                'speed_bonus' => (int) $item->speed_bonus,
+                'retry_penalty' => (int) $item->retry_penalty,
+                'retry_count' => (int) $item->retry_count,
+                'is_top_3' => $rank <= 3,
+                'is_top_10' => $rank <= 10,
+                'created_at' => $item->created_at->format('H:i'),
+            ];
+        });
+
+        $top10 = $rankedList->slice(0, 10)->values();
+        $others = $rankedList->slice(10)->values();
+
+        $periodFormatted = Carbon::parse($requestedPeriod)->locale('id')->isoFormat('D MMMM Y');
+
+        return response()->json([
+            'success' => true,
+            'period_date' => $requestedPeriod,
+            'period_formatted' => $periodFormatted,
+            'is_current_period' => ($requestedPeriod === $currentPeriod),
+            'next_reset_iso' => $nextResetCarbon->toIso8601String(),
+            'next_reset_formatted' => $nextResetCarbon->locale('id')->isoFormat('D MMMM Y, HH:mm') . ' WITA',
+            'seconds_until_reset' => $secondsUntilReset,
+            'total_participants' => $totalParticipants,
+            'top_10' => $top10,
+            'others' => $others,
+            'all' => $rankedList,
+        ]);
+    }
+
+    /**
+     * Endpoint Mengirim Skor Pemain ke Papan Peringkat (Leaderboard).
+     */
+    public function submitScore(Request $request): JsonResponse
+    {
+        $validator = Validator::make($request->all(), [
+            'player_name' => 'required|string|min:2|max:50',
+            'player_organization' => 'nullable|string|max:80',
+            'quiz_correct_count' => 'required|integer|min:0|max:5',
+            'word1_attempts' => 'required|integer|min:1|max:6',
+            'word2_attempts' => 'required|integer|min:1|max:6',
+            'word1_won' => 'required|boolean',
+            'word2_won' => 'required|boolean',
+            'duration_seconds' => 'required|integer|min:1|max:86400',
+            'retry_count' => 'nullable|integer|min:0|max:100',
+            'device_fingerprint' => 'nullable|string|max:100',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Data tidak valid: ' . $validator->errors()->first(),
+                'errors' => $validator->errors(),
+            ], 422);
+        }
+
+        $validated = $validator->validated();
+        $periodDate = GameLeaderboard::getCurrentPeriodDate();
+
+        // Hitung skor komprehensif di sisi server
+        $computed = GameLeaderboard::computeScore($validated);
+
+        $playerName = trim(strip_tags($validated['player_name']));
+        $playerOrg = isset($validated['player_organization']) ? trim(strip_tags($validated['player_organization'])) : null;
+        $fingerprint = $validated['device_fingerprint'] ?? null;
+        $ip = $request->ip();
+
+        // Cek rekor pemain pada periode aktif hari ini
+        $existing = GameLeaderboard::where('period_date', $periodDate)
+            ->where('player_name', $playerName)
+            ->where(function ($q) use ($fingerprint, $ip) {
+                if ($fingerprint) {
+                    $q->where('device_fingerprint', $fingerprint);
+                } else {
+                    $q->where('ip_address', $ip);
+                }
+            })
+            ->first();
+
+        $savedRecord = null;
+        $isImprovement = false;
+
+        if ($existing) {
+            if ($computed['total_score'] >= $existing->total_score) {
+                $existing->update([
+                    'player_organization' => $playerOrg ?: $existing->player_organization,
+                    'total_score' => $computed['total_score'],
+                    'quiz_score' => $computed['quiz_score'],
+                    'quiz_correct_count' => $computed['quiz_correct_count'],
+                    'word1_score' => $computed['word1_score'],
+                    'word1_attempts' => $computed['word1_attempts'],
+                    'word2_score' => $computed['word2_score'],
+                    'word2_attempts' => $computed['word2_attempts'],
+                    'speed_bonus' => $computed['speed_bonus'],
+                    'retry_penalty' => $computed['retry_penalty'],
+                    'retry_count' => $computed['retry_count'],
+                    'duration_seconds' => $computed['duration_seconds'],
+                ]);
+                $savedRecord = $existing;
+                $isImprovement = true;
+            } else {
+                $savedRecord = $existing;
+            }
+        } else {
+            $savedRecord = GameLeaderboard::create([
+                'period_date' => $periodDate,
+                'player_name' => $playerName,
+                'player_organization' => $playerOrg,
+                'total_score' => $computed['total_score'],
+                'quiz_score' => $computed['quiz_score'],
+                'quiz_correct_count' => $computed['quiz_correct_count'],
+                'word1_score' => $computed['word1_score'],
+                'word1_attempts' => $computed['word1_attempts'],
+                'word2_score' => $computed['word2_score'],
+                'word2_attempts' => $computed['word2_attempts'],
+                'speed_bonus' => $computed['speed_bonus'],
+                'retry_penalty' => $computed['retry_penalty'],
+                'retry_count' => $computed['retry_count'],
+                'duration_seconds' => $computed['duration_seconds'],
+                'device_fingerprint' => $fingerprint,
+                'ip_address' => $ip,
+            ]);
+        }
+
+        // Hitung peringkat posisi pemain saat ini
+        $rank = GameLeaderboard::where('period_date', $periodDate)
+            ->where(function ($q) use ($savedRecord) {
+                $q->where('total_score', '>', $savedRecord->total_score)
+                  ->orWhere(function ($q2) use ($savedRecord) {
+                      $q2->where('total_score', '=', $savedRecord->total_score)
+                         ->where('duration_seconds', '<', $savedRecord->duration_seconds);
+                  })
+                  ->orWhere(function ($q3) use ($savedRecord) {
+                      $q3->where('total_score', '=', $savedRecord->total_score)
+                         ->where('duration_seconds', '=', $savedRecord->duration_seconds)
+                         ->where('created_at', '<', $savedRecord->created_at);
+                  });
+            })
+            ->count() + 1;
+
+        return response()->json([
+            'success' => true,
+            'message' => $isImprovement
+                ? 'Rekor skormu berhasil diperbarui di Papan Peringkat!'
+                : 'Skormu berhasil dicatat di Papan Peringkat!',
+            'rank' => $rank,
+            'is_top_3' => ($rank <= 3),
+            'is_top_10' => ($rank <= 10),
+            'score_details' => $computed,
+            'player_name' => $savedRecord->player_name,
+            'player_organization' => $savedRecord->player_organization,
         ]);
     }
 }

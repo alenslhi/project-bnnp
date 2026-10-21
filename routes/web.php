@@ -43,6 +43,8 @@ Route::get('/api/game/daily', [\App\Http\Controllers\GameController::class, 'dai
 Route::get('/api/game/random', [\App\Http\Controllers\GameController::class, 'randomData'])->name('game.random');
 Route::post('/api/game/record', [\App\Http\Controllers\GameController::class, 'recordAttempt'])->name('game.record');
 Route::post('/api/game/reset', [\App\Http\Controllers\GameController::class, 'resetToday'])->name('game.reset');
+Route::get('/api/game/leaderboard', [\App\Http\Controllers\GameController::class, 'leaderboardData'])->name('game.leaderboard');
+Route::post('/api/game/leaderboard', [\App\Http\Controllers\GameController::class, 'submitScore'])->name('game.leaderboard.submit');
 
 // ══════════════════════════════════════════════════════════════
 // AUTENTIKASI

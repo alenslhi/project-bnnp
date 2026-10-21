@@ -36,7 +36,13 @@
     }
     /* Pulse glow */
     .glow-gold {
-        box-shadow: 0 0 25px rgba(245, 158, 11, 0.35);
+        box-shadow: 0 0 25px rgba(245, 158, 11, 0.45);
+    }
+    .glow-silver {
+        box-shadow: 0 0 20px rgba(203, 213, 225, 0.35);
+    }
+    .glow-bronze {
+        box-shadow: 0 0 20px rgba(217, 119, 6, 0.35);
     }
     /* Confetti animation */
     @keyframes confettiFall {
@@ -55,14 +61,14 @@
 @endpush
 
 @section('content')
-<div class="relative min-h-[calc(100vh-4rem)] overflow-hidden py-8 sm:py-12 px-4 sm:px-6 lg:px-8">
+<div class="relative min-h-[calc(100vh-4rem)] overflow-hidden py-4 sm:py-8 px-3 sm:px-6 lg:px-8">
     {{-- Ambient Gradients --}}
     <div class="absolute -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-gradient-to-b from-primary-500/15 via-amber-500/10 to-transparent rounded-full blur-3xl pointer-events-none"></div>
 
     <div class="relative mx-auto max-w-3xl">
 
         {{-- ═══ TOP CONTROLS & HEADER ═══ --}}
-        <div class="flex items-center justify-between mb-6 pb-4 border-b border-surface-200 dark:border-white/10">
+        <div class="flex items-center justify-between mb-4 sm:mb-6 pb-3 sm:pb-4 border-b border-surface-200 dark:border-white/10">
             <div class="flex items-center gap-3">
                 <a href="{{ route('beranda') }}" class="p-2 rounded-xl border border-surface-200 dark:border-white/10 text-surface-500 hover:text-surface-900 dark:hover:text-white transition">
                     <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"/></svg>
@@ -77,6 +83,11 @@
             </div>
 
             <div class="flex items-center gap-2">
+                {{-- Leaderboard Button --}}
+                <button id="btn-open-leaderboard" type="button" class="flex items-center gap-1.5 px-3 py-2 rounded-xl border border-amber-400/40 bg-amber-500/10 hover:bg-amber-500/20 text-amber-600 dark:text-amber-400 font-bold text-xs transition cursor-pointer shadow-sm hover:scale-[1.02]" title="Papan Peringkat Harian">
+                    <span class="text-sm">🏆</span>
+                    <span class="hidden sm:inline">Papan Peringkat</span>
+                </button>
                 {{-- Audio Mute/Unmute --}}
                 <button id="btn-toggle-sound" type="button" class="p-2.5 rounded-xl border border-surface-200 dark:border-white/10 text-surface-600 dark:text-surface-300 hover:bg-surface-100 dark:hover:bg-white/5 transition" title="Suara Efek (Aktif/Mati)">
                     <span id="sound-icon-on">🔊</span>
@@ -128,15 +139,15 @@
                         </div>
                     </div>
 
-                    <div class="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+                    <div class="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
                         <button id="btn-start-game" type="button" class="inline-flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-surface-950 font-black px-8 py-4 text-base shadow-xl hover:shadow-amber-500/25 transition-all hover:scale-[1.02] cursor-pointer">
                             <span>Mulai Mini Games</span>
                             <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
                         </button>
-                        <span class="text-xs text-primary-300/80 text-center sm:text-left flex items-center justify-center sm:justify-start gap-1.5">
-                            <svg class="h-4 w-4 text-amber-400 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a.75.75 0 000 1.5h.253a.25.25 0 01.244.304l-.459 2.066A1.75 1.75 0 0010.747 15H11a.75.75 0 000-1.5h-.253a.25.25 0 01-.244-.304l.459-2.066A1.75 1.75 0 009.253 9H9z" clip-rule="evenodd"/></svg>
-                            Asah wawasan & ketangkasan kata
-                        </span>
+                        <button id="btn-view-leaderboard-intro" type="button" class="inline-flex items-center justify-center gap-2 rounded-2xl border border-amber-400/40 bg-white/5 hover:bg-white/10 text-amber-300 font-bold px-6 py-4 text-sm transition-all hover:scale-[1.02] cursor-pointer">
+                            <span>🏆</span>
+                            <span>Papan Peringkat (Top 10)</span>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -355,64 +366,160 @@
         {{-- ══════════════════════════════════════════════════════════ --}}
         {{-- VIEW 6: RESULT SCREEN (WON or LOST)                      --}}
         {{-- ══════════════════════════════════════════════════════════ --}}
-        <div id="view-result" class="hidden space-y-6">
-            <div id="result-card" class="rounded-3xl border p-6 sm:p-10 text-center shadow-2xl">
+        <div id="view-result" class="hidden space-y-3.5">
+            <div id="result-card" class="rounded-2xl sm:rounded-3xl border p-4 sm:p-7 text-center shadow-2xl">
                 {{-- Icon Badge --}}
-                <div id="result-badge-icon" class="mx-auto flex h-20 w-20 items-center justify-center rounded-3xl text-4xl mb-4">
+                <div id="result-badge-icon" class="mx-auto flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-2xl text-3xl mb-2">
                     🏆
                 </div>
 
-                <span id="result-pill" class="inline-block px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider mb-2">
+                <span id="result-pill" class="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider mb-1">
                     HASIL TANTANGAN
                 </span>
-                <h2 id="result-title" class="text-2xl sm:text-3xl font-black text-white">
+                <h2 id="result-title" class="text-xl sm:text-2xl font-black text-white">
                     Status Hasil
                 </h2>
-                <p id="result-description" class="mt-2 text-surface-300 text-sm max-w-lg mx-auto leading-relaxed"></p>
+                <p id="result-description" class="mt-1 text-surface-300 text-xs sm:text-sm max-w-md mx-auto leading-relaxed"></p>
 
-                {{-- Both Words Revealed (Hanya ditampilkan jika pemain MENANG / berhasil menebak) --}}
-                <div id="result-words-container" class="hidden my-6 grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-xl mx-auto text-left">
-                    <div class="rounded-2xl bg-surface-900/90 border border-white/10 p-4">
-                        <span class="text-[10px] font-bold uppercase tracking-wider text-surface-400">Kata 1</span>
-                        <p id="result-word1-title" class="text-lg font-black text-emerald-400 tracking-wider"></p>
-                        <p id="result-word1-def" class="text-xs text-surface-300 mt-1"></p>
+                {{-- Skor & Statistik Detail Permainan (Hanya Muncul saat MENANG) --}}
+                <div id="result-score-section" class="hidden my-3 max-w-xl mx-auto space-y-2.5 text-left">
+                    {{-- Kartu Skor Utama (Angka Terlihat Jelas & Kontras Tinggi) --}}
+                    <div class="relative overflow-hidden rounded-2xl bg-amber-500/10 dark:bg-amber-500/15 p-3.5 sm:p-4 border-2 border-amber-400/60 text-center shadow-lg">
+                        <span class="text-[10px] sm:text-xs font-black uppercase tracking-widest text-amber-500 dark:text-amber-400">TOTAL PEROLEHAN SKOR</span>
+                        <div class="mt-0.5 flex items-baseline justify-center gap-1.5 sm:gap-2">
+                            <span id="score-grand-total" class="text-4xl sm:text-5xl font-black font-mono text-amber-500 dark:text-amber-300 tracking-tight" style="color: #f59e0b; text-shadow: 0 0 16px rgba(245, 158, 11, 0.45);">0</span>
+                            <span class="text-sm sm:text-base font-black text-amber-600 dark:text-amber-400">PTS</span>
+                        </div>
+                        <div class="mt-1.5 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 dark:bg-surface-800/80 border border-white/15 text-xs font-bold text-white shadow-sm">
+                            <span id="score-badge-icon">🌟</span>
+                            <span id="score-badge-title">Master P4GN Paripurna</span>
+                        </div>
                     </div>
-                    <div class="rounded-2xl bg-surface-900/90 border border-white/10 p-4">
-                        <span class="text-[10px] font-bold uppercase tracking-wider text-surface-400">Kata 2</span>
-                        <p id="result-word2-title" class="text-lg font-black text-emerald-400 tracking-wider"></p>
-                        <p id="result-word2-def" class="text-xs text-surface-300 mt-1"></p>
+
+                    {{-- Rincian 5 Komponen Skor Edukasi (Hemat Ruang & Nyaman di HP) --}}
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs">
+                        {{-- Mitos/Fakta --}}
+                        <div class="rounded-xl bg-surface-900/90 border border-white/10 p-2.5">
+                            <span class="text-surface-400 block text-[9px] uppercase font-bold">🎯 Mitos/Fakta</span>
+                            <span id="score-quiz-val" class="text-xs sm:text-sm font-black text-emerald-400 mt-0.5 block">+0 Pts</span>
+                            <span id="score-quiz-detail" class="text-[9px] text-surface-400">0/5 Soal Tepat</span>
+                        </div>
+                        {{-- Wordle 1 --}}
+                        <div class="rounded-xl bg-surface-900/90 border border-white/10 p-2.5">
+                            <span class="text-surface-400 block text-[9px] uppercase font-bold">🔤 Kata 1</span>
+                            <span id="score-w1-val" class="text-xs sm:text-sm font-black text-amber-400 mt-0.5 block">+0 Pts</span>
+                            <span id="score-w1-detail" class="text-[9px] text-surface-400">Tebakan ke-0</span>
+                        </div>
+                        {{-- Wordle 2 --}}
+                        <div class="rounded-xl bg-surface-900/90 border border-white/10 p-2.5">
+                            <span class="text-surface-400 block text-[9px] uppercase font-bold">🔤 Kata 2</span>
+                            <span id="score-w2-val" class="text-xs sm:text-sm font-black text-amber-400 mt-0.5 block">+0 Pts</span>
+                            <span id="score-w2-detail" class="text-[9px] text-surface-400">Tebakan ke-0</span>
+                        </div>
+                        {{-- Kecepatan Waktu --}}
+                        <div class="rounded-xl bg-surface-900/90 border border-white/10 p-2.5">
+                            <span class="text-surface-400 block text-[9px] uppercase font-bold">⚡ Waktu Selesai</span>
+                            <span id="score-speed-val" class="text-xs sm:text-sm font-black text-sky-400 mt-0.5 block">+0 Pts</span>
+                            <span id="score-speed-detail" class="text-[9px] text-surface-400">Durasi: 00:00</span>
+                        </div>
+                        {{-- Penalti Mengulang --}}
+                        <div class="col-span-2 sm:col-span-2 rounded-xl bg-surface-900/90 border border-white/10 p-2.5 flex items-center justify-between">
+                            <div>
+                                <span class="text-surface-400 block text-[9px] uppercase font-bold">🔄 Penalti Pengulangan</span>
+                                <span id="score-retry-detail" class="text-[9px] text-surface-400">Menuntaskan tanpa mengulang</span>
+                            </div>
+                            <span id="score-retry-val" class="text-xs sm:text-sm font-black text-emerald-400 block">0 Pts (First Try!)</span>
+                        </div>
                     </div>
                 </div>
 
-                {{-- Wordle Shareable Grid Box --}}
-                <div class="rounded-2xl bg-surface-950/80 border border-white/10 p-4 max-w-sm mx-auto my-6 font-mono text-xs text-left">
-                    <div class="flex items-center justify-between border-b border-white/10 pb-2 mb-2 text-surface-400">
+                {{-- Form Input Nama ke Leaderboard Harian (Simple, Praktis untuk di Lobby HP) --}}
+                <div id="leaderboard-entry-card" class="hidden my-3 max-w-xl mx-auto rounded-2xl bg-gradient-to-br from-amber-500/10 via-surface-900 to-surface-950 border border-amber-400/40 p-3 sm:p-4 text-left shadow-lg">
+                    <div class="flex items-center justify-between gap-2 mb-2">
+                        <div class="flex items-center gap-1.5">
+                            <span class="text-lg">🏆</span>
+                            <h3 class="text-xs sm:text-sm font-black text-white">Catat Namamu di Top 10 Hari Ini</h3>
+                        </div>
+                        <span class="text-[10px] text-amber-300 font-bold">Reset 07:00 WITA</span>
+                    </div>
+
+                    {{-- Form: Cukup Nama / Panggilan / Alias saja --}}
+                    <form id="form-submit-leaderboard" class="space-y-2">
+                        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+                            <div class="relative flex-1">
+                                <input id="input-player-name" type="text" maxlength="30" required placeholder="Ketik nama atau alias..." class="w-full rounded-xl border border-white/15 bg-surface-800/90 px-3.5 py-2.5 text-xs sm:text-sm text-white placeholder-surface-400 focus:border-amber-400 focus:ring-1 focus:ring-amber-400/30 outline-none transition" />
+                            </div>
+                            <div class="flex items-center gap-1.5">
+                                <button id="btn-submit-score-lb" type="submit" class="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-surface-950 font-black px-4 py-2.5 text-xs sm:text-sm shadow-md transition-all active:scale-95 cursor-pointer shrink-0">
+                                    <span>Kirim Skor</span>
+                                    <span>🚀</span>
+                                </button>
+                                <button id="btn-open-leaderboard-from-result" type="button" class="inline-flex items-center justify-center gap-1 px-3 py-2.5 rounded-xl border border-white/15 bg-white/5 hover:bg-white/10 text-white font-bold text-xs transition cursor-pointer shrink-0" title="Buka Papan Peringkat">
+                                    <span>🏆 Top 10</span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                    {{-- Feedback Success Banner --}}
+                    <div id="leaderboard-submit-success" class="hidden mt-2 p-2.5 rounded-xl bg-emerald-500/15 border border-emerald-400/30 text-emerald-300 text-xs">
+                        <div class="flex items-center justify-between gap-2 flex-wrap">
+                            <div class="flex items-center gap-1.5">
+                                <span class="text-base">🎉</span>
+                                <span id="leaderboard-success-title" class="font-bold text-white text-xs">Skor Berhasil Masuk!</span>
+                            </div>
+                            <button id="btn-view-lb-after-submit" type="button" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-[11px] transition cursor-pointer shadow">
+                                <span>Lihat Peringkat</span>
+                                <span>→</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- Both Words Revealed (Kompak 2 Kolom) --}}
+                <div id="result-words-container" class="hidden my-3 grid grid-cols-2 gap-2 max-w-xl mx-auto text-left">
+                    <div class="rounded-xl bg-surface-900/90 border border-white/10 p-2.5">
+                        <span class="text-[9px] font-bold uppercase tracking-wider text-surface-400 block">Kata 1</span>
+                        <p id="result-word1-title" class="text-sm sm:text-base font-black text-emerald-400 tracking-wider"></p>
+                        <p id="result-word1-def" class="text-[10px] sm:text-xs text-surface-300 mt-0.5 line-clamp-3 sm:line-clamp-none"></p>
+                    </div>
+                    <div class="rounded-xl bg-surface-900/90 border border-white/10 p-2.5">
+                        <span class="text-[9px] font-bold uppercase tracking-wider text-surface-400 block">Kata 2</span>
+                        <p id="result-word2-title" class="text-sm sm:text-base font-black text-emerald-400 tracking-wider"></p>
+                        <p id="result-word2-def" class="text-[10px] sm:text-xs text-surface-300 mt-0.5 line-clamp-3 sm:line-clamp-none"></p>
+                    </div>
+                </div>
+
+                {{-- Wordle Shareable Grid Box (Kompak) --}}
+                <div class="rounded-xl bg-surface-950/80 border border-white/10 p-2.5 max-w-xs mx-auto my-3 font-mono text-xs text-left">
+                    <div class="flex items-center justify-between border-b border-white/10 pb-1.5 mb-1.5 text-surface-400 text-[10px]">
                         <span>Papan Skor Wordle</span>
                         <span id="result-attempts-summary">SKENA</span>
                     </div>
-                    <div id="result-emoji-grid" class="space-y-1 text-center py-2 leading-none text-base"></div>
+                    <div id="result-emoji-grid" class="space-y-0.5 text-center py-1 leading-none text-sm"></div>
                 </div>
 
-                {{-- Countdown timer to next challenge --}}
-                <div id="result-countdown-box" class="rounded-2xl bg-amber-500/10 border border-amber-400/20 p-4 max-w-md mx-auto my-6">
-                    <span class="text-xs font-bold uppercase tracking-wider text-amber-300">Rotasi Soal Berikutnya Dalam:</span>
-                    <div id="countdown-timer" class="text-2xl font-black font-mono text-amber-400 mt-1">
-                        --:--:--
+                {{-- Countdown timer to next challenge (Kompak 1 Baris) --}}
+                <div id="result-countdown-box" class="rounded-xl bg-amber-500/10 border border-amber-400/20 px-3 py-2 max-w-sm mx-auto my-3 text-xs flex items-center justify-between gap-2">
+                    <div class="text-left">
+                        <span class="text-[9px] font-bold uppercase tracking-wider text-amber-300 block">Soal Baru Dalam:</span>
+                        <span id="countdown-timer" class="text-xs sm:text-sm font-black font-mono text-amber-400">--:--:--</span>
                     </div>
-                    <p class="text-[11px] text-surface-400 mt-1">Pembaruan otomatis 5 Mitos/Fakta & 2 Kata baru setiap 00:00 WITA.</p>
-                    <a href="{{ route('game.index', ['reset' => 1]) }}" class="inline-flex items-center gap-1.5 mt-3 px-3.5 py-1.5 rounded-xl border border-amber-400/30 bg-amber-400/10 hover:bg-amber-400/20 text-xs font-bold text-amber-300 transition cursor-pointer">
-                        <span>🔄</span> Reset & Dapatkan Soal Baru
+                    <a href="{{ route('game.index', ['reset' => 1]) }}" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg border border-amber-400/30 bg-amber-400/10 hover:bg-amber-400/20 text-[10px] font-bold text-amber-300 transition cursor-pointer shrink-0">
+                        <span>🔄</span> Reset Soal
                     </a>
                 </div>
 
-                {{-- Action Buttons --}}
-                <div class="flex flex-col sm:flex-row items-center justify-center gap-3 mt-6">
-                    <button id="btn-share-score" type="button" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-emerald-500 to-accent-500 hover:from-emerald-400 hover:to-accent-400 text-surface-950 font-bold px-6 py-3.5 text-sm shadow-lg transition cursor-pointer">
-                        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 100 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186l9.566-5.314m-9.566 7.5l9.566 5.314m0 0a2.25 2.25 0 103.935 2.186 2.25 2.25 0 00-3.935-2.186zm0-12.814a2.25 2.25 0 103.933-2.185 2.25 2.25 0 00-3.933 2.185z"/></svg>
-                        <span id="btn-share-text">Bagikan Skor ke WhatsApp / Salin</span>
+                {{-- Action Buttons (Thumb-friendly & Kompak untuk HP) --}}
+                <div class="flex items-center justify-center gap-2 mt-4 flex-wrap">
+                    <button id="btn-open-leaderboard-result" type="button" class="flex-1 min-w-[110px] inline-flex items-center justify-center gap-1.5 rounded-xl border border-amber-400/40 bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 font-bold px-3 py-2.5 text-xs shadow transition cursor-pointer">
+                        <span>🏆 Top 10</span>
                     </button>
-
-                    <button id="btn-restart-game" type="button" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-surface-950 font-black px-7 py-3.5 text-sm shadow-lg transition-all hover:scale-105 cursor-pointer">
+                    <button id="btn-share-score" type="button" class="flex-1 min-w-[120px] inline-flex items-center justify-center gap-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-3 py-2.5 text-xs shadow transition cursor-pointer">
+                        <span>📱</span>
+                        <span id="btn-share-text">Bagikan WA</span>
+                    </button>
+                    <button id="btn-restart-game" type="button" class="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-surface-950 font-black px-4 py-2.5 text-xs shadow transition cursor-pointer">
                         <span>🔄 Mengulang</span>
                     </button>
                 </div>
@@ -467,6 +574,137 @@
         <div class="pt-3 border-t border-surface-200 dark:border-white/10 flex justify-end">
             <button id="btn-close-help-ok" type="button" class="px-5 py-2.5 rounded-xl bg-primary-600 hover:bg-primary-700 text-white font-bold text-xs transition cursor-pointer">
                 Mengerti
+            </button>
+        </div>
+    </div>
+</div>
+
+{{-- ══════════════════════════════════════════════════════════════ --}}
+{{-- MODAL PAPAN PERINGKAT (LEADERBOARD TOP 10)                     --}}
+{{-- ══════════════════════════════════════════════════════════════ --}}
+<div id="modal-leaderboard" class="fixed inset-0 z-[120] hidden bg-black/80 backdrop-blur-md flex flex-col justify-end sm:justify-center sm:items-center p-0 sm:p-4 overscroll-none">
+    <div class="relative w-full sm:max-w-xl h-[90vh] sm:h-auto sm:max-h-[86vh] rounded-t-[2rem] sm:rounded-3xl border-t sm:border border-surface-200/80 dark:border-white/10 bg-white dark:bg-surface-900 px-4 pt-2.5 pb-4 sm:p-6 shadow-2xl flex flex-col overflow-hidden">
+        
+        {{-- Mobile Pull Handle Indicator --}}
+        <div class="w-12 h-1.5 bg-surface-300 dark:bg-surface-700 rounded-full mx-auto sm:hidden mb-2.5 shrink-0"></div>
+
+        {{-- Header Modal --}}
+        <div class="flex items-center justify-between pb-3 border-b border-surface-100 dark:border-white/10 shrink-0">
+            <div class="flex items-center gap-3">
+                <div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-amber-500/15 text-amber-500 text-2xl border border-amber-400/30 shrink-0 shadow-xs">
+                    🏆
+                </div>
+                <div>
+                    <h3 class="text-base sm:text-lg font-black text-surface-900 dark:text-white leading-tight">
+                        Papan Peringkat Harian
+                    </h3>
+                    <p class="text-xs text-surface-500 dark:text-surface-400 mt-0.5">
+                        Top 10 Harian • Direset Tiap Jam 07:00 WITA
+                    </p>
+                </div>
+            </div>
+            <button id="btn-close-leaderboard" type="button" class="p-2 rounded-xl text-surface-400 hover:text-surface-900 dark:hover:text-white hover:bg-surface-100 dark:hover:bg-white/5 transition cursor-pointer" aria-label="Tutup Papan Peringkat">
+                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+        </div>
+
+        {{-- Info Bar: Periode & Countdown Reset 07:00 WITA --}}
+        <div class="my-3 rounded-2xl bg-amber-500/10 border border-amber-400/20 px-3.5 py-2.5 flex items-center justify-between gap-2 shrink-0 text-xs">
+            <div class="flex items-center gap-2">
+                <span class="text-xs">📅</span>
+                <span id="lb-period-text" class="font-bold text-surface-800 dark:text-surface-200 text-xs">Memuat...</span>
+                <span class="text-surface-400">•</span>
+                <span id="lb-participants-badge" class="font-bold text-primary-600 dark:text-primary-400 text-xs">0 Peserta</span>
+            </div>
+            <div class="flex items-center gap-1.5 text-amber-600 dark:text-amber-400 font-bold text-xs">
+                <span>⏳</span>
+                <span>Reset: <span id="lb-reset-countdown" class="font-mono font-black text-xs text-amber-600 dark:text-amber-300">--:--:--</span></span>
+            </div>
+        </div>
+
+        {{-- Scrollable Leaderboard List (Area Khusus Scroll Lancar Tanpa Tembus Background) --}}
+        <div id="lb-scroll-container" class="min-h-0 flex-1 overflow-y-auto overscroll-contain pr-1 space-y-3" style="-webkit-overflow-scrolling: touch; touch-action: pan-y;">
+            {{-- Loading State --}}
+            <div id="lb-loading-state" class="py-12 text-center text-surface-400 space-y-2">
+                <div class="inline-block animate-spin text-3xl">⏳</div>
+                <p class="text-xs font-semibold">Mengambil data peringkat...</p>
+            </div>
+
+            {{-- Empty State --}}
+            <div id="lb-empty-state" class="hidden py-12 text-center text-surface-400 space-y-3">
+                <div class="text-4xl">🌟</div>
+                <h4 class="text-sm font-bold text-surface-800 dark:text-surface-200">Belum Ada Skor di Papan Peringkat Hari Ini</h4>
+                <p class="text-xs max-w-sm mx-auto text-surface-500 dark:text-surface-400">
+                    Jadilah pemain pertama yang menuntaskan tantangan hari ini dan raih posisi teratas Top 10 sebelum jam 07:00 WITA!
+                </p>
+            </div>
+
+            {{-- Top 3 Podium Cards Container (Fokus Utama: Juara 1, 2, 3 Tampil Lapang & Nyaman) --}}
+            <div id="lb-top3-container" class="hidden space-y-2.5 sm:space-y-3">
+                {{-- Inserted via JS: Juara 1, 2, 3 --}}
+            </div>
+
+            {{-- Collapsible Section: Peringkat 4 s.d. 10 (Menu Arrow Dropdown) --}}
+            <div id="lb-section-top10" class="hidden pt-1">
+                <button id="btn-toggle-top10" type="button" class="w-full flex items-center justify-between p-3.5 rounded-2xl bg-surface-50 dark:bg-surface-800/60 hover:bg-surface-100 dark:hover:bg-surface-800 border border-surface-200/80 dark:border-white/10 transition-all cursor-pointer shadow-xs active:scale-[0.99]">
+                    <div class="flex items-center gap-3">
+                        <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-primary-500/15 text-primary-600 dark:text-primary-400 font-black text-xs">
+                            4-10
+                        </div>
+                        <div class="text-left">
+                            <h4 class="text-xs sm:text-sm font-black text-surface-900 dark:text-white">Peringkat 4 s.d. 10</h4>
+                            <p class="text-[11px] text-surface-500 dark:text-surface-400 font-medium"><span id="lb-top10-count-badge">0</span> Pemain Terdaftar</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span id="lb-top10-toggle-text" class="text-xs font-bold text-primary-600 dark:text-primary-400">Lihat</span>
+                        <div class="flex h-7 w-7 items-center justify-center rounded-lg bg-surface-200/60 dark:bg-white/5">
+                            <svg id="lb-top10-arrow" class="h-4 w-4 transform transition-transform duration-300 text-surface-600 dark:text-surface-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </div>
+                    </div>
+                </button>
+                <div id="lb-top4to10-container" class="hidden space-y-2 mt-2.5 transition-all">
+                    {{-- Inserted via JS: Peringkat 4 - 10 --}}
+                </div>
+            </div>
+
+            {{-- Collapsible Section: Peringkat Lainnya (11+) (Menu Arrow Dropdown) --}}
+            <div id="lb-section-others" class="hidden pt-1">
+                <button id="btn-toggle-others" type="button" class="w-full flex items-center justify-between p-3.5 rounded-2xl bg-surface-50/70 dark:bg-surface-800/40 hover:bg-surface-100 dark:hover:bg-surface-800 border border-surface-200/70 dark:border-white/10 transition-all cursor-pointer shadow-xs active:scale-[0.99]">
+                    <div class="flex items-center gap-3">
+                        <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-surface-200 dark:bg-surface-700 text-surface-600 dark:text-surface-300 font-black text-xs">
+                            11+
+                        </div>
+                        <div class="text-left">
+                            <h4 class="text-xs sm:text-sm font-bold text-surface-800 dark:text-surface-200">Peringkat Lainnya (11+)</h4>
+                            <p class="text-[11px] text-surface-500 dark:text-surface-400 font-medium"><span id="lb-others-count-badge">0</span> Pemain</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span id="lb-others-toggle-text" class="text-xs font-bold text-surface-500">Lihat</span>
+                        <div class="flex h-7 w-7 items-center justify-center rounded-lg bg-surface-200/60 dark:bg-white/5">
+                            <svg id="lb-others-arrow" class="h-4 w-4 transform transition-transform duration-300 text-surface-600 dark:text-surface-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </div>
+                    </div>
+                </button>
+                <div id="lb-others-container" class="hidden space-y-2 mt-2.5 transition-all">
+                    {{-- Inserted via JS: Peringkat 11+ --}}
+                </div>
+            </div>
+        </div>
+
+        {{-- Footer Modal --}}
+        <div class="pt-3 border-t border-surface-100 dark:border-white/10 flex items-center justify-between shrink-0 text-xs">
+            <span class="text-surface-500 dark:text-surface-400 text-[11px]">
+                Skor dihitung dari ketepatan, efisiensi Wordle, & waktu.
+            </span>
+            <button id="btn-refresh-leaderboard" type="button" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-surface-200 dark:border-white/10 hover:bg-surface-100 dark:hover:bg-white/5 font-bold text-xs text-surface-700 dark:text-surface-300 transition cursor-pointer">
+                <span>🔄</span>
+                <span>Segarkan</span>
             </button>
         </div>
     </div>
@@ -627,6 +865,16 @@
         let word2Won = false;
         let isGameOver = false;
 
+        // Leaderboard & Scoring State
+        let gameStartTime = null;
+        let gameEndTime = null;
+        let durationSeconds = 0;
+        let quizFirstTryCorrect = 0;
+        let retryCount = 0;
+        let currentComputedScore = null;
+        let hasSubmittedLeaderboard = false;
+        let lbResetInterval = null;
+
         // Views Elements
         const viewIntro = document.getElementById('view-intro');
         const viewMythFact = document.getElementById('view-myth-fact');
@@ -657,6 +905,11 @@
         let isAnswering = false;
 
         function startQuiz() {
+            if (!gameStartTime) {
+                gameStartTime = Date.now();
+            }
+            quizFirstTryCorrect = 0;
+
             // Deep clone all questions to guarantee fresh state
             quizQueue = activePuzzle.questions.map(q => ({
                 id: q.id,
@@ -760,6 +1013,11 @@
                 feedbackHeader.className = 'flex items-center gap-2 text-base font-black text-emerald-600 dark:text-emerald-400';
                 feedbackIcon.innerText = '✅';
                 feedbackTitle.innerText = 'Tepat Sekali! Jawaban Kamu Benar.';
+
+                // Catat benar pada percobaan pertama (bukan remedial)
+                if (!isRemedialSession) {
+                    quizFirstTryCorrect++;
+                }
 
                 // If not already counted as mastered
                 if (!currentQuestion._mastered) {
@@ -1172,6 +1430,22 @@
         // ══════════════════════════════════════════════════════════
         function handleFinalResult(isVictory) {
             isGameOver = true;
+            gameEndTime = Date.now();
+            durationSeconds = Math.max(5, Math.round(((gameEndTime - (gameStartTime || gameEndTime)) / 1000)));
+
+            const w1Attempts = (wordGuesses[0] && wordGuesses[0].length) ? wordGuesses[0].length : 6;
+            const w2Attempts = (wordGuesses[1] && wordGuesses[1].length) ? wordGuesses[1].length : 6;
+
+            const computed = computeClientScore(
+                quizFirstTryCorrect,
+                word1Won,
+                w1Attempts,
+                word2Won,
+                w2Attempts,
+                durationSeconds,
+                retryCount
+            );
+            currentComputedScore = computed;
 
             const record = {
                 date: TODAY_DATE,
@@ -1180,7 +1454,13 @@
                 word2Won: word2Won,
                 wordGuesses: wordGuesses,
                 targetWords: targetWords,
-                timestamp: Date.now()
+                timestamp: Date.now(),
+                durationSeconds: durationSeconds,
+                quizFirstTryCorrect: quizFirstTryCorrect,
+                w1Attempts: w1Attempts,
+                w2Attempts: w2Attempts,
+                retryCount: retryCount,
+                scoreDetails: computed
             };
 
             // Save official record if not in practice mode
@@ -1218,6 +1498,8 @@
             const resultWordsContainer = document.getElementById('result-words-container');
             const resultCountdownBox = document.getElementById('result-countdown-box');
             const btnRestart = document.getElementById('btn-restart-game');
+            const scoreSection = document.getElementById('result-score-section');
+            const lbEntryCard = document.getElementById('leaderboard-entry-card');
 
             if (isVictory) {
                 playSound('victory');
@@ -1230,6 +1512,59 @@
                 resultPill.innerText = 'LULUS SEMPURNA!';
                 resultTitle.innerText = 'Selamat! Kamu Menaklukkan Wordle SKENA!';
                 resultDesc.innerText = 'Dua kata kunci bahaya narkoba berhasil kamu tebak berkat pemahaman tajam dari babak Mitos/Fakta. Terus pertahankan wawasan ini!';
+
+                // Hitung / siapkan skor detail
+                const score = record.scoreDetails || computeClientScore(
+                    record.quizFirstTryCorrect ?? 5,
+                    record.word1Won ?? true,
+                    record.w1Attempts ?? 2,
+                    record.word2Won ?? true,
+                    record.w2Attempts ?? 2,
+                    record.durationSeconds ?? 60,
+                    record.retryCount ?? 0
+                );
+                currentComputedScore = score;
+                durationSeconds = score.duration_seconds;
+                quizFirstTryCorrect = score.quiz_correct_count;
+                retryCount = score.retry_count;
+
+                // Tampilkan Score Section
+                if (scoreSection) {
+                    scoreSection.classList.remove('hidden');
+                    document.getElementById('score-grand-total').innerText = Number(score.total_score).toLocaleString('id-ID');
+                    document.getElementById('score-badge-icon').innerText = score.badge_icon;
+                    document.getElementById('score-badge-title').innerText = score.badge_title;
+
+                    document.getElementById('score-quiz-val').innerText = '+' + score.quiz_score + ' Pts';
+                    document.getElementById('score-quiz-detail').innerText = score.quiz_correct_count + '/5 Soal Tepat (Pertama)';
+
+                    document.getElementById('score-w1-val').innerText = '+' + score.word1_score + ' Pts';
+                    document.getElementById('score-w1-detail').innerText = 'Tebakan ke-' + score.word1_attempts;
+
+                    document.getElementById('score-w2-val').innerText = '+' + score.word2_score + ' Pts';
+                    document.getElementById('score-w2-detail').innerText = 'Tebakan ke-' + score.word2_attempts;
+
+                    document.getElementById('score-speed-val').innerText = '+' + score.speed_bonus + ' Pts';
+                    document.getElementById('score-speed-detail').innerText = 'Durasi: ' + formatDuration(score.duration_seconds);
+
+                    if (score.retry_count > 0) {
+                        document.getElementById('score-retry-val').innerText = '-' + score.retry_penalty + ' Pts';
+                        document.getElementById('score-retry-val').className = 'text-sm sm:text-base font-black text-rose-400 mt-0.5 block';
+                        document.getElementById('score-retry-detail').innerText = 'Mengulang ' + score.retry_count + 'x';
+                    } else {
+                        document.getElementById('score-retry-val').innerText = '0 Pts (First Try! 🎯)';
+                        document.getElementById('score-retry-val').className = 'text-sm sm:text-base font-black text-emerald-400 mt-0.5 block';
+                        document.getElementById('score-retry-detail').innerText = 'Menuntaskan tanpa mengulang';
+                    }
+                }
+
+                // Tampilkan Form Input Nama Leaderboard
+                if (lbEntryCard) {
+                    lbEntryCard.classList.remove('hidden');
+                    const savedName = localStorage.getItem('skena_player_name') || '';
+                    const nameField = document.getElementById('input-player-name');
+                    if (nameField && savedName) nameField.value = savedName;
+                }
 
                 // Tampilkan kata jika menang (karena pemain sudah berhasil menebaknya)
                 if (resultWordsContainer) {
@@ -1249,6 +1584,10 @@
                 resultPill.innerText = 'KESEMPATAN HABIS (GAME OVER)';
                 resultTitle.innerText = 'Sayang Sekali, Kesempatanmu Habis!';
                 resultDesc.innerText = 'Kesempatan menebak telah habis. Silakan mengulang dari babak awal untuk mencoba kembali!';
+
+                // Sembunyikan skor & form leaderboard jika kalah
+                if (scoreSection) scoreSection.classList.add('hidden');
+                if (lbEntryCard) lbEntryCard.classList.add('hidden');
 
                 // Sembunyikan jawaban sama sekali agar pemain tidak bisa mencoba ulang dengan mengetahui jawaban
                 if (resultWordsContainer) {
@@ -1431,6 +1770,477 @@
             return false;
         }
 
+        // ══════════════════════════════════════════════════════════
+        // LEADERBOARD & SCORING ALGORITHM HELPERS
+        // ══════════════════════════════════════════════════════════
+        function getDeviceFingerprint() {
+            let fp = localStorage.getItem('skena_device_fp');
+            if (!fp) {
+                fp = 'fp_' + Math.random().toString(36).substring(2, 12) + '_' + Date.now();
+                localStorage.setItem('skena_device_fp', fp);
+            }
+            return fp;
+        }
+
+        function formatDuration(totalSec) {
+            const m = Math.floor(totalSec / 60);
+            const s = totalSec % 60;
+            return String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+        }
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            const div = document.createElement('div');
+            div.innerText = str;
+            return div.innerHTML;
+        }
+
+        function computeClientScore(quizCorrect, w1Won, w1Att, w2Won, w2Att, duration, retries) {
+            const qScore = Math.min(5, Math.max(0, quizCorrect)) * 60;
+
+            let w1Score = 0;
+            if (w1Won) {
+                const bonusMap = [0, 100, 80, 60, 40, 20, 0];
+                w1Score = 250 + (bonusMap[w1Att] ?? 0);
+            }
+
+            let w2Score = 0;
+            if (w2Won) {
+                const bonusMap = [0, 100, 80, 60, 40, 20, 0];
+                w2Score = 250 + (bonusMap[w2Att] ?? 0);
+            }
+
+            let spBonus = 15;
+            if (duration <= 60) spBonus = 100;
+            else if (duration <= 120) spBonus = 80;
+            else if (duration <= 180) spBonus = 60;
+            else if (duration <= 300) spBonus = 40;
+
+            const rPenalty = Math.min(150, retries * 50);
+            const total = Math.max(0, qScore + w1Score + w2Score + spBonus - rPenalty);
+
+            let badge = 'Sahabat Sadar P4GN';
+            let icon = '📖';
+            if (total >= 1000) { badge = 'Master P4GN Paripurna'; icon = '🌟'; }
+            else if (total >= 850) { badge = 'Pejuang Bersinar Tangguh'; icon = '🏅'; }
+            else if (total >= 700) { badge = 'Relawan Sadar Narkoba'; icon = '🥈'; }
+            else if (total >= 500) { badge = 'Penggiat Muda P4GN'; icon = '🥉'; }
+
+            return {
+                total_score: total,
+                quiz_score: qScore,
+                quiz_correct_count: quizCorrect,
+                word1_score: w1Score,
+                word1_attempts: w1Att,
+                word2_score: w2Score,
+                word2_attempts: w2Att,
+                speed_bonus: spBonus,
+                retry_penalty: rPenalty,
+                retry_count: retries,
+                duration_seconds: duration,
+                badge_title: badge,
+                badge_icon: icon
+            };
+        }
+
+        // ══════════════════════════════════════════════════════════
+        // LEADERBOARD MODAL LOGIC (RESET 07:00 WITA)
+        // ══════════════════════════════════════════════════════════
+        const modalLeaderboard = document.getElementById('modal-leaderboard');
+        let lbSavedScrollY = 0;
+
+        function lockBodyScrollForLb() {
+            lbSavedScrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
+            document.body.style.position = 'fixed';
+            document.body.style.top = `-${lbSavedScrollY}px`;
+            document.body.style.left = '0';
+            document.body.style.right = '0';
+            document.body.style.width = '100%';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function unlockBodyScrollForLb() {
+            document.body.style.position = '';
+            document.body.style.top = '';
+            document.body.style.left = '';
+            document.body.style.right = '';
+            document.body.style.width = '';
+            document.body.style.overflow = '';
+            window.scrollTo(0, lbSavedScrollY);
+        }
+
+        function openLeaderboardModal(highlightPlayerName) {
+            playSound('click');
+            if (modalLeaderboard) {
+                modalLeaderboard.classList.remove('hidden');
+                lockBodyScrollForLb();
+
+                // Sembunyikan floating visitor bubble agar tidak menutupi modal & gesture di mobile
+                const visitorBubble = document.getElementById('visitor-draggable-bubble');
+                if (visitorBubble) visitorBubble.style.display = 'none';
+
+                loadLeaderboardData(highlightPlayerName);
+            }
+        }
+
+        function closeLeaderboardModal() {
+            if (modalLeaderboard) {
+                modalLeaderboard.classList.add('hidden');
+                unlockBodyScrollForLb();
+
+                // Kembalikan floating visitor bubble
+                const visitorBubble = document.getElementById('visitor-draggable-bubble');
+                if (visitorBubble) visitorBubble.style.display = '';
+            }
+            if (lbResetInterval) {
+                clearInterval(lbResetInterval);
+                lbResetInterval = null;
+            }
+        }
+
+        // Collapsible Accordion State for Leaderboard Modal
+        let isTop10Expanded = false;
+        let isOthersExpanded = false;
+
+        function setTop10Expanded(expanded) {
+            isTop10Expanded = expanded;
+            const cont = document.getElementById('lb-top4to10-container');
+            const arrow = document.getElementById('lb-top10-arrow');
+            const txt = document.getElementById('lb-top10-toggle-text');
+            if (cont) {
+                if (expanded) {
+                    cont.classList.remove('hidden');
+                    if (arrow) arrow.style.transform = 'rotate(180deg)';
+                    if (txt) txt.innerText = 'Tutup';
+                } else {
+                    cont.classList.add('hidden');
+                    if (arrow) arrow.style.transform = 'rotate(0deg)';
+                    if (txt) txt.innerText = 'Lihat';
+                }
+            }
+        }
+
+        function setOthersExpanded(expanded) {
+            isOthersExpanded = expanded;
+            const cont = document.getElementById('lb-others-container');
+            const arrow = document.getElementById('lb-others-arrow');
+            const txt = document.getElementById('lb-others-toggle-text');
+            if (cont) {
+                if (expanded) {
+                    cont.classList.remove('hidden');
+                    if (arrow) arrow.style.transform = 'rotate(180deg)';
+                    if (txt) txt.innerText = 'Tutup';
+                } else {
+                    cont.classList.add('hidden');
+                    if (arrow) arrow.style.transform = 'rotate(0deg)';
+                    if (txt) txt.innerText = 'Lihat';
+                }
+            }
+        }
+
+        function loadLeaderboardData(highlightPlayerName) {
+            const loading = document.getElementById('lb-loading-state');
+            const empty = document.getElementById('lb-empty-state');
+            const top3Cont = document.getElementById('lb-top3-container');
+            const sectionTop10 = document.getElementById('lb-section-top10');
+            const top4to10Cont = document.getElementById('lb-top4to10-container');
+            const top10Badge = document.getElementById('lb-top10-count-badge');
+            const sectionOthers = document.getElementById('lb-section-others');
+            const othersCont = document.getElementById('lb-others-container');
+            const othersBadge = document.getElementById('lb-others-count-badge');
+
+            if (!loading) return;
+
+            loading.classList.remove('hidden');
+            empty.classList.add('hidden');
+            top3Cont.classList.add('hidden');
+            if (sectionTop10) sectionTop10.classList.add('hidden');
+            if (sectionOthers) sectionOthers.classList.add('hidden');
+
+            fetch('{{ route('game.leaderboard') }}')
+                .then(res => res.json())
+                .then(res => {
+                    loading.classList.add('hidden');
+                    if (!res.success) return;
+
+                    const periodEl = document.getElementById('lb-period-text');
+                    const partEl = document.getElementById('lb-participants-badge');
+                    if (periodEl) periodEl.innerText = res.period_formatted || res.period_date;
+                    if (partEl) partEl.innerText = (res.total_participants || 0) + ' Peserta';
+
+                    // Countdown timer ke 07:00 WITA
+                    setupResetCountdown(res.next_reset_iso);
+
+                    const all = res.all || [];
+                    if (all.length === 0) {
+                        empty.classList.remove('hidden');
+                        return;
+                    }
+
+                    // Render Top 3 (Selalu Tampil agar fokus utama pada Juara 1, 2, 3)
+                    const top3 = all.filter(p => p.rank <= 3);
+                    if (top3.length > 0) {
+                        top3Cont.innerHTML = '';
+                        top3.forEach(player => {
+                            top3Cont.appendChild(createTop3PodiumRow(player, highlightPlayerName));
+                        });
+                        top3Cont.classList.remove('hidden');
+                    }
+
+                    // Render Top 4-10 (Collapsible Accordion dengan Menu Arrow)
+                    const top4to10 = all.filter(p => p.rank >= 4 && p.rank <= 10);
+                    if (top4to10.length > 0) {
+                        top4to10Cont.innerHTML = '';
+                        top4to10.forEach(player => {
+                            top4to10Cont.appendChild(createStandardRow(player, highlightPlayerName));
+                        });
+                        if (top10Badge) top10Badge.innerText = top4to10.length + ' Pemain';
+                        if (sectionTop10) sectionTop10.classList.remove('hidden');
+
+                        // Cek apakah pemain yang sedang disorot ada di peringkat 4-10
+                        const isUserInTop10 = highlightPlayerName && top4to10.some(p => p.player_name.toLowerCase() === highlightPlayerName.toLowerCase());
+                        setTop10Expanded(isUserInTop10); // Buka jika pemain ada di sini, default tutup agar fokus ke Top 3
+                    }
+
+                    // Render Others (11+) (Collapsible Accordion dengan Menu Arrow)
+                    const others = all.filter(p => p.rank > 10);
+                    if (others.length > 0) {
+                        othersCont.innerHTML = '';
+                        others.forEach(player => {
+                            othersCont.appendChild(createOthersRow(player, highlightPlayerName));
+                        });
+                        if (othersBadge) othersBadge.innerText = others.length + ' Pemain';
+                        if (sectionOthers) sectionOthers.classList.remove('hidden');
+
+                        const isUserInOthers = highlightPlayerName && others.some(p => p.player_name.toLowerCase() === highlightPlayerName.toLowerCase());
+                        setOthersExpanded(isUserInOthers); // Buka jika pemain ada di sini, default tutup
+                    }
+                })
+                .catch(() => {
+                    loading.classList.add('hidden');
+                    empty.classList.remove('hidden');
+                });
+        }
+
+        function setupResetCountdown(isoString) {
+            if (lbResetInterval) clearInterval(lbResetInterval);
+            const targetMs = new Date(isoString).getTime();
+            const timerEl = document.getElementById('lb-reset-countdown');
+            if (!timerEl) return;
+
+            function update() {
+                const now = Date.now();
+                const diff = targetMs - now;
+                if (diff <= 0) {
+                    timerEl.innerText = '00:00:00 (Reset!)';
+                    loadLeaderboardData();
+                    return;
+                }
+                const h = Math.floor(diff / (1000 * 60 * 60));
+                const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const s = Math.floor((diff % (1000 * 60)) / 1000);
+                timerEl.innerText =
+                    String(h).padStart(2, '0') + ':' +
+                    String(m).padStart(2, '0') + ':' +
+                    String(s).padStart(2, '0');
+            }
+            update();
+            lbResetInterval = setInterval(update, 1000);
+        }
+
+        function createTop3PodiumRow(player, highlightPlayerName) {
+            const isHighlight = (highlightPlayerName && player.player_name.toLowerCase() === highlightPlayerName.toLowerCase());
+            const row = document.createElement('div');
+
+            let rankBadge = '';
+            let borderClass = '';
+            let medalEmoji = '';
+            let scoreColor = '';
+
+            if (player.rank === 1) {
+                rankBadge = 'bg-gradient-to-br from-amber-400 to-yellow-500 text-surface-950 font-black shadow-md';
+                borderClass = 'border border-amber-400/60 dark:border-amber-400/30 bg-gradient-to-r from-amber-500/15 via-yellow-500/10 to-transparent dark:from-amber-500/20 dark:via-yellow-500/10 dark:to-surface-800/40 shadow-xs';
+                medalEmoji = '🥇';
+                scoreColor = 'text-amber-600 dark:text-amber-400';
+            } else if (player.rank === 2) {
+                rankBadge = 'bg-gradient-to-br from-slate-200 to-slate-400 text-surface-950 font-black shadow-sm';
+                borderClass = 'border border-slate-300 dark:border-slate-600/40 bg-gradient-to-r from-slate-200/50 via-slate-100/30 to-transparent dark:from-slate-700/30 dark:via-slate-800/20 dark:to-surface-800/40 shadow-xs';
+                medalEmoji = '🥈';
+                scoreColor = 'text-slate-700 dark:text-slate-200';
+            } else {
+                rankBadge = 'bg-gradient-to-br from-amber-600 to-amber-700 text-white font-black shadow-sm';
+                borderClass = 'border border-amber-600/40 dark:border-amber-700/30 bg-gradient-to-r from-amber-600/10 via-orange-500/5 to-transparent dark:from-amber-800/20 dark:via-orange-900/10 dark:to-surface-800/40 shadow-xs';
+                medalEmoji = '🥉';
+                scoreColor = 'text-amber-700 dark:text-amber-400';
+            }
+
+            row.className = `rounded-2xl p-3.5 sm:p-4 flex items-center justify-between gap-3 transition-all ${borderClass} ${isHighlight ? 'ring-2 ring-primary-500' : 'hover:scale-[1.005]'}`;
+
+            row.innerHTML = `
+                <div class="flex items-center gap-3 min-w-0">
+                    <div class="flex h-11 w-11 sm:h-12 sm:w-12 shrink-0 items-center justify-center rounded-2xl font-black text-xl shadow-xs ${rankBadge}">
+                        <span>${medalEmoji}</span>
+                    </div>
+                    <div class="min-w-0">
+                        <div class="flex items-center gap-1.5 flex-wrap">
+                            <h4 class="font-extrabold text-sm sm:text-base text-surface-900 dark:text-white truncate">
+                                ${escapeHtml(player.player_name)}
+                            </h4>
+                            ${isHighlight ? '<span class="px-1.5 py-0.2 rounded-full text-[9px] font-black bg-primary-500 text-white animate-pulse">KAMU</span>' : ''}
+                        </div>
+                        <p class="text-xs text-surface-500 dark:text-surface-400 font-medium flex items-center gap-1 mt-0.5">
+                            <span>⏱️</span>
+                            <span>${player.duration_formatted}</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="text-right shrink-0">
+                    <span class="text-base sm:text-xl font-black font-mono ${scoreColor}">
+                        ${Number(player.total_score).toLocaleString('id-ID')}
+                    </span>
+                    <span class="block text-[10px] font-bold text-surface-400 uppercase tracking-wider">PTS</span>
+                </div>
+            `;
+            return row;
+        }
+
+        function createStandardRow(player, highlightPlayerName) {
+            const isHighlight = (highlightPlayerName && player.player_name.toLowerCase() === highlightPlayerName.toLowerCase());
+            const row = document.createElement('div');
+
+            row.className = `rounded-xl p-3 sm:p-3.5 flex items-center justify-between gap-3 border border-surface-200/80 dark:border-white/5 bg-surface-50/70 dark:bg-surface-800/40 hover:bg-surface-100 dark:hover:bg-surface-800 transition ${isHighlight ? 'ring-2 ring-primary-500' : ''}`;
+
+            row.innerHTML = `
+                <div class="flex items-center gap-3 min-w-0">
+                    <div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl font-black text-xs bg-primary-500/10 text-primary-600 dark:text-primary-300 border border-primary-500/20">
+                        #${player.rank}
+                    </div>
+                    <div class="min-w-0">
+                        <div class="flex items-center gap-1.5 flex-wrap">
+                            <h4 class="font-bold text-xs sm:text-sm text-surface-900 dark:text-white truncate">
+                                ${escapeHtml(player.player_name)}
+                            </h4>
+                            ${isHighlight ? '<span class="px-1.5 py-0.5 rounded text-[9px] font-black bg-primary-500 text-white">KAMU</span>' : ''}
+                        </div>
+                        <p class="text-[11px] text-surface-500 dark:text-surface-400 mt-0.5 flex items-center gap-1">
+                            <span>⏱️</span>
+                            <span>${player.duration_formatted}</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="text-right shrink-0">
+                    <span class="text-xs sm:text-sm font-black font-mono text-surface-900 dark:text-white">
+                        ${Number(player.total_score).toLocaleString('id-ID')}
+                    </span>
+                    <span class="text-[10px] font-bold text-surface-400"> PTS</span>
+                </div>
+            `;
+            return row;
+        }
+
+        function createOthersRow(player, highlightPlayerName) {
+            const isHighlight = (highlightPlayerName && player.player_name.toLowerCase() === highlightPlayerName.toLowerCase());
+            const row = document.createElement('div');
+
+            row.className = `rounded-xl px-3 py-2 flex items-center justify-between gap-3 border border-surface-200/60 dark:border-white/5 bg-surface-50/40 dark:bg-white/[0.02] hover:bg-surface-100/60 dark:hover:bg-white/5 transition ${isHighlight ? 'ring-1 ring-primary-500' : ''}`;
+
+            row.innerHTML = `
+                <div class="flex items-center gap-2.5 min-w-0">
+                    <span class="text-xs font-mono font-bold text-surface-400 w-6 text-center shrink-0">
+                        #${player.rank}
+                    </span>
+                    <div class="min-w-0">
+                        <span class="text-xs font-semibold text-surface-700 dark:text-surface-300 truncate block">
+                            ${escapeHtml(player.player_name)}
+                        </span>
+                    </div>
+                </div>
+                <div class="text-right shrink-0">
+                    <span class="text-xs font-bold font-mono text-surface-600 dark:text-surface-400">
+                        ${Number(player.total_score).toLocaleString('id-ID')} <span class="text-[10px] text-surface-400">pts</span>
+                    </span>
+                </div>
+            `;
+            return row;
+        }
+
+        // Form Submit Handler
+        const formLeaderboard = document.getElementById('form-submit-leaderboard');
+        if (formLeaderboard) {
+            formLeaderboard.addEventListener('submit', (e) => {
+                e.preventDefault();
+                if (hasSubmittedLeaderboard) return;
+
+                const nameInput = document.getElementById('input-player-name');
+                const btnSubmit = document.getElementById('btn-submit-score-lb');
+
+                const nameVal = nameInput ? nameInput.value.trim() : '';
+                if (!nameVal) return;
+
+                playSound('click');
+                btnSubmit.disabled = true;
+                btnSubmit.innerHTML = '<span>Mengirim...</span><span class="animate-spin">⏳</span>';
+
+                // Simpan nama di localStorage
+                localStorage.setItem('skena_player_name', nameVal);
+
+                const payload = {
+                    player_name: nameVal,
+                    player_organization: null,
+                    quiz_correct_count: quizFirstTryCorrect,
+                    word1_attempts: (wordGuesses[0] && wordGuesses[0].length) ? wordGuesses[0].length : 6,
+                    word2_attempts: (wordGuesses[1] && wordGuesses[1].length) ? wordGuesses[1].length : 6,
+                    word1_won: word1Won,
+                    word2_won: word2Won,
+                    duration_seconds: durationSeconds,
+                    retry_count: retryCount,
+                    device_fingerprint: getDeviceFingerprint()
+                };
+
+                fetch('{{ route('game.leaderboard.submit') }}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                    },
+                    body: JSON.stringify(payload)
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        hasSubmittedLeaderboard = true;
+                        btnSubmit.innerHTML = '<span>✓ Terkirim ke Peringkat #' + data.rank + '</span>';
+                        btnSubmit.className = 'flex-1 inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-600 text-white font-black px-6 py-3.5 text-sm cursor-default';
+
+                        const successCard = document.getElementById('leaderboard-submit-success');
+                        if (successCard) {
+                            successCard.classList.remove('hidden');
+                            const titleEl = document.getElementById('leaderboard-success-title');
+                            if (titleEl) {
+                                titleEl.innerText = (data.is_top_3 ? '🏆 Luar Biasa! Kamu Masuk Top 3 (Peringkat #' + data.rank + ')!' :
+                                    (data.is_top_10 ? '⭐ Hebat! Kamu Masuk Top 10 (Peringkat #' + data.rank + ')!' :
+                                    '🎉 Skormu Berhasil Tercatat di Peringkat #' + data.rank + '!'));
+                            }
+                        }
+
+                        // Otomatis buka papan peringkat setelah 1.2 detik
+                        setTimeout(() => {
+                            openLeaderboardModal(nameVal);
+                        }, 1200);
+                    } else {
+                        btnSubmit.disabled = false;
+                        btnSubmit.innerHTML = '<span>Kirim Skor ke Leaderboard</span><span>🚀</span>';
+                        alert(data.message || 'Gagal mengirim skor.');
+                    }
+                })
+                .catch(() => {
+                    btnSubmit.disabled = false;
+                    btnSubmit.innerHTML = '<span>Kirim Skor ke Leaderboard</span><span>🚀</span>';
+                    alert('Terjadi kesalahan koneksi saat mengirim skor.');
+                });
+            });
+        }
+
         // Mengulang permainan dari babak awal lagi (Babak 1: Mitos atau Fakta)
         function restartGame() {
             playSound('click');
@@ -1446,6 +2256,9 @@
             word2Won = false;
             isGameOver = false;
             keyStatusMap = {};
+            hasSubmittedLeaderboard = false;
+            retryCount++;
+            gameStartTime = Date.now();
 
             // Langsung bawa pemain mengulang dari babak awal (Mitos atau Fakta)
             startQuiz();
@@ -1485,6 +2298,70 @@
         modalHelp.addEventListener('click', (e) => {
             if (e.target === modalHelp) modalHelp.classList.add('hidden');
         });
+
+        // Leaderboard Modal Triggers
+        const btnOpenLb = document.getElementById('btn-open-leaderboard');
+        if (btnOpenLb) btnOpenLb.addEventListener('click', () => openLeaderboardModal());
+
+        const btnViewLbIntro = document.getElementById('btn-view-leaderboard-intro');
+        if (btnViewLbIntro) btnViewLbIntro.addEventListener('click', () => openLeaderboardModal());
+
+        const btnOpenLbResult = document.getElementById('btn-open-leaderboard-result');
+        if (btnOpenLbResult) btnOpenLbResult.addEventListener('click', () => openLeaderboardModal());
+
+        const btnOpenLbFromResult = document.getElementById('btn-open-leaderboard-from-result');
+        if (btnOpenLbFromResult) btnOpenLbFromResult.addEventListener('click', () => openLeaderboardModal());
+
+        const btnViewLbAfterSubmit = document.getElementById('btn-view-lb-after-submit');
+        if (btnViewLbAfterSubmit) {
+            btnViewLbAfterSubmit.addEventListener('click', () => {
+                const nameVal = document.getElementById('input-player-name')?.value?.trim();
+                openLeaderboardModal(nameVal);
+            });
+        }
+
+        const btnCloseLb = document.getElementById('btn-close-leaderboard');
+        if (btnCloseLb) btnCloseLb.addEventListener('click', closeLeaderboardModal);
+
+        const btnRefreshLb = document.getElementById('btn-refresh-leaderboard');
+        if (btnRefreshLb) {
+            btnRefreshLb.addEventListener('click', () => {
+                playSound('click');
+                const nameVal = document.getElementById('input-player-name')?.value?.trim();
+                loadLeaderboardData(nameVal);
+            });
+        }
+
+        // Leaderboard Collapsible Accordion Toggles
+        const btnToggleTop10 = document.getElementById('btn-toggle-top10');
+        if (btnToggleTop10) {
+            btnToggleTop10.addEventListener('click', () => {
+                playSound('click');
+                setTop10Expanded(!isTop10Expanded);
+            });
+        }
+
+        const btnToggleOthers = document.getElementById('btn-toggle-others');
+        if (btnToggleOthers) {
+            btnToggleOthers.addEventListener('click', () => {
+                playSound('click');
+                setOthersExpanded(!isOthersExpanded);
+            });
+        }
+
+        if (modalLeaderboard) {
+            modalLeaderboard.addEventListener('click', (e) => {
+                if (e.target === modalLeaderboard) closeLeaderboardModal();
+            });
+
+            // Cegah scroll tembus ke background document pada gesture mobile di luar daftar peringkat
+            modalLeaderboard.addEventListener('touchmove', (e) => {
+                const scrollBox = document.getElementById('lb-scroll-container');
+                if (!scrollBox || !scrollBox.contains(e.target)) {
+                    e.preventDefault();
+                }
+            }, { passive: false });
+        }
 
         // On Page Load: Check if already completed today
         const alreadyDone = checkDailyStatus();

@@ -11,707 +11,708 @@ class GameWordleSeeder extends Seeder
     {
         GameWordle::truncate();
 
-        $words = [
-            // Pasangan 1: Narkotika Populer
-            [
-                'word' => 'SABU',
-                'hint' => 'Narkotika jenis kristal putih yang dihisap dengan alat bong (4 huruf).',
-                'category' => 'Jenis Narkotika',
-                'definition' => 'SABU: Metamfetamin kristal yang merusak saraf otak dan memicu paranoia.',
-            ],
-            [
-                'word' => 'GANJA',
-                'hint' => 'Tanaman terlarang dengan daun hijau menjari yang sering dilinting (5 huruf).',
-                'category' => 'Jenis Narkotika',
-                'definition' => 'GANJA: Tanaman terlarang Cannabis sativa golongan I menurut UU Narkotika.',
-            ],
-
-            // Pasangan 2: Ketergantungan & Pemulihan
-            [
-                'word' => 'CANDU',
-                'hint' => 'Rasa ketagihan yang bikin pengen pakai narkoba terus-menerus (5 huruf).',
-                'category' => 'Adiksi',
-                'definition' => 'CANDU: Keterikatan fisik dan psikologis akut akibat zat adiktif.',
-            ],
-            [
-                'word' => 'REHAB',
-                'hint' => 'Tempat perawatan dan pemulihan bagi orang kecanduan narkoba (5 huruf).',
-                'category' => 'Pemulihan',
-                'definition' => 'REHAB: Layanan pemulihan medis dan sosial terpadu dari BNN agar pecandu pulih.',
-            ],
-
-            // Pasangan 3: Racun & Hidup Sehat
-            [
-                'word' => 'RACUN',
-                'hint' => 'Zat berbahaya yang mematikan dan merusak organ tubuh manusia (5 huruf).',
-                'category' => 'Bahaya Fisik',
-                'definition' => 'RACUN: Zat kimia destruktif di dalam narkoba perusak organ vital tubuh.',
-            ],
-            [
-                'word' => 'SEHAT',
-                'hint' => 'Kondisi tubuh bugar dan tidak sakit, lawan kata dari sakit (5 huruf).',
-                'category' => 'Gaya Hidup',
-                'definition' => 'SEHAT: Keadaan bugar dan seimbang raga serta jiwa tanpa narkotika.',
-            ],
-
-            // Pasangan 4: Kesembuhan & Kebebasan
-            [
-                'word' => 'PULIH',
-                'hint' => 'Keadaan sembuh kembali seperti semula setelah diobati (5 huruf).',
-                'category' => 'Pemulihan',
-                'definition' => 'PULIH: Kondisi sembuh dari ketergantungan dan siap kembali berprestasi.',
-            ],
-            [
-                'word' => 'BEBAS',
-                'hint' => 'Kondisi merdeka dan terlepas dari jeratan narkoba (5 huruf).',
-                'category' => 'Masa Depan',
-                'definition' => 'BEBAS: Hidup merdeka tanpa kecanduan zat berbahaya untuk masa depan gemilang.',
-            ],
-
-            // Pasangan 5: Jarum & Kesehatan Jiwa
-            [
-                'word' => 'JARUM',
-                'hint' => 'Benda tajam runcing pada alat suntik narkoba yang rawan tular virus (5 huruf).',
-                'category' => 'Alat Berbahaya',
-                'definition' => 'JARUM: Media penularan virus berbahaya seperti HIV bila digunakan bergantian.',
-            ],
-            [
-                'word' => 'WARAS',
-                'hint' => 'Pikiran sehat dan berakal budi, lawan kata dari gila atau hilang akal (5 huruf).',
-                'category' => 'Kesehatan Jiwa',
-                'definition' => 'WARAS: Kondisi akal budi sehat dan mampu berpikir rasional tanpa zat adiktif.',
-            ],
-
-            // Pasangan 6: Kesadaran & Hukum
-            [
-                'word' => 'SADAR',
-                'hint' => 'Kondisi pikiran jernih, lawan kata dari pingsan atau teler (5 huruf).',
-                'category' => 'Sikap Diri',
-                'definition' => 'SADAR: Keadaan terjaga dan memahami bahaya narkotika bagi diri dan keluarga.',
-            ],
-            [
-                'word' => 'HUKUM',
-                'hint' => 'Peraturan resmi negara yang memberi sanksi pidana bagi pengedar narkoba (5 huruf).',
-                'category' => 'Regulasi',
-                'definition' => 'HUKUM: Ketetapan perundang-undangan pidana yang menindak kejahatan narkotika.',
-            ],
-
-            // Pasangan 7: Aparat & Bahaya
-            [
-                'word' => 'POLISI',
-                'hint' => 'Aparat penegak hukum berseragam yang menangkap bandar narkoba (6 huruf).',
-                'category' => 'Penegakan Hukum',
-                'definition' => 'POLISI: Penegak hukum yang menangkap sindikat dan bandar narkoba bersama BNN.',
-            ],
-            [
-                'word' => 'BAHAYA',
-                'hint' => 'Kondisi tidak aman dan berisiko mencelakakan tubuh manusia (6 huruf).',
-                'category' => 'Edukasi Risiko',
-                'definition' => 'BAHAYA: Segala ancaman kerusakan fisik dan mental akibat obat terlarang.',
-            ],
-
-            // Pasangan 8: Tubuh & Titik Awal
-            [
-                'word' => 'DARAH',
-                'hint' => 'Cairan berwarna merah yang mengalir di dalam tubuh manusia (5 huruf).',
-                'category' => 'Organ Tubuh',
-                'definition' => 'DARAH: Cairan pengalir oksigen yang menyerap racun obat terlarang ke organ tubuh.',
-            ],
-            [
-                'word' => 'ROKOK',
-                'hint' => 'Batang tembakau hisap berpuntung yang merusak paru-paru (5 huruf).',
-                'category' => 'Pintu Masuk',
-                'definition' => 'ROKOK: Zat adiktif nikotin yang kerap menjadi gerbang awal mencoba narkoba.',
-            ],
-
-            // Pasangan 9: Organ Otak & Tes Medis
-            [
-                'word' => 'OTAK',
-                'hint' => 'Organ vital di dalam kepala yang digunakan untuk berpikir (4 huruf).',
-                'category' => 'Organ Vital',
-                'definition' => 'OTAK: Pusat kendali tubuh dan memori yang sel sarafnya dirusak narkoba.',
-            ],
-            [
-                'word' => 'URIN',
-                'hint' => 'Air kencing yang digunakan sebagai sampel pemeriksaan tes narkoba (4 huruf).',
-                'category' => 'Pemeriksaan Medis',
-                'definition' => 'URIN: Sampel biologis untuk menguji keberadaan zat narkotika dalam tubuh.',
-            ],
-
-            // Pasangan 10: Obat & Dampak Kerusakan
-            [
-                'word' => 'OBAT',
-                'hint' => 'Bahan sediaan pil atau kapsul untuk menyembuhkan orang sakit (4 huruf).',
-                'category' => 'Farmakologi',
-                'definition' => 'OBAT: Sediaan kimia medis yang bila disalahgunakan dapat memicu kecanduan.',
-            ],
-            [
-                'word' => 'RUSAK',
-                'hint' => 'Kondisi organ tubuh yang hancur karena pengaruh zat berbahaya (5 huruf).',
-                'category' => 'Dampak Narkoba',
-                'definition' => 'RUSAK: Kehancuran sel tubuh dan hilangnya masa depan akibat narkoba.',
-            ],
-
-            // Pasangan 11: Ketegasan & Beban Pikiran
-            [
-                'word' => 'TEGAS',
-                'hint' => 'Sikap berani menolak ajakan memakai narkoba tanpa ragu-ragu (5 huruf).',
-                'category' => 'Karakter Diri',
-                'definition' => 'TEGAS: Sikap berani menolak bujukan negatif demi menjaga masa depan.',
-            ],
-            [
-                'word' => 'STRES',
-                'hint' => 'Beban pikiran atau tekanan mental yang berat (5 huruf).',
-                'category' => 'Kesehatan Jiwa',
-                'definition' => 'STRES: Tekanan emosional yang harus diatasi dengan kegiatan positif, bukan obat.',
-            ],
-
-            // Pasangan 12: Bahan Buatan & Lingkungan Aman
-            [
-                'word' => 'KIMIA',
-                'hint' => 'Bahan sintetis buatan pabrik yang dicampur dalam narkoba terlarang (5 huruf).',
-                'category' => 'Zat Berbahaya',
-                'definition' => 'KIMIA: Campuran zat kimia industri ilegal yang merusak sistem saraf.',
-            ],
-            [
-                'word' => 'AMAN',
-                'hint' => 'Kondisi tenteram, damai, dan bebas dari ancaman bahaya (4 huruf).',
-                'category' => 'Lingkungan',
-                'definition' => 'AMAN: Kondisi pemukiman yang terlindung dari ancaman sindikat narkoba.',
-            ],
-
-            // Pasangan 13: Kehidupan & Ketahanan Diri
-            [
-                'word' => 'HIDUP',
-                'hint' => 'Bernapas dan beraktivitas di dunia, lawan kata dari mati (5 huruf).',
-                'category' => 'Nilai Kehidupan',
-                'definition' => 'HIDUP: Anugerah kehidupan yang bermakna bila dijalani sehat tanpa narkoba.',
-            ],
-            [
-                'word' => 'KUAT',
-                'hint' => 'Bertenaga dan tangguh menolak godaan, lawan kata dari lemah (4 huruf).',
-                'category' => 'Ketahanan Diri',
-                'definition' => 'KUAT: Ketangguhan mental seorang pemuda dalam menolak ajakan buruk.',
-            ],
-
-            // Pasangan 14: Bahaya Ekstrem & Hilang Kesadaran
-            [
-                'word' => 'MAUT',
-                'hint' => 'Kematian atau akhir hayat yang mengintai akibat overdosis narkoba (4 huruf).',
-                'category' => 'Risiko Fatal',
-                'definition' => 'MAUT: Kematian mendadak akibat kegagalan jantung karena overdosis.',
-            ],
-            [
-                'word' => 'KOMA',
-                'hint' => 'Keadaan pingsan dan tidak sadarkan diri lama di rumah sakit (4 huruf).',
-                'category' => 'Dampak Medis',
-                'definition' => 'KOMA: Kondisi penurunan kesadaran stadium akhir akibat keracunan zat.',
-            ],
-
-            // Pasangan 15: Pergaulan & Sakaw
-            [
-                'word' => 'TEMAN',
-                'hint' => 'Sahabat atau kawan sepermainan dalam pergaulan sehari-hari (5 huruf).',
-                'category' => 'Lingkungan Sosial',
-                'definition' => 'TEMAN: Sahabat sebaya yang membawa pengaruh positif dalam pergaulan.',
-            ],
-            [
-                'word' => 'SAKAW',
-                'hint' => 'Rasa sakit menyiksa saat tubuh pecandu mendadak putus zat narkoba (5 huruf).',
-                'category' => 'Gejala Putus Zat',
-                'definition' => 'SAKAW: Reaksi fisik menyiksa saat tubuh tidak mendapat pasokan zat harian.',
-            ],
-
-            // Pasangan 16: Nyeri Otot & Takaran Obat
-            [
-                'word' => 'KRAM',
-                'hint' => 'Kejang kaku dan nyeri hebat pada otot tubuh saat sakaw (4 huruf).',
-                'category' => 'Gejala Fisik',
-                'definition' => 'KRAM: Kontraksi otot menyakitkan yang timbul saat pecandu putus zat.',
-            ],
-            [
-                'word' => 'DOSIS',
-                'hint' => 'Ukuran atau takaran pemakaian obat yang dikonsumsi (5 huruf).',
-                'category' => 'Takaran Obat',
-                'definition' => 'DOSIS: Jumlah takaran zat yang melewati batas aman hingga merusak tubuh.',
-            ],
-
-            // Pasangan 17: Budi Pekerti & Lokasi Balai BNN
-            [
-                'word' => 'MORAL',
-                'hint' => 'Budi pekerti dan akhlak terpuji agar tidak terjerumus hal buruk (5 huruf).',
-                'category' => 'Nilai Etika',
-                'definition' => 'MORAL: Budi pekerti luhur pembimbing perbuatan baik dalam kehidupan.',
-            ],
-            [
-                'word' => 'BOGOR',
-                'hint' => 'Kota di Jawa Barat lokasi pusat balai rehabilitasi BNN Lido (5 huruf).',
-                'category' => 'Pusat Pemulihan',
-                'definition' => 'BOGOR: Lokasi Balai Besar Rehabilitasi BNN Lido yang membantu pecandu pulih.',
-            ],
-
-            // Pasangan 18: Kondisi Buruk & Hidup Alami
-            [
-                'word' => 'PARAH',
-                'hint' => 'Tingkat sakit atau kecanduan yang sudah stadium sangat berat (5 huruf).',
-                'category' => 'Kondisi Medis',
-                'definition' => 'PARAH: Tingkat ketergantungan kronis yang membutuhkan perawatan medis.',
-            ],
-            [
-                'word' => 'ALAMI',
-                'hint' => 'Berasal murni dari alam tanpa campuran bahan kimia buatan (5 huruf).',
-                'category' => 'Pola Hidup',
-                'definition' => 'ALAMI: Pola hidup murni dengan makanan sehat dan olahraga tanpa obat terlarang.',
-            ],
-
-            // Pasangan 19: Sikap Pencegahan & Penolakan
-            [
-                'word' => 'CEGAH',
-                'hint' => 'Tindakan membentengi diri sebelum terlanjur terjadi hal buruk (5 huruf).',
-                'category' => 'Pencegahan',
-                'definition' => 'CEGAH: Upaya preventif menjauhkan generasi muda dari ancaman narkoba.',
-            ],
-            [
-                'word' => 'TOLAK',
-                'hint' => 'Menyatakan tidak mau menerima ajakan narkoba, lawan dari terima (5 huruf).',
-                'category' => 'Aksi Penolakan',
-                'definition' => 'TOLAK: Sikap tegas tidak kompromi terhadap tawaran zat terlarang.',
-            ],
-
-            // Pasangan 20: Menghindar & Kepedulian
-            [
-                'word' => 'HINDAR',
-                'hint' => 'Menjauhkan diri dari pergaulan bebas dan tempat-tempat berbahaya (6 huruf).',
-                'category' => 'Tindakan Waspada',
-                'definition' => 'HINDAR: Tindakan menjauhkan diri dari lingkungan rawan peredaran narkoba.',
-            ],
-            [
-                'word' => 'PEDULI',
-                'hint' => 'Sikap empati dan perhatian tulus menolong sesama yang kesusahan (6 huruf).',
-                'category' => 'Empati Sosial',
-                'definition' => 'PEDULI: Sikap tanggap dan peduli menolong sesama agar terbebas dari narkotika.',
-            ],
-
-            // Pasangan 21: Menjauh & Merawat
-            [
-                'word' => 'JAUHI',
-                'hint' => 'Perintah untuk tidak mendekati narkoba dan barang haram (5 huruf).',
-                'category' => 'Pencegahan',
-                'definition' => 'JAUHI: Komitmen teguh menjaga jarak dari barang haram dan peredarannya.',
-            ],
-            [
-                'word' => 'RAWAT',
-                'hint' => 'Menjaga dan mengobati orang sakit agar bisa lekas sembuh (5 huruf).',
-                'category' => 'Layanan Medis',
-                'definition' => 'RAWAT: Proses penanganan dan terapi medis bagi korban narkotika.',
-            ],
-
-            // Pasangan 22: Pertolongan & Kerukunan
-            [
-                'word' => 'BANTU',
-                'hint' => 'Memberikan pertolongan kepada orang yang sedang kesusahan (5 huruf).',
-                'category' => 'Dukungan Sosial',
-                'definition' => 'BANTU: Memberikan uluran tangan untuk mengarahkan pengguna ke balai rehabilitasi.',
-            ],
-            [
-                'word' => 'RUKUN',
-                'hint' => 'Hidup damai dan tenteram bersama keluarga tanpa pertengkaran (5 huruf).',
-                'category' => 'Keluarga',
-                'definition' => 'RUKUN: Hubungan keluarga harmonis yang menjadi tempat aman bagi anak bertumbuh.',
-            ],
-
-            // Pasangan 23: Kecerdasan & Organ Hati
-            [
-                'word' => 'CERDAS',
-                'hint' => 'Pikiran pintar dan cerdik dalam memilih jalan hidup yang benar (6 huruf).',
-                'category' => 'Kecerdasan Mental',
-                'definition' => 'CERDAS: Kemampuan membedakan hal baik dan buruk demi masa depan.',
-            ],
-            [
-                'word' => 'HATI',
-                'hint' => 'Organ penting di dalam tubuh yang bertugas menyaring racun (4 huruf).',
-                'category' => 'Organ Tubuh',
-                'definition' => 'HATI: Organ tubuh penyaring zat toksik yang bisa rusak akibat narkotika.',
-            ],
-
-            // Pasangan 24: Organ Paru & Pengedar
-            [
-                'word' => 'PARU',
-                'hint' => 'Organ pernapasan di rongga dada yang rusak akibat asap rokok (4 huruf).',
-                'category' => 'Organ Pernapasan',
-                'definition' => 'PARU: Organ penukar oksigen yang rentan rusak akibat zat hisap berbahaya.',
-            ],
-            [
-                'word' => 'BANDAR',
-                'hint' => 'Bos besar pelaku peredaran gelap narkoba yang diburu polisi (6 huruf).',
-                'category' => 'Sindikat Gelap',
-                'definition' => 'BANDAR: Pelaku tindak pidana peredaran gelap yang merusak masa depan generasi bangsa.',
-            ],
-
-            // Pasangan 25: Pasien & Dokter
-            [
-                'word' => 'PASIEN',
-                'hint' => 'Orang sakit yang sedang menjalani pengobatan dan dirawat dokter (6 huruf).',
-                'category' => 'Rehabilitasi',
-                'definition' => 'PASIEN: Individu yang menerima pendampingan dokter dan konselor untuk pulih.',
-            ],
-            [
-                'word' => 'DOKTER',
-                'hint' => 'Tenaga medis profesional yang memeriksa dan mengobati orang sakit (6 huruf).',
-                'category' => 'Tenaga Medis',
-                'definition' => 'DOKTER: Tenaga kesehatan berkeahlian medis yang menangani detoksifikasi pasien.',
-            ],
-
-            // Pasangan 26: Terapi & Menjaga Diri
-            [
-                'word' => 'TERAPI',
-                'hint' => 'Metode pengobatan dan latihan medis untuk memulihkan pecandu (6 huruf).',
-                'category' => 'Metode Pemulihan',
-                'definition' => 'TERAPI: Rangkaian pengobatan perilaku dan medis agar pasien kembali mandiri.',
-            ],
-            [
-                'word' => 'JAGA',
-                'hint' => 'Menjaga dan melindungi diri serta keluarga agar tetap selamat (4 huruf).',
-                'category' => 'Kewaspadaan',
-                'definition' => 'JAGA: Sikap mawas diri untuk memelihara kehormatan dan kesehatan diri.',
-            ],
-
-            // Pasangan 27: Bersih Lingkungan & Waktu
-            [
-                'word' => 'BERSIH',
-                'hint' => 'Keadaan tubuh dan lingkungan yang bebas dari kotoran dan narkoba (6 huruf).',
-                'category' => 'Desa Bersinar',
-                'definition' => 'BERSIH: Kondisi bebas narkotika seperti dalam program Desa Bersinar BNN.',
-            ],
-            [
-                'word' => 'MASA',
-                'hint' => 'Waktu atau zaman perjalanan hidup manusia (4 huruf).',
-                'category' => 'Masa Depan',
-                'definition' => 'MASA: Perjalanan waktu hidup yang harus diisi karya dan prestasi.',
-            ],
-
-            // Pasangan 28: Hari Depan & Kesuksesan
-            [
-                'word' => 'DEPAN',
-                'hint' => 'Hari esok atau masa yang akan datang, lawan kata dari belakang (5 huruf).',
-                'category' => 'Cita-cita',
-                'definition' => 'DEPAN: Hari esok yang penuh peluang cerah bagi generasi yang berprestasi.',
-            ],
-            [
-                'word' => 'SUKSES',
-                'hint' => 'Berhasil meraih cita-cita dan prestasi yang dibanggakan (6 huruf).',
-                'category' => 'Prestasi',
-                'definition' => 'SUKSES: Puncak pencapaian karir dan prestasi yang diraih dengan kejujuran.',
-            ],
-
-            // Pasangan 29: Kebanggaan & Kejujuran
-            [
-                'word' => 'BANGGA',
-                'hint' => 'Perasaan senang dan puas di hati atas prestasi yang diraih (6 huruf).',
-                'category' => 'Kebanggaan',
-                'definition' => 'BANGGA: Rasa hormat dan sukacita orang tua atas prestasi buah hatinya.',
-            ],
-            [
-                'word' => 'JUJUR',
-                'hint' => 'Berkata apa adanya sesuai fakta dan tidak berbohong (5 huruf).',
-                'category' => 'Karakter Moral',
-                'definition' => 'JUJUR: Sikap berterus terang yang menjauhkan seseorang dari perbuatan terlarang.',
-            ],
-
-            // Pasangan 30: Keberanian & Kesembuhan
-            [
-                'word' => 'BERANI',
-                'hint' => 'Tidak takut menolak hal buruk, lawan kata dari penakut (6 huruf).',
-                'category' => 'Karakter Tangguh',
-                'definition' => 'BERANI: Keteguhan tekad untuk menolak bujukan kawan yang menyesatkan.',
-            ],
-            [
-                'word' => 'SEMBUH',
-                'hint' => 'Keadaan pulih dan sehat kembali dari penyakit (6 huruf).',
-                'category' => 'Pemulihan',
-                'definition' => 'SEMBUH: Keadaan pulih seutuhnya dari belenggu penyakit adiksi.',
-            ],
-
-            // Pasangan 31: Kebugaran & Kedamaian
-            [
-                'word' => 'BUGAR',
-                'hint' => 'Kondisi fisik segar, fit, dan penuh stamina (5 huruf).',
-                'category' => 'Kesehatan Jasmani',
-                'definition' => 'BUGAR: Stamina fisik prima yang diperoleh melalui olahraga dan istirahat.',
-            ],
-            [
-                'word' => 'DAMAI',
-                'hint' => 'Suasana tenteram dan tenang tanpa ada keributan atau kekacauan (5 huruf).',
-                'category' => 'Kedamaian Hati',
-                'definition' => 'DAMAI: Ketenteraman batin yang dirasakan orang yang hidup lurus dan sehat.',
-            ],
-
-            // Pasangan 32: Kepintaran & Kasih Sayang
-            [
-                'word' => 'PINTAR',
-                'hint' => 'Pandai dan cerdik dalam belajar di sekolah, lawan kata bodoh (6 huruf).',
-                'category' => 'Intelektualitas',
-                'definition' => 'PINTAR: Menggunakan akal budi untuk melindungi diri dari tipu daya narkoba.',
-            ],
-            [
-                'word' => 'KASIH',
-                'hint' => 'Perasaan sayang dan cinta yang tulus kepada sesama (5 huruf).',
-                'category' => 'Kasih Keluarga',
-                'definition' => 'KASIH: Kehangatan hubungan keluarga yang menjadi penyejuk hati anak muda.',
-            ],
-
-            // Pasangan 33: Perhatian & Rumah
-            [
-                'word' => 'SAYANG',
-                'hint' => 'Cinta dan perhatian tulus dari orang tua kepada anaknya (6 huruf).',
-                'category' => 'Kasih Keluarga',
-                'definition' => 'SAYANG: Cinta tanpa syarat dari keluarga yang menguatkan mental anak.',
-            ],
-            [
-                'word' => 'RUMAH',
-                'hint' => 'Tempat tinggal dan bernaung bersama keluarga tempat kita pulang (5 huruf).',
-                'category' => 'Tempat Tinggal',
-                'definition' => 'RUMAH: Lingkungan pertama pembentuk watak dan kepribadian generasi muda.',
-            ],
-
-            // Pasangan 34: Orang Tua Tercinta
-            [
-                'word' => 'MAMA',
-                'hint' => 'Ibu tercinta yang melahirkan dan membesarkan anak-anaknya (4 huruf).',
-                'category' => 'Orang Tua',
-                'definition' => 'MAMA: Sosok penyayang yang senantiasa menjaga keselamatan keluarga.',
-            ],
-            [
-                'word' => 'PAPA',
-                'hint' => 'Ayah tercinta yang menjadi kepala keluarga pelindung rumah (4 huruf).',
-                'category' => 'Orang Tua',
-                'definition' => 'PAPA: Kepala keluarga yang menjadi teladan hidup jujur dan bertanggung jawab.',
-            ],
-
-            // Pasangan 35: Generasi Anak & Lingkungan Kota
-            [
-                'word' => 'ANAK',
-                'hint' => 'Putra atau putri buah hati kesayangan orang tua (4 huruf).',
-                'category' => 'Generasi Muda',
-                'definition' => 'ANAK: Masa depan bangsa yang wajib dilindungi dari bahaya narkotika.',
-            ],
-            [
-                'word' => 'KOTA',
-                'hint' => 'Pusat pemukiman ramai yang banyak gedung dan pertokoan (4 huruf).',
-                'category' => 'Wilayah Hukum',
-                'definition' => 'KOTA: Pusat peradaban yang harus dijaga ketenteraman dan keamanannya.',
-            ],
-
-            // Pasangan 36: Desa & Peran Warga
-            [
-                'word' => 'DESA',
-                'hint' => 'Wilayah perkampungan yang asri, contohnya program Desa Bersinar (4 huruf).',
-                'category' => 'Pedesaan',
-                'definition' => 'DESA: Komunitas masyarakat yang kokoh menolak masuknya barang terlarang.',
-            ],
-            [
-                'word' => 'WARGA',
-                'hint' => 'Penduduk atau masyarakat yang tinggal di suatu lingkungan (5 huruf).',
-                'category' => 'Masyarakat',
-                'definition' => 'WARGA: Penduduk yang memiliki kepedulian bersama menjaga lingkungannya.',
-            ],
-
-            // Pasangan 37: Hakim & Sidang
-            [
-                'word' => 'HAKIM',
-                'hint' => 'Pejabat di pengadilan yang memutuskan vonis hukuman bagi terdakwa (5 huruf).',
-                'category' => 'Peradilan',
-                'definition' => 'HAKIM: Aparat hukum yang menegakkan keadilan dan memberi sanksi pidana.',
-            ],
-            [
-                'word' => 'SIDANG',
-                'hint' => 'Pertemuan resmi di pengadilan untuk memeriksa perkara hukum (6 huruf).',
-                'category' => 'Proses Hukum',
-                'definition' => 'SIDANG: Pertemuan peradilan resmi untuk membuktikan tindak kejahatan.',
-            ],
-
-            // Pasangan 38: Vonis & Jerat
-            [
-                'word' => 'VONIS',
-                'hint' => 'Keputusan hukuman resmi dari hakim di persidangan (5 huruf).',
-                'category' => 'Sanksi Hukum',
-                'definition' => 'VONIS: Penetapan hukuman pidana yang dijatuhkan hakim kepada terpidana.',
-            ],
-            [
-                'word' => 'JERAT',
-                'hint' => 'Perangkap atau jebakan yang mengikat korban narkoba (5 huruf).',
-                'category' => 'Bahaya Adiksi',
-                'definition' => 'JERAT: Ikatan kecanduan yang membuat pemakai narkoba sulit melepaskan diri.',
-            ],
-
-            // Pasangan 39: Jebakan & Rayuan
-            [
-                'word' => 'JEBAK',
-                'hint' => 'Perangkap tipu muslihat sindikat untuk menjerat pemula (5 huruf).',
-                'category' => 'Modus Operandi',
-                'definition' => 'JEBAK: Perangkap tipu muslihat sindikat untuk mendapatkan korban baru.',
-            ],
-            [
-                'word' => 'RAYU',
-                'hint' => 'Bujukan manis pengedar untuk memikat calon pembeli narkoba (4 huruf).',
-                'category' => 'Bujukan Negatif',
-                'definition' => 'RAYU: Perkataan manipulatif pengedar yang menipu calon korban pemula.',
-            ],
-
-            // Pasangan 40: Penyesalan Diri & Kerugian
-            [
-                'word' => 'SESAL',
-                'hint' => 'Rasa kecewa mendalam yang datang terlambat setelah berbuat salah (5 huruf).',
-                'category' => 'Penyesalan Diri',
-                'definition' => 'SESAL: Perasaan duka mendalam saat menyadari narkoba menghancurkan masa depan.',
-            ],
-            [
-                'word' => 'RUGI',
-                'hint' => 'Kehilangan uang dan masa depan sia-sia, lawan kata dari untung (4 huruf).',
-                'category' => 'Dampak Ekonomi',
-                'definition' => 'RUGI: Kerugian harta dan masa muda yang sia-sia karena membeli zat terlarang.',
-            ],
-
-            // Pasangan 41: Kehancuran & Tekad
-            [
-                'word' => 'HANCUR',
-                'hint' => 'Kondisi rusak binasa sama sekali akibat kecanduan zat terlarang (6 huruf).',
-                'category' => 'Dampak Fatal',
-                'definition' => 'HANCUR: Kehancuran cita-cita dan kehormatan keluarga akibat adiksi obat.',
-            ],
-            [
-                'word' => 'TEKAD',
-                'hint' => 'Kemauan yang bulat dan teguh di dalam hati untuk hidup bersih (5 huruf).',
-                'category' => 'Niat Baik',
-                'definition' => 'TEKAD: Ketetapan hati yang teguh untuk hidup bersih dan penuh manfaat.',
-            ],
-
-            // Pasangan 42: Janji & Cita-cita
-            [
-                'word' => 'JANJI',
-                'hint' => 'Komitmen sumpah pada diri sendiri yang wajib ditepati (5 huruf).',
-                'category' => 'Komitmen',
-                'definition' => 'JANJI: Ikrar setia untuk membahagiakan orang tua tanpa menyentuh narkoba.',
-            ],
-            [
-                'word' => 'CITA',
-                'hint' => 'Impian luhur masa depan yang ingin diraih dengan kerja keras (4 huruf).',
-                'category' => 'Cita-cita',
-                'definition' => 'CITA: Keinginan mulia meraih kesuksesan yang wajib dijaga dari narkoba.',
-            ],
-
-            // Pasangan 43: Impian & Kebenaran
-            [
-                'word' => 'MIMPI',
-                'hint' => 'Khayalan tidur atau cita-cita yang ingin dicapai saat bangun (5 huruf).',
-                'category' => 'Harapan',
-                'definition' => 'MIMPI: Visi hari esok yang terang benderang bagi pemuda yang bersih raga dan jiwa.',
-            ],
-            [
-                'word' => 'BENAR',
-                'hint' => 'Sesuai dengan kenyataan dan aturan yang sah, lawan kata dari salah (5 huruf).',
-                'category' => 'Kebenaran',
-                'definition' => 'BENAR: Berpegang teguh pada prinsip kebenaran dan kejujuran hidup.',
-            ],
-
-            // Pasangan 44: Prestasi Gemilang (HARI INI / DAY 294)
-            [
-                'word' => 'JUARA',
-                'hint' => 'Pemenang peringkat pertama dalam lomba atau kompetisi (5 huruf).',
-                'category' => 'Prestasi',
-                'definition' => 'JUARA: Pemenang kehidupan yang berhasil menaklukkan godaan dan berprestasi.',
-            ],
-            [
-                'word' => 'HEBAT',
-                'hint' => 'Luar biasa dan mengagumkan dalam mengukir prestasi diri (5 huruf).',
-                'category' => 'Prestasi Diri',
-                'definition' => 'HEBAT: Kemampuan anak bangsa berprestasi puncak tanpa obat terlarang.',
-            ],
-
-            // Pasangan 45: Keadilan & Budi Pekerti
-            [
-                'word' => 'ADIL',
-                'hint' => 'Sikap seimbang dan tidak memihak, lawan kata dari curang (4 huruf).',
-                'category' => 'Keadilan',
-                'definition' => 'ADIL: Menegakkan hukum secara seimbang demi kepastian dan keadilan.',
-            ],
-            [
-                'word' => 'BAIK',
-                'hint' => 'Perilaku terpuji dan ramah, lawan kata dari jahat atau buruk (4 huruf).',
-                'category' => 'Budi Pekerti',
-                'definition' => 'BAIK: Akhlak mulia yang membentengi diri dari pergaulan menyimpang.',
-            ],
-
-            // Pasangan 46: Kebugaran & Keyakinan
-            [
-                'word' => 'SEGAR',
-                'hint' => 'Kondisi tubuh fit dan bersemangat setelah berolahraga (5 huruf).',
-                'category' => 'Kebugaran',
-                'definition' => 'SEGAR: Stamina jasmani bugar alami tanpa stimulan kimiawi buatan.',
-            ],
-            [
-                'word' => 'YAKIN',
-                'hint' => 'Percaya diri dan mantap di hati bahwa kita bisa sukses (5 huruf).',
-                'category' => 'Keyakinan',
-                'definition' => 'YAKIN: Rasa percaya diri yang tinggi dalam menggapai masa depan cerah.',
-            ],
-
-            // Pasangan 47: Kegembiraan & Ketaatan
-            [
-                'word' => 'CERIA',
-                'hint' => 'Suasana hati bergembira dan riang tanpa rasa murung (5 huruf).',
-                'category' => 'Kesehatan Mental',
-                'definition' => 'CERIA: Kegembiraan alami bersama keluarga dan sahabat tanpa zat kimia.',
-            ],
-            [
-                'word' => 'PATUH',
-                'hint' => 'Taat dan patuh pada aturan hukum serta nasihat orang tua (5 huruf).',
-                'category' => 'Ketaatan',
-                'definition' => 'PATUH: Sikap disiplin menghormati hukum negara dan norma keluarga.',
-            ],
-
-            // Pasangan 48: Ketertiban & Kewaspadaan
-            [
-                'word' => 'TERTIB',
-                'hint' => 'Rapi dan teratur menjalankan aturan dalam hidup bermasyarakat (6 huruf).',
-                'category' => 'Ketertiban',
-                'definition' => 'TERTIB: Suasana lingkungan yang taat hukum, aman, dan tenteram.',
-            ],
-            [
-                'word' => 'AWAS',
-                'hint' => 'Hati-hati dan waspada terhadap bahaya di sekeliling kita (4 huruf).',
-                'category' => 'Kewaspadaan',
-                'definition' => 'AWAS: Sikap waspada mengenali modus baru peredaran sindikat narkotika.',
-            ],
-
-            // Pasangan 49: Ketanggapan & Kebersamaan
-            [
-                'word' => 'SIGAP',
-                'hint' => 'Cepat tanggap dan gesit dalam bertindak mencegah marabahaya (5 huruf).',
-                'category' => 'Ketanggapan',
-                'definition' => 'SIGAP: Tindakan cepat warga dalam melapor dugaan peredaran obat terlarang.',
-            ],
-            [
-                'word' => 'SOLID',
-                'hint' => 'Kompak dan bersatu padu bersama kawan melawan peredaran gelap (5 huruf).',
-                'category' => 'Kebersamaan',
-                'definition' => 'SOLID: Kekuatan persaudaraan warga menjaga desa tetap bersih narkoba.',
-            ],
-
-            // Pasangan 50: Ketulusan & Kemuliaan
-            [
-                'word' => 'IKHLAS',
-                'hint' => 'Tulus hati tanpa pamrih dalam menolong sesama yang membutuhkan (6 huruf).',
-                'category' => 'Ketulusan',
-                'definition' => 'IKHLAS: Niat tulus mengulurkan tangan membantu korban penyalahgunaan zat.',
-            ],
-            [
-                'word' => 'MULIA',
-                'hint' => 'Terpuji dan berharga di mata masyarakat dan Tuhan (5 huruf).',
-                'category' => 'Kemuliaan Hidup',
-                'definition' => 'MULIA: Hidup bermartabat dengan karya nyata dan bersih dari narkotika.',
-            ],
-        ];
+        $words = array (
+  0 => 
+  array (
+    'word' => 'CANDU',
+    'hint' => 'Rasa ketagihan yang bikin pengen pakai narkoba terus-menerus (5 huruf).',
+    'category' => 'Adiksi',
+    'definition' => 'CANDU: Keterikatan fisik dan psikologis akut akibat zat adiktif pada otak.',
+  ),
+  1 => 
+  array (
+    'word' => 'REHAB',
+    'hint' => 'Tempat atau layanan perawatan pemulihan resmi BNN untuk pecandu (5 huruf).',
+    'category' => 'Pemulihan',
+    'definition' => 'REHAB: Layanan medis dan sosial terpadu BNN agar pecandu pulih seutuhnya.',
+  ),
+  2 => 
+  array (
+    'word' => 'SAKAW',
+    'hint' => 'Rasa sakit menyiksa saat tubuh pecandu mendadak putus zat narkoba (5 huruf).',
+    'category' => 'Gejala Putus Zat',
+    'definition' => 'SAKAW: Gejala fisik menyiksa saat tubuh tidak mendapat pasokan zat adiktif.',
+  ),
+  3 => 
+  array (
+    'word' => 'OTAK',
+    'hint' => 'Organ vital di kepala yang fungsi nalar dan sarafnya dirusak narkoba (4 huruf).',
+    'category' => 'Organ Vital',
+    'definition' => 'OTAK: Pusat kendali tubuh dan memori yang sel sarafnya dirusak narkotika.',
+  ),
+  4 => 
+  array (
+    'word' => 'SABU',
+    'hint' => 'Narkotika jenis kristal putih stimulan yang dihisap dengan alat bong (4 huruf).',
+    'category' => 'Jenis Narkotika',
+    'definition' => 'SABU: Metamfetamin kristal yang merusak susunan saraf pusat dan memicu paranoia.',
+  ),
+  5 => 
+  array (
+    'word' => 'RACUN',
+    'hint' => 'Zat berbahaya dalam narkoba yang merusak organ tubuh manusia (5 huruf).',
+    'category' => 'Bahaya Fisik',
+    'definition' => 'RACUN: Bahan kimia destruktif di dalam narkoba perusak organ vital tubuh.',
+  ),
+  6 => 
+  array (
+    'word' => 'BONG',
+    'hint' => 'Alat hisap rakitan botol air yang biasa dipakai pengisap kristal sabu (4 huruf).',
+    'category' => 'Alat Narkoba',
+    'definition' => 'BONG: Perangkat hisap pipa air yang digunakan untuk membakar kristal metamfetamin.',
+  ),
+  7 => 
+  array (
+    'word' => 'PIPET',
+    'hint' => 'Pipa kaca kecil silinder yang dipakai membakar kristal sabu (5 huruf).',
+    'category' => 'Alat Narkoba',
+    'definition' => 'PIPET: Tabung kaca kecil untuk memanaskan kristal sabu saat dihisap.',
+  ),
+  8 => 
+  array (
+    'word' => 'GANJA',
+    'hint' => 'Tanaman terlarang dengan daun hijau menjari yang sering dilinting (5 huruf).',
+    'category' => 'Jenis Narkotika',
+    'definition' => 'GANJA: Tanaman Cannabis sativa golongan I yang dilarang keras berdasarkan UU.',
+  ),
+  9 => 
+  array (
+    'word' => 'SINTE',
+    'hint' => 'Tembakau sintetis berbahaya semprotan bahan kimia buatan (5 huruf).',
+    'category' => 'Narkoba Sintetis',
+    'definition' => 'SINTE: Daun yang disemprot cairan kimia kanabinoid sintetis pemicu kejang dan serangan jantung.',
+  ),
+  10 => 
+  array (
+    'word' => 'TELER',
+    'hint' => 'Kondisi mabuk linglung dan hilang koordinasi fisik akibat zat narkoba (5 huruf).',
+    'category' => 'Efek Narkoba',
+    'definition' => 'TELER: Keadaan tidak sadar penuh dan linglung akibat pengaruh zat psikoaktif.',
+  ),
+  11 => 
+  array (
+    'word' => 'VAPE',
+    'hint' => 'Rokok elektrik yang cairannya kini rawan disusupi narkotika sintetis (4 huruf).',
+    'category' => 'Modus Kamuflase',
+    'definition' => 'VAPE: Perangkat uap elektrik yang marak disalahgunakan untuk liquid narkotika.',
+  ),
+  12 => 
+  array (
+    'word' => 'JARUM',
+    'hint' => 'Benda tajam runcing pada alat suntik narkoba penular virus HIV (5 huruf).',
+    'category' => 'Alat Berbahaya',
+    'definition' => 'JARUM: Media penularan virus mematikan bila disalahgunakan bergantian oleh pecandu.',
+  ),
+  13 => 
+  array (
+    'word' => 'MORFIN',
+    'hint' => 'Obat pereda nyeri keras dari getah opium yang diawasi sangat ketat (6 huruf).',
+    'category' => 'Golongan Opiat',
+    'definition' => 'MORFIN: Alkaloid analgesik kuat dari opium yang hanya boleh untuk indikasi medis khusus.',
+  ),
+  14 => 
+  array (
+    'word' => 'OPIUM',
+    'hint' => 'Getah mentah tanaman Papaver somniferum bahan baku morfin dan heroin (5 huruf).',
+    'category' => 'Golongan Opiat',
+    'definition' => 'OPIUM: Bahan baku alami opiat yang menjadi asal mula berbagai obat terlarang.',
+  ),
+  15 => 
+  array (
+    'word' => 'KOMA',
+    'hint' => 'Kondisi pingsan dan hilang kesadaran stadium akhir akibat overdosis (4 huruf).',
+    'category' => 'Risiko Fatal',
+    'definition' => 'KOMA: Hilangnya kesadaran mendalam akibat keracunan zat adiktif yang melumpuhkan otak.',
+  ),
+  16 => 
+  array (
+    'word' => 'OBAT',
+    'hint' => 'Bahan medis yang berbahaya bila disalahgunakan tanpa resep dokter (4 huruf).',
+    'category' => 'Farmakologi',
+    'definition' => 'OBAT: Sediaan kimia medis yang dapat memicu kecanduan bila dikonsumsi sembarangan.',
+  ),
+  17 => 
+  array (
+    'word' => 'HIRUP',
+    'hint' => 'Menghisap uap lem perekat (inhalan) yang mematikan sel-sel saraf otak (5 huruf).',
+    'category' => 'Modus Inhalan',
+    'definition' => 'HIRUP: Cara penyalahgunaan zat pelarut kimia uap lem yang membunuh sel-sel saraf otak.',
+  ),
+  18 => 
+  array (
+    'word' => 'KOKAIN',
+    'hint' => 'Serbuk putih stimulan dari daun tanaman koka perusak pembuluh darah (6 huruf).',
+    'category' => 'Jenis Narkotika',
+    'definition' => 'KOKAIN: Alkaloid stimulan kuat dari tanaman koka yang memicu vasokonstriksi jantung.',
+  ),
+  19 => 
+  array (
+    'word' => 'KIMIA',
+    'hint' => 'Senyawa sintetis buatan pabrik dalam campuran narkoba terlarang (5 huruf).',
+    'category' => 'Zat Berbahaya',
+    'definition' => 'KIMIA: Bahan sintetis ilegal yang diracik tanpa standar farmasi di lab gelap.',
+  ),
+  20 => 
+  array (
+    'word' => 'BANDAR',
+    'hint' => 'Bos besar pengendali dan pemodal peredaran gelap narkoba (6 huruf).',
+    'category' => 'Sindikat Gelap',
+    'definition' => 'BANDAR: Pelaku tindak pidana peredaran gelap yang diancam hukuman pidana mati.',
+  ),
+  21 => 
+  array (
+    'word' => 'KURIR',
+    'hint' => 'Orang suruhan sindikat yang mengantarkan paket barang narkoba (5 huruf).',
+    'category' => 'Sindikat Gelap',
+    'definition' => 'KURIR: Pengantar narkotika yang tetap dijatuhi sanksi pidana penjara sangat berat.',
+  ),
+  22 => 
+  array (
+    'word' => 'HUKUM',
+    'hint' => 'Peraturan resmi negara yang memberi sanksi tegas bagi pelaku narkoba (5 huruf).',
+    'category' => 'Regulasi',
+    'definition' => 'HUKUM: Ketetapan perundang-undangan pidana yang menindak tegas kejahatan narkotika.',
+  ),
+  23 => 
+  array (
+    'word' => 'RAZIA',
+    'hint' => 'Operasi pemeriksaan serentak aparat untuk menjaring peredaran narkoba (5 huruf).',
+    'category' => 'Penegakan Hukum',
+    'definition' => 'RAZIA: Tindakan penggeledahan dan pemeriksaan urine serentak di tempat rawan narkoba.',
+  ),
+  24 => 
+  array (
+    'word' => 'PULIH',
+    'hint' => 'Keadaan sembuh dan bisa hidup normal kembali setelah berhenti narkoba (5 huruf).',
+    'category' => 'Pemulihan',
+    'definition' => 'PULIH: Kondisi keberhasilan mantan pengguna terbebas dari jeratan adiksi obat.',
+  ),
+  25 => 
+  array (
+    'word' => 'TERAPI',
+    'hint' => 'Metode pengobatan medis dan psikologis untuk memulihkan pecandu (6 huruf).',
+    'category' => 'Layanan Medis',
+    'definition' => 'TERAPI: Rangkaian pemulihan perilaku dan medis agar pasien adiksi kembali mandiri.',
+  ),
+  26 => 
+  array (
+    'word' => 'URIN',
+    'hint' => 'Sampel air seni yang diperiksa pada tes uji skrining narkoba (4 huruf).',
+    'category' => 'Pemeriksaan Medis',
+    'definition' => 'URIN: Sampel biologis utama untuk mendeteksi keberadaan metabolit zat narkotika.',
+  ),
+  27 => 
+  array (
+    'word' => 'BEBAS',
+    'hint' => 'Kondisi merdeka dan terlepas seutuhnya dari jeratan belenggu narkoba (5 huruf).',
+    'category' => 'Masa Depan',
+    'definition' => 'BEBAS: Keadaan merdeka tanpa kecanduan untuk berkarya dan meraih cita-cita masa depan.',
+  ),
+  28 => 
+  array (
+    'word' => 'DARAH',
+    'hint' => 'Cairan tubuh yang tercemar racun saat seseorang mengonsumsi narkoba (5 huruf).',
+    'category' => 'Organ Tubuh',
+    'definition' => 'DARAH: Cairan pengalir oksigen yang menyerap racun narkotika ke seluruh tubuh.',
+  ),
+  29 => 
+  array (
+    'word' => 'SUNTIK',
+    'hint' => 'Cara memasukkan zat cair narkoba langsung ke pembuluh darah vena (6 huruf).',
+    'category' => 'Modus Konsumsi',
+    'definition' => 'SUNTIK: Metode pemakaian narkoba cair dengan jarum berisiko tinggi HIV dan overdosis.',
+  ),
+  30 => 
+  array (
+    'word' => 'KRAM',
+    'hint' => 'Kejang kaku dan nyeri hebat pada otot tubuh saat pecandu putus zat (4 huruf).',
+    'category' => 'Gejala Fisik',
+    'definition' => 'KRAM: Kontraksi otot menyakitkan yang timbul saat tubuh pecandu mengalami sakaw.',
+  ),
+  31 => 
+  array (
+    'word' => 'BADAN',
+    'hint' => 'Fisik raga manusia yang kurus kering dan rusak akibat zat adiktif (5 huruf).',
+    'category' => 'Kondisi Jasmani',
+    'definition' => 'BADAN: Struktur fisik raga yang mengalami penurunan daya tahan akibat racun narkotika.',
+  ),
+  32 => 
+  array (
+    'word' => 'STRES',
+    'hint' => 'Beban pikiran berat yang tidak boleh dilampiaskan ke narkoba (5 huruf).',
+    'category' => 'Kesehatan Jiwa',
+    'definition' => 'STRES: Tekanan emosional yang harus diatasi dengan pola hidup positif, bukan obat.',
+  ),
+  33 => 
+  array (
+    'word' => 'PANIK',
+    'hint' => 'Rasa cemas dan ketakutan hebat saat tubuh pecandu putus obat penenang (5 huruf).',
+    'category' => 'Kesehatan Jiwa',
+    'definition' => 'PANIK: Serangan kecemasan akut yang menyertai sindrom putus zat obat penenang.',
+  ),
+  34 => 
+  array (
+    'word' => 'SADAR',
+    'hint' => 'Kondisi pikiran jernih, lawan kata dari pingsan atau teler (5 huruf).',
+    'category' => 'Sikap Diri',
+    'definition' => 'SADAR: Keadaan terjaga dan memahami bahaya narkotika bagi diri dan keluarga.',
+  ),
+  35 => 
+  array (
+    'word' => 'WARAS',
+    'hint' => 'Pikiran sehat dan berakal budi, lawan kata dari hilang akal (5 huruf).',
+    'category' => 'Kesehatan Jiwa',
+    'definition' => 'WARAS: Kondisi akal budi sehat dan mampu berpikir rasional tanpa zat memabukkan.',
+  ),
+  36 => 
+  array (
+    'word' => 'ROKOK',
+    'hint' => 'Batang tembakau hisap berpuntung pintu masuk awal mencoba narkoba (5 huruf).',
+    'category' => 'Pintu Masuk',
+    'definition' => 'ROKOK: Zat adiktif nikotin yang kerap menjadi gerbang awal mencoba obat terlarang.',
+  ),
+  37 => 
+  array (
+    'word' => 'TOLAK',
+    'hint' => 'Sikap tegas menyatakan tidak mau saat ditawari narkoba, lawan terima (5 huruf).',
+    'category' => 'Pencegahan',
+    'definition' => 'TOLAK: Sikap tegas tidak kompromi terhadap segala bentuk tawaran zat terlarang.',
+  ),
+  38 => 
+  array (
+    'word' => 'BAHAYA',
+    'hint' => 'Kondisi tidak aman dan berisiko mencelakakan tubuh akibat narkoba (6 huruf).',
+    'category' => 'Edukasi Risiko',
+    'definition' => 'BAHAYA: Segala ancaman kerusakan fisik, mental, dan masa depan akibat narkoba.',
+  ),
+  39 => 
+  array (
+    'word' => 'CEGAH',
+    'hint' => 'Tindakan membentengi diri sebelum terlanjur terjerumus narkoba (5 huruf).',
+    'category' => 'Pencegahan',
+    'definition' => 'CEGAH: Upaya preventif menjauhkan generasi muda dari ancaman narkotika.',
+  ),
+  40 => 
+  array (
+    'word' => 'HEROIN',
+    'hint' => 'Narkotika serbuk putih sangat adiktif turunan morfin (putaw) (6 huruf).',
+    'category' => 'Golongan Opiat',
+    'definition' => 'HEROIN: Serbuk putih perusak sistem saraf yang menekan pusat pernapasan manusia.',
+  ),
+  41 => 
+  array (
+    'word' => 'SEHAT',
+    'hint' => 'Kondisi tubuh bugar tanpa terpengaruh zat narkoba, lawan kata sakit (5 huruf).',
+    'category' => 'Gaya Hidup',
+    'definition' => 'SEHAT: Keadaan bugar dan seimbang fisik mental tanpa ketergantungan obat terlarang.',
+  ),
+  42 => 
+  array (
+    'word' => 'PUTAW',
+    'hint' => 'Istilah jalanan populer untuk narkotika jenis serbuk heroin (5 huruf).',
+    'category' => 'Golongan Opiat',
+    'definition' => 'PUTAW: Sebutan populer heroin kelas jalanan yang kerap dikonsumsi secara suntik.',
+  ),
+  43 => 
+  array (
+    'word' => 'PARU',
+    'hint' => 'Organ pernapasan di rongga dada yang rusak akibat hisapan zat terlarang (4 huruf).',
+    'category' => 'Organ Tubuh',
+    'definition' => 'PARU: Organ penukar oksigen yang rentan mengalami infeksi dan kerusakan jaringan akibat zat hisap.',
+  ),
+  44 => 
+  array (
+    'word' => 'JAUHI',
+    'hint' => 'Perintah untuk menjaga jarak dan tidak mendekati narkoba (5 huruf).',
+    'category' => 'Pencegahan',
+    'definition' => 'JAUHI: Komitmen teguh untuk menjaga jarak dari pergaulan dan peredaran narkoba.',
+  ),
+  45 => 
+  array (
+    'word' => 'RAWAT',
+    'hint' => 'Menjaga dan mengobati pecandu agar lekas pulih dari ketergantungan (5 huruf).',
+    'category' => 'Layanan Medis',
+    'definition' => 'RAWAT: Proses terapi medis komprehensif bagi korban penyalahgunaan narkotika.',
+  ),
+  46 => 
+  array (
+    'word' => 'BANTU',
+    'hint' => 'Pertolongan mengarahkan korban narkoba untuk melapor ke tempat rehab (5 huruf).',
+    'category' => 'Dukungan Sosial',
+    'definition' => 'BANTU: Memberikan uluran tangan untuk menyelamatkan korban ketergantungan zat.',
+  ),
+  47 => 
+  array (
+    'word' => 'POLISI',
+    'hint' => 'Aparat penegak hukum berseragam yang menangkap bandar narkoba (6 huruf).',
+    'category' => 'Penegakan Hukum',
+    'definition' => 'POLISI: Penegak hukum yang bertugas memberantas peredaran gelap narkoba.',
+  ),
+  48 => 
+  array (
+    'word' => 'RUSAK',
+    'hint' => 'Kondisi organ tubuh dan sel saraf yang hancur akibat zat berbahaya (5 huruf).',
+    'category' => 'Dampak Narkoba',
+    'definition' => 'RUSAK: Kehancuran sel otak dan organ vital akibat pengaruh racun narkotika.',
+  ),
+  49 => 
+  array (
+    'word' => 'MAUT',
+    'hint' => 'Kematian tragis yang selalu mengintai akibat overdosis narkoba (4 huruf).',
+    'category' => 'Risiko Fatal',
+    'definition' => 'MAUT: Kematian mendadak akibat henti jantung dan gagal napas overdosis.',
+  ),
+  50 => 
+  array (
+    'word' => 'VONIS',
+    'hint' => 'Keputusan hukuman resmi dari hakim di persidangan kasus narkoba (5 huruf).',
+    'category' => 'Sanksi Hukum',
+    'definition' => 'VONIS: Penetapan hukuman pidana yang dijatuhkan majelis hakim kepada terdakwa.',
+  ),
+  51 => 
+  array (
+    'word' => 'SIDANG',
+    'hint' => 'Pertemuan resmi di pengadilan untuk membuktikan tindak pidana narkoba (6 huruf).',
+    'category' => 'Proses Hukum',
+    'definition' => 'SIDANG: Proses peradilan resmi untuk mengadili pelaku kejahatan narkotika.',
+  ),
+  52 => 
+  array (
+    'word' => 'JERAT',
+    'hint' => 'Perangkap lingkaran setan adiksi yang mengikat pemakai narkoba (5 huruf).',
+    'category' => 'Bahaya Adiksi',
+    'definition' => 'JERAT: Ikatan kecanduan yang membuat pemakai narkoba sulit melepaskan diri.',
+  ),
+  53 => 
+  array (
+    'word' => 'JEBAK',
+    'hint' => 'Tipu muslihat sindikat gelap untuk menjebak remaja menjadi pemakai (5 huruf).',
+    'category' => 'Modus Sindikat',
+    'definition' => 'JEBAK: Modus operandi pengedar menjerat pengguna baru dengan iming-iming gratis.',
+  ),
+  54 => 
+  array (
+    'word' => 'RAYU',
+    'hint' => 'Bujukan manis manipulatif pengedar untuk memikat calon pembeli (4 huruf).',
+    'category' => 'Modus Sindikat',
+    'definition' => 'RAYU: Perkataan manipulatif sindikat narkoba yang menipu generasi muda.',
+  ),
+  55 => 
+  array (
+    'word' => 'SESAL',
+    'hint' => 'Rasa kecewa mendalam yang selalu datang terlambat setelah pakai narkoba (5 huruf).',
+    'category' => 'Penyesalan Diri',
+    'definition' => 'SESAL: Perasaan duka mendalam saat menyadari narkoba merusak masa depan.',
+  ),
+  56 => 
+  array (
+    'word' => 'RUGI',
+    'hint' => 'Kehilangan uang dan masa depan sia-sia karena membeli narkoba (4 huruf).',
+    'category' => 'Dampak Ekonomi',
+    'definition' => 'RUGI: Kerugian materi dan masa muda yang lenyap akibat membeli obat terlarang.',
+  ),
+  57 => 
+  array (
+    'word' => 'HANCUR',
+    'hint' => 'Rusak binasa sama sekali cita-cita akibat kecanduan zat terlarang (6 huruf).',
+    'category' => 'Dampak Fatal',
+    'definition' => 'HANCUR: Kehancuran masa depan dan keluarga akibat keterikatan pada zat adiktif.',
+  ),
+  58 => 
+  array (
+    'word' => 'TEKAD',
+    'hint' => 'Kemauan kuat di dalam hati untuk menolak segala tawaran narkoba (5 huruf).',
+    'category' => 'Ketahanan Diri',
+    'definition' => 'TEKAD: Ketetapan hati yang teguh untuk hidup bersih dan penuh karya positif.',
+  ),
+  59 => 
+  array (
+    'word' => 'JANJI',
+    'hint' => 'Komitmen sumpah pada diri sendiri untuk tidak menyentuh narkotika (5 huruf).',
+    'category' => 'Komitmen Diri',
+    'definition' => 'JANJI: Ikrar setia menjaga kehormatan diri dan keluarga tanpa narkoba.',
+  ),
+  60 => 
+  array (
+    'word' => 'BERSIH',
+    'hint' => 'Kondisi lingkungan atau pemukiman yang bebas dari narkoba (6 huruf).',
+    'category' => 'Desa Bersinar',
+    'definition' => 'BERSIH: Kondisi bebas narkotika dalam gerakan program Desa Bersinar BNN.',
+  ),
+  61 => 
+  array (
+    'word' => 'TEGAS',
+    'hint' => 'Sikap lugas dan berani menolak ajakan narkoba tanpa ragu-ragu (5 huruf).',
+    'category' => 'Karakter Diri',
+    'definition' => 'TEGAS: Sikap asertif menolak godaan negatif demi melindungi masa depan.',
+  ),
+  62 => 
+  array (
+    'word' => 'AMAN',
+    'hint' => 'Lingkungan pemukiman yang tenteram dan bebas dari sarang narkoba (4 huruf).',
+    'category' => 'Lingkungan',
+    'definition' => 'AMAN: Kondisi tempat tinggal yang terlindung dari bahaya sindikat narkotika.',
+  ),
+  63 => 
+  array (
+    'word' => 'HIDUP',
+    'hint' => 'Anugerah raga bernyawa yang harus dijaga tanpa racun narkoba (5 huruf).',
+    'category' => 'Nilai Kehidupan',
+    'definition' => 'HIDUP: Kehidupan berharga yang wajib diisi karya nyata tanpa pengaruh obat.',
+  ),
+  64 => 
+  array (
+    'word' => 'KUAT',
+    'hint' => 'Ketahanan mental kokoh dalam menolak narkoba, lawan dari lemah (4 huruf).',
+    'category' => 'Ketahanan Diri',
+    'definition' => 'KUAT: Ketangguhan jiwa dan raga generasi muda dalam membentengi diri.',
+  ),
+  65 => 
+  array (
+    'word' => 'TEMAN',
+    'hint' => 'Sahabat sebaya yang seharusnya saling mengingatkan jauhi narkoba (5 huruf).',
+    'category' => 'Lingkungan Sosial',
+    'definition' => 'TEMAN: Sahabat bergaul yang membawa pengaruh positif dalam kehidupan.',
+  ),
+  66 => 
+  array (
+    'word' => 'MORAL',
+    'hint' => 'Budi pekerti dan benteng etika diri penolak pergaulan bebas (5 huruf).',
+    'category' => 'Nilai Etika',
+    'definition' => 'MORAL: Budi pekerti luhur yang membimbing manusia untuk senantiasa berbuat baik.',
+  ),
+  67 => 
+  array (
+    'word' => 'BOGOR',
+    'hint' => 'Kota di Jawa Barat lokasi pusat Balai Besar Rehabilitasi BNN Lido (5 huruf).',
+    'category' => 'Pusat Pemulihan',
+    'definition' => 'BOGOR: Lokasi Balai Besar Rehabilitasi BNN Lido rujukan pemulihan nasional.',
+  ),
+  68 => 
+  array (
+    'word' => 'PARAH',
+    'hint' => 'Tingkat kecanduan kronis stadium lanjut yang butuh rawat dokter (5 huruf).',
+    'category' => 'Kondisi Medis',
+    'definition' => 'PARAH: Tingkat ketergantungan berat yang memerlukan intervensi medis intensif.',
+  ),
+  69 => 
+  array (
+    'word' => 'ALAMI',
+    'hint' => 'Pola hidup bugar alami dengan olahraga tanpa obat bius kimia (5 huruf).',
+    'category' => 'Pola Hidup',
+    'definition' => 'ALAMI: Pola hidup murni dengan kebugaran jasmani tanpa zat adiktif.',
+  ),
+  70 => 
+  array (
+    'word' => 'HINDAR',
+    'hint' => 'Menjauhkan diri dari pergaulan bebas dan tempat peredaran obat (6 huruf).',
+    'category' => 'Tindakan Waspada',
+    'definition' => 'HINDAR: Tindakan menjauhkan diri dari lingkungan rentan penyalahgunaan zat.',
+  ),
+  71 => 
+  array (
+    'word' => 'PEDULI',
+    'hint' => 'Perhatian tulus keluarga membantu korban narkoba agar mau direhab (6 huruf).',
+    'category' => 'Empati Sosial',
+    'definition' => 'PEDULI: Sikap tanggap menolong sesama agar terbebas dari lingkaran narkotika.',
+  ),
+  72 => 
+  array (
+    'word' => 'PASIEN',
+    'hint' => 'Orang yang sedang menjalani perawatan medis pemulihan dari narkoba (6 huruf).',
+    'category' => 'Rehabilitasi',
+    'definition' => 'PASIEN: Individu yang menerima pendampingan dokter dan konselor untuk pulih.',
+  ),
+  73 => 
+  array (
+    'word' => 'DOKTER',
+    'hint' => 'Tenaga medis ahli yang menangani proses detoksifikasi pecandu (6 huruf).',
+    'category' => 'Tenaga Medis',
+    'definition' => 'DOKTER: Tenaga kesehatan berkeahlian medis yang memeriksa dan mengobati pasien.',
+  ),
+  74 => 
+  array (
+    'word' => 'CERDAS',
+    'hint' => 'Pikiran kritis dan cerdik agar tidak tertipu bujukan sindikat (6 huruf).',
+    'category' => 'Kecerdasan Mental',
+    'definition' => 'CERDAS: Kemampuan berpikir jernih membedakan hal baik dan buruk.',
+  ),
+  75 => 
+  array (
+    'word' => 'JAGA',
+    'hint' => 'Kewajiban menjaga diri dan keluarga dari ancaman barang haram (4 huruf).',
+    'category' => 'Kewaspadaan',
+    'definition' => 'JAGA: Sikap mawas diri untuk memelihara keselamatan dan kehormatan keluarga.',
+  ),
+  76 => 
+  array (
+    'word' => 'BUGAR',
+    'hint' => 'Kondisi raga yang segar fit bertenaga tanpa stimulan obat bius (5 huruf).',
+    'category' => 'Kesehatan Jasmani',
+    'definition' => 'BUGAR: Stamina fisik prima yang diperoleh melalui olahraga dan istirahat cukup.',
+  ),
+  77 => 
+  array (
+    'word' => 'DAMAI',
+    'hint' => 'Suasana batin tenteram tanpa rasa cemas dikejar aparat hukum (5 huruf).',
+    'category' => 'Kedamaian Hati',
+    'definition' => 'DAMAI: Ketenteraman batin yang dirasakan orang yang hidup bersih tanpa obat.',
+  ),
+  78 => 
+  array (
+    'word' => 'BERANI',
+    'hint' => 'Keteguhan tekad berani berkata tidak pada tawaran zat terlarang (6 huruf).',
+    'category' => 'Karakter Tangguh',
+    'definition' => 'BERANI: Keberanian menolak bujukan kawan yang mengarah pada kejahatan narkoba.',
+  ),
+  79 => 
+  array (
+    'word' => 'SEMBUH',
+    'hint' => 'Keadaan sehat kembali seutuhnya dari belenggu penyakit adiksi (6 huruf).',
+    'category' => 'Pemulihan',
+    'definition' => 'SEMBUH: Kondisi terbebas dari penyakit ketergantungan zat berbahaya.',
+  ),
+  80 => 
+  array (
+    'word' => 'WARGA',
+    'hint' => 'Masyarakat yang berperan aktif melaporkan kejanggalan narkoba (5 huruf).',
+    'category' => 'Masyarakat',
+    'definition' => 'WARGA: Penduduk yang memiliki kepedulian bersama menjaga lingkungannya.',
+  ),
+  81 => 
+  array (
+    'word' => 'HAKIM',
+    'hint' => 'Pejabat peradilan yang memberi vonis hukuman bagi bandar narkoba (5 huruf).',
+    'category' => 'Peradilan',
+    'definition' => 'HAKIM: Aparat penegak hukum yang memimpin sidang dan menjatuhkan sanksi pidana.',
+  ),
+  82 => 
+  array (
+    'word' => 'SANKSI',
+    'hint' => 'Hukuman pidana berat bagi pelanggar undang-undang narkotika (6 huruf).',
+    'category' => 'Sanksi Hukum',
+    'definition' => 'SANKSI: Tindakan hukuman tegas bagi pelaku penyalahgunaan dan peredaran narkoba.',
+  ),
+  83 => 
+  array (
+    'word' => 'CITA',
+    'hint' => 'Impian masa depan gemilang yang akan musnah bila memakai narkoba (4 huruf).',
+    'category' => 'Masa Depan',
+    'definition' => 'CITA: Keinginan mulia meraih kesuksesan yang wajib dijaga dari jeratan obat.',
+  ),
+  84 => 
+  array (
+    'word' => 'MIMPI',
+    'hint' => 'Harapan indah masa depan yang harus dilindungi dari bahaya narkotika (5 huruf).',
+    'category' => 'Masa Depan',
+    'definition' => 'MIMPI: Visi hari esok terang benderang bagi pemuda yang bersih raga dan jiwa.',
+  ),
+  85 => 
+  array (
+    'word' => 'PATUH',
+    'hint' => 'Taat pada aturan hukum undang-undang narkotika dan nasihat orang tua (5 huruf).',
+    'category' => 'Ketaatan',
+    'definition' => 'PATUH: Sikap disiplin menghormati hukum negara demi kebaikan diri sendiri.',
+  ),
+  86 => 
+  array (
+    'word' => 'TERTIB',
+    'hint' => 'Suasana lingkungan yang taat hukum aman dari peredaran narkoba (6 huruf).',
+    'category' => 'Ketertiban',
+    'definition' => 'TERTIB: Kondisi pemukiman yang mematuhi hukum dan bebas dari kejahatan narkotika.',
+  ),
+  87 => 
+  array (
+    'word' => 'AWAS',
+    'hint' => 'Sikap waspada mengenali modus baru peredaran gelap narkotika (4 huruf).',
+    'category' => 'Kewaspadaan',
+    'definition' => 'AWAS: Kewaspadaan tinggi terhadap berbagai tipu muslihat sindikat pengedar.',
+  ),
+  88 => 
+  array (
+    'word' => 'SIGAP',
+    'hint' => 'Cepat tanggap bertindak melaporkan dugaan peredaran gelap narkoba (5 huruf).',
+    'category' => 'Ketanggapan',
+    'definition' => 'SIGAP: Tindakan gesit aparat dan warga dalam mencegah masuknya barang haram.',
+  ),
+  89 => 
+  array (
+    'word' => 'SOLID',
+    'hint' => 'Kompak dan bersatu padu bersama warga membentengi desa dari narkoba (5 huruf).',
+    'category' => 'Kebersamaan',
+    'definition' => 'SOLID: Kekuatan persatuan masyarakat dalam menjaga lingkungan bersih narkoba.',
+  ),
+  90 => 
+  array (
+    'word' => 'LEPAS',
+    'hint' => 'Berhasil terlepas dari jeratan lingkaran setan ketergantungan obat (5 huruf).',
+    'category' => 'Pemulihan',
+    'definition' => 'LEPAS: Keberhasilan melepaskan diri dari belenggu adiksi narkotika.',
+  ),
+  91 => 
+  array (
+    'word' => 'MEDIS',
+    'hint' => 'Penanganan klinis oleh dokter bagi pemulihan ketergantungan obat (5 huruf).',
+    'category' => 'Layanan Medis',
+    'definition' => 'MEDIS: Pendekatan kesehatan klinis untuk mengatasi adiksi sebagai penyakit otak.',
+  ),
+  92 => 
+  array (
+    'word' => 'KLINIK',
+    'hint' => 'Fasilitas kesehatan rujukan tempat pecandu menjalani rawat jalan (6 huruf).',
+    'category' => 'Fasilitas Medis',
+    'definition' => 'KLINIK: Tempat pelayanan kesehatan pratama BNN untuk rehabilitasi rawat jalan.',
+  ),
+  93 => 
+  array (
+    'word' => 'GEJALA',
+    'hint' => 'Tanda-tanda perubahan fisik dan emosi pada orang pemakai narkoba (6 huruf).',
+    'category' => 'Deteksi Dini',
+    'definition' => 'GEJALA: Indikasi perubahan perilaku mencurigakan yang mengarah pada penyalahgunaan zat.',
+  ),
+  94 => 
+  array (
+    'word' => 'BAHAN',
+    'hint' => 'Zat mentah atau senyawa pemula yang digunakan meracik narkoba (5 huruf).',
+    'category' => 'Prekursor',
+    'definition' => 'BAHAN: Senyawa kimia pemula (prekursor) yang diawasi ketat peredarannya.',
+  ),
+  95 => 
+  array (
+    'word' => 'SIAGA',
+    'hint' => 'Sikap siap siaga menjaga pemukiman dari ancaman masuknya pengedar (5 huruf).',
+    'category' => 'Kewaspadaan',
+    'definition' => 'SIAGA: Kesiapsiagaan warga dalam mengawasi lingkungan tempat tinggalnya.',
+  ),
+  96 => 
+  array (
+    'word' => 'HARAP',
+    'hint' => 'Asa dan optimisme mantan pecandu untuk memulai lembaran hidup baru (5 huruf).',
+    'category' => 'Optimisme',
+    'definition' => 'HARAP: Keyakinan cerah menggapai masa depan setelah berhasil pulih dari adiksi.',
+  ),
+  97 => 
+  array (
+    'word' => 'BINA',
+    'hint' => 'Program pembinaan kemandirian bagi mantan pengguna pascarehabilitasi (4 huruf).',
+    'category' => 'Pascarehabilitasi',
+    'definition' => 'BINA: Upaya pendampingan berkelanjutan agar mantan pecandu memiliki keahlian kerja.',
+  ),
+  98 => 
+  array (
+    'word' => 'PINTAR',
+    'hint' => 'Menggunakan akal kepintaran untuk menolak tipu daya kurir narkoba (6 huruf).',
+    'category' => 'Intelektualitas',
+    'definition' => 'PINTAR: Memanfaatkan kecerdasan untuk melindungi diri dari modus peredaran gelap.',
+  ),
+  99 => 
+  array (
+    'word' => 'TEGAK',
+    'hint' => 'Berdiri tegak membela kebenaran dan menentang segala wujud narkoba (5 huruf).',
+    'category' => 'Prinsip Moral',
+    'definition' => 'TEGAK: Prinsip kokoh generasi muda menjunjung tinggi integritas anti-narkotika.',
+  ),
+);
 
         foreach ($words as $item) {
             GameWordle::create([
