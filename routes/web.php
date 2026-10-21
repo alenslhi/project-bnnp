@@ -31,11 +31,18 @@ Route::middleware(['track.visitor'])->group(function () {
 
     // Statistik Dashboard
     Route::get('/statistik', [StatistikController::class, 'index'])->name('statistik');
+
+    // Game Edukasi (Mitos/Fakta & Wordle)
+    Route::get('/game', [\App\Http\Controllers\GameController::class, 'index'])->name('game.index');
 });
 
 // API Publik
 Route::get('/api/peta/geojson', [PetaController::class, 'geoJson'])->name('peta.geojson');
 Route::get('/api/pengunjung/statistik', [\App\Http\Controllers\PengunjungController::class, 'statistik'])->name('pengunjung.statistik');
+Route::get('/api/game/daily', [\App\Http\Controllers\GameController::class, 'dailyData'])->name('game.daily');
+Route::get('/api/game/random', [\App\Http\Controllers\GameController::class, 'randomData'])->name('game.random');
+Route::post('/api/game/record', [\App\Http\Controllers\GameController::class, 'recordAttempt'])->name('game.record');
+Route::post('/api/game/reset', [\App\Http\Controllers\GameController::class, 'resetToday'])->name('game.reset');
 
 // ══════════════════════════════════════════════════════════════
 // AUTENTIKASI

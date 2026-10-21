@@ -35,9 +35,14 @@
                         <svg class="h-5 w-5 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
                         Lihat Peta Zona Kerawanan
                     </a>
+                    <a href="{{ route('game.index') }}" class="inline-flex items-center gap-2.5 rounded-xl border border-amber-400/50 bg-gradient-to-r from-amber-500/20 to-orange-500/20 px-6 py-3.5 text-sm font-bold text-amber-200 backdrop-blur-sm transition-all hover:bg-amber-500/30 hover:border-amber-400 hover:text-white hover:-translate-y-0.5 shadow-lg">
+                        <span class="text-lg">🎮</span>
+                        <span>Main Game Edukasi</span>
+                        <span class="ml-1 px-2 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-amber-500 text-white">Harian</span>
+                    </a>
                     <a href="{{ route('edukasi.index') }}" class="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/10 dark:bg-white/5 px-6 py-3.5 text-sm font-semibold text-white backdrop-blur-sm transition-all hover:bg-white/20 hover:-translate-y-0.5">
                         <svg class="h-5 w-5 text-primary-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg>
-                        Jelajahi Edukasi SKENA
+                        Jelajahi Edukasi
                     </a>
                 </div>
             </div>
@@ -150,6 +155,105 @@
                 {{-- Decorative elements --}}
                 <div class="absolute -top-4 -right-4 h-24 w-24 rounded-2xl bg-primary-500/10 border border-primary-500/20 animate-pulse"></div>
                 <div class="absolute -bottom-4 -left-4 h-16 w-16 rounded-xl bg-accent-500/10 border border-accent-500/20 animate-pulse" style="animation-delay: 1s"></div>
+            </div>
+        </div>
+    </section>
+
+    {{-- ═══ GAME EDUKASI SHOWCASE ═══ --}}
+    <section class="mx-auto max-w-7xl px-4 pb-20 sm:px-6 lg:px-8">
+        <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary-900 via-primary-950 to-surface-950 p-8 sm:p-12 lg:p-14 border border-primary-500/30 shadow-2xl">
+            <div class="absolute -top-24 -right-24 h-96 w-96 rounded-full bg-amber-500/10 blur-3xl pointer-events-none"></div>
+            <div class="absolute -bottom-24 -left-24 h-96 w-96 rounded-full bg-primary-500/20 blur-3xl pointer-events-none"></div>
+
+            <div class="relative grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div class="lg:col-span-7">
+                    <div class="inline-flex items-center gap-2 rounded-full bg-amber-500/20 border border-amber-400/40 px-3.5 py-1 mb-4 text-xs font-bold text-amber-300">
+                        <span>🎮</span>
+                        <span>TANTANGAN HARIAN SKENA</span>
+                        <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-ping"></span>
+                    </div>
+
+                    <h2 class="text-3xl sm:text-4xl font-black text-white tracking-tight leading-tight">
+                        5 Mitos vs Fakta + <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-400">Wordle Anti-Narkoba</span>
+                    </h2>
+
+                    <p class="mt-4 text-surface-300 text-sm sm:text-base leading-relaxed">
+                        Uji pemahamanmu dengan alur interaktif unik: jawab 5 Mitos atau Fakta, ulangi kesalahan di sesi remedial ala Duolingo hingga tuntas, lalu temukan kisi-kisi untuk menebak 2 kata tersembunyi di papan Wordle.
+                        <strong>Hanya 1 kali kesempatan setiap hari!</strong>
+                    </p>
+
+                    <div class="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <div class="rounded-2xl border border-white/10 bg-white/5 p-3.5 backdrop-blur-sm">
+                            <span class="text-xl">1️⃣</span>
+                            <h4 class="mt-2 text-xs font-bold text-white">5 Mitos / Fakta</h4>
+                            <p class="text-[11px] text-surface-400 mt-1">Jawab pernyataan seputar bahaya narkoba & regulasi.</p>
+                        </div>
+                        <div class="rounded-2xl border border-white/10 bg-white/5 p-3.5 backdrop-blur-sm">
+                            <span class="text-xl">2️⃣</span>
+                            <h4 class="mt-2 text-xs font-bold text-white">Remedial Duolingo</h4>
+                            <p class="text-[11px] text-surface-400 mt-1">Salah? Ulangi di akhir agar konsep benar-benar nempel!</p>
+                        </div>
+                        <div class="rounded-2xl border border-white/10 bg-white/5 p-3.5 backdrop-blur-sm">
+                            <span class="text-xl">3️⃣</span>
+                            <h4 class="mt-2 text-xs font-bold text-white">Wordle 2 Kata</h4>
+                            <p class="text-[11px] text-surface-400 mt-1">Tebak 2 kata dari kisi-kisi deskripsi. 1x sehari!</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 flex flex-wrap gap-4 items-center">
+                        <a href="{{ route('game.index') }}" class="inline-flex items-center gap-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-surface-950 font-black px-7 py-3.5 text-sm shadow-xl hover:shadow-amber-500/25 transition-all hover:-translate-y-0.5">
+                            <span>Mulai Main Sekarang</span>
+                            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+                        </a>
+                        <span class="text-xs text-surface-400 flex items-center gap-1.5">
+                            <svg class="h-4 w-4 text-emerald-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd"/></svg>
+                            Gratis tanpa login • Reset setiap 00:00 WITA
+                        </span>
+                    </div>
+                </div>
+
+                {{-- Interactive Game Preview Graphic --}}
+                <div class="lg:col-span-5 flex justify-center">
+                    <div class="w-full max-w-sm rounded-2xl border border-white/15 bg-surface-900/90 p-5 shadow-2xl backdrop-blur-xl">
+                        <div class="flex items-center justify-between border-b border-white/10 pb-3 mb-4">
+                            <div class="flex items-center gap-2">
+                                <span class="h-3 w-3 rounded-full bg-red-500/80"></span>
+                                <span class="h-3 w-3 rounded-full bg-amber-500/80"></span>
+                                <span class="h-3 w-3 rounded-full bg-emerald-500/80"></span>
+                            </div>
+                            <span class="text-[10px] font-mono font-bold uppercase tracking-wider text-primary-400">SKENA WORDLE PREVIEW</span>
+                        </div>
+
+                        {{-- Wordle Preview Grid --}}
+                        <div class="space-y-2 mb-4">
+                            <div class="grid grid-cols-5 gap-1.5 text-center font-black text-sm">
+                                <div class="aspect-square flex items-center justify-center rounded-lg bg-emerald-600 text-white shadow-xs">C</div>
+                                <div class="aspect-square flex items-center justify-center rounded-lg bg-emerald-600 text-white shadow-xs">A</div>
+                                <div class="aspect-square flex items-center justify-center rounded-lg bg-emerald-600 text-white shadow-xs">N</div>
+                                <div class="aspect-square flex items-center justify-center rounded-lg bg-emerald-600 text-white shadow-xs">D</div>
+                                <div class="aspect-square flex items-center justify-center rounded-lg bg-emerald-600 text-white shadow-xs">U</div>
+                            </div>
+                            <div class="grid grid-cols-5 gap-1.5 text-center font-black text-sm">
+                                <div class="aspect-square flex items-center justify-center rounded-lg bg-amber-500 text-white shadow-xs">R</div>
+                                <div class="aspect-square flex items-center justify-center rounded-lg bg-surface-700 text-surface-400">E</div>
+                                <div class="aspect-square flex items-center justify-center rounded-lg bg-emerald-600 text-white shadow-xs">H</div>
+                                <div class="aspect-square flex items-center justify-center rounded-lg bg-surface-700 text-surface-400">A</div>
+                                <div class="aspect-square flex items-center justify-center rounded-lg bg-emerald-600 text-white shadow-xs">B</div>
+                            </div>
+                            <div class="grid grid-cols-5 gap-1.5 text-center font-black text-sm">
+                                <div class="aspect-square flex items-center justify-center rounded-lg border border-dashed border-white/20 text-white/30">?</div>
+                                <div class="aspect-square flex items-center justify-center rounded-lg border border-dashed border-white/20 text-white/30">?</div>
+                                <div class="aspect-square flex items-center justify-center rounded-lg border border-dashed border-white/20 text-white/30">?</div>
+                                <div class="aspect-square flex items-center justify-center rounded-lg border border-dashed border-white/20 text-white/30">?</div>
+                                <div class="aspect-square flex items-center justify-center rounded-lg border border-dashed border-white/20 text-white/30">?</div>
+                            </div>
+                        </div>
+
+                        <div class="rounded-xl bg-primary-950/60 border border-primary-500/20 p-3 text-[11px] text-primary-200">
+                            <span class="font-bold text-amber-300">💡 Kisi-kisi Mitos/Fakta:</span> Ketergantungan zat berbahaya membajak dopamin otak hingga timbul rasa...
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>

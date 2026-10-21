@@ -75,5 +75,13 @@ class DatabaseSeeder extends Seeder
             'file_path'  => 'edukasi/gambar/infografis-otak.jpg',
             'penulis_id' => $admin->id,
         ]);
+
+        // ──────────────────────────────────────────────
+        // Bank Soal Game Edukasi (100 Wordle & 100 Mitos/Fakta)
+        // ──────────────────────────────────────────────
+        $this->call([
+            GameWordleSeeder::class,
+            GameMitosFaktaSeeder::class,
+        ]);
     }
 }
