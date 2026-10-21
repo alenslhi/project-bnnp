@@ -453,17 +453,19 @@ class GameController extends Controller
     public function index(Request $request): View
     {
         $today = Carbon::today()->toDateString();
-        $offset = (int) $request->cookie('skena_set_offset', 0);
+        $offset = (int) ($request->session()->get('skena_set_offset') ?? $request->cookie('skena_set_offset', 0));
 
         if ($request->has('reset')) {
             // Setiap kali di-reset, berganti ke set soal baru berikutnya!
             $offset = $offset + 1;
+            $request->session()->put('skena_set_offset', $offset);
             cookie()->queue('skena_set_offset', (string) $offset, 60 * 24 * 30);
             cookie()->queue(cookie()->forget('skena_game_done_' . $today));
         }
 
         if ($request->has('set')) {
             $offset = max(0, (int) $request->input('set') - 1);
+            $request->session()->put('skena_set_offset', $offset);
             cookie()->queue('skena_set_offset', (string) $offset, 60 * 24 * 30);
             cookie()->queue(cookie()->forget('skena_game_done_' . $today));
         }
@@ -483,7 +485,7 @@ class GameController extends Controller
     public function dailyData(Request $request): JsonResponse
     {
         $today = Carbon::today()->toDateString();
-        $offset = (int) $request->cookie('skena_set_offset', 0);
+        $offset = (int) ($request->session()->get('skena_set_offset') ?? $request->cookie('skena_set_offset', 0));
         if ($request->has('set')) {
             $offset = max(0, (int) $request->input('set') - 1);
         }
@@ -564,7 +566,10 @@ class GameController extends Controller
 
         // Fallback statis bawaan
         $totalSets = count($this->rotationalPuzzles);
-        $setIndex = $dayOfYear % $totalSets;
+        $setIndex = (($dayOfYear - 1) + $customOffset) % $totalSets;
+        if ($setIndex < 0) {
+            $setIndex += $totalSets;
+        }
         $selectedSet = $this->rotationalPuzzles[$setIndex];
 
         return [
@@ -729,6 +734,55 @@ class GameController extends Controller
 
         $periodFormatted = Carbon::parse($requestedPeriod)->locale('id')->isoFormat('D MMMM Y');
 
+        // Cari data posisi peringkat pemain aktif saat ini (Live Rank)
+        $playerRankInfo = null;
+        try {
+            $fingerprint = $request->query('device_fingerprint');
+            $playerName = $request->query('player_name');
+
+            $myRecord = null;
+            if (!empty($fingerprint)) {
+                $myRecord = GameLeaderboard::where('period_date', $requestedPeriod)
+                    ->where('device_fingerprint', $fingerprint)
+                    ->first();
+            }
+            if (!$myRecord && !empty($playerName)) {
+                $myRecord = GameLeaderboard::where('period_date', $requestedPeriod)
+                    ->where('player_name', $playerName)
+                    ->first();
+            }
+
+            if ($myRecord) {
+                $myRank = GameLeaderboard::where('period_date', $requestedPeriod)
+                    ->where(function ($q) use ($myRecord) {
+                        $q->where('total_score', '>', $myRecord->total_score)
+                          ->orWhere(function ($q2) use ($myRecord) {
+                              $q2->where('total_score', '=', $myRecord->total_score)
+                                 ->where('duration_seconds', '<', $myRecord->duration_seconds);
+                          })
+                          ->orWhere(function ($q3) use ($myRecord) {
+                              $q3->where('total_score', '=', $myRecord->total_score)
+                                 ->where('duration_seconds', '=', $myRecord->duration_seconds)
+                                 ->where('created_at', '<', $myRecord->created_at);
+                          });
+                    })
+                    ->count() + 1;
+
+                $playerRankInfo = [
+                    'found' => true,
+                    'id' => $myRecord->id,
+                    'rank' => $myRank,
+                    'is_top_3' => ($myRank <= 3),
+                    'is_top_10' => ($myRank <= 10),
+                    'player_name' => $myRecord->player_name,
+                    'total_score' => (int) $myRecord->total_score,
+                    'duration_seconds' => (int) $myRecord->duration_seconds,
+                ];
+            }
+        } catch (\Throwable $e) {
+            // ignore
+        }
+
         return response()->json([
             'success' => true,
             'period_date' => $requestedPeriod,
@@ -741,6 +795,7 @@ class GameController extends Controller
             'top_10' => $top10,
             'others' => $others,
             'all' => $rankedList,
+            'player_rank' => $playerRankInfo,
         ]);
     }
 

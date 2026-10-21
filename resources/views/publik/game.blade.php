@@ -68,33 +68,33 @@
     <div class="relative mx-auto max-w-3xl">
 
         {{-- ═══ TOP CONTROLS & HEADER ═══ --}}
-        <div class="flex items-center justify-between mb-4 sm:mb-6 pb-3 sm:pb-4 border-b border-surface-200 dark:border-white/10">
-            <div class="flex items-center gap-3">
-                <a href="{{ route('beranda') }}" class="p-2 rounded-xl border border-surface-200 dark:border-white/10 text-surface-500 hover:text-surface-900 dark:hover:text-white transition">
+        <div class="flex items-center justify-between gap-2 mb-4 sm:mb-6 pb-3 sm:pb-4 border-b border-surface-200 dark:border-white/10">
+            <div class="flex items-center gap-2.5 sm:gap-3 min-w-0 flex-1">
+                <a href="{{ route('beranda') }}" class="p-2 rounded-xl border border-surface-200 dark:border-white/10 text-surface-500 hover:text-surface-900 dark:hover:text-white transition shrink-0" title="Kembali ke Beranda">
                     <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"/></svg>
                 </a>
-                <div>
-                    <div class="flex items-center gap-2">
-                        <span class="text-xs font-black uppercase tracking-wider text-primary-600 dark:text-primary-400">SKENA MINI GAMES</span>
-                        <span id="header-mode-badge" class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-primary-500/20 text-primary-600 dark:text-primary-400 border border-primary-500/30">Mitos/Fakta & Wordle</span>
+                <div class="min-w-0 flex-1">
+                    <div class="flex items-center gap-2 min-w-0">
+                        <span class="text-[10px] sm:text-xs font-black uppercase tracking-wider text-primary-600 dark:text-primary-400 truncate">SKENA MINI GAMES</span>
+                        <span id="header-mode-badge" class="hidden md:inline-flex px-2 py-0.5 rounded-full text-[10px] font-bold bg-primary-500/20 text-primary-600 dark:text-primary-400 border border-primary-500/30 shrink-0 whitespace-nowrap">Mitos/Fakta & Wordle</span>
                     </div>
-                    <h1 class="text-lg sm:text-xl font-black text-surface-900 dark:text-white tracking-tight">5 Mitos/Fakta & Wordle</h1>
+                    <h1 class="text-sm sm:text-xl font-black text-surface-900 dark:text-white tracking-tight truncate">5 Mitos/Fakta & Wordle</h1>
                 </div>
             </div>
 
-            <div class="flex items-center gap-2">
+            <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
                 {{-- Leaderboard Button --}}
-                <button id="btn-open-leaderboard" type="button" class="flex items-center gap-1.5 px-3 py-2 rounded-xl border border-amber-400/40 bg-amber-500/10 hover:bg-amber-500/20 text-amber-600 dark:text-amber-400 font-bold text-xs transition cursor-pointer shadow-sm hover:scale-[1.02]" title="Papan Peringkat Harian">
+                <button id="btn-open-leaderboard" type="button" class="flex items-center gap-1.5 p-2 sm:px-3 sm:py-2 rounded-xl border border-amber-400/40 bg-amber-500/10 hover:bg-amber-500/20 text-amber-600 dark:text-amber-400 font-bold text-xs transition cursor-pointer shadow-sm hover:scale-[1.02] shrink-0" title="Papan Peringkat Harian">
                     <span class="text-sm">🏆</span>
                     <span class="hidden sm:inline">Papan Peringkat</span>
                 </button>
                 {{-- Audio Mute/Unmute --}}
-                <button id="btn-toggle-sound" type="button" class="p-2.5 rounded-xl border border-surface-200 dark:border-white/10 text-surface-600 dark:text-surface-300 hover:bg-surface-100 dark:hover:bg-white/5 transition" title="Suara Efek (Aktif/Mati)">
+                <button id="btn-toggle-sound" type="button" class="p-2 sm:p-2.5 rounded-xl border border-surface-200 dark:border-white/10 text-surface-600 dark:text-surface-300 hover:bg-surface-100 dark:hover:bg-white/5 transition shrink-0" title="Suara Efek (Aktif/Mati)">
                     <span id="sound-icon-on">🔊</span>
                     <span id="sound-icon-off" class="hidden">🔇</span>
                 </button>
                 {{-- Help Modal --}}
-                <button id="btn-open-help" type="button" class="p-2.5 rounded-xl border border-surface-200 dark:border-white/10 text-surface-600 dark:text-surface-300 hover:bg-surface-100 dark:hover:bg-white/5 transition" title="Petunjuk Bermain">
+                <button id="btn-open-help" type="button" class="p-2 sm:p-2.5 rounded-xl border border-surface-200 dark:border-white/10 text-surface-600 dark:text-surface-300 hover:bg-surface-100 dark:hover:bg-white/5 transition shrink-0" title="Petunjuk Bermain">
                     <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z"/></svg>
                 </button>
             </div>
@@ -462,16 +462,16 @@
                     </form>
 
                     {{-- Feedback Success Card / Status Sudah Tercatat --}}
-                    <div id="leaderboard-submit-success" class="hidden mt-2 p-3 rounded-xl bg-emerald-500/15 border border-emerald-400/30 text-emerald-300 text-xs">
-                        <div class="flex items-center justify-between gap-2 flex-wrap">
-                            <div class="flex items-center gap-2">
-                                <span class="text-xl">✅</span>
-                                <div>
-                                    <h4 id="leaderboard-success-title" class="font-black text-white text-xs sm:text-sm">Skor Berhasil Masuk!</h4>
-                                    <p id="leaderboard-success-subtitle" class="text-[11px] text-emerald-300/90 mt-0.5">Tercatat sebagai: <span id="leaderboard-submitted-name-badge" class="font-bold underline text-white">...</span></p>
+                    <div id="leaderboard-submit-success" class="hidden mt-2 p-3 sm:p-3.5 rounded-xl bg-emerald-500/15 border border-emerald-400/30 text-emerald-300 text-xs">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
+                            <div class="flex items-start sm:items-center gap-2.5 min-w-0 flex-1">
+                                <span class="text-xl shrink-0 mt-0.5 sm:mt-0">✅</span>
+                                <div class="min-w-0 flex-1">
+                                    <h4 id="leaderboard-success-title" class="font-black text-white text-xs sm:text-sm leading-snug">Skor Berhasil Masuk!</h4>
+                                    <p id="leaderboard-success-subtitle" class="text-[11px] text-emerald-300/90 mt-0.5 break-words">Tercatat sebagai: <span id="leaderboard-submitted-name-badge" class="font-bold underline text-white">...</span></p>
                                 </div>
                             </div>
-                            <div class="flex items-center gap-1.5 ml-auto">
+                            <div class="flex items-center gap-1.5 shrink-0 self-end sm:self-center">
                                 <button id="btn-change-player-name" type="button" class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg border border-white/20 bg-white/5 hover:bg-white/10 text-surface-300 hover:text-white font-semibold text-[11px] transition cursor-pointer" title="Ubah nama tampilan">
                                     <span>✏️ Ganti Nama</span>
                                 </button>
@@ -513,7 +513,7 @@
                         <span class="text-[9px] font-bold uppercase tracking-wider text-amber-300 block">Soal Baru Dalam:</span>
                         <span id="countdown-timer" class="text-xs sm:text-sm font-black font-mono text-amber-400">--:--:--</span>
                     </div>
-                    <a href="{{ route('game.index', ['reset' => 1]) }}" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg border border-amber-400/30 bg-amber-400/10 hover:bg-amber-400/20 text-[10px] font-bold text-amber-300 transition cursor-pointer shrink-0">
+                    <a href="{{ route('game.index', ['reset' => 1, 't' => time()]) }}" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg border border-amber-400/30 bg-amber-400/10 hover:bg-amber-400/20 text-[10px] font-bold text-amber-300 transition cursor-pointer shrink-0">
                         <span>🔄</span> Reset Soal
                     </a>
                 </div>
@@ -1595,24 +1595,10 @@
                         if (cardTitle) cardTitle.innerText = 'Papan Peringkat Harian (Sudah Tercatat)';
                         if (successCard) {
                             successCard.classList.remove('hidden');
-                            const titleEl = document.getElementById('leaderboard-success-title');
-                            const rankNum = record.submittedRank;
-                            if (titleEl) {
-                                if (rankNum && rankNum <= 3) {
-                                    titleEl.innerText = '🏆 Luar Biasa! Kamu Masuk Top 3 (Peringkat #' + rankNum + ')!';
-                                } else if (rankNum && rankNum <= 10) {
-                                    titleEl.innerText = '⭐ Hebat! Kamu Masuk Top 10 (Peringkat #' + rankNum + ')!';
-                                } else if (rankNum) {
-                                    titleEl.innerText = '🎉 Skormu Tercatat di Peringkat #' + rankNum + '!';
-                                } else {
-                                    titleEl.innerText = '✓ Skormu Sudah Tercatat di Papan Peringkat!';
-                                }
-                            }
-                            const nameBadge = document.getElementById('leaderboard-submitted-name-badge');
-                            if (nameBadge) {
-                                nameBadge.innerText = (record.submittedPlayerName || savedName || 'Pemain') + (rankNum ? ' (Peringkat #' + rankNum + ')' : '');
-                            }
+                            applyLeaderboardRankBadge(record.submittedRank, record.submittedPlayerName || savedName);
                         }
+                        // Refresh live rank terkini dari database server saat kembali ke halaman
+                        refreshLivePlayerRank();
                     } else {
                         if (formLb) formLb.classList.remove('hidden');
                         if (cardTitle) cardTitle.innerText = 'Catat Namamu di Top 10 Hari Ini';
@@ -1929,6 +1915,58 @@
             return div.innerHTML;
         }
 
+        // Tampilkan badge peringkat pemain secara dinamis sesuai peringkat terkini
+        function applyLeaderboardRankBadge(rankNum, playerName) {
+            const titleEl = document.getElementById('leaderboard-success-title');
+            const nameBadge = document.getElementById('leaderboard-submitted-name-badge');
+            const rank = parseInt(rankNum, 10);
+
+            if (titleEl) {
+                if (rank && rank <= 3) {
+                    titleEl.innerText = '🏆 Luar Biasa! Kamu Masuk Top 3 (Peringkat #' + rank + ')!';
+                } else if (rank && rank <= 10) {
+                    titleEl.innerText = '⭐ Hebat! Kamu Masuk Top 10 (Peringkat #' + rank + ')!';
+                } else if (rank) {
+                    titleEl.innerText = '🎉 Skormu Tercatat di Peringkat #' + rank + '!';
+                } else {
+                    titleEl.innerText = '✓ Skormu Sudah Tercatat di Papan Peringkat!';
+                }
+            }
+
+            if (nameBadge) {
+                const displayName = playerName || localStorage.getItem('skena_player_name') || 'Pemain';
+                nameBadge.innerText = displayName + (rank ? ' (Peringkat #' + rank + ')' : '');
+            }
+        }
+
+        // Sinkronisasi posisi peringkat live (terbaru) langsung dari server ke tampilan hasil
+        function refreshLivePlayerRank() {
+            const fp = getDeviceFingerprint();
+            const savedName = localStorage.getItem('skena_player_name') || '';
+
+            fetch('{{ route('game.leaderboard') }}?device_fingerprint=' + encodeURIComponent(fp) + '&player_name=' + encodeURIComponent(savedName))
+                .then(res => res.json())
+                .then(res => {
+                    if (res && res.success && res.player_rank && res.player_rank.found) {
+                        const liveRank = res.player_rank.rank;
+                        const liveName = res.player_rank.player_name || savedName;
+                        applyLeaderboardRankBadge(liveRank, liveName);
+
+                        try {
+                            const saved = localStorage.getItem(STORAGE_KEY_TODAY);
+                            if (saved) {
+                                const rec = JSON.parse(saved);
+                                rec.submittedRank = liveRank;
+                                rec.submittedPlayerName = liveName;
+                                rec.hasSubmittedLeaderboard = true;
+                                localStorage.setItem(STORAGE_KEY_TODAY, JSON.stringify(rec));
+                            }
+                        } catch (e) {}
+                    }
+                })
+                .catch(() => {});
+        }
+
         function computeClientScore(quizCorrect, w1Won, w1Att, w2Won, w2Att, duration, retries) {
             const qScore = Math.min(5, Math.max(0, quizCorrect)) * 60;
 
@@ -2070,11 +2108,29 @@
             if (sectionTop10) sectionTop10.classList.add('hidden');
             if (sectionOthers) sectionOthers.classList.add('hidden');
 
-            fetch('{{ route('game.leaderboard') }}')
+            const fp = getDeviceFingerprint();
+            const pName = highlightPlayerName || localStorage.getItem('skena_player_name') || '';
+
+            fetch('{{ route('game.leaderboard') }}?device_fingerprint=' + encodeURIComponent(fp) + '&player_name=' + encodeURIComponent(pName))
                 .then(res => res.json())
                 .then(res => {
                     loading.classList.add('hidden');
                     if (!res.success) return;
+
+                    // Sinkronisasi Live Rank pemain terkini ke tampilan kartu hasil
+                    if (res.player_rank && res.player_rank.found) {
+                        applyLeaderboardRankBadge(res.player_rank.rank, res.player_rank.player_name);
+                        try {
+                            const saved = localStorage.getItem(STORAGE_KEY_TODAY);
+                            if (saved) {
+                                const rec = JSON.parse(saved);
+                                rec.submittedRank = res.player_rank.rank;
+                                rec.submittedPlayerName = res.player_rank.player_name;
+                                rec.hasSubmittedLeaderboard = true;
+                                localStorage.setItem(STORAGE_KEY_TODAY, JSON.stringify(rec));
+                            }
+                        } catch (e) {}
+                    }
 
                     const periodEl = document.getElementById('lb-period-text');
                     const partEl = document.getElementById('lb-participants-badge');
@@ -2357,16 +2413,7 @@
                         const successCard = document.getElementById('leaderboard-submit-success');
                         if (successCard) {
                             successCard.classList.remove('hidden');
-                            const titleEl = document.getElementById('leaderboard-success-title');
-                            if (titleEl) {
-                                titleEl.innerText = (data.is_top_3 ? '🏆 Luar Biasa! Kamu Masuk Top 3 (Peringkat #' + data.rank + ')!' :
-                                    (data.is_top_10 ? '⭐ Hebat! Kamu Masuk Top 10 (Peringkat #' + data.rank + ')!' :
-                                    '🎉 Skormu Berhasil Tercatat di Peringkat #' + data.rank + '!'));
-                            }
-                            const nameBadge = document.getElementById('leaderboard-submitted-name-badge');
-                            if (nameBadge) {
-                                nameBadge.innerText = nameVal + (data.rank ? ' (Peringkat #' + data.rank + ')' : '');
-                            }
+                            applyLeaderboardRankBadge(data.rank, nameVal);
                         }
 
                         // Otomatis buka papan peringkat setelah 1.2 detik
