@@ -582,12 +582,9 @@
 {{-- ══════════════════════════════════════════════════════════════ --}}
 {{-- MODAL PAPAN PERINGKAT (LEADERBOARD TOP 10)                     --}}
 {{-- ══════════════════════════════════════════════════════════════ --}}
-<div id="modal-leaderboard" class="fixed inset-0 z-[120] hidden bg-black/80 backdrop-blur-md flex flex-col justify-end sm:justify-center sm:items-center p-0 sm:p-4 overscroll-none">
-    <div class="relative w-full sm:max-w-xl h-[90vh] sm:h-auto sm:max-h-[86vh] rounded-t-[2rem] sm:rounded-3xl border-t sm:border border-surface-200/80 dark:border-white/10 bg-white dark:bg-surface-900 px-4 pt-2.5 pb-4 sm:p-6 shadow-2xl flex flex-col overflow-hidden">
+<div id="modal-leaderboard" class="fixed inset-0 hidden bg-black/75 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4 overscroll-contain" style="z-index: 99999;">
+    <div class="relative w-full max-w-lg sm:max-w-xl rounded-3xl border border-surface-200/90 dark:border-white/10 bg-white dark:bg-surface-900 p-4 sm:p-6 shadow-2xl flex flex-col max-h-[86vh] overflow-hidden">
         
-        {{-- Mobile Pull Handle Indicator --}}
-        <div class="w-12 h-1.5 bg-surface-300 dark:bg-surface-700 rounded-full mx-auto sm:hidden mb-2.5 shrink-0"></div>
-
         {{-- Header Modal --}}
         <div class="flex items-center justify-between pb-3 border-b border-surface-100 dark:border-white/10 shrink-0">
             <div class="flex items-center gap-3">
@@ -622,8 +619,8 @@
             </div>
         </div>
 
-        {{-- Scrollable Leaderboard List (Area Khusus Scroll Lancar Tanpa Tembus Background) --}}
-        <div id="lb-scroll-container" class="min-h-0 flex-1 overflow-y-auto overscroll-contain pr-1 space-y-3" style="-webkit-overflow-scrolling: touch; touch-action: pan-y;">
+        {{-- Scrollable Leaderboard List (Area Khusus Scroll Lancar) --}}
+        <div id="lb-scroll-container" class="min-h-0 flex-1 overflow-y-auto overscroll-contain pr-1.5 space-y-3" style="-webkit-overflow-scrolling: touch;">
             {{-- Loading State --}}
             <div id="lb-loading-state" class="py-12 text-center text-surface-400 space-y-2">
                 <div class="inline-block animate-spin text-3xl">⏳</div>
@@ -639,16 +636,16 @@
                 </p>
             </div>
 
-            {{-- Top 3 Podium Cards Container (Fokus Utama: Juara 1, 2, 3 Tampil Lapang & Nyaman) --}}
+            {{-- Top 3 Podium Cards Container (Fokus Utama: Juara 1, 2, 3) --}}
             <div id="lb-top3-container" class="hidden space-y-2.5 sm:space-y-3">
                 {{-- Inserted via JS: Juara 1, 2, 3 --}}
             </div>
 
             {{-- Collapsible Section: Peringkat 4 s.d. 10 (Menu Arrow Dropdown) --}}
             <div id="lb-section-top10" class="hidden pt-1">
-                <button id="btn-toggle-top10" type="button" class="w-full flex items-center justify-between p-3.5 rounded-2xl bg-surface-50 dark:bg-surface-800/60 hover:bg-surface-100 dark:hover:bg-surface-800 border border-surface-200/80 dark:border-white/10 transition-all cursor-pointer shadow-xs active:scale-[0.99]">
+                <button id="btn-toggle-top10" type="button" class="w-full flex items-center justify-between p-3.5 rounded-2xl bg-surface-50 dark:bg-surface-800/60 hover:bg-surface-100 dark:hover:bg-surface-800 border border-surface-200 dark:border-white/10 transition-all cursor-pointer shadow-xs active:scale-[0.99]">
                     <div class="flex items-center gap-3">
-                        <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-primary-500/15 text-primary-600 dark:text-primary-400 font-black text-xs">
+                        <div class="flex h-8 w-8 items-center justify-center rounded-xl bg-primary-500/15 text-primary-600 dark:text-primary-400 font-black text-xs">
                             4-10
                         </div>
                         <div class="text-left">
@@ -672,9 +669,9 @@
 
             {{-- Collapsible Section: Peringkat Lainnya (11+) (Menu Arrow Dropdown) --}}
             <div id="lb-section-others" class="hidden pt-1">
-                <button id="btn-toggle-others" type="button" class="w-full flex items-center justify-between p-3.5 rounded-2xl bg-surface-50/70 dark:bg-surface-800/40 hover:bg-surface-100 dark:hover:bg-surface-800 border border-surface-200/70 dark:border-white/10 transition-all cursor-pointer shadow-xs active:scale-[0.99]">
+                <button id="btn-toggle-others" type="button" class="w-full flex items-center justify-between p-3.5 rounded-2xl bg-surface-50/70 dark:bg-surface-800/40 hover:bg-surface-100 dark:hover:bg-surface-800 border border-surface-200 dark:border-white/10 transition-all cursor-pointer shadow-xs active:scale-[0.99]">
                     <div class="flex items-center gap-3">
-                        <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-surface-200 dark:bg-surface-700 text-surface-600 dark:text-surface-300 font-black text-xs">
+                        <div class="flex h-8 w-8 items-center justify-center rounded-xl bg-surface-200 dark:bg-surface-700 text-surface-600 dark:text-surface-300 font-black text-xs">
                             11+
                         </div>
                         <div class="text-left">
@@ -1847,26 +1844,14 @@
         // LEADERBOARD MODAL LOGIC (RESET 07:00 WITA)
         // ══════════════════════════════════════════════════════════
         const modalLeaderboard = document.getElementById('modal-leaderboard');
-        let lbSavedScrollY = 0;
-
         function lockBodyScrollForLb() {
-            lbSavedScrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
-            document.body.style.position = 'fixed';
-            document.body.style.top = `-${lbSavedScrollY}px`;
-            document.body.style.left = '0';
-            document.body.style.right = '0';
-            document.body.style.width = '100%';
             document.body.style.overflow = 'hidden';
+            document.documentElement.style.overflow = 'hidden';
         }
 
         function unlockBodyScrollForLb() {
-            document.body.style.position = '';
-            document.body.style.top = '';
-            document.body.style.left = '';
-            document.body.style.right = '';
-            document.body.style.width = '';
             document.body.style.overflow = '';
-            window.scrollTo(0, lbSavedScrollY);
+            document.documentElement.style.overflow = '';
         }
 
         function openLeaderboardModal(highlightPlayerName) {
@@ -1994,7 +1979,7 @@
                         top4to10.forEach(player => {
                             top4to10Cont.appendChild(createStandardRow(player, highlightPlayerName));
                         });
-                        if (top10Badge) top10Badge.innerText = top4to10.length + ' Pemain';
+                        if (top10Badge) top10Badge.innerText = top4to10.length;
                         if (sectionTop10) sectionTop10.classList.remove('hidden');
 
                         // Cek apakah pemain yang sedang disorot ada di peringkat 4-10
@@ -2009,7 +1994,7 @@
                         others.forEach(player => {
                             othersCont.appendChild(createOthersRow(player, highlightPlayerName));
                         });
-                        if (othersBadge) othersBadge.innerText = others.length + ' Pemain';
+                        if (othersBadge) othersBadge.innerText = others.length;
                         if (sectionOthers) sectionOthers.classList.remove('hidden');
 
                         const isUserInOthers = highlightPlayerName && others.some(p => p.player_name.toLowerCase() === highlightPlayerName.toLowerCase());
