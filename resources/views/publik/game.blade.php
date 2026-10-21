@@ -510,7 +510,7 @@
                 {{-- Countdown timer to next challenge (Kompak 1 Baris) --}}
                 <div id="result-countdown-box" class="rounded-xl bg-amber-500/10 border border-amber-400/20 px-3 py-2 max-w-sm mx-auto my-3 text-xs flex items-center justify-between gap-2">
                     <div class="text-left">
-                        <span class="text-[9px] font-bold uppercase tracking-wider text-amber-300 block">Soal Baru Dalam:</span>
+                        <span class="text-[9px] font-bold uppercase tracking-wider text-amber-300 block">Reset Soal Baru (07:00 WITA):</span>
                         <span id="countdown-timer" class="text-xs sm:text-sm font-black font-mono text-amber-400">--:--:--</span>
                     </div>
                     <a href="{{ route('game.index', ['reset' => 1, 't' => time()]) }}" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg border border-amber-400/30 bg-amber-400/10 hover:bg-amber-400/20 text-[10px] font-bold text-amber-300 transition cursor-pointer shrink-0">
@@ -733,6 +733,7 @@
         // ══════════════════════════════════════════════════════════
         const TODAY_DATE = @json($todayDate);
         const PUZZLE_DATA = @json($puzzle);
+        const NEXT_RESET_ISO = @json($nextResetIso ?? null);
         const STORAGE_KEY_PREFIX = 'skena_game_v1_';
         const STORAGE_KEY_TODAY = STORAGE_KEY_PREFIX + TODAY_DATE + '_s' + PUZZLE_DATA.set_number;
 
@@ -933,6 +934,13 @@
                 clue: q.clue,
                 _mastered: false
             }));
+
+            // Acak urutan soal (Fisher-Yates Shuffle) agar setiap orang mendapat paket soal yang sama tetapi urutan tampilnya acak
+            for (let i = quizQueue.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [quizQueue[i], quizQueue[j]] = [quizQueue[j], quizQueue[i]];
+            }
+
             remedialQueue = [];
             masteredCount = 0;
             totalQuestions = activePuzzle.questions.length;
@@ -984,8 +992,19 @@
                 remedialPill.classList.add('hidden');
             }
 
-            // Reset choices and feedback box
-            document.getElementById('quiz-options-container').classList.remove('hidden');
+            // Acak posisi tombol MITOS vs FAKTA (kiri/kanan) pada setiap pertanyaan
+            const optionsContainer = document.getElementById('quiz-options-container');
+            const btnMitos = document.getElementById('btn-choose-mitos');
+            const btnFakta = document.getElementById('btn-choose-fakta');
+            if (optionsContainer && btnMitos && btnFakta) {
+                if (Math.random() < 0.5) {
+                    optionsContainer.appendChild(btnMitos); // FAKTA di kiri, MITOS di kanan
+                } else {
+                    optionsContainer.appendChild(btnFakta); // MITOS di kiri, FAKTA di kanan
+                }
+            }
+
+            if (optionsContainer) optionsContainer.classList.remove('hidden');
             document.getElementById('quiz-feedback-box').classList.add('hidden');
 
             updateQuizProgress();
@@ -1811,26 +1830,37 @@
             return emojis.join('');
         }
 
-        // Countdown Timer to Midnight 00:00 WITA (UTC+8)
+        // Countdown Timer ke Reset Soal Baru & Leaderboard (Setiap Jam 07:00 WITA)
         function startCountdown() {
             const timerEl = document.getElementById('countdown-timer');
+            if (!timerEl) return;
+
+            let targetTime = NEXT_RESET_ISO ? new Date(NEXT_RESET_ISO).getTime() : null;
+            if (!targetTime || isNaN(targetTime)) {
+                // Fallback jika NEXT_RESET_ISO tidak tersedia: hitung jam 07:00 WITA (UTC+8) berikutnya
+                const now = new Date();
+                const witaNow = new Date(now.getTime() + (8 * 60 + now.getTimezoneOffset()) * 60000);
+                const nextResetWita = new Date(witaNow);
+                if (witaNow.getHours() >= 7) {
+                    nextResetWita.setDate(nextResetWita.getDate() + 1);
+                }
+                nextResetWita.setHours(7, 0, 0, 0);
+                targetTime = now.getTime() + (nextResetWita - witaNow);
+            }
 
             function updateTimer() {
-                const now = new Date();
-                const tomorrow = new Date(now);
-                tomorrow.setDate(tomorrow.getDate() + 1);
-                tomorrow.setHours(0, 0, 0, 0);
-
-                const diffMs = tomorrow - now;
+                const now = Date.now();
+                const diffMs = targetTime - now;
                 if (diffMs <= 0) {
                     timerEl.innerText = '00:00:00 (Reset!)';
-                    location.reload();
+                    setTimeout(() => location.reload(), 2000);
                     return;
                 }
 
-                const hours = Math.floor(diffMs / (1000 * 60 * 60));
-                const mins = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
-                const secs = Math.floor((diffMs % (1000 * 60)) / 1000);
+                const totalSec = Math.floor(diffMs / 1000);
+                const hours = Math.floor(totalSec / 3600);
+                const mins = Math.floor((totalSec % 3600) / 60);
+                const secs = totalSec % 60;
 
                 timerEl.innerText =
                     String(hours).padStart(2, '0') + ':' +

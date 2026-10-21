@@ -452,7 +452,8 @@ class GameController extends Controller
      */
     public function index(Request $request): View
     {
-        $today = Carbon::today()->toDateString();
+        $today = GameLeaderboard::getCurrentPeriodDate();
+        $nextResetCarbon = GameLeaderboard::getNextResetCarbon();
         $offset = (int) ($request->session()->get('skena_set_offset') ?? $request->cookie('skena_set_offset', 0));
 
         if ($request->has('reset')) {
@@ -474,8 +475,10 @@ class GameController extends Controller
 
         return view('publik.game', [
             'todayDate' => $today,
-            'todayFormatted' => Carbon::today()->locale('id')->isoFormat('D MMMM Y'),
+            'todayFormatted' => Carbon::parse($today)->locale('id')->isoFormat('D MMMM Y'),
             'puzzle' => $puzzleData,
+            'nextResetIso' => $nextResetCarbon->toIso8601String(),
+            'nextResetFormatted' => $nextResetCarbon->locale('id')->isoFormat('D MMMM Y, HH:mm') . ' WITA',
         ]);
     }
 
@@ -484,7 +487,8 @@ class GameController extends Controller
      */
     public function dailyData(Request $request): JsonResponse
     {
-        $today = Carbon::today()->toDateString();
+        $today = GameLeaderboard::getCurrentPeriodDate();
+        $nextResetCarbon = GameLeaderboard::getNextResetCarbon();
         $offset = (int) ($request->session()->get('skena_set_offset') ?? $request->cookie('skena_set_offset', 0));
         if ($request->has('set')) {
             $offset = max(0, (int) $request->input('set') - 1);
@@ -493,8 +497,10 @@ class GameController extends Controller
 
         return response()->json([
             'date' => $today,
-            'date_formatted' => Carbon::today()->locale('id')->isoFormat('D MMMM Y'),
+            'date_formatted' => Carbon::parse($today)->locale('id')->isoFormat('D MMMM Y'),
             'puzzle' => $puzzleData,
+            'next_reset_iso' => $nextResetCarbon->toIso8601String(),
+            'next_reset_formatted' => $nextResetCarbon->locale('id')->isoFormat('D MMMM Y, HH:mm') . ' WITA',
         ]);
     }
 
@@ -635,7 +641,7 @@ class GameController extends Controller
         }
 
         // Fallback jika database belum tersedia
-        $today = Carbon::today()->toDateString();
+        $today = GameLeaderboard::getCurrentPeriodDate();
         return response()->json([
             'success' => true,
             'mode' => 'fallback',
@@ -649,7 +655,7 @@ class GameController extends Controller
      */
     public function resetToday(Request $request): JsonResponse
     {
-        $today = Carbon::today()->toDateString();
+        $today = GameLeaderboard::getCurrentPeriodDate();
         cookie()->queue(cookie()->forget('skena_game_done_' . $today));
 
         return response()->json([
@@ -664,18 +670,20 @@ class GameController extends Controller
      */
     public function recordAttempt(Request $request): JsonResponse
     {
-        $today = Carbon::today()->toDateString();
+        $today = GameLeaderboard::getCurrentPeriodDate();
+        $nextReset = GameLeaderboard::getNextResetCarbon();
         $status = $request->input('status', 'played'); // won, lost, played
 
-        // Pasang cookie bahwa hari ini sudah memainkan game
-        $minutesUntilMidnight = max(1, Carbon::now()->diffInMinutes(Carbon::tomorrow()));
-        cookie()->queue('skena_game_done_' . $today, $status, $minutesUntilMidnight);
+        // Pasang cookie hingga reset berikutnya pukul 07:00 WITA
+        $minutesUntilReset = max(1, Carbon::now('Asia/Makassar')->diffInMinutes($nextReset));
+        cookie()->queue('skena_game_done_' . $today, $status, $minutesUntilReset);
 
         return response()->json([
             'success' => true,
             'message' => 'Upaya permainan berhasil dicatat.',
             'date' => $today,
-            'status' => $status
+            'status' => $status,
+            'reset_at' => $nextReset->toIso8601String()
         ]);
     }
 
