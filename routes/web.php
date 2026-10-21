@@ -32,7 +32,7 @@ Route::middleware(['track.visitor'])->group(function () {
     // Statistik Dashboard
     Route::get('/statistik', [StatistikController::class, 'index'])->name('statistik');
 
-    // Game Edukasi (Mitos/Fakta & Wordle)
+    // Mini Games (Mitos/Fakta & Wordle)
     Route::get('/game', [\App\Http\Controllers\GameController::class, 'index'])->name('game.index');
 });
 

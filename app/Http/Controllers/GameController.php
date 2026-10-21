@@ -17,20 +17,20 @@ class GameController extends Controller
      */
     private array $rotationalPuzzles = [
         [
-            'theme' => 'Ketergantungan Zat & Pemulihan',
+            'theme' => 'Bahaya Zat Adiktif & Pemulihan',
             'words' => [
                 [
                     'index' => 1,
                     'word' => 'CANDU',
                     'length' => 5,
-                    'hint' => 'Kondisi keterikatan fisik dan psikologis kuat pada zat adiktif yang dijelaskan di Mitos/Fakta.',
+                    'hint' => 'Rasa ketagihan yang bikin pengen pakai narkoba terus-menerus (5 huruf).',
                     'definition' => 'CANDU: Ketergantungan atau adiksi yang terjadi saat zat narkotika membajak sistem dopamin otak sehingga pengguna merasa tak berdaya tanpanya.'
                 ],
                 [
                     'index' => 2,
                     'word' => 'REHAB',
                     'length' => 5,
-                    'hint' => 'Layanan medis dan sosial resmi BNN tanpa ancaman pidana bagi penyalahguna yang ingin pulih.',
+                    'hint' => 'Tempat perawatan dan pemulihan bagi orang yang kecanduan narkoba (5 huruf).',
                     'definition' => 'REHAB: Singkatan dari Rehabilitasi, proses perawatan medis dan psikososial terpadu agar pecandu dapat pulih seutuhnya dan kembali produktif.'
                 ]
             ],
@@ -40,16 +40,16 @@ class GameController extends Controller
                     'statement' => 'Mencoba narkoba jenis sabu atau narkotika sintetis hanya satu kali tidak akan bikin kecanduan.',
                     'is_fakta' => false, // Mitos
                     'badge' => 'Adiksi & Otak',
-                    'explanation' => 'Zat narkotika modern bekerja membanjiri dopamin otak hingga 10x lipat alami. Efek ini memicu sifat keterikatan akut atau rasa CANDU sejak pemakaian pertama.',
-                    'clue' => 'Perhatikan istilah kondisi keterikatan akut zat adiktif: CANDU.'
+                    'explanation' => 'Zat narkotika modern bekerja membanjiri dopamin otak hingga 10x lipat alami. Efek ini memicu sifat keterikatan akut atau rasa candu sejak pemakaian pertama.',
+                    'clue' => 'Kondisi keterikatan fisik dan psikologis yang kuat pada zat adiktif.'
                 ],
                 [
                     'id' => 2,
                     'statement' => 'Pecandu narkoba yang melapor sukarela ke BNN untuk rehabilitasi tidak akan dipenjara atau dipidana.',
                     'is_fakta' => true, // Fakta
                     'badge' => 'Hukum & Regulasi',
-                    'explanation' => 'Berdasarkan UU No. 35 Tahun 2009 Pasal 54 & 55, korban penyalahgunaan yang melapor sukarela ke BNN atau IPWL berhak menjalani REHAB (rehabilitasi) gratis tanpa proses hukum pidana.',
-                    'clue' => 'Perhatikan program pemulihan resmi tanpa pidana bagi pecandu: REHAB.'
+                    'explanation' => 'Berdasarkan UU No. 35 Tahun 2009 Pasal 54 & 55, korban penyalahgunaan yang melapor sukarela ke BNN atau IPWL berhak menjalani rehabilitasi (rehab) gratis tanpa proses hukum pidana.',
+                    'clue' => 'Layanan perawatan medis dan sosial resmi bagi pemulihan ketergantungan.'
                 ],
                 [
                     'id' => 3,
@@ -84,14 +84,14 @@ class GameController extends Controller
                     'index' => 1,
                     'word' => 'RACUN',
                     'length' => 5,
-                    'hint' => 'Zat toksik berbahaya dalam narkotika yang merusak organ vital tubuh.',
+                    'hint' => 'Zat berbahaya dalam narkoba yang mematikan dan merusak organ tubuh (5 huruf).',
                     'definition' => 'RACUN: Zat kimia destruktif di dalam narkotika yang mengendap dan merusak hati, ginjal, jantung, dan jutaan sel otak.'
                 ],
                 [
                     'index' => 2,
                     'word' => 'SEHAT',
                     'length' => 5,
-                    'hint' => 'Kondisi fisik dan mental prima yang terbebas dari jeratan zat berbahaya.',
+                    'hint' => 'Kondisi tubuh bugar dan tidak sakit, lawan kata dari sakit (5 huruf).',
                     'definition' => 'SEHAT: Keadaan bugar seimbang secara fisik, psikologis, dan sosial yang dipertahankan melalui pola hidup positif tanpa narkoba.'
                 ]
             ],
@@ -101,16 +101,16 @@ class GameController extends Controller
                     'statement' => 'Narkoba hanya berdampak pada pikiran penggunanya, sedangkan organ dalam tubuh tetap aman.',
                     'is_fakta' => false, // Mitos
                     'badge' => 'Kerusakan Fisik',
-                    'explanation' => 'Semua jenis narkoba mengandung senyawa kimia berbahaya yang bertindak sebagai RACUN bagi tubuh, menyebabkan gagal ginjal, sirosis hati, dan gagal jantung.',
-                    'clue' => 'Kata kunci pertama: senyawa toksik perusak organ tubuh adalah RACUN.'
+                    'explanation' => 'Semua jenis narkoba mengandung senyawa kimia berbahaya yang bertindak sebagai racun bagi tubuh, menyebabkan gagal ginjal, sirosis hati, dan gagal jantung.',
+                    'clue' => 'Senyawa berbahaya perusak organ vital tubuh.'
                 ],
                 [
                     'id' => 2,
                     'statement' => 'Olahraga teratur dan hobi positif mampu memicu hormon bahagia alami yang jauh lebih sehat daripada zat terlarang.',
                     'is_fakta' => true, // Fakta
                     'badge' => 'Gaya Hidup',
-                    'explanation' => 'Aktivitas fisik memicu produksi endorfin dan serotonin alami yang membuat pikiran tenang, tubuh segar, dan jiwa tetap SEHAT tanpa ketergantungan bahan kimia.',
-                    'clue' => 'Kata kunci kedua: gaya hidup bugar tanpa narkoba adalah SEHAT.'
+                    'explanation' => 'Aktivitas fisik memicu produksi endorfin dan serotonin alami yang membuat pikiran tenang, tubuh segar, dan jiwa tetap sehat tanpa ketergantungan bahan kimia.',
+                    'clue' => 'Kondisi fisik dan mental prima yang terbebas dari zat berbahaya.'
                 ],
                 [
                     'id' => 3,
@@ -145,14 +145,14 @@ class GameController extends Controller
                     'index' => 1,
                     'word' => 'GANJA',
                     'length' => 5,
-                    'hint' => 'Tanaman narkotika Golongan I yang dilarang keras beredar di Indonesia.',
+                    'hint' => 'Tanaman terlarang dengan daun hijau menjari yang sering dilinting (5 huruf).',
                     'definition' => 'GANJA: Tanaman Cannabis sativa yang mengandung THC psikoaktif terlarang berdasarkan UU No. 35 Tahun 2009 tentang Narkotika.'
                 ],
                 [
                     'index' => 2,
                     'word' => 'PULIH',
                     'length' => 5,
-                    'hint' => 'Kondisi bangkit dan terbebas dari belenggu adiksi narkotika.',
+                    'hint' => 'Keadaan sembuh kembali seperti semula setelah diobati (5 huruf).',
                     'definition' => 'PULIH: Keadaan ketika seseorang yang pernah kecanduan berhasil sembuh, stabil emosionalnya, dan kembali berkarya di tengah masyarakat.'
                 ]
             ],
@@ -162,16 +162,16 @@ class GameController extends Controller
                     'statement' => 'Di wilayah hukum Indonesia, ganja diperbolehkan untuk dikonsumsi bebas dalam jumlah kecil untuk santai.',
                     'is_fakta' => false, // Mitos
                     'badge' => 'Aspek Hukum',
-                    'explanation' => 'Hukum Indonesia secara tegas menggolongkan GANJA ke dalam Narkotika Golongan I. Memiliki, menyimpan, atau mengonsumsinya merupakan tindak pidana serius.',
-                    'clue' => 'Kata kunci pertama: tanaman narkotika Golongan I terlarang di Indonesia adalah GANJA.'
+                    'explanation' => 'Hukum Indonesia secara tegas menggolongkan tanaman ganja ke dalam Narkotika Golongan I. Memiliki, menyimpan, atau mengonsumsinya merupakan tindak pidana serius.',
+                    'clue' => 'Tanaman terlarang pembawa kandungan senyawa psikoaktif.'
                 ],
                 [
                     'id' => 2,
                     'statement' => 'Mantan pengguna narkoba yang tekun mengikuti program rehabilitasi memiliki peluang besar untuk sembuh.',
                     'is_fakta' => true, // Fakta
                     'badge' => 'Pemulihan',
-                    'explanation' => 'Dengan terapi perilaku dan pendampingan pascarehabilitasi BNN, ratusan mantan pecandu terbukti berhasil PULIH, mandiri, dan memiliki masa depan cerah.',
-                    'clue' => 'Kata kunci kedua: kondisi bebas dan sembuh dari ketergantungan adalah PULIH.'
+                    'explanation' => 'Dengan terapi perilaku dan pendampingan pascarehabilitasi BNN, ratusan mantan pecandu terbukti berhasil pulih, mandiri, dan memiliki masa depan cerah.',
+                    'clue' => 'Kondisi kesembuhan dan terbebas dari ketergantungan zat.'
                 ],
                 [
                     'id' => 3,
@@ -206,14 +206,14 @@ class GameController extends Controller
                     'index' => 1,
                     'word' => 'JARUM',
                     'length' => 5,
-                    'hint' => 'Alat suntik yang sering disalahgunakan dan memicu penularan virus mematikan.',
+                    'hint' => 'Benda tajam runcing pada alat suntik narkoba yang rawan tular virus (5 huruf).',
                     'definition' => 'JARUM: Alat injeksi suntik yang jika digunakan bergantian oleh pecandu menjadi media penularan paling berbahaya untuk virus HIV dan Hepatitis C.'
                 ],
                 [
                     'index' => 2,
                     'word' => 'WARAS',
                     'length' => 5,
-                    'hint' => 'Kondisi akal sehat dan kejernihan pikiran yang terjaga tanpa gangguan zat adiktif.',
+                    'hint' => 'Pikiran sehat dan berakal budi, lawan kata dari gila atau hilang akal (5 huruf).',
                     'definition' => 'WARAS: Keadaan pikiran yang sadar penuh, rasional, dan sehat mental, terbebas dari delusi atau psikosis akibat narkotika.'
                 ]
             ],
@@ -223,16 +223,16 @@ class GameController extends Controller
                     'statement' => 'Menggunakan alat suntik narkoba bergantian dengan teman dekat tidak berisiko tertular penyakit darah.',
                     'is_fakta' => false, // Mitos
                     'badge' => 'Penyakit Menular',
-                    'explanation' => 'Berbagi JARUM suntik bekas adalah penyebab utama ledakan penularan virus HIV/AIDS dan Hepatitis C yang merusak kekebalan tubuh hingga berujung kematian.',
-                    'clue' => 'Kata kunci pertama: alat suntik medis yang disalahgunakan adalah JARUM.'
+                    'explanation' => 'Berbagi jarum suntik bekas adalah penyebab utama ledakan penularan virus HIV/AIDS dan Hepatitis C yang merusak kekebalan tubuh hingga berujung kematian.',
+                    'clue' => 'Alat medis yang berbahaya bila disalahgunakan secara bergantian.'
                 ],
                 [
                     'id' => 2,
                     'statement' => 'Zat narkotika jenis stimulan dan halusinogen dapat memicu gangguan jiwa berat (psikosis).',
                     'is_fakta' => true, // Fakta
                     'badge' => 'Kesehatan Jiwa',
-                    'explanation' => 'Narkotika merusak sel otak secara permanen, menimbulkan delusi kejar, paranoid, dan halusinasi yang merampas kondisi pikiran yang WARAS dari penggunanya.',
-                    'clue' => 'Kata kunci kedua: pikiran sehat dan berakal budi adalah WARAS.'
+                    'explanation' => 'Narkotika merusak sel otak secara permanen, menimbulkan delusi kejar, paranoid, dan halusinasi yang merampas kondisi pikiran yang waras dari penggunanya.',
+                    'clue' => 'Kondisi pikiran yang sehat dan berakal budi jernih.'
                 ],
                 [
                     'id' => 3,
@@ -261,39 +261,39 @@ class GameController extends Controller
             ]
         ],
         [
-            'theme' => 'Modus Kamuflase & Hidup Bebas Narkoba',
+            'theme' => 'Narkotika Kristal & Hidup Bebas Narkoba',
             'words' => [
                 [
                     'index' => 1,
-                    'word' => 'VAPOR',
-                    'length' => 5,
-                    'hint' => 'Asap atau uap rokok elektrik yang kini rawan disusupi liquid narkotika sintetis.',
-                    'definition' => 'VAPOR: Uap dari perangkat rokok elektrik/vape yang marak disalahgunakan sindikat narkoba untuk mencampur cairan ganja sintetis (sinte).'
+                    'word' => 'SABU',
+                    'length' => 4,
+                    'hint' => 'Narkotika jenis kristal putih yang sering diisap dengan alat bong (4 huruf).',
+                    'definition' => 'SABU: Metamfetamin kristal yang merusak sistem saraf otak dan memicu paranoia akut.'
                 ],
                 [
                     'index' => 2,
                     'word' => 'BEBAS',
                     'length' => 5,
-                    'hint' => 'Kondisi merdeka tanpa belenggu zat narkotika yang merusak masa depan.',
+                    'hint' => 'Kondisi merdeka dan terlepas dari jeratan narkoba (5 huruf).',
                     'definition' => 'BEBAS: Keadaan merdeka sejati bagi generasi muda untuk berkarya dan meraih cita-cita tanpa jeratan adiksi dan hukum.'
                 ]
             ],
             'questions' => [
                 [
                     'id' => 1,
-                    'statement' => 'Cairan (liquid) rokok elektrik atau vape dijamin 100% aman dan tidak pernah dicampur zat narkotika.',
+                    'statement' => 'Narkoba jenis sabu kristal aman dikonsumsi asalkan dalam jumlah kecil untuk menambah stamina.',
                     'is_fakta' => false, // Mitos
-                    'badge' => 'Modus Baru (NPS)',
-                    'explanation' => 'BNN berulang kali membongkar peredaran cairan narkotika sintetis (tembakau gorila cair) yang dikemas dalam liquid perangkat VAPOR.',
-                    'clue' => 'Kata kunci pertama: istilah terkait uap rokok elektrik yang rawan disusupi narkoba adalah VAPOR.'
+                    'badge' => 'Bahaya Sabu',
+                    'explanation' => 'Sabu adalah zat metamfetamin yang sangat adiktif dan langsung merusak sel otak sejak pemakaian pertama serta memicu stroke mendadak.',
+                    'clue' => 'Narkotika kristal putih perusak sistem saraf otak.'
                 ],
                 [
                     'id' => 2,
                     'statement' => 'Masa depan gemilang dan prestasi tinggi hanya bisa diraih dengan tekad hidup bersih tanpa narkoba.',
                     'is_fakta' => true, // Fakta
                     'badge' => 'Cita-cita Generasi',
-                    'explanation' => 'Generasi yang BEBAS dari jeratan zat adiktif memiliki fokus mental yang prima, fisik yang bugar, dan peluang karir tanpa catatan kriminal.',
-                    'clue' => 'Kata kunci kedua: kondisi merdeka dari belenggu narkoba adalah BEBAS.'
+                    'explanation' => 'Generasi yang bebas dari jeratan zat adiktif memiliki fokus mental yang prima, fisik yang bugar, dan peluang karir tanpa catatan kriminal.',
+                    'clue' => 'Kondisi merdeka dari ketergantungan dan belenggu narkotika.'
                 ],
                 [
                     'id' => 3,
@@ -317,7 +317,7 @@ class GameController extends Controller
                     'is_fakta' => false, // Mitos
                     'badge' => 'Bahaya Kimia Sintetis',
                     'explanation' => 'Narkotika sintetis (seperti sabu dan sinte) memiliki daya rusak terhadap sel otak hingga ratusan kali lebih berbahaya dan memicu gagal jantung mendadak.',
-                    'clue' => 'Zat sintetis dalam campuran liquid vape atau serbuk merenggut kendali bebas pikiran.'
+                    'clue' => 'Zat sintetis kristal merenggut kendali bebas pikiran manusia.'
                 ]
             ]
         ],
@@ -328,14 +328,14 @@ class GameController extends Controller
                     'index' => 1,
                     'word' => 'STRES',
                     'length' => 5,
-                    'hint' => 'Beban pikiran atau tekanan mental yang sering disalahgunakan sebagai alasan memakai narkoba.',
+                    'hint' => 'Beban pikiran atau tekanan mental yang berat (5 huruf).',
                     'definition' => 'STRES: Tekanan mental atau emosional yang semestinya dikelola melalui cara positif, bukan dengan pelarian semu ke zat terlarang.'
                 ],
                 [
                     'index' => 2,
                     'word' => 'TEGAS',
                     'length' => 5,
-                    'hint' => 'Sikap berani dan lugas dalam menolak tawaran narkoba tanpa ragu-ragu.',
+                    'hint' => 'Sikap berani menolak ajakan memakai narkoba tanpa ragu-ragu (5 huruf).',
                     'definition' => 'TEGAS: Sikap asertif dan berkepribadian kuat untuk mengatakan TIDAK pada narkoba demi masa depan diri sendiri.'
                 ]
             ],
@@ -345,16 +345,16 @@ class GameController extends Controller
                     'statement' => 'Mengonsumsi pil penenang tanpa resep dokter adalah solusi tercepat dan efektif mengatasi beban stres.',
                     'is_fakta' => false, // Mitos
                     'badge' => 'Kesehatan Emosi',
-                    'explanation' => 'Menyalahgunakan obat penenang untuk lari dari STRES justru menciptakan toleransi obat, ketergantungan kronis, dan memperburuk depresi saat efek obat habis.',
-                    'clue' => 'Kata kunci pertama: tekanan mental yang salah kaprah diobati dengan narkoba adalah STRES.'
+                    'explanation' => 'Menyalahgunakan obat penenang untuk lari dari stres justru menciptakan toleransi obat, ketergantungan kronis, dan memperburuk depresi saat efek obat habis.',
+                    'clue' => 'Tekanan psikologis yang membutuhkan penanganan sehat.'
                 ],
                 [
                     'id' => 2,
                     'statement' => 'Menolak ajakan teman untuk mencicipi narkoba dengan lugas adalah tanda kepribadian yang berkarakter kuat.',
                     'is_fakta' => true, // Fakta
                     'badge' => 'Karakter Tangguh',
-                    'explanation' => 'Sikap TEGAS menolak bujukan kawan sebaya (peer pressure) adalah bentuk keberanian sejati untuk melindungi masa depan dan kehormatan keluarga.',
-                    'clue' => 'Kata kunci kedua: sikap lugas menolak narkoba adalah TEGAS.'
+                    'explanation' => 'Sikap tegas menolak bujukan kawan sebaya (peer pressure) adalah bentuk keberanian sejati untuk melindungi masa depan dan kehormatan keluarga.',
+                    'clue' => 'Sikap lugas dan teguh mempertahankan prinsip diri.'
                 ],
                 [
                     'id' => 3,
@@ -389,14 +389,14 @@ class GameController extends Controller
                     'index' => 1,
                     'word' => 'KIMIA',
                     'length' => 5,
-                    'hint' => 'Zat atau senyawa sintetis buatan pabrik gelap yang mematikan sel tubuh.',
+                    'hint' => 'Bahan sintetis buatan pabrik yang dicampur dalam narkoba terlarang (5 huruf).',
                     'definition' => 'KIMIA: Senyawa sintetis beracun yang diracik tanpa standar farmasi di laboratorium gelap peredaran narkotika.'
                 ],
                 [
                     'index' => 2,
                     'word' => 'SADAR',
                     'length' => 5,
-                    'hint' => 'Kondisi eling, waspada, dan memiliki pemahaman mendalam tentang bahaya narkoba.',
+                    'hint' => 'Kondisi pikiran jernih, lawan kata dari pingsan atau teler (5 huruf).',
                     'definition' => 'SADAR: Kesadaran moral, hukum, dan kesehatan untuk senantiasa waspada terhadap ancaman peredaran gelap narkoba di sekitar kita.'
                 ]
             ],
@@ -406,16 +406,16 @@ class GameController extends Controller
                     'statement' => 'Narkoba sintetis yang dibuat di laboratorium rumahan terjamin steril dan higienis.',
                     'is_fakta' => false, // Mitos
                     'badge' => 'Pabrik Gelap',
-                    'explanation' => 'Sindikat ilegal mencampur bahan KIMIA berbahaya seperti aseton, pembersih lantai, dan pupuk untuk menghasilkan sabu atau ekstasi murah yang mematikan.',
-                    'clue' => 'Kata kunci pertama: senyawa sintetik berbahaya dalam narkoba adalah KIMIA.'
+                    'explanation' => 'Sindikat ilegal mencampur bahan kimia berbahaya seperti aseton, pembersih lantai, dan pupuk untuk menghasilkan sabu atau ekstasi murah yang mematikan.',
+                    'clue' => 'Senyawa sintetis berbahaya yang merusak sistem saraf.'
                 ],
                 [
                     'id' => 2,
                     'statement' => 'Masyarakat yang memiliki kesadaran tinggi merupakan pilar utama program Desa Bersinar (Bersih Narkoba).',
                     'is_fakta' => true, // Fakta
                     'badge' => 'Desa Bersinar',
-                    'explanation' => 'Warga yang SADAR akan bahaya laten narkoba akan proaktif mengawasi lingkungan tempat tinggalnya dan membimbing anak-anak agar tidak terjerumus.',
-                    'clue' => 'Kata kunci kedua: sikap tanggap dan waspada terhadap narkoba adalah SADAR.'
+                    'explanation' => 'Warga yang sadar akan bahaya laten narkoba akan proaktif mengawasi lingkungan tempat tinggalnya dan membimbing anak-anak agar tidak terjerumus.',
+                    'clue' => 'Kondisi akal yang jernih dan tanggap terhadap lingkungan sekitar.'
                 ],
                 [
                     'id' => 3,
@@ -668,7 +668,7 @@ class GameController extends Controller
 
         return response()->json([
             'success' => true,
-            'message' => 'Upaya tantangan harian berhasil dicatat.',
+            'message' => 'Upaya permainan berhasil dicatat.',
             'date' => $today,
             'status' => $status
         ]);

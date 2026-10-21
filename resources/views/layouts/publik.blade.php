@@ -99,12 +99,9 @@
                         FAQ & Kontak
                     </a>
                     <a href="{{ route('game.index') }}"
-                       class="relative px-3.5 py-2 rounded-xl text-sm font-semibold transition-all duration-200
+                       class="px-3.5 py-2 rounded-xl text-sm font-semibold transition-all duration-200
                               {{ request()->routeIs('game.*') ? 'bg-primary-50 dark:bg-primary-500/15 text-primary-600 dark:text-primary-400 border border-primary-200/70 dark:border-primary-500/20 shadow-xs' : 'text-surface-600 dark:text-surface-300 hover:text-primary-600 dark:hover:text-white hover:bg-surface-100 dark:hover:bg-white/5' }}">
-                        <span class="inline-flex items-center gap-1.5">
-                            <span>🎮 Game</span>
-                            <span class="inline-flex items-center px-1.5 py-0.5 rounded-full text-[9px] font-extrabold uppercase tracking-wider bg-gradient-to-r from-amber-500 to-orange-500 text-white shadow-xs">Harian</span>
-                        </span>
+                        <span>🎮 Mini Games</span>
                     </a>
                 </div>
 
@@ -143,12 +140,9 @@
                 <a href="{{ route('edukasi.index') }}" class="block px-4 py-2.5 rounded-xl text-sm font-semibold {{ request()->routeIs('edukasi.*') ? 'bg-primary-50 dark:bg-primary-500/15 text-primary-600 dark:text-primary-400' : 'text-surface-700 dark:text-surface-300 hover:bg-surface-100 dark:hover:bg-white/5' }}">Katalog Edukasi</a>
                 <a href="{{ route('statistik') }}" class="block px-4 py-2.5 rounded-xl text-sm font-semibold {{ request()->routeIs('statistik') ? 'bg-primary-50 dark:bg-primary-500/15 text-primary-600 dark:text-primary-400' : 'text-surface-700 dark:text-surface-300 hover:bg-surface-100 dark:hover:bg-white/5' }}">Statistik</a>
                 <a href="{{ route('faq-kontak') }}" class="block px-4 py-2.5 rounded-xl text-sm font-semibold {{ request()->routeIs('faq-kontak') ? 'bg-primary-50 dark:bg-primary-500/15 text-primary-600 dark:text-primary-400' : 'text-surface-700 dark:text-surface-300 hover:bg-surface-100 dark:hover:bg-white/5' }}">FAQ & Kontak</a>
-                <a href="{{ route('game.index') }}" class="flex items-center justify-between px-4 py-2.5 rounded-xl text-sm font-semibold {{ request()->routeIs('game.*') ? 'bg-primary-50 dark:bg-primary-500/15 text-primary-600 dark:text-primary-400' : 'text-surface-700 dark:text-surface-300 hover:bg-surface-100 dark:hover:bg-white/5' }}">
-                    <span class="flex items-center gap-2">
-                        <span>🎮</span>
-                        <span>Game Edukasi (Wordle)</span>
-                    </span>
-                    <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 text-white">Harian</span>
+                <a href="{{ route('game.index') }}" class="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold {{ request()->routeIs('game.*') ? 'bg-primary-50 dark:bg-primary-500/15 text-primary-600 dark:text-primary-400' : 'text-surface-700 dark:text-surface-300 hover:bg-surface-100 dark:hover:bg-white/5' }}">
+                    <span>🎮</span>
+                    <span>Mini Games</span>
                 </a>
             </div>
         </div>

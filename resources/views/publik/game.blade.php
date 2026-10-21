@@ -1,6 +1,6 @@
 @extends('layouts.publik')
 
-@section('title', 'Tantangan Harian: Mitos/Fakta & Wordle')
+@section('title', 'Mini Games: Mitos/Fakta & Wordle')
 
 @push('styles')
 <style>
@@ -69,8 +69,8 @@
                 </a>
                 <div>
                     <div class="flex items-center gap-2">
-                        <span class="text-xs font-black uppercase tracking-wider text-primary-600 dark:text-primary-400">SKENA GAME</span>
-                        <span id="header-mode-badge" class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-500/20 text-amber-600 dark:text-amber-400 border border-amber-500/30">Tantangan Harian</span>
+                        <span class="text-xs font-black uppercase tracking-wider text-primary-600 dark:text-primary-400">SKENA MINI GAMES</span>
+                        <span id="header-mode-badge" class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-primary-500/20 text-primary-600 dark:text-primary-400 border border-primary-500/30">Mitos/Fakta & Wordle</span>
                     </div>
                     <h1 class="text-lg sm:text-xl font-black text-surface-900 dark:text-white tracking-tight">5 Mitos/Fakta & Wordle</h1>
                 </div>
@@ -103,10 +103,10 @@
                     </div>
 
                     <h2 class="text-2xl sm:text-3xl font-black tracking-tight leading-tight">
-                        Tantangan Harian Anti-Narkotika
+                        Mini Games Edukasi Anti-Narkotika
                     </h2>
                     <p class="mt-2 text-primary-200 text-sm leading-relaxed max-w-xl">
-                        Tema Hari Ini: <strong class="text-white font-bold">{{ $puzzle['theme'] }}</strong>.
+                        Tema: <strong class="text-white font-bold">{{ $puzzle['theme'] }}</strong>.
                         Selesaikan 2 babak edukatif yang saling terhubung untuk mengasah ketajaman wawasanmu!
                     </p>
 
@@ -115,7 +115,7 @@
                             <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-primary-500/20 text-primary-300 font-bold text-sm">1</div>
                             <div>
                                 <h3 class="text-sm font-bold text-white">Babak 1: 5 Mitos atau Fakta</h3>
-                                <p class="text-xs text-primary-200/80 mt-0.5">Jawab 5 pernyataan. Jika keliru, kamu akan mengulang soal yang salah di <strong>Sesi Remedial</strong> sampai tuntas (ala Duolingo)! Di setiap penjelasan tersimpan kisi-kisi penting.</p>
+                                <p class="text-xs text-primary-200/80 mt-0.5">Jawab 5 pernyataan seputar bahaya narkoba. Pelajari penjelasannya untuk memperkaya wawasan sebelum melangkah ke babak berikutnya.</p>
                             </div>
                         </div>
 
@@ -123,19 +123,19 @@
                             <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-amber-500/20 text-amber-300 font-bold text-sm">2</div>
                             <div>
                                 <h3 class="text-sm font-bold text-white">Babak 2: Wordle (Tebak 2 Kata Kunci)</h3>
-                                <p class="text-xs text-primary-200/80 mt-0.5">Tebak <strong>2 kata kunci seputar narkotika</strong> dari kisi-kisi tadi (panjang kata fleksibel sesuai istilah: 3 hingga 11 huruf). Tebak Kata 1 dulu; jika berhasil, lanjut ke Kata 2. Jika 6 percobaan habis, maka Game Over!</p>
+                                <p class="text-xs text-primary-200/80 mt-0.5">Tebak <strong>2 istilah kunci seputar pencegahan narkotika</strong> berdasarkan pemahaman yang telah kamu peroleh (panjang kata 3 hingga 11 huruf). Maksimal 6 kesempatan per kata!</p>
                             </div>
                         </div>
                     </div>
 
                     <div class="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
                         <button id="btn-start-game" type="button" class="inline-flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-surface-950 font-black px-8 py-4 text-base shadow-xl hover:shadow-amber-500/25 transition-all hover:scale-[1.02] cursor-pointer">
-                            <span>Mulai Tantangan Hari Ini</span>
+                            <span>Mulai Mini Games</span>
                             <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
                         </button>
                         <span class="text-xs text-primary-300/80 text-center sm:text-left flex items-center justify-center sm:justify-start gap-1.5">
                             <svg class="h-4 w-4 text-amber-400 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a.75.75 0 000 1.5h.253a.25.25 0 01.244.304l-.459 2.066A1.75 1.75 0 0010.747 15H11a.75.75 0 000-1.5h-.253a.25.25 0 01-.244-.304l.459-2.066A1.75 1.75 0 009.253 9H9z" clip-rule="evenodd"/></svg>
-                            Hanya 1 kali kesempatan setiap hari
+                            Asah wawasan & ketangkasan kata
                         </span>
                     </div>
                 </div>
@@ -143,15 +143,15 @@
         </div>
 
         {{-- ══════════════════════════════════════════════════════════ --}}
-        {{-- VIEW 2: BABAK 1 - MITOS ATAU FAKTA (Duolingo Style)      --}}
+        {{-- VIEW 2: BABAK 1 - MITOS ATAU FAKTA (Alur Interaktif SKENA) --}}
         {{-- ══════════════════════════════════════════════════════════ --}}
         <div id="view-myth-fact" class="hidden space-y-6">
-            {{-- Duolingo Style Progress Bar --}}
+            {{-- Progress Bar Edukasi SKENA --}}
             <div class="space-y-2">
                 <div class="flex items-center justify-between text-xs font-bold text-surface-500 dark:text-surface-400">
                     <span id="quiz-progress-label">Pertanyaan 1 dari 5</span>
                     <span id="quiz-remedial-badge" class="hidden px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-amber-500/20 text-amber-600 dark:text-amber-400 border border-amber-500/30 animate-pulse">
-                        🔁 Mode Remedial
+                        🔁 Ulangi Pertanyaan
                     </span>
                     <span id="quiz-score-badge" class="text-primary-600 dark:text-primary-400">Tuntas: <span id="quiz-mastered-count">0</span>/5</span>
                 </div>
@@ -160,13 +160,13 @@
                 </div>
             </div>
 
-            {{-- Remedial Announcement Alert (Duolingo style) --}}
+            {{-- Announcement Alert (Ulangi Pertanyaan) --}}
             <div id="remedial-alert-banner" class="hidden rounded-2xl border border-amber-500/40 bg-amber-500/10 p-4 text-amber-800 dark:text-amber-300 text-xs sm:text-sm flex items-start gap-3">
                 <span class="text-2xl shrink-0">🔁</span>
                 <div>
-                    <h4 class="font-black text-amber-900 dark:text-amber-200">Sesi Penguatan (Remedial)!</h4>
+                    <h4 class="font-black text-amber-900 dark:text-amber-200">Ulangi Pertanyaan yang Belum Tepat</h4>
                     <p class="mt-0.5 text-amber-800/90 dark:text-amber-300/90 leading-relaxed">
-                        Tadi ada <strong id="remedial-count-text">1</strong> pertanyaan yang kamu jawab keliru. Ayo jawab ulang sekarang agar pemahamanmu benar-benar mantap dan kisi-kisinya teringat jelas!
+                        Terdapat <strong id="remedial-count-text">1</strong> pernyataan yang belum tepat. Ayo jawab kembali sekarang agar pemahamanmu semakin mantap!
                     </p>
                 </div>
             </div>
@@ -216,16 +216,8 @@
 
                     {{-- Explanation Text --}}
                     <div class="rounded-2xl bg-surface-100 dark:bg-surface-800/80 p-4 border border-surface-200 dark:border-white/5">
-                        <h4 class="text-xs font-bold text-surface-500 dark:text-surface-400 uppercase tracking-wider mb-1">Penjelasan BNN:</h4>
+                        <h4 class="text-xs font-bold text-surface-500 dark:text-surface-400 uppercase tracking-wider mb-1">Penjelasan:</h4>
                         <p id="feedback-explanation" class="text-sm text-surface-800 dark:text-surface-200 leading-relaxed"></p>
-                    </div>
-
-                    {{-- Highlighted Clue Box for Wordle --}}
-                    <div class="rounded-2xl bg-amber-500/10 border border-amber-400/30 p-4 text-amber-900 dark:text-amber-200">
-                        <div class="flex items-center gap-2 text-xs font-black uppercase tracking-wider mb-1 text-amber-700 dark:text-amber-300">
-                            <span>💡 KISI-KISI TEBAK KATA (WORDLE):</span>
-                        </div>
-                        <p id="feedback-clue" class="text-xs sm:text-sm font-semibold leading-relaxed"></p>
                     </div>
 
                     {{-- Next Button --}}
@@ -253,27 +245,12 @@
                 </span>
                 <h2 class="text-2xl sm:text-3xl font-black text-white">5 Mitos vs Fakta Berhasil Dikuasai!</h2>
                 <p class="mt-2 text-surface-300 text-sm max-w-lg mx-auto leading-relaxed">
-                    Hebat! Kamu telah mengingat seluruh fakta penting anti-narkoba. Sekarang gunakan kisi-kisi yang telah kamu baca tadi untuk menuntaskan babak akhir: <strong>Tebak 2 Kata (Wordle)</strong>.
+                    Kerja bagus! Kamu telah menyelesaikan seluruh pernyataan edukasi. Sekarang gunakan pemahaman yang telah kamu peroleh untuk menuntaskan babak akhir: <strong>Tebak 2 Kata (Wordle)</strong>.
                 </p>
-
-                {{-- Clues Recap Card --}}
-                <div class="mt-8 text-left rounded-2xl bg-surface-900/90 border border-white/10 p-5 space-y-3 max-w-xl mx-auto">
-                    <h4 class="text-xs font-black uppercase tracking-wider text-amber-400 flex items-center gap-1.5">
-                        <span>🔍</span> Kisi-kisi Kata Kunci yang Kamu Dapatkan:
-                    </h4>
-                    <div class="rounded-xl bg-white/5 p-3 text-xs text-surface-200">
-                        <strong class="text-amber-300 block mb-1">Kata 1 (<span id="clue-preview-word1-len">5</span> Huruf):</strong>
-                        <span id="clue-preview-word1">Memuat kisi-kisi kata pertama...</span>
-                    </div>
-                    <div class="rounded-xl bg-white/5 p-3 text-xs text-surface-200">
-                        <strong class="text-amber-300 block mb-1">Kata 2 (<span id="clue-preview-word2-len">5</span> Huruf):</strong>
-                        <span id="clue-preview-word2">Memuat kisi-kisi kata kedua...</span>
-                    </div>
-                </div>
 
                 <div class="mt-8 flex justify-center">
                     <button id="btn-proceed-to-wordle" type="button" class="inline-flex items-center gap-2.5 rounded-2xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-surface-950 font-black px-8 py-4 text-base shadow-xl transition-all hover:scale-105 cursor-pointer">
-                        <span>Mulai Babak Wordle (Tebak 2 Kata)</span>
+                        <span>Lanjut ke Papan Wordle</span>
                         <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
                     </button>
                 </div>
@@ -303,12 +280,21 @@
                 </div>
             </div>
 
-            {{-- Clue Reminder Banner --}}
-            <div class="rounded-2xl border border-amber-400/30 bg-amber-500/10 p-3.5 sm:p-4 text-xs sm:text-sm text-amber-900 dark:text-amber-200 flex items-start gap-3">
-                <span class="text-xl shrink-0">💡</span>
-                <div class="flex-1">
-                    <strong class="font-bold text-amber-950 dark:text-amber-100">Kisi-kisi dari Mitos/Fakta tadi:</strong>
-                    <p id="wordle-active-hint" class="mt-0.5 leading-relaxed"></p>
+            {{-- Petunjuk / Pertanyaan Tebak Kata (Wordle) --}}
+            <div class="rounded-2xl border border-primary-500/25 bg-primary-50/80 dark:bg-primary-950/40 p-4 shadow-sm">
+                <div class="flex items-start gap-3">
+                    <span class="text-2xl select-none mt-0.5">💡</span>
+                    <div class="flex-1">
+                        <div class="flex items-center justify-between mb-1">
+                            <span class="text-xs font-black uppercase tracking-wider text-primary-700 dark:text-primary-300">
+                                Pertanyaan / Petunjuk Kata:
+                            </span>
+                            <span class="text-[11px] font-semibold px-2 py-0.5 rounded-md bg-primary-500/10 text-primary-600 dark:text-primary-400">
+                                Bantuan Menjawab
+                            </span>
+                        </div>
+                        <p id="wordle-active-hint" class="text-sm sm:text-base font-bold text-surface-900 dark:text-white leading-relaxed"></p>
+                    </div>
                 </div>
             </div>
 
@@ -384,16 +370,16 @@
                 </h2>
                 <p id="result-description" class="mt-2 text-surface-300 text-sm max-w-lg mx-auto leading-relaxed"></p>
 
-                {{-- Both Words Revealed --}}
-                <div class="my-6 grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-xl mx-auto text-left">
+                {{-- Both Words Revealed (Hanya ditampilkan jika pemain MENANG / berhasil menebak) --}}
+                <div id="result-words-container" class="hidden my-6 grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-xl mx-auto text-left">
                     <div class="rounded-2xl bg-surface-900/90 border border-white/10 p-4">
                         <span class="text-[10px] font-bold uppercase tracking-wider text-surface-400">Kata 1</span>
-                        <p id="result-word1-title" class="text-lg font-black text-emerald-400 tracking-wider">CANDU</p>
+                        <p id="result-word1-title" class="text-lg font-black text-emerald-400 tracking-wider"></p>
                         <p id="result-word1-def" class="text-xs text-surface-300 mt-1"></p>
                     </div>
                     <div class="rounded-2xl bg-surface-900/90 border border-white/10 p-4">
                         <span class="text-[10px] font-bold uppercase tracking-wider text-surface-400">Kata 2</span>
-                        <p id="result-word2-title" class="text-lg font-black text-emerald-400 tracking-wider">REHAB</p>
+                        <p id="result-word2-title" class="text-lg font-black text-emerald-400 tracking-wider"></p>
                         <p id="result-word2-def" class="text-xs text-surface-300 mt-1"></p>
                     </div>
                 </div>
@@ -408,14 +394,14 @@
                 </div>
 
                 {{-- Countdown timer to next challenge --}}
-                <div class="rounded-2xl bg-amber-500/10 border border-amber-400/20 p-4 max-w-md mx-auto my-6">
-                    <span class="text-xs font-bold uppercase tracking-wider text-amber-300">Tantangan Berikutnya Terbuka Dalam:</span>
+                <div id="result-countdown-box" class="rounded-2xl bg-amber-500/10 border border-amber-400/20 p-4 max-w-md mx-auto my-6">
+                    <span class="text-xs font-bold uppercase tracking-wider text-amber-300">Rotasi Soal Berikutnya Dalam:</span>
                     <div id="countdown-timer" class="text-2xl font-black font-mono text-amber-400 mt-1">
                         --:--:--
                     </div>
-                    <p class="text-[11px] text-surface-400 mt-1">Reset setiap pukul 00:00 WITA dengan 5 Mitos/Fakta & 2 Kata baru.</p>
+                    <p class="text-[11px] text-surface-400 mt-1">Pembaruan otomatis 5 Mitos/Fakta & 2 Kata baru setiap 00:00 WITA.</p>
                     <a href="{{ route('game.index', ['reset' => 1]) }}" class="inline-flex items-center gap-1.5 mt-3 px-3.5 py-1.5 rounded-xl border border-amber-400/30 bg-amber-400/10 hover:bg-amber-400/20 text-xs font-bold text-amber-300 transition cursor-pointer">
-                        <span>🔄</span> Reset & Dapatkan Soal Baru Hari Ini
+                        <span>🔄</span> Reset & Dapatkan Soal Baru
                     </a>
                 </div>
 
@@ -426,8 +412,8 @@
                         <span id="btn-share-text">Bagikan Skor ke WhatsApp / Salin</span>
                     </button>
 
-                    <button id="btn-practice-mode" type="button" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/10 hover:bg-white/20 text-white font-bold px-6 py-3.5 text-sm transition cursor-pointer">
-                        <span>🎮 Main Lagi (Mode Latihan)</span>
+                    <button id="btn-restart-game" type="button" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-surface-950 font-black px-7 py-3.5 text-sm shadow-lg transition-all hover:scale-105 cursor-pointer">
+                        <span>🔄 Mengulang</span>
                     </button>
                 </div>
             </div>
@@ -453,12 +439,12 @@
         <div class="space-y-4 text-xs sm:text-sm text-surface-600 dark:text-surface-300 leading-relaxed">
             <div class="rounded-xl bg-primary-50 dark:bg-primary-500/10 p-3.5 border border-primary-200 dark:border-primary-500/20">
                 <strong class="text-primary-700 dark:text-primary-300 block mb-1">1. Babak Mitos atau Fakta:</strong>
-                Pengunjung disajikan 5 pertanyaan seputar narkoba. Jika salah menjawab, pertanyaan tersebut akan <strong>diulang kembali di akhir (Remedial ala Duolingo)</strong> sampai kamu menjawabnya dengan tepat agar informasinya benar-benar melekat.
+                Pengunjung disajikan 5 pertanyaan seputar narkoba. Jika ada jawaban yang kurang tepat, pertanyaan tersebut akan diulang kembali di akhir agar kamu memahami fakta yang sebenarnya.
             </div>
 
             <div class="rounded-xl bg-amber-50 dark:bg-amber-500/10 p-3.5 border border-amber-200 dark:border-amber-500/20">
-                <strong class="text-amber-800 dark:text-amber-300 block mb-1">2. Temukan Kisi-kisi:</strong>
-                Di setiap penjelasan Mitos/Fakta, perhatikan istilah penting yang disorot. Istilah tersebut adalah bocoran kata yang akan kamu tebak di babak Wordle!
+                <strong class="text-amber-800 dark:text-amber-300 block mb-1">2. Pahami Penjelasannya:</strong>
+                Simak pembahasan di balik setiap pernyataan. Konsep dan wawasan yang kamu pelajari akan membantumu memecahkan tebakan kata di babak berikutnya.
             </div>
 
             <div class="rounded-xl bg-emerald-50 dark:bg-emerald-500/10 p-3.5 border border-emerald-200 dark:border-emerald-500/20">
@@ -473,8 +459,8 @@
             </div>
 
             <div class="rounded-xl bg-danger-50 dark:bg-danger-500/10 p-3.5 border border-danger-200 dark:border-danger-500/20">
-                <strong class="text-danger-800 dark:text-danger-300 block mb-1">4. Kesempatan 1 Kali Sehari:</strong>
-                Jika kamu kehabisan 6 kesempatan pada salah satu kata, permainan berakhir (Game Over). Tantangan resmi hanya dapat dicoba <strong>1 kali dalam sehari</strong> dan akan di-reset setiap tengah malam (00:00 WITA).
+                <strong class="text-danger-800 dark:text-danger-300 block mb-1">4. Kesempatan Bermain:</strong>
+                Jika kamu kehabisan 6 kesempatan pada salah satu kata, permainan berakhir (Game Over). Kamu bisa mencoba kembali atau bermain di mode latihan untuk mengasah wawasanmu!
             </div>
         </div>
 
@@ -666,7 +652,7 @@
         }
 
         // ══════════════════════════════════════════════════════════
-        // PHASE 1: MITOS ATAU FAKTA (DUOLINGO REMEDIAL LOGIC)
+        // PHASE 1: MITOS ATAU FAKTA
         // ══════════════════════════════════════════════════════════
         let isAnswering = false;
 
@@ -765,7 +751,9 @@
             const feedbackClue = document.getElementById('feedback-clue');
 
             feedbackExplanation.innerText = currentQuestion.explanation;
-            feedbackClue.innerText = currentQuestion.clue;
+            if (feedbackClue) {
+                feedbackClue.innerText = currentQuestion.clue || '';
+            }
 
             if (isCorrect) {
                 playSound('correct');
@@ -785,7 +773,7 @@
                 feedbackIcon.innerText = '❌';
                 feedbackTitle.innerText = 'Kurang Tepat! Pernyataan ini sebenarnya adalah ' + (currentQuestion.is_fakta ? 'FAKTA' : 'MITOS') + '.';
 
-                // Duolingo style: Add to remedial queue so player will review it!
+                // Masukkan ke antrean pengulangan
                 remedialQueue.push(currentQuestion);
             }
 
@@ -796,7 +784,7 @@
             // Set button label
             const nextBtnLabel = document.getElementById('btn-next-question-label');
             if (quizQueue.length === 0 && remedialQueue.length > 0) {
-                nextBtnLabel.innerText = 'Lanjut ke Sesi Remedial (' + remedialQueue.length + ' Soal)';
+                nextBtnLabel.innerText = 'Ulangi Soal Belum Tepat (' + remedialQueue.length + ')';
             } else if (quizQueue.length === 0 && remedialQueue.length === 0) {
                 nextBtnLabel.innerText = 'Tuntaskan Babak 1';
             } else {
@@ -827,8 +815,10 @@
             if (lenEl1) lenEl1.innerText = w1Len;
             if (lenEl2) lenEl2.innerText = w2Len;
 
-            document.getElementById('clue-preview-word1').innerText = w1.hint;
-            document.getElementById('clue-preview-word2').innerText = w2.hint;
+            const cpw1 = document.getElementById('clue-preview-word1');
+            const cpw2 = document.getElementById('clue-preview-word2');
+            if (cpw1) cpw1.innerText = w1.hint;
+            if (cpw2) cpw2.innerText = w2.hint;
 
             showView(viewPhase1Complete);
         }
@@ -1195,7 +1185,12 @@
 
             // Save official record if not in practice mode
             if (!isPracticeMode) {
-                localStorage.setItem(STORAGE_KEY_TODAY, JSON.stringify(record));
+                if (isVictory) {
+                    localStorage.setItem(STORAGE_KEY_TODAY, JSON.stringify(record));
+                } else {
+                    // Jangan kunci Game Over di localStorage agar pemain bisa langsung mengulang
+                    localStorage.removeItem(STORAGE_KEY_TODAY);
+                }
                 // Sync with server endpoint
                 fetch('{{ route('game.record') }}', {
                     method: 'POST',
@@ -1220,6 +1215,9 @@
             const resultPill = document.getElementById('result-pill');
             const resultTitle = document.getElementById('result-title');
             const resultDesc = document.getElementById('result-description');
+            const resultWordsContainer = document.getElementById('result-words-container');
+            const resultCountdownBox = document.getElementById('result-countdown-box');
+            const btnRestart = document.getElementById('btn-restart-game');
 
             if (isVictory) {
                 playSound('victory');
@@ -1232,6 +1230,17 @@
                 resultPill.innerText = 'LULUS SEMPURNA!';
                 resultTitle.innerText = 'Selamat! Kamu Menaklukkan Wordle SKENA!';
                 resultDesc.innerText = 'Dua kata kunci bahaya narkoba berhasil kamu tebak berkat pemahaman tajam dari babak Mitos/Fakta. Terus pertahankan wawasan ini!';
+
+                // Tampilkan kata jika menang (karena pemain sudah berhasil menebaknya)
+                if (resultWordsContainer) {
+                    resultWordsContainer.classList.remove('hidden');
+                    document.getElementById('result-word1-title').innerText = w1.word;
+                    document.getElementById('result-word1-def').innerText = w1.definition;
+                    document.getElementById('result-word2-title').innerText = w2.word;
+                    document.getElementById('result-word2-def').innerText = w2.definition;
+                }
+                if (resultCountdownBox) resultCountdownBox.classList.remove('hidden');
+                if (btnRestart) btnRestart.innerHTML = '<span>🔄 Main Lagi</span>';
             } else {
                 resultCard.className = 'rounded-3xl border border-danger-500/40 bg-gradient-to-br from-danger-950/40 via-surface-900 to-surface-950 p-6 sm:p-10 text-center shadow-2xl';
                 resultBadgeIcon.className = 'mx-auto flex h-20 w-20 items-center justify-center rounded-3xl bg-danger-500/20 text-danger-400 text-4xl mb-4 border border-danger-400/30';
@@ -1239,14 +1248,20 @@
                 resultPill.className = 'inline-block px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider bg-danger-500/20 text-danger-300 mb-2';
                 resultPill.innerText = 'KESEMPATAN HABIS (GAME OVER)';
                 resultTitle.innerText = 'Sayang Sekali, Kesempatanmu Habis!';
-                resultDesc.innerText = 'Jangan berkecil hati! Pelajari kembali kedua kata kunci di bawah ini dan kembalilah besok untuk tantangan harian baru.';
-            }
+                resultDesc.innerText = 'Kesempatan menebak telah habis. Silakan mengulang dari babak awal untuk mencoba kembali!';
 
-            // Word cards
-            document.getElementById('result-word1-title').innerText = w1.word;
-            document.getElementById('result-word1-def').innerText = w1.definition;
-            document.getElementById('result-word2-title').innerText = w2.word;
-            document.getElementById('result-word2-def').innerText = w2.definition;
+                // Sembunyikan jawaban sama sekali agar pemain tidak bisa mencoba ulang dengan mengetahui jawaban
+                if (resultWordsContainer) {
+                    resultWordsContainer.classList.add('hidden');
+                }
+                document.getElementById('result-word1-title').innerText = '';
+                document.getElementById('result-word1-def').innerText = '';
+                document.getElementById('result-word2-title').innerText = '';
+                document.getElementById('result-word2-def').innerText = '';
+
+                if (resultCountdownBox) resultCountdownBox.classList.add('hidden');
+                if (btnRestart) btnRestart.innerHTML = '<span>🔄 Mengulang</span>';
+            }
 
             // Generate emoji grid
             generateEmojiGrid(record);
@@ -1416,12 +1431,23 @@
             return false;
         }
 
-        // Mode Latihan Replay (Main ulang tanpa mengubah skor harian resmi)
-        function startPracticeGame() {
+        // Mengulang permainan dari babak awal lagi (Babak 1: Mitos atau Fakta)
+        function restartGame() {
             playSound('click');
-            isPracticeMode = true;
-            headerModeBadge.innerText = 'Mode Latihan';
-            headerModeBadge.className = 'px-2 py-0.5 rounded-full text-[10px] font-bold bg-purple-500/20 text-purple-600 dark:text-purple-400 border border-purple-500/30';
+            localStorage.removeItem(STORAGE_KEY_TODAY);
+            isPracticeMode = false;
+            masteredCount = 0;
+            currentWordIndex = 0;
+            currentRow = 0;
+            currentCol = 0;
+            currentGuess = '';
+            wordGuesses = [[], []];
+            word1Won = false;
+            word2Won = false;
+            isGameOver = false;
+            keyStatusMap = {};
+
+            // Langsung bawa pemain mengulang dari babak awal (Mitos atau Fakta)
             startQuiz();
         }
 
@@ -1434,10 +1460,14 @@
             });
         }
 
-        // Practice Mode Button Event
+        // Restart Game Button Event (Mengulang dari awal)
+        const btnRestart = document.getElementById('btn-restart-game');
+        if (btnRestart) {
+            btnRestart.addEventListener('click', restartGame);
+        }
         const btnPractice = document.getElementById('btn-practice-mode');
         if (btnPractice) {
-            btnPractice.addEventListener('click', startPracticeGame);
+            btnPractice.addEventListener('click', restartGame);
         }
 
         // Help Modal Events
