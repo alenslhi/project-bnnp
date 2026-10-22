@@ -53,6 +53,8 @@ class EdukasiController extends Controller
         if ($request->hasFile('gambar')) {
             $validated['gambar'] = $request->file('gambar')
                 ->store('edukasi/gambar', 'public');
+        } else {
+            unset($validated['gambar']);
         }
 
         // Handle file upload lampiran
@@ -106,14 +108,15 @@ class EdukasiController extends Controller
 
             $validated['gambar'] = $request->file('gambar')
                 ->store('edukasi/gambar', 'public');
-        }
-
-        // Hapus gambar jika user mencentang "hapus gambar"
-        if ($request->boolean('hapus_gambar') && !$request->hasFile('gambar')) {
+        } elseif ($request->boolean('hapus_gambar')) {
+            // Hapus gambar jika user mencentang "hapus gambar"
             if ($edukasi->gambar && Storage::disk('public')->exists($edukasi->gambar)) {
                 Storage::disk('public')->delete($edukasi->gambar);
             }
             $validated['gambar'] = null;
+        } else {
+            // Jangan ubah gambar jika user tidak mengunggah gambar baru & tidak mencentang hapus
+            unset($validated['gambar']);
         }
 
         // Handle file upload lampiran baru (hapus file lama jika ada)

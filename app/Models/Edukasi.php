@@ -25,24 +25,62 @@ class Edukasi extends Model
         'kategori',
         'konten',
         'gambar',
+        'gambar_cover',
         'file_path',
         'penulis_id',
     ];
+
+    /**
+     * Accessor untuk field gambar.
+     * Kompatibel dengan database lama/live yang mungkin masih bernama 'gambar_cover'.
+     */
+    public function getGambarAttribute(): ?string
+    {
+        return $this->attributes['gambar'] ?? $this->attributes['gambar_cover'] ?? null;
+    }
+
+    /**
+     * Mutator untuk field gambar.
+     * Menyesuaikan target kolom jika tabel database masih menggunakan 'gambar_cover'.
+     */
+    public function setGambarAttribute($value): void
+    {
+        if (array_key_exists('gambar_cover', $this->attributes)) {
+            $this->attributes['gambar_cover'] = $value;
+            return;
+        }
+
+        if (!array_key_exists('gambar', $this->attributes)) {
+            try {
+                if (\Illuminate\Support\Facades\Schema::hasColumn('edukasis', 'gambar_cover') &&
+                    !\Illuminate\Support\Facades\Schema::hasColumn('edukasis', 'gambar')) {
+                    $this->attributes['gambar_cover'] = $value;
+                    return;
+                }
+            } catch (\Throwable $e) {
+                // Abaikan jika koneksi/schema query gagal
+            }
+        }
+
+        $this->attributes['gambar'] = $value;
+    }
 
     /**
      * URL publik untuk gambar sampul/thumbnail.
      */
     public function getGambarUrlAttribute(): ?string
     {
-        if (!$this->gambar) {
+        $gambar = $this->gambar;
+
+        if (!$gambar) {
             return null;
         }
 
-        if (str_starts_with($this->gambar, 'http://') || str_starts_with($this->gambar, 'https://')) {
-            return $this->gambar;
+        if (str_starts_with($gambar, 'http://') || str_starts_with($gambar, 'https://')) {
+            return $gambar;
         }
 
-        return asset('storage/' . $this->gambar);
+        return asset('storage/' . $gambar);
     }
 
     // ──────────────────────────────────────────────
