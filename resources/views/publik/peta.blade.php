@@ -107,7 +107,7 @@
                         aria-label="Geser ke kiri"
                         title="Geser ke kiri"
                         class="shrink-0 w-7 h-7 rounded-lg border border-surface-200 dark:border-white/10 bg-surface-100 dark:bg-surface-950/90 hover:bg-surface-200 dark:hover:bg-white/15 text-surface-600 dark:text-surface-300 hover:text-surface-900 dark:hover:text-white flex items-center justify-center text-sm font-bold transition shadow-xs">
-                    ‹
+                    <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
                 </button>
 
                 {{-- Scrollable Container --}}
@@ -156,7 +156,7 @@
                         aria-label="Geser ke kanan"
                         title="Geser ke kanan"
                         class="shrink-0 w-7 h-7 rounded-lg border border-surface-200 dark:border-white/10 bg-surface-100 dark:bg-surface-950/90 hover:bg-surface-200 dark:hover:bg-white/15 text-surface-600 dark:text-surface-300 hover:text-surface-900 dark:hover:text-white flex items-center justify-center text-sm font-bold transition shadow-xs">
-                    ›
+                    <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
                 </button>
             </div>
 
@@ -695,8 +695,9 @@ function renderPagination(totalItems, activePage) {
         <button type="button" 
                 onclick="goToPage(${activePage - 1})" 
                 ${activePage === 1 ? 'disabled' : ''}
-                class="px-2.5 py-1.5 rounded-lg border border-surface-200 dark:border-white/10 bg-surface-100 dark:bg-surface-950 text-surface-700 dark:text-surface-300 ${prevDisabled} transition font-semibold text-xs flex items-center gap-1">
-            ◀ Prev
+                class="px-2.5 py-1.5 rounded-lg border border-surface-200 dark:border-white/10 bg-surface-100 dark:bg-surface-950 text-surface-700 dark:text-surface-300 ${prevDisabled} transition font-semibold text-xs flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
+            <span>Prev</span>
         </button>
     `;
 
@@ -745,8 +746,9 @@ function renderPagination(totalItems, activePage) {
         <button type="button" 
                 onclick="goToPage(${activePage + 1})" 
                 ${activePage === totalPages ? 'disabled' : ''}
-                class="px-2.5 py-1.5 rounded-lg border border-surface-200 dark:border-white/10 bg-surface-100 dark:bg-surface-950 text-surface-700 dark:text-surface-300 ${nextDisabled} transition font-semibold text-xs flex items-center gap-1">
-            Next ▶
+                class="px-2.5 py-1.5 rounded-lg border border-surface-200 dark:border-white/10 bg-surface-100 dark:bg-surface-950 text-surface-700 dark:text-surface-300 ${nextDisabled} transition font-semibold text-xs flex items-center gap-1.5">
+            <span>Next</span>
+            <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
         </button>
     `;
 

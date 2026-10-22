@@ -242,7 +242,7 @@
                         title="Klik untuk melihat statistik lengkap pengunjung website">
                     <span class="w-2 h-2 rounded-full bg-primary-400 group-hover:animate-ping"></span>
                     <span>Pengunjung: <strong class="text-white font-bold">{{ number_format($totalPengunjung ?? 0, 0, ',', '.') }}</strong></span>
-                    <span class="text-primary-300 font-semibold">(↑ {{ $pengunjungHariIni ?? 0 }} hari ini)</span>
+                    <span class="inline-flex items-center gap-0.5 text-primary-300 font-semibold">(<svg class="w-3 h-3 text-emerald-400 shrink-0 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>{{ $pengunjungHariIni ?? 0 }} hari ini)</span>
                 </button>
             </div>
         </div>

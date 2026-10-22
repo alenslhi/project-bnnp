@@ -550,7 +550,7 @@
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.504-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.004 0A5.25 5.25 0 0012 3a5.25 5.25 0 00-5.25 11.25m10.5 0a5.25 5.25 0 01-5.25 0m0 0a5.25 5.25 0 00-5.25 0"/>
                                     </svg>
                                     <span>Buka Peringkat</span>
-                                    <span>→</span>
+                                    <svg class="h-3.5 w-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
                                 </button>
                             </div>
                         </div>
@@ -1226,7 +1226,7 @@
         const KEYBOARD_LAYOUT = [
             ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
             ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'],
-            ['ENTER', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', '⌫']
+            ['ENTER', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', 'BACKSPACE']
         ];
 
         // Best status for each keyboard key: 'correct' > 'present' > 'absent'
@@ -1336,13 +1336,17 @@
                 KEYBOARD_LAYOUT[rIdx].forEach(key => {
                     const btn = document.createElement('button');
                     btn.type = 'button';
-                    btn.id = 'key-' + (key === '⌫' ? 'backspace' : key);
+                    btn.id = 'key-' + (key === 'BACKSPACE' ? 'backspace' : key);
 
-                    const isSpecial = key === 'ENTER' || key === '⌫';
+                    const isSpecial = key === 'ENTER' || key === 'BACKSPACE';
                     btn.className = (isSpecial ? 'px-2.5 sm:px-3 text-xs font-black' : 'flex-1 max-w-[38px] text-sm font-black') +
                         ' h-11 sm:h-12 rounded-xl flex items-center justify-center border border-surface-200 dark:border-white/10 bg-surface-200/80 dark:bg-surface-800 text-surface-800 dark:text-surface-100 hover:bg-surface-300 dark:hover:bg-surface-700 active:scale-95 transition cursor-pointer';
 
-                    btn.innerText = key;
+                    if (key === 'BACKSPACE') {
+                        btn.innerHTML = '<svg class="w-5 h-5 shrink-0 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2M3 12l6.414-6.414A2 2 0 0110.828 5H20a2 2 0 012 2v10a2 2 0 01-2 2h-9.172a2 2 0 01-1.414-.586L3 12z"/></svg>';
+                    } else {
+                        btn.innerText = key;
+                    }
                     btn.addEventListener('click', (e) => {
                         e.preventDefault();
                         handleKeyInput(key);
@@ -1386,7 +1390,7 @@
 
             if (key === 'ENTER') {
                 submitGuess();
-            } else if (key === '⌫' || key === 'BACKSPACE') {
+            } else if (key === 'BACKSPACE') {
                 if (currentGuess.length > 0) {
                     playSound('tile');
                     currentGuess = currentGuess.slice(0, -1);
@@ -1424,7 +1428,7 @@
                 handleKeyInput('ENTER');
             } else if (e.key === 'Backspace') {
                 e.preventDefault();
-                handleKeyInput('⌫');
+                handleKeyInput('BACKSPACE');
             } else if (/^[a-zA-Z]$/.test(e.key)) {
                 handleKeyInput(e.key.toUpperCase());
             }

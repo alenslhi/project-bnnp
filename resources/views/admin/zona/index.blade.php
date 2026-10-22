@@ -236,7 +236,7 @@
                     onclick="scrollAdminPills(-240)" 
                     aria-label="Geser ke kiri"
                     class="shrink-0 w-6 h-6 rounded-lg border border-surface-200 dark:border-white/10 bg-surface-100 dark:bg-surface-950/90 hover:bg-surface-200 dark:hover:bg-white/15 text-surface-600 dark:text-surface-400 hover:text-surface-900 dark:hover:text-white flex items-center justify-center text-xs font-bold transition">
-                ‹
+                <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
             </button>
 
             <div id="admin-pills-container" 
@@ -271,7 +271,7 @@
                     onclick="scrollAdminPills(240)" 
                     aria-label="Geser ke kanan"
                     class="shrink-0 w-6 h-6 rounded-lg border border-surface-200 dark:border-white/10 bg-surface-100 dark:bg-surface-950/90 hover:bg-surface-200 dark:hover:bg-white/15 text-surface-600 dark:text-surface-400 hover:text-surface-900 dark:hover:text-white flex items-center justify-center text-xs font-bold transition">
-                ›
+                <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
             </button>
         </div>
 

@@ -114,7 +114,7 @@
                         <button type="button" 
                                 onclick="triggerEasterEgg()"
                                 class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors cursor-pointer text-left focus:outline-none"
-                                title="✨ Ada rahasia di sini...">
+                                title="Ada rahasia di sini...">
                             Kontak
                         </button>
                         <span class="ml-1.5">Darurat</span>
@@ -124,7 +124,7 @@
                     <button type="button" 
                             onclick="triggerEasterEgg()"
                             class="relative inline-flex items-center justify-center w-6 h-6 -ml-0.5 rounded-full text-transparent hover:text-amber-500 hover:bg-amber-500/10 dark:hover:bg-amber-400/10 cursor-pointer focus:outline-none transition-all duration-300 group"
-                            title="🤫 Ssstt... tombol rahasia!">
+                            title="Ssstt... tombol rahasia!">
                         <span class="w-1.5 h-1.5 rounded-full bg-transparent group-hover:bg-amber-500 dark:group-hover:bg-amber-400 transition-colors"></span>
                         <svg class="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 absolute transition-opacity duration-300 text-amber-500 dark:text-amber-400" fill="currentColor" viewBox="0 0 20 20">
                             <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
@@ -191,13 +191,13 @@
                 <img src="{{ asset('images/easter-egg.png') }}" alt="Easter Egg BLEHHH!" class="w-full h-auto rounded-xl mx-auto drop-shadow-md hover:scale-105 transition-transform duration-300">
             </div>
 
-            <h3 class="text-2xl font-black text-surface-900 dark:text-white mb-1">BLEEEHHH! 😜</h3>
+            <h3 class="text-2xl font-black text-surface-900 dark:text-white mb-1">BLEEEHHH!</h3>
             <p class="text-xs text-surface-500 dark:text-surface-400 mb-5 leading-relaxed">
-                Wah, jeli banget matanya! Kamu berhasil nemuin tombol rahasia di <span class="font-bold text-primary-600 dark:text-primary-400">Kontak Darurat</span>! Tetap semangat dan jauhi narkoba yaa~ ✨
+                Wah, jeli banget matanya! Kamu berhasil nemuin tombol rahasia di <span class="font-bold text-primary-600 dark:text-primary-400">Kontak Darurat</span>! Tetap semangat dan jauhi narkoba yaa~
             </p>
 
-            <button type="button" onclick="closeEasterEgg()" class="w-full py-2.5 px-4 rounded-xl bg-primary-600 hover:bg-primary-500 text-white font-bold text-xs shadow-lg shadow-primary-600/30 transition">
-                Tutup Rahasia ✨
+            <button type="button" onclick="closeEasterEgg()" class="w-full inline-flex items-center justify-center gap-1.5 py-2.5 px-4 rounded-xl bg-primary-600 hover:bg-primary-500 text-white font-bold text-xs shadow-lg shadow-primary-600/30 transition">
+                <span>Tutup Rahasia</span>
             </button>
         </div>
     </div>
