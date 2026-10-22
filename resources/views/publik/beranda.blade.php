@@ -35,9 +35,8 @@
                         <svg class="h-5 w-5 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
                         Lihat Peta Zona Kerawanan
                     </a>
-                    <a href="{{ route('game.index') }}" class="inline-flex items-center gap-2 rounded-xl border border-amber-400/50 bg-gradient-to-r from-amber-500/20 to-orange-500/20 px-6 py-3.5 text-sm font-bold text-amber-200 backdrop-blur-sm transition-all hover:bg-amber-500/30 hover:border-amber-400 hover:text-white hover:-translate-y-0.5 shadow-lg">
-                        <span class="text-lg">🎮</span>
-                        <span>Main Mini Games</span>
+                    <a href="{{ route('game.index') }}" class="inline-flex items-center justify-center rounded-xl border border-amber-400/50 bg-gradient-to-r from-amber-500/20 to-orange-500/20 px-6 py-3.5 text-sm font-bold text-amber-200 backdrop-blur-sm transition-all hover:bg-amber-500/30 hover:border-amber-400 hover:text-white hover:-translate-y-0.5 shadow-lg">
+                        Mini Games
                     </a>
                     <a href="{{ route('edukasi.index') }}" class="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/10 dark:bg-white/5 px-6 py-3.5 text-sm font-semibold text-white backdrop-blur-sm transition-all hover:bg-white/20 hover:-translate-y-0.5">
                         <svg class="h-5 w-5 text-primary-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg>
@@ -167,7 +166,6 @@
             <div class="relative grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                 <div class="lg:col-span-7">
                     <div class="inline-flex items-center gap-2 rounded-full bg-amber-500/20 border border-amber-400/40 px-3.5 py-1 mb-4 text-xs font-bold text-amber-300">
-                        <span>🎮</span>
                         <span>MINI GAMES SKENA</span>
                         <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-ping"></span>
                     </div>
@@ -182,17 +180,17 @@
 
                     <div class="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-3">
                         <div class="rounded-2xl border border-white/10 bg-white/5 p-3.5 backdrop-blur-sm">
-                            <span class="text-xl">1️⃣</span>
+                            <span class="inline-flex items-center justify-center w-7 h-7 rounded-xl bg-amber-500/20 text-amber-300 font-black text-xs border border-amber-400/30">1</span>
                             <h4 class="mt-2 text-xs font-bold text-white">5 Mitos / Fakta</h4>
                             <p class="text-[11px] text-surface-400 mt-1">Jawab pernyataan seputar bahaya narkoba & regulasi.</p>
                         </div>
                         <div class="rounded-2xl border border-white/10 bg-white/5 p-3.5 backdrop-blur-sm">
-                            <span class="text-xl">2️⃣</span>
+                            <span class="inline-flex items-center justify-center w-7 h-7 rounded-xl bg-amber-500/20 text-amber-300 font-black text-xs border border-amber-400/30">2</span>
                             <h4 class="mt-2 text-xs font-bold text-white">Pembahasan & Kisi-kisi</h4>
                             <p class="text-[11px] text-surface-400 mt-1">Pelajari fakta di balik jawaban dan temukan petunjuk kata rahasia.</p>
                         </div>
                         <div class="rounded-2xl border border-white/10 bg-white/5 p-3.5 backdrop-blur-sm">
-                            <span class="text-xl">3️⃣</span>
+                            <span class="inline-flex items-center justify-center w-7 h-7 rounded-xl bg-amber-500/20 text-amber-300 font-black text-xs border border-amber-400/30">3</span>
                             <h4 class="mt-2 text-xs font-bold text-white">Wordle 2 Kata</h4>
                             <p class="text-[11px] text-surface-400 mt-1">Tebak 2 kata dari kisi-kisi deskripsi edukasi!</p>
                         </div>
@@ -248,7 +246,10 @@
                         </div>
 
                         <div class="rounded-xl bg-primary-950/60 border border-primary-500/20 p-3 text-[11px] text-primary-200">
-                            <span class="font-bold text-amber-300">💡 Kisi-kisi Mitos/Fakta:</span> Ketergantungan zat berbahaya membajak dopamin otak hingga timbul rasa...
+                            <span class="inline-flex items-center gap-1.5 font-bold text-amber-300">
+                                <svg class="w-3.5 h-3.5 text-amber-300 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+                                Kisi-kisi Mitos/Fakta:
+                            </span> Ketergantungan zat berbahaya membajak dopamin otak hingga timbul rasa...
                         </div>
                     </div>
                 </div>

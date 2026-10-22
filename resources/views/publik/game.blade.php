@@ -85,13 +85,19 @@
             <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
                 {{-- Leaderboard Button --}}
                 <button id="btn-open-leaderboard" type="button" class="flex items-center gap-1.5 p-2 sm:px-3 sm:py-2 rounded-xl border border-amber-400/40 bg-amber-500/10 hover:bg-amber-500/20 text-amber-600 dark:text-amber-400 font-bold text-xs transition cursor-pointer shadow-sm hover:scale-[1.02] shrink-0" title="Papan Peringkat Harian">
-                    <span class="text-sm">🏆</span>
+                    <svg class="h-4 w-4 text-amber-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.504-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.004 0A5.25 5.25 0 0012 3a5.25 5.25 0 00-5.25 11.25m10.5 0a5.25 5.25 0 01-5.25 0m0 0a5.25 5.25 0 00-5.25 0"/>
+                    </svg>
                     <span class="hidden sm:inline">Papan Peringkat</span>
                 </button>
                 {{-- Audio Mute/Unmute --}}
                 <button id="btn-toggle-sound" type="button" class="p-2 sm:p-2.5 rounded-xl border border-surface-200 dark:border-white/10 text-surface-600 dark:text-surface-300 hover:bg-surface-100 dark:hover:bg-white/5 transition shrink-0" title="Suara Efek (Aktif/Mati)">
-                    <span id="sound-icon-on">🔊</span>
-                    <span id="sound-icon-off" class="hidden">🔇</span>
+                    <svg id="sound-icon-on" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.114 5.636a9 9 0 010 12.728M16.463 8.288a5.25 5.25 0 010 7.424M6.75 8.25l4.72-4.72a.75.75 0 011.28.53v15.88a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.112-1.633.322-2.396C2.806 8.757 3.63 8.25 4.51 8.25H6.75z"/>
+                    </svg>
+                    <svg id="sound-icon-off" class="h-4 w-4 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 9.75L19.5 12m0 0l2.25 2.25M19.5 12l2.25-2.25M19.5 12l-2.25 2.25m-10.5-7.5l4.72-4.72a.75.75 0 011.28.53v15.88a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.112-1.633.322-2.396C2.806 8.757 3.63 8.25 4.51 8.25H6.75z"/>
+                    </svg>
                 </button>
                 {{-- Help Modal --}}
                 <button id="btn-open-help" type="button" class="p-2 sm:p-2.5 rounded-xl border border-surface-200 dark:border-white/10 text-surface-600 dark:text-surface-300 hover:bg-surface-100 dark:hover:bg-white/5 transition shrink-0" title="Petunjuk Bermain">
@@ -107,7 +113,9 @@
             <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary-900 via-primary-950 to-surface-950 p-6 sm:p-10 border border-primary-500/30 text-white shadow-2xl">
                 <div class="relative z-10">
                     <div class="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 mb-4 text-xs font-semibold backdrop-blur-sm text-primary-200">
-                        <span>📅</span>
+                        <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 9v7.5"/>
+                        </svg>
                         <span>{{ $todayFormatted }}</span>
                         <span class="text-white/40">•</span>
                         <span>Edisi #{{ $puzzle['set_number'] }}</span>
@@ -145,7 +153,9 @@
                             <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
                         </button>
                         <button id="btn-view-leaderboard-intro" type="button" class="inline-flex items-center justify-center gap-2 rounded-2xl border border-amber-400/40 bg-white/5 hover:bg-white/10 text-amber-300 font-bold px-6 py-4 text-sm transition-all hover:scale-[1.02] cursor-pointer">
-                            <span>🏆</span>
+                            <svg class="h-4 w-4 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.504-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.004 0A5.25 5.25 0 0012 3a5.25 5.25 0 00-5.25 11.25m10.5 0a5.25 5.25 0 01-5.25 0m0 0a5.25 5.25 0 00-5.25 0"/>
+                            </svg>
                             <span>Papan Peringkat (Top 10)</span>
                         </button>
                     </div>
@@ -161,8 +171,11 @@
             <div class="space-y-2">
                 <div class="flex items-center justify-between text-xs font-bold text-surface-500 dark:text-surface-400">
                     <span id="quiz-progress-label">Pertanyaan 1 dari 5</span>
-                    <span id="quiz-remedial-badge" class="hidden px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-amber-500/20 text-amber-600 dark:text-amber-400 border border-amber-500/30 animate-pulse">
-                        🔁 Ulangi Pertanyaan
+                    <span id="quiz-remedial-badge" class="hidden px-2.5 py-1 rounded-full text-[10px] font-extrabold bg-amber-500/20 text-amber-600 dark:text-amber-400 border border-amber-500/30 animate-pulse inline-flex items-center gap-1">
+                        <svg class="h-3 w-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"/>
+                        </svg>
+                        <span>Ulangi Pertanyaan</span>
                     </span>
                     <span id="quiz-score-badge" class="text-primary-600 dark:text-primary-400">Tuntas: <span id="quiz-mastered-count">0</span>/5</span>
                 </div>
@@ -173,7 +186,11 @@
 
             {{-- Announcement Alert (Ulangi Pertanyaan) --}}
             <div id="remedial-alert-banner" class="hidden rounded-2xl border border-amber-500/40 bg-amber-500/10 p-4 text-amber-800 dark:text-amber-300 text-xs sm:text-sm flex items-start gap-3">
-                <span class="text-2xl shrink-0">🔁</span>
+                <div class="h-8 w-8 rounded-xl bg-amber-500/20 text-amber-600 dark:text-amber-300 flex items-center justify-center shrink-0">
+                    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"/>
+                    </svg>
+                </div>
                 <div>
                     <h4 class="font-black text-amber-900 dark:text-amber-200">Ulangi Pertanyaan yang Belum Tepat</h4>
                     <p class="mt-0.5 text-amber-800/90 dark:text-amber-300/90 leading-relaxed">
@@ -189,7 +206,10 @@
                         Kategori
                     </span>
                     <span id="question-remedial-pill" class="hidden text-[11px] font-bold text-amber-600 dark:text-amber-400 flex items-center gap-1">
-                        <span>🔁</span> Pengulangan
+                        <svg class="h-3 w-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"/>
+                        </svg>
+                        <span>Pengulangan</span>
                     </span>
                 </div>
 
@@ -204,14 +224,22 @@
                 <div id="quiz-options-container" class="mt-8 grid grid-cols-2 gap-4">
                     {{-- MITOS Button --}}
                     <button id="btn-choose-mitos" type="button" class="group relative flex flex-col items-center justify-center p-5 sm:p-6 rounded-2xl border-2 border-danger-500/30 bg-danger-500/5 hover:bg-danger-500/15 hover:border-danger-500 transition-all hover:scale-[1.02] cursor-pointer">
-                        <span class="text-3xl sm:text-4xl mb-2 transition-transform group-hover:scale-110">❌</span>
+                        <div class="h-11 w-11 sm:h-12 sm:w-12 rounded-2xl bg-danger-500/15 border border-danger-500/30 flex items-center justify-center text-danger-500 mb-2 transition-transform group-hover:scale-110 shadow-xs">
+                            <svg class="h-6 w-6 sm:h-7 sm:w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                            </svg>
+                        </div>
                         <span class="text-lg sm:text-xl font-black text-danger-600 dark:text-danger-400 tracking-wide">MITOS</span>
                         <span class="text-[11px] text-surface-400 mt-1">Pernyataan salah</span>
                     </button>
 
                     {{-- FAKTA Button --}}
                     <button id="btn-choose-fakta" type="button" class="group relative flex flex-col items-center justify-center p-5 sm:p-6 rounded-2xl border-2 border-accent-500/30 bg-accent-500/5 hover:bg-accent-500/15 hover:border-accent-500 transition-all hover:scale-[1.02] cursor-pointer">
-                        <span class="text-3xl sm:text-4xl mb-2 transition-transform group-hover:scale-110">✅</span>
+                        <div class="h-11 w-11 sm:h-12 sm:w-12 rounded-2xl bg-accent-500/15 border border-accent-500/30 flex items-center justify-center text-accent-500 mb-2 transition-transform group-hover:scale-110 shadow-xs">
+                            <svg class="h-6 w-6 sm:h-7 sm:w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
+                            </svg>
+                        </div>
                         <span class="text-lg sm:text-xl font-black text-accent-600 dark:text-accent-400 tracking-wide">FAKTA</span>
                         <span class="text-[11px] text-surface-400 mt-1">Pernyataan benar</span>
                     </button>
@@ -245,10 +273,15 @@
         {{-- ══════════════════════════════════════════════════════════ --}}
         {{-- VIEW 3: BABAK 1 SELESAI - TRANSISI KE WORDLE              --}}
         {{-- ══════════════════════════════════════════════════════════ --}}
+        {{-- ══════════════════════════════════════════════════════════ --}}
+        {{-- VIEW 3: BABAK 1 SELESAI - TRANSISI KE WORDLE              --}}
+        {{-- ══════════════════════════════════════════════════════════ --}}
         <div id="view-phase1-complete" class="hidden space-y-6">
             <div class="rounded-3xl border border-emerald-500/30 bg-gradient-to-br from-emerald-950/40 via-surface-900 to-surface-950 p-6 sm:p-10 text-center shadow-2xl">
-                <div class="mx-auto flex h-20 w-20 items-center justify-center rounded-3xl bg-emerald-500/20 text-emerald-400 text-4xl mb-4 border border-emerald-400/30 glow-gold">
-                    🎉
+                <div class="mx-auto flex h-20 w-20 items-center justify-center rounded-3xl bg-emerald-500/20 text-emerald-400 mb-4 border border-emerald-400/30 glow-gold">
+                    <svg class="h-10 w-10 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
                 </div>
 
                 <span class="inline-block px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider bg-emerald-500/20 text-emerald-300 mb-2">
@@ -294,7 +327,11 @@
             {{-- Petunjuk / Pertanyaan Tebak Kata (Wordle) --}}
             <div class="rounded-2xl border border-primary-500/25 bg-primary-50/80 dark:bg-primary-950/40 p-4 shadow-sm">
                 <div class="flex items-start gap-3">
-                    <span class="text-2xl select-none mt-0.5">💡</span>
+                    <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-primary-500/15 text-primary-600 dark:text-primary-400 shrink-0 mt-0.5">
+                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.516 0c.85.493 1.508 1.333 1.508 2.316V18"/>
+                        </svg>
+                    </div>
                     <div class="flex-1">
                         <div class="flex items-center justify-between mb-1">
                             <span class="text-xs font-black uppercase tracking-wider text-primary-700 dark:text-primary-300">
@@ -342,8 +379,10 @@
         {{-- ══════════════════════════════════════════════════════════ --}}
         <div id="view-word1-success" class="hidden space-y-6">
             <div class="rounded-3xl border border-primary-500/40 bg-gradient-to-br from-primary-950/60 via-surface-900 to-surface-950 p-6 sm:p-10 text-center shadow-2xl">
-                <div class="mx-auto flex h-20 w-20 items-center justify-center rounded-3xl bg-primary-500/20 text-primary-400 text-4xl mb-4 border border-primary-400/30">
-                    🎯
+                <div class="mx-auto flex h-20 w-20 items-center justify-center rounded-3xl bg-primary-500/20 text-primary-400 mb-4 border border-primary-400/30">
+                    <svg class="h-10 w-10 text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
                 </div>
                 <span class="inline-block px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider bg-primary-500/20 text-primary-300 mb-2">
                     Langkah 1 Selesai!
@@ -369,8 +408,10 @@
         <div id="view-result" class="hidden space-y-3.5">
             <div id="result-card" class="rounded-2xl sm:rounded-3xl border p-4 sm:p-7 text-center shadow-2xl">
                 {{-- Icon Badge --}}
-                <div id="result-badge-icon" class="mx-auto flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-2xl text-3xl mb-2">
-                    🏆
+                <div id="result-badge-icon" class="mx-auto flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-2xl mb-2">
+                    <svg class="h-8 w-8 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.504-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.004 0A5.25 5.25 0 0012 3a5.25 5.25 0 00-5.25 11.25m10.5 0a5.25 5.25 0 01-5.25 0m0 0a5.25 5.25 0 00-5.25 0"/>
+                    </svg>
                 </div>
 
                 <span id="result-pill" class="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider mb-1">
@@ -391,7 +432,9 @@
                             <span class="text-sm sm:text-base font-black text-amber-600 dark:text-amber-400">PTS</span>
                         </div>
                         <div class="mt-1.5 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 dark:bg-surface-800/80 border border-white/15 text-xs font-bold text-white shadow-sm">
-                            <span id="score-badge-icon">🌟</span>
+                            <span id="score-badge-icon" class="inline-flex items-center">
+                                <svg class="h-4 w-4 text-amber-300" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            </span>
                             <span id="score-badge-title">Master P4GN Paripurna</span>
                         </div>
                     </div>
@@ -400,32 +443,47 @@
                     <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs">
                         {{-- Mitos/Fakta --}}
                         <div class="rounded-xl bg-surface-900/90 border border-white/10 p-2.5">
-                            <span class="text-surface-400 block text-[9px] uppercase font-bold">🎯 Mitos/Fakta</span>
+                            <span class="text-surface-400 flex items-center gap-1 text-[9px] uppercase font-bold">
+                                <svg class="h-3 w-3 text-emerald-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+                                <span>Mitos/Fakta</span>
+                            </span>
                             <span id="score-quiz-val" class="text-xs sm:text-sm font-black text-emerald-400 mt-0.5 block">+0 Pts</span>
                             <span id="score-quiz-detail" class="text-[9px] text-surface-400">0/5 Soal Tepat</span>
                         </div>
                         {{-- Wordle 1 --}}
                         <div class="rounded-xl bg-surface-900/90 border border-white/10 p-2.5">
-                            <span class="text-surface-400 block text-[9px] uppercase font-bold">🔤 Kata 1</span>
+                            <span class="text-surface-400 flex items-center gap-1 text-[9px] uppercase font-bold">
+                                <svg class="h-3 w-3 text-amber-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 01.865-.501 48.172 48.172 0 003.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z"/></svg>
+                                <span>Kata 1</span>
+                            </span>
                             <span id="score-w1-val" class="text-xs sm:text-sm font-black text-amber-400 mt-0.5 block">+0 Pts</span>
                             <span id="score-w1-detail" class="text-[9px] text-surface-400">Tebakan ke-0</span>
                         </div>
                         {{-- Wordle 2 --}}
                         <div class="rounded-xl bg-surface-900/90 border border-white/10 p-2.5">
-                            <span class="text-surface-400 block text-[9px] uppercase font-bold">🔤 Kata 2</span>
+                            <span class="text-surface-400 flex items-center gap-1 text-[9px] uppercase font-bold">
+                                <svg class="h-3 w-3 text-amber-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 01.865-.501 48.172 48.172 0 003.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z"/></svg>
+                                <span>Kata 2</span>
+                            </span>
                             <span id="score-w2-val" class="text-xs sm:text-sm font-black text-amber-400 mt-0.5 block">+0 Pts</span>
                             <span id="score-w2-detail" class="text-[9px] text-surface-400">Tebakan ke-0</span>
                         </div>
                         {{-- Kecepatan Waktu --}}
                         <div class="rounded-xl bg-surface-900/90 border border-white/10 p-2.5">
-                            <span class="text-surface-400 block text-[9px] uppercase font-bold">⚡ Waktu Selesai</span>
+                            <span class="text-surface-400 flex items-center gap-1 text-[9px] uppercase font-bold">
+                                <svg class="h-3 w-3 text-sky-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                <span>Waktu Selesai</span>
+                            </span>
                             <span id="score-speed-val" class="text-xs sm:text-sm font-black text-sky-400 mt-0.5 block">+0 Pts</span>
                             <span id="score-speed-detail" class="text-[9px] text-surface-400">Durasi: 00:00</span>
                         </div>
                         {{-- Penalti Mengulang --}}
                         <div class="col-span-2 sm:col-span-2 rounded-xl bg-surface-900/90 border border-white/10 p-2.5 flex items-center justify-between">
                             <div>
-                                <span class="text-surface-400 block text-[9px] uppercase font-bold">🔄 Penalti Pengulangan</span>
+                                <span class="text-surface-400 flex items-center gap-1 text-[9px] uppercase font-bold">
+                                    <svg class="h-3 w-3 text-rose-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"/></svg>
+                                    <span>Penalti Pengulangan</span>
+                                </span>
                                 <span id="score-retry-detail" class="text-[9px] text-surface-400">Menuntaskan tanpa mengulang</span>
                             </div>
                             <span id="score-retry-val" class="text-xs sm:text-sm font-black text-emerald-400 block">0 Pts (First Try!)</span>
@@ -437,7 +495,9 @@
                 <div id="leaderboard-entry-card" class="hidden my-3 max-w-xl mx-auto rounded-2xl bg-gradient-to-br from-amber-500/10 via-surface-900 to-surface-950 border border-amber-400/40 p-3 sm:p-4 text-left shadow-lg">
                     <div class="flex items-center justify-between gap-2 mb-2">
                         <div class="flex items-center gap-1.5">
-                            <span class="text-lg">🏆</span>
+                            <svg class="h-4 w-4 text-amber-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.504-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.004 0A5.25 5.25 0 0012 3a5.25 5.25 0 00-5.25 11.25m10.5 0a5.25 5.25 0 01-5.25 0m0 0a5.25 5.25 0 00-5.25 0"/>
+                            </svg>
                             <h3 id="leaderboard-card-title" class="text-xs sm:text-sm font-black text-white">Catat Namamu di Top 10 Hari Ini</h3>
                         </div>
                         <span class="text-[10px] text-amber-300 font-bold">Reset 07:00 WITA</span>
@@ -452,10 +512,15 @@
                             <div class="flex items-center gap-1.5">
                                 <button id="btn-submit-score-lb" type="submit" class="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-surface-950 font-black px-4 py-2.5 text-xs sm:text-sm shadow-md transition-all active:scale-95 cursor-pointer shrink-0">
                                     <span>Kirim Skor</span>
-                                    <span>🚀</span>
+                                    <svg class="h-3.5 w-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5"/>
+                                    </svg>
                                 </button>
-                                <button id="btn-open-leaderboard-from-result" type="button" class="inline-flex items-center justify-center gap-1 px-3 py-2.5 rounded-xl border border-white/15 bg-white/5 hover:bg-white/10 text-white font-bold text-xs transition cursor-pointer shrink-0" title="Buka Papan Peringkat">
-                                    <span>🏆 Top 10</span>
+                                <button id="btn-open-leaderboard-from-result" type="button" class="inline-flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-xl border border-white/15 bg-white/5 hover:bg-white/10 text-white font-bold text-xs transition cursor-pointer shrink-0" title="Buka Papan Peringkat">
+                                    <svg class="h-3.5 w-3.5 text-amber-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.504-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.004 0A5.25 5.25 0 0012 3a5.25 5.25 0 00-5.25 11.25m10.5 0a5.25 5.25 0 01-5.25 0m0 0a5.25 5.25 0 00-5.25 0"/>
+                                    </svg>
+                                    <span>Top 10</span>
                                 </button>
                             </div>
                         </div>
@@ -465,18 +530,26 @@
                     <div id="leaderboard-submit-success" class="hidden mt-2 p-3 sm:p-3.5 rounded-xl bg-emerald-500/15 border border-emerald-400/30 text-emerald-300 text-xs">
                         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
                             <div class="flex items-start sm:items-center gap-2.5 min-w-0 flex-1">
-                                <span class="text-xl shrink-0 mt-0.5 sm:mt-0">✅</span>
+                                <svg class="h-5 w-5 text-emerald-400 shrink-0 mt-0.5 sm:mt-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
+                                </svg>
                                 <div class="min-w-0 flex-1">
                                     <h4 id="leaderboard-success-title" class="font-black text-white text-xs sm:text-sm leading-snug">Skor Berhasil Masuk!</h4>
                                     <p id="leaderboard-success-subtitle" class="text-[11px] text-emerald-300/90 mt-0.5 break-words">Tercatat sebagai: <span id="leaderboard-submitted-name-badge" class="font-bold underline text-white">...</span></p>
                                 </div>
                             </div>
                             <div class="flex items-center gap-1.5 shrink-0 self-end sm:self-center">
-                                <button id="btn-change-player-name" type="button" class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg border border-white/20 bg-white/5 hover:bg-white/10 text-surface-300 hover:text-white font-semibold text-[11px] transition cursor-pointer" title="Ubah nama tampilan">
-                                    <span>✏️ Ganti Nama</span>
+                                <button id="btn-change-player-name" type="button" class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-white/20 bg-white/5 hover:bg-white/10 text-surface-300 hover:text-white font-semibold text-[11px] transition cursor-pointer" title="Ubah nama tampilan">
+                                    <svg class="h-3.5 w-3.5 text-surface-300 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"/>
+                                    </svg>
+                                    <span>Ganti Nama</span>
                                 </button>
-                                <button id="btn-view-lb-after-submit" type="button" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs transition cursor-pointer shadow">
-                                    <span>🏆 Buka Peringkat</span>
+                                <button id="btn-view-lb-after-submit" type="button" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs transition cursor-pointer shadow">
+                                    <svg class="h-3.5 w-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.504-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.004 0A5.25 5.25 0 0012 3a5.25 5.25 0 00-5.25 11.25m10.5 0a5.25 5.25 0 01-5.25 0m0 0a5.25 5.25 0 00-5.25 0"/>
+                                    </svg>
+                                    <span>Buka Peringkat</span>
                                     <span>→</span>
                                 </button>
                             </div>
@@ -504,7 +577,7 @@
                         <span>Papan Skor Wordle</span>
                         <span id="result-attempts-summary">SKENA</span>
                     </div>
-                    <div id="result-emoji-grid" class="space-y-0.5 text-center py-1 leading-none text-sm"></div>
+                    <div id="result-emoji-grid" class="space-y-1 text-center py-1 leading-none text-sm"></div>
                 </div>
 
                 {{-- Countdown timer to next challenge (Kompak 1 Baris) --}}
@@ -513,8 +586,11 @@
                         <span class="text-[9px] font-bold uppercase tracking-wider text-amber-300 block">Reset Soal Baru (07:00 WITA):</span>
                         <span id="countdown-timer" class="text-xs sm:text-sm font-black font-mono text-amber-400">--:--:--</span>
                     </div>
-                    <a href="{{ route('game.index', ['reset' => 1, 't' => time()]) }}" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg border border-amber-400/30 bg-amber-400/10 hover:bg-amber-400/20 text-[10px] font-bold text-amber-300 transition cursor-pointer shrink-0">
-                        <span>🔄</span> Reset Soal
+                    <a href="{{ route('game.index', ['reset' => 1, 't' => time()]) }}" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-amber-400/30 bg-amber-400/10 hover:bg-amber-400/20 text-[10px] font-bold text-amber-300 transition cursor-pointer shrink-0">
+                        <svg class="h-3 w-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"/>
+                        </svg>
+                        <span>Reset Soal</span>
                     </a>
                 </div>
 
@@ -528,15 +604,21 @@
 
                     <div class="flex items-center gap-2">
                         <button id="btn-open-leaderboard-result" type="button" class="flex-1 inline-flex items-center justify-center gap-1.5 rounded-xl border border-amber-400/40 bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 font-bold px-3 py-2.5 text-xs shadow transition cursor-pointer hover:scale-[1.01]">
-                            <span>🏆 Papan Peringkat</span>
+                            <svg class="h-3.5 w-3.5 text-amber-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.504-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.004 0A5.25 5.25 0 0012 3a5.25 5.25 0 00-5.25 11.25m10.5 0a5.25 5.25 0 01-5.25 0m0 0a5.25 5.25 0 00-5.25 0"/>
+                            </svg>
+                            <span>Papan Peringkat</span>
                         </button>
                         <button id="btn-restart-game" type="button" class="flex-1 inline-flex items-center justify-center gap-1.5 rounded-xl border border-white/20 bg-white/5 hover:bg-white/10 text-white font-bold px-3 py-2.5 text-xs shadow transition cursor-pointer hover:scale-[1.01]">
-                            <span>🔄 Main Lagi</span>
+                            <svg class="h-3.5 w-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"/>
+                            </svg>
+                            <span>Main Lagi</span>
                         </button>
                     </div>
 
                     <p class="text-[11px] text-surface-400 text-center">
-                        📢 Ajak teman bersaing di Top 10 harian sambil menguji wawasan anti-narkoba!
+                        Ajak teman bersaing di Top 10 harian sambil menguji wawasan anti-narkoba!
                     </p>
                 </div>
             </div>
@@ -552,7 +634,10 @@
     <div class="relative w-full max-w-lg rounded-3xl border border-surface-200 dark:border-white/10 bg-white dark:bg-surface-900 p-6 sm:p-8 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto">
         <div class="flex items-center justify-between pb-3 border-b border-surface-200 dark:border-white/10">
             <h3 class="text-lg font-black text-surface-900 dark:text-white flex items-center gap-2">
-                <span>📖</span> Aturan & Cara Bermain
+                <svg class="h-5 w-5 text-primary-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/>
+                </svg>
+                <span>Aturan & Cara Bermain</span>
             </h3>
             <button id="btn-close-help" class="p-2 rounded-xl text-surface-400 hover:text-surface-900 dark:hover:text-white">
                 <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
@@ -574,9 +659,9 @@
                 <strong class="text-emerald-800 dark:text-emerald-300 block mb-1">3. Babak Wordle (Tebak 2 Kata Kunci):</strong>
                 Tebak 2 kata kunci seputar narkotika (panjang huruf fleksibel 3 hingga 11 huruf). Tebak Kata ke-1 terlebih dahulu dalam 6 kesempatan:
                 <ul class="list-disc ml-4 mt-1.5 space-y-1 text-[11px] sm:text-xs">
-                    <li><span class="font-bold text-emerald-600 dark:text-emerald-400">🟩 Hijau:</span> Huruf tepat dan posisinya benar.</li>
-                    <li><span class="font-bold text-amber-600 dark:text-amber-400">🟨 Kuning:</span> Huruf ada di dalam kata, namun posisinya salah.</li>
-                    <li><span class="font-bold text-surface-500">⬛ Abu-abu:</span> Huruf tidak ada di dalam kata.</li>
+                    <li><span class="inline-block w-3 h-3 rounded-xs bg-emerald-500 mr-1.5 align-middle shadow-xs"></span><span class="font-bold text-emerald-600 dark:text-emerald-400">Hijau:</span> Huruf tepat dan posisinya benar.</li>
+                    <li><span class="inline-block w-3 h-3 rounded-xs bg-amber-500 mr-1.5 align-middle shadow-xs"></span><span class="font-bold text-amber-600 dark:text-amber-400">Kuning:</span> Huruf ada di dalam kata, namun posisinya salah.</li>
+                    <li><span class="inline-block w-3 h-3 rounded-xs bg-surface-500 dark:bg-surface-600 mr-1.5 align-middle shadow-xs"></span><span class="font-bold text-surface-600 dark:text-surface-400">Abu-abu:</span> Huruf tidak ada di dalam kata.</li>
                 </ul>
                 Jika berhasil menebak Kata ke-1, kamu akan melangkah ke Kata ke-2.
             </div>
@@ -605,7 +690,9 @@
         <div class="flex items-center justify-between pb-3 border-b border-surface-100 dark:border-white/10 shrink-0">
             <div class="flex items-center gap-3">
                 <div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-amber-500/15 text-amber-500 text-2xl border border-amber-400/30 shrink-0 shadow-xs">
-                    🏆
+                    <svg class="h-6 w-6 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.504-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.004 0A5.25 5.25 0 0012 3a5.25 5.25 0 00-5.25 11.25m10.5 0a5.25 5.25 0 01-5.25 0m0 0a5.25 5.25 0 00-5.25 0"/>
+                    </svg>
                 </div>
                 <div>
                     <h3 class="text-base sm:text-lg font-black text-surface-900 dark:text-white leading-tight">
@@ -624,13 +711,17 @@
         {{-- Info Bar: Periode & Countdown Reset 07:00 WITA --}}
         <div class="my-3 rounded-2xl bg-amber-500/10 border border-amber-400/20 px-3.5 py-2.5 flex items-center justify-between gap-2 shrink-0 text-xs">
             <div class="flex items-center gap-2">
-                <span class="text-xs">📅</span>
+                <svg class="h-3.5 w-3.5 text-surface-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 9v7.5"/>
+                </svg>
                 <span id="lb-period-text" class="font-bold text-surface-800 dark:text-surface-200 text-xs">Memuat...</span>
                 <span class="text-surface-400">•</span>
                 <span id="lb-participants-badge" class="font-bold text-primary-600 dark:text-primary-400 text-xs">0 Peserta</span>
             </div>
             <div class="flex items-center gap-1.5 text-amber-600 dark:text-amber-400 font-bold text-xs">
-                <span>⏳</span>
+                <svg class="h-3.5 w-3.5 text-amber-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
                 <span>Reset: <span id="lb-reset-countdown" class="font-mono font-black text-xs text-amber-600 dark:text-amber-300">--:--:--</span></span>
             </div>
         </div>
@@ -639,13 +730,22 @@
         <div id="lb-scroll-container" class="min-h-0 flex-1 overflow-y-auto overscroll-contain pr-1.5 space-y-3" style="-webkit-overflow-scrolling: touch;">
             {{-- Loading State --}}
             <div id="lb-loading-state" class="py-12 text-center text-surface-400 space-y-2">
-                <div class="inline-block animate-spin text-3xl">⏳</div>
+                <div class="inline-flex items-center justify-center">
+                    <svg class="animate-spin h-8 w-8 text-amber-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                </div>
                 <p class="text-xs font-semibold">Mengambil data peringkat...</p>
             </div>
 
             {{-- Empty State --}}
             <div id="lb-empty-state" class="hidden py-12 text-center text-surface-400 space-y-3">
-                <div class="text-4xl">🌟</div>
+                <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-amber-500/10 text-amber-500 border border-amber-400/20">
+                    <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.504-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.004 0A5.25 5.25 0 0012 3a5.25 5.25 0 00-5.25 11.25m10.5 0a5.25 5.25 0 01-5.25 0m0 0a5.25 5.25 0 00-5.25 0"/>
+                    </svg>
+                </div>
                 <h4 class="text-sm font-bold text-surface-800 dark:text-surface-200">Belum Ada Skor di Papan Peringkat Hari Ini</h4>
                 <p class="text-xs max-w-sm mx-auto text-surface-500 dark:text-surface-400">
                     Jadilah pemain pertama yang menuntaskan tantangan hari ini dan raih posisi teratas Top 10 sebelum jam 07:00 WITA!
@@ -716,7 +816,9 @@
                 Skor dihitung dari ketepatan, efisiensi Wordle, & waktu.
             </span>
             <button id="btn-refresh-leaderboard" type="button" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-surface-200 dark:border-white/10 hover:bg-surface-100 dark:hover:bg-white/5 font-bold text-xs text-surface-700 dark:text-surface-300 transition cursor-pointer">
-                <span>🔄</span>
+                <svg class="h-3.5 w-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"/>
+                </svg>
                 <span>Segarkan</span>
             </button>
         </div>
@@ -1043,7 +1145,7 @@
             if (isCorrect) {
                 playSound('correct');
                 feedbackHeader.className = 'flex items-center gap-2 text-base font-black text-emerald-600 dark:text-emerald-400';
-                feedbackIcon.innerText = '✅';
+                feedbackIcon.innerHTML = '<svg class="w-6 h-6 text-emerald-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>';
                 feedbackTitle.innerText = 'Tepat Sekali! Jawaban Kamu Benar.';
 
                 // Catat benar pada percobaan pertama (bukan remedial)
@@ -1060,7 +1162,7 @@
             } else {
                 playSound('wrong');
                 feedbackHeader.className = 'flex items-center gap-2 text-base font-black text-rose-600 dark:text-danger-400';
-                feedbackIcon.innerText = '❌';
+                feedbackIcon.innerHTML = '<svg class="w-6 h-6 text-rose-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>';
                 feedbackTitle.innerText = 'Kurang Tepat! Pernyataan ini sebenarnya adalah ' + (currentQuestion.is_fakta ? 'FAKTA' : 'MITOS') + '.';
 
                 // Masukkan ke antrean pengulangan
@@ -1171,7 +1273,7 @@
                 ind2.innerText = 'Kata 2 (' + w2Len + 'H)';
             } else {
                 ind1.className = 'px-2.5 py-1 rounded-lg text-xs font-bold bg-emerald-600 text-white flex items-center gap-1';
-                ind1.innerHTML = '<span>Kata 1</span><span>✓</span>';
+                ind1.innerHTML = '<span>Kata 1</span><svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>';
                 ind2.className = 'px-2.5 py-1 rounded-lg text-xs font-bold bg-primary-600 text-white';
                 ind2.innerText = 'Kata 2 (' + w2Len + 'H)';
             }
@@ -1539,7 +1641,7 @@
 
                 resultCard.className = 'rounded-3xl border border-emerald-500/40 bg-gradient-to-br from-emerald-950/40 via-surface-900 to-surface-950 p-6 sm:p-10 text-center shadow-2xl';
                 resultBadgeIcon.className = 'mx-auto flex h-20 w-20 items-center justify-center rounded-3xl bg-emerald-500/20 text-emerald-400 text-4xl mb-4 border border-emerald-400/30 glow-gold';
-                resultBadgeIcon.innerText = '🏆';
+                resultBadgeIcon.innerHTML = '<svg class="w-10 h-10 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>';
                 resultPill.className = 'inline-block px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider bg-emerald-500/20 text-emerald-300 mb-2';
                 resultPill.innerText = 'LULUS SEMPURNA!';
                 resultTitle.innerText = 'Selamat! Kamu Menaklukkan Wordle SKENA!';
@@ -1570,7 +1672,10 @@
                 if (scoreSection) {
                     scoreSection.classList.remove('hidden');
                     document.getElementById('score-grand-total').innerText = Number(score.total_score).toLocaleString('id-ID');
-                    document.getElementById('score-badge-icon').innerText = score.badge_icon;
+                    const badgeIconEl = document.getElementById('score-badge-icon');
+                    if (badgeIconEl) {
+                        badgeIconEl.innerHTML = '<svg class="h-4 w-4 text-amber-300 shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>';
+                    }
                     document.getElementById('score-badge-title').innerText = score.badge_title;
 
                     document.getElementById('score-quiz-val').innerText = '+' + score.quiz_score + ' Pts';
@@ -1590,7 +1695,7 @@
                         document.getElementById('score-retry-val').className = 'text-sm sm:text-base font-black text-rose-400 mt-0.5 block';
                         document.getElementById('score-retry-detail').innerText = 'Mengulang ' + score.retry_count + 'x';
                     } else {
-                        document.getElementById('score-retry-val').innerText = '0 Pts (First Try! 🎯)';
+                        document.getElementById('score-retry-val').innerText = '0 Pts (First Try!)';
                         document.getElementById('score-retry-val').className = 'text-sm sm:text-base font-black text-emerald-400 mt-0.5 block';
                         document.getElementById('score-retry-detail').innerText = 'Menuntaskan tanpa mengulang';
                     }
@@ -1634,11 +1739,11 @@
                     document.getElementById('result-word2-def').innerText = w2.definition;
                 }
                 if (resultCountdownBox) resultCountdownBox.classList.remove('hidden');
-                if (btnRestart) btnRestart.innerHTML = '<span>🔄 Main Lagi</span>';
+                if (btnRestart) btnRestart.innerHTML = '<svg class="h-3.5 w-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"/></svg><span>Main Lagi</span>';
             } else {
                 resultCard.className = 'rounded-3xl border border-danger-500/40 bg-gradient-to-br from-danger-950/40 via-surface-900 to-surface-950 p-6 sm:p-10 text-center shadow-2xl';
                 resultBadgeIcon.className = 'mx-auto flex h-20 w-20 items-center justify-center rounded-3xl bg-danger-500/20 text-danger-400 text-4xl mb-4 border border-danger-400/30';
-                resultBadgeIcon.innerText = '💀';
+                resultBadgeIcon.innerHTML = '<svg class="w-10 h-10 text-danger-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>';
                 resultPill.className = 'inline-block px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider bg-danger-500/20 text-danger-300 mb-2';
                 resultPill.innerText = 'KESEMPATAN HABIS (GAME OVER)';
                 resultTitle.innerText = 'Sayang Sekali, Kesempatanmu Habis!';
@@ -1658,11 +1763,11 @@
                 document.getElementById('result-word2-def').innerText = '';
 
                 if (resultCountdownBox) resultCountdownBox.classList.add('hidden');
-                if (btnRestart) btnRestart.innerHTML = '<span>🔄 Mengulang</span>';
+                if (btnRestart) btnRestart.innerHTML = '<svg class="h-3.5 w-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"/></svg><span>Mengulang</span>';
             }
 
-            // Generate emoji grid
-            generateEmojiGrid(record);
+            // Generate grid tiles
+            generateGridTiles(record);
 
             showView(viewResult);
             startCountdown();
@@ -1678,7 +1783,7 @@
                                 localStorage.getItem('skena_player_name') ||
                                 'Pemain SKENA';
 
-            const score = currentComputedScore || calculateScore(
+            const score = currentComputedScore || computeClientScore(
                 record.quizFirstTryCorrect ?? 5,
                 record.word1Won ?? true,
                 record.w1Attempts ?? 2,
@@ -1690,13 +1795,13 @@
 
             let grid1 = '';
             guesses1.forEach(g => {
-                grid1 += evaluateToEmojis(g, w1Target) + '\n';
+                grid1 += evaluateToSharePattern(g, w1Target) + '\n';
             });
 
             let grid2 = '';
             if (guesses2.length > 0) {
                 guesses2.forEach(g => {
-                    grid2 += evaluateToEmojis(g, w2Target) + '\n';
+                    grid2 += evaluateToSharePattern(g, w2Target) + '\n';
                 });
             }
 
@@ -1704,25 +1809,25 @@
             const formattedTotalScore = Number(score.total_score).toLocaleString('id-ID');
             const durationText = formatDuration(score.duration_seconds);
 
-            let msg = `🚨 *TANTANGAN MINI GAMES SKENA BNNP SULTENG* 🚨\n`;
+            let msg = `*TANTANGAN MINI GAMES SKENA BNNP SULTENG*\n`;
             msg += `_Edukasi Pencegahan Narkoba & Asah Otak Harian_\n\n`;
 
-            msg += `🏆 *HASIL SKOR SAYA HARI INI:*\n`;
-            msg += `👤 Nama: *${currentName}*\n`;
-            msg += `⭐ Total Skor: *${formattedTotalScore} PTS*\n`;
-            msg += `🎖️ Gelar: *${score.badge_title}* ${score.badge_icon}\n`;
-            msg += `⏱️ Waktu Selesai: *${durationText}*\n`;
-            msg += `🎯 Mitos atau Fakta: *${score.quiz_correct_count}/5 Benar (Babak 1)*\n\n`;
+            msg += `*HASIL SKOR SAYA HARI INI:*\n`;
+            msg += `• Nama: *${currentName}*\n`;
+            msg += `• Total Skor: *${formattedTotalScore} PTS*\n`;
+            msg += `• Gelar: *${score.badge_title}*\n`;
+            msg += `• Waktu Selesai: *${durationText}*\n`;
+            msg += `• Mitos atau Fakta: *${score.quiz_correct_count}/5 Benar (Babak 1)*\n\n`;
 
-            msg += `🧩 *PAPAN TEBAK KATA (WORDLE):*\n`;
+            msg += `*PAPAN TEBAK KATA (WORDLE):*\n`;
             msg += `Kata 1 (${record.word1Won ? guesses1.length : 'X'}/6):\n${grid1}`;
             if (grid2) {
                 msg += `Kata 2 (${record.word2Won ? guesses2.length : 'X'}/6):\n${grid2}`;
             }
 
-            msg += `\n🔥 *BERANI KALAHKAN SKORKU?*\n`;
+            msg += `\n*BERANI KALAHKAN SKORKU?*\n`;
             msg += `Buktikan wawasanmu dan rebut posisi Top 10 di Papan Peringkat Harian BNNP Sulteng! Reset setiap jam 07:00 WITA.\n\n`;
-            msg += `👉 *Ayo Mainkan Sekarang (Gratis & Seru):*\n${gameUrl}\n\n`;
+            msg += `*Ayo Mainkan Sekarang (Gratis & Seru):*\n${gameUrl}\n\n`;
             msg += `#SKENABNNP #BNNPSulteng #WarOnDrugs #IndonesiaBersinar #TolakNarkoba`;
 
             return msg;
@@ -1731,17 +1836,46 @@
         function openWhatsAppShare(text) {
             const btnShareText = document.getElementById('btn-share-text');
             if (btnShareText) {
-                btnShareText.innerText = 'Membuka WhatsApp... ✓';
+                btnShareText.innerText = 'Membuka WhatsApp...';
                 setTimeout(() => {
                     btnShareText.innerText = 'Bagikan Skor & Tantang di WhatsApp';
                 }, 3000);
             }
-            // Menggunakan universal link resmi wa.me yang kompatibel penuh dengan emoji di WA Web & WA Mobile
             const waUrl = 'https://wa.me/?text=' + encodeURIComponent(text);
             window.open(waUrl, '_blank');
         }
 
-        function generateEmojiGrid(record) {
+        function evaluateTileStatuses(guess, target) {
+            const len = target.length;
+            const statuses = new Array(len).fill('absent');
+            const counts = {};
+            for (let i = 0; i < len; i++) {
+                const c = target[i];
+                counts[c] = (counts[c] || 0) + 1;
+            }
+            for (let i = 0; i < len; i++) {
+                if (guess[i] === target[i]) {
+                    statuses[i] = 'correct';
+                    counts[guess[i]]--;
+                }
+            }
+            for (let i = 0; i < len; i++) {
+                if (statuses[i] === 'correct') continue;
+                const c = guess[i];
+                if (counts[c] && counts[c] > 0) {
+                    statuses[i] = 'present';
+                    counts[c]--;
+                }
+            }
+            return statuses;
+        }
+
+        function evaluateToSharePattern(guess, target) {
+            const statuses = evaluateTileStatuses(guess, target);
+            return statuses.map(s => s === 'correct' ? '[V]' : (s === 'present' ? '[?]' : '[-]')).join(' ');
+        }
+
+        function generateGridTiles(record) {
             const container = document.getElementById('result-emoji-grid');
             container.innerHTML = '';
 
@@ -1750,11 +1884,29 @@
             const guesses1 = record.wordGuesses ? record.wordGuesses[0] || [] : [];
             const guesses2 = record.wordGuesses ? record.wordGuesses[1] || [] : [];
 
+            function renderGuessRow(statuses) {
+                const row = document.createElement('div');
+                row.className = 'flex items-center justify-center gap-1.5 py-0.5';
+                statuses.forEach(status => {
+                    const tile = document.createElement('span');
+                    if (status === 'correct') {
+                        tile.className = 'w-6 h-6 rounded-md bg-emerald-600 flex items-center justify-center text-white shadow-xs';
+                        tile.innerHTML = '<svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>';
+                    } else if (status === 'present') {
+                        tile.className = 'w-6 h-6 rounded-md bg-amber-500 flex items-center justify-center text-white shadow-xs';
+                        tile.innerHTML = '<svg class="w-2.5 h-2.5 fill-current shrink-0" viewBox="0 0 8 8"><circle cx="4" cy="4" r="3"/></svg>';
+                    } else {
+                        tile.className = 'w-6 h-6 rounded-md bg-surface-700/80 dark:bg-surface-800 flex items-center justify-center text-surface-400 shadow-xs';
+                        tile.innerHTML = '<svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>';
+                    }
+                    row.appendChild(tile);
+                });
+                return row;
+            }
+
             guesses1.forEach(guess => {
-                const rowStr = evaluateToEmojis(guess, w1Target);
-                const div = document.createElement('div');
-                div.innerText = rowStr;
-                container.appendChild(div);
+                const statuses = evaluateTileStatuses(guess, w1Target);
+                container.appendChild(renderGuessRow(statuses));
             });
 
             if (guesses2.length > 0) {
@@ -1763,10 +1915,8 @@
                 container.appendChild(sep);
 
                 guesses2.forEach(guess => {
-                    const rowStr = evaluateToEmojis(guess, w2Target);
-                    const div = document.createElement('div');
-                    div.innerText = rowStr;
-                    container.appendChild(div);
+                    const statuses = evaluateTileStatuses(guess, w2Target);
+                    container.appendChild(renderGuessRow(statuses));
                 });
             }
 
@@ -1790,7 +1940,7 @@
                             title: 'Skor Mini Games SKENA BNNP Sulteng',
                             text: fullShareText
                         }).then(() => {
-                            if (btnShareText) btnShareText.innerText = 'Tersalin & Berhasil Dibagikan! ✓';
+                            if (btnShareText) btnShareText.innerText = 'Tersalin & Berhasil Dibagikan!';
                             setTimeout(() => {
                                 if (btnShareText) btnShareText.innerText = 'Bagikan Skor & Tantang di WhatsApp';
                             }, 3000);
@@ -1803,31 +1953,6 @@
                     }
                 };
             }
-        }
-
-        function evaluateToEmojis(guess, target) {
-            const len = target.length;
-            const emojis = new Array(len).fill('⬛');
-            const counts = {};
-            for (let i = 0; i < len; i++) {
-                const c = target[i];
-                counts[c] = (counts[c] || 0) + 1;
-            }
-            for (let i = 0; i < len; i++) {
-                if (guess[i] === target[i]) {
-                    emojis[i] = '🟩';
-                    counts[guess[i]]--;
-                }
-            }
-            for (let i = 0; i < len; i++) {
-                if (emojis[i] === '🟩') continue;
-                const c = guess[i];
-                if (counts[c] && counts[c] > 0) {
-                    emojis[i] = '🟨';
-                    counts[c]--;
-                }
-            }
-            return emojis.join('');
         }
 
         // Countdown Timer ke Reset Soal Baru & Leaderboard (Setiap Jam 07:00 WITA)
@@ -1953,13 +2078,13 @@
 
             if (titleEl) {
                 if (rank && rank <= 3) {
-                    titleEl.innerText = '🏆 Luar Biasa! Kamu Masuk Top 3 (Peringkat #' + rank + ')!';
+                    titleEl.innerText = 'Luar Biasa! Kamu Masuk Top 3 (Peringkat #' + rank + ')!';
                 } else if (rank && rank <= 10) {
-                    titleEl.innerText = '⭐ Hebat! Kamu Masuk Top 10 (Peringkat #' + rank + ')!';
+                    titleEl.innerText = 'Hebat! Kamu Masuk Top 10 (Peringkat #' + rank + ')!';
                 } else if (rank) {
-                    titleEl.innerText = '🎉 Skormu Tercatat di Peringkat #' + rank + '!';
+                    titleEl.innerText = 'Skormu Tercatat di Peringkat #' + rank + '!';
                 } else {
-                    titleEl.innerText = '✓ Skormu Sudah Tercatat di Papan Peringkat!';
+                    titleEl.innerText = 'Skormu Sudah Tercatat di Papan Peringkat!';
                 }
             }
 
@@ -2022,11 +2147,10 @@
             const total = Math.max(0, qScore + w1Score + w2Score + spBonus - rPenalty);
 
             let badge = 'Sahabat Sadar P4GN';
-            let icon = '📖';
-            if (total >= 1000) { badge = 'Master P4GN Paripurna'; icon = '🌟'; }
-            else if (total >= 850) { badge = 'Pejuang Bersinar Tangguh'; icon = '🏅'; }
-            else if (total >= 700) { badge = 'Relawan Sadar Narkoba'; icon = '🥈'; }
-            else if (total >= 500) { badge = 'Penggiat Muda P4GN'; icon = '🥉'; }
+            if (total >= 1000) { badge = 'Master P4GN Paripurna'; }
+            else if (total >= 850) { badge = 'Pejuang Bersinar Tangguh'; }
+            else if (total >= 700) { badge = 'Relawan Sadar Narkoba'; }
+            else if (total >= 500) { badge = 'Penggiat Muda P4GN'; }
 
             return {
                 total_score: total,
@@ -2040,8 +2164,7 @@
                 retry_penalty: rPenalty,
                 retry_count: retries,
                 duration_seconds: duration,
-                badge_title: badge,
-                badge_icon: icon
+                badge_title: badge
             };
         }
 
@@ -2253,23 +2376,19 @@
 
             let rankBadge = '';
             let borderClass = '';
-            let medalEmoji = '';
             let scoreColor = '';
 
             if (player.rank === 1) {
                 rankBadge = 'bg-gradient-to-br from-amber-400 to-yellow-500 text-surface-950 font-black shadow-md';
                 borderClass = 'border border-amber-400/60 dark:border-amber-400/30 bg-gradient-to-r from-amber-500/15 via-yellow-500/10 to-transparent dark:from-amber-500/20 dark:via-yellow-500/10 dark:to-surface-800/40 shadow-xs';
-                medalEmoji = '🥇';
                 scoreColor = 'text-amber-600 dark:text-amber-400';
             } else if (player.rank === 2) {
                 rankBadge = 'bg-gradient-to-br from-slate-200 to-slate-400 text-surface-950 font-black shadow-sm';
                 borderClass = 'border border-slate-300 dark:border-slate-600/40 bg-gradient-to-r from-slate-200/50 via-slate-100/30 to-transparent dark:from-slate-700/30 dark:via-slate-800/20 dark:to-surface-800/40 shadow-xs';
-                medalEmoji = '🥈';
                 scoreColor = 'text-slate-700 dark:text-slate-200';
             } else {
                 rankBadge = 'bg-gradient-to-br from-amber-600 to-amber-700 text-white font-black shadow-sm';
                 borderClass = 'border border-amber-600/40 dark:border-amber-700/30 bg-gradient-to-r from-amber-600/10 via-orange-500/5 to-transparent dark:from-amber-800/20 dark:via-orange-900/10 dark:to-surface-800/40 shadow-xs';
-                medalEmoji = '🥉';
                 scoreColor = 'text-amber-700 dark:text-amber-400';
             }
 
@@ -2277,8 +2396,8 @@
 
             row.innerHTML = `
                 <div class="flex items-center gap-3 min-w-0">
-                    <div class="flex h-11 w-11 sm:h-12 sm:w-12 shrink-0 items-center justify-center rounded-2xl font-black text-xl shadow-xs ${rankBadge}">
-                        <span>${medalEmoji}</span>
+                    <div class="flex h-11 w-11 sm:h-12 sm:w-12 shrink-0 items-center justify-center rounded-2xl font-black text-sm sm:text-base font-mono shadow-xs ${rankBadge}">
+                        #${player.rank}
                     </div>
                     <div class="min-w-0">
                         <div class="flex items-center gap-1.5 flex-wrap">
@@ -2288,7 +2407,7 @@
                             ${isHighlight ? '<span class="px-1.5 py-0.2 rounded-full text-[9px] font-black bg-primary-500 text-white animate-pulse">KAMU</span>' : ''}
                         </div>
                         <p class="text-xs text-surface-500 dark:text-surface-400 font-medium flex items-center gap-1 mt-0.5">
-                            <span>⏱️</span>
+                            <svg class="w-3.5 h-3.5 text-surface-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                             <span>${player.duration_formatted}</span>
                         </p>
                     </div>
@@ -2322,7 +2441,7 @@
                             ${isHighlight ? '<span class="px-1.5 py-0.5 rounded text-[9px] font-black bg-primary-500 text-white">KAMU</span>' : ''}
                         </div>
                         <p class="text-[11px] text-surface-500 dark:text-surface-400 mt-0.5 flex items-center gap-1">
-                            <span>⏱️</span>
+                            <svg class="w-3.5 h-3.5 text-surface-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                             <span>${player.duration_formatted}</span>
                         </p>
                     </div>
@@ -2378,7 +2497,7 @@
 
                 playSound('click');
                 btnSubmit.disabled = true;
-                btnSubmit.innerHTML = '<span>Menyimpan...</span><span class="animate-spin">⏳</span>';
+                btnSubmit.innerHTML = '<span>Menyimpan...</span><svg class="h-3.5 w-3.5 animate-spin shrink-0" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>';
 
                 // Simpan nama di localStorage
                 localStorage.setItem('skena_player_name', nameVal);
@@ -2452,13 +2571,13 @@
                         }, 1200);
                     } else {
                         btnSubmit.disabled = false;
-                        btnSubmit.innerHTML = '<span>Kirim Skor</span><span>🚀</span>';
+                        btnSubmit.innerHTML = '<span>Kirim Skor</span><svg class="h-3.5 w-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5"/></svg>';
                         alert(data.message || 'Gagal mengirim skor.');
                     }
                 })
                 .catch(() => {
                     btnSubmit.disabled = false;
-                    btnSubmit.innerHTML = '<span>Kirim Skor</span><span>🚀</span>';
+                    btnSubmit.innerHTML = '<span>Kirim Skor</span><svg class="h-3.5 w-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5"/></svg>';
                     alert('Terjadi kesalahan koneksi saat mengirim skor.');
                 });
             });
@@ -2485,7 +2604,7 @@
                 const btnSubmit = document.getElementById('btn-submit-score-lb');
                 if (btnSubmit) {
                     btnSubmit.disabled = false;
-                    btnSubmit.innerHTML = '<span>Perbarui Nama</span><span>✏️</span>';
+                    btnSubmit.innerHTML = '<span>Perbarui Nama</span><svg class="h-3.5 w-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"/></svg>';
                     btnSubmit.className = 'flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-surface-950 font-black px-4 py-2.5 text-xs sm:text-sm shadow-md transition-all active:scale-95 cursor-pointer shrink-0';
                 }
             });
