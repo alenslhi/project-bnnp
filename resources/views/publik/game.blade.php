@@ -171,12 +171,6 @@
             <div class="space-y-2">
                 <div class="flex items-center justify-between text-xs font-bold text-surface-500 dark:text-surface-400">
                     <span id="quiz-progress-label">Pertanyaan 1 dari 5</span>
-                    <span id="quiz-remedial-badge" class="hidden px-2.5 py-1 rounded-full text-[10px] font-extrabold bg-amber-500/20 text-amber-600 dark:text-amber-400 border border-amber-500/30 animate-pulse inline-flex items-center gap-1">
-                        <svg class="h-3 w-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"/>
-                        </svg>
-                        <span>Ulangi Pertanyaan</span>
-                    </span>
                     <span id="quiz-score-badge" class="text-primary-600 dark:text-primary-400">Tuntas: <span id="quiz-mastered-count">0</span>/5</span>
                 </div>
                 <div class="h-3.5 w-full bg-surface-200 dark:bg-surface-800 rounded-full overflow-hidden p-0.5">
@@ -204,12 +198,6 @@
                 <div class="flex items-center justify-between mb-4">
                     <span id="question-badge" class="px-3 py-1 rounded-lg text-xs font-bold uppercase tracking-wider bg-primary-50 dark:bg-primary-500/10 text-primary-700 dark:text-primary-300">
                         Kategori
-                    </span>
-                    <span id="question-remedial-pill" class="hidden text-[11px] font-bold text-amber-600 dark:text-amber-400 flex items-center gap-1">
-                        <svg class="h-3 w-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"/>
-                        </svg>
-                        <span>Pengulangan</span>
                     </span>
                 </div>
 
@@ -539,12 +527,6 @@
                                 </div>
                             </div>
                             <div class="flex items-center gap-1.5 shrink-0 self-end sm:self-center">
-                                <button id="btn-change-player-name" type="button" class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-white/20 bg-white/5 hover:bg-white/10 text-surface-300 hover:text-white font-semibold text-[11px] transition cursor-pointer" title="Ubah nama tampilan">
-                                    <svg class="h-3.5 w-3.5 text-surface-300 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"/>
-                                    </svg>
-                                    <span>Ganti Nama</span>
-                                </button>
                                 <button id="btn-view-lb-after-submit" type="button" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs transition cursor-pointer shadow">
                                     <svg class="h-3.5 w-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.504-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.004 0A5.25 5.25 0 0012 3a5.25 5.25 0 00-5.25 11.25m10.5 0a5.25 5.25 0 01-5.25 0m0 0a5.25 5.25 0 00-5.25 0"/>
@@ -553,6 +535,21 @@
                                     <svg class="h-3.5 w-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
                                 </button>
                             </div>
+                        </div>
+                    </div>
+
+                    {{-- Notice ketika pemain bermain dalam mode mengulang (Tidak bisa isi nama) --}}
+                    <div id="leaderboard-retry-notice" class="hidden mt-2 p-3 sm:p-3.5 rounded-xl bg-amber-500/15 border border-amber-400/30 text-amber-200 text-xs">
+                        <div class="flex items-center justify-between gap-2.5">
+                            <div class="flex items-center gap-2 min-w-0 flex-1">
+                                <svg class="h-4 w-4 text-amber-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.504-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.004 0A5.25 5.25 0 0012 3a5.25 5.25 0 00-5.25 11.25m10.5 0a5.25 5.25 0 01-5.25 0m0 0a5.25 5.25 0 00-5.25 0"/>
+                                </svg>
+                                <span class="text-[11px] font-bold text-amber-100">Peringkat harian hanya mencatat percobaan pertama hari ini.</span>
+                            </div>
+                            <button id="btn-view-lb-retry-only" type="button" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-surface-950 font-black text-xs transition cursor-pointer shrink-0 shadow">
+                                <span>Lihat Top 10</span>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -581,13 +578,13 @@
                 </div>
 
                 {{-- Countdown timer to next challenge (Kompak 1 Baris) --}}
-                <div id="result-countdown-box" class="rounded-xl bg-amber-500/10 border border-amber-400/20 px-3.5 py-2.5 max-w-sm mx-auto my-3 text-xs flex items-center justify-between gap-2">
+                <div id="result-countdown-box" class="rounded-xl bg-amber-50 dark:bg-amber-500/10 border border-amber-300 dark:border-amber-400/25 px-3.5 py-2.5 max-w-sm mx-auto my-3 text-xs flex items-center justify-between gap-2 shadow-xs">
                     <div class="text-left">
-                        <span class="text-[9px] font-bold uppercase tracking-wider text-amber-300 block">Tantangan Baru Berikutnya (07:00 WITA):</span>
-                        <span id="countdown-timer" class="text-xs sm:text-sm font-black font-mono text-amber-400">--:--:--</span>
+                        <span class="text-[9px] font-black uppercase tracking-wider text-amber-900 dark:text-amber-300 block">Tantangan Baru Berikutnya (07:00 WITA):</span>
+                        <span id="countdown-timer" class="text-xs sm:text-sm font-black font-mono text-amber-700 dark:text-amber-400">--:--:--</span>
                     </div>
-                    <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-amber-400/20 bg-amber-400/5 text-[10px] font-bold text-amber-300/80 shrink-0">
-                        <svg class="h-3.5 w-3.5 text-amber-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <div class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-amber-400/50 dark:border-amber-400/30 bg-amber-200/60 dark:bg-amber-400/15 text-[10px] font-black text-amber-950 dark:text-amber-200 shrink-0 shadow-xs">
+                        <svg class="h-3.5 w-3.5 text-amber-700 dark:text-amber-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
                         </svg>
                         <span>Tantangan Harian</span>
@@ -1049,8 +1046,10 @@
             isRemedialSession = false;
             isAnswering = false;
 
-            document.getElementById('remedial-alert-banner').classList.add('hidden');
-            document.getElementById('quiz-remedial-badge').classList.add('hidden');
+            const remedialAlert = document.getElementById('remedial-alert-banner');
+            if (remedialAlert) remedialAlert.classList.add('hidden');
+            const remedialBadge = document.getElementById('quiz-remedial-badge');
+            if (remedialBadge) remedialBadge.classList.add('hidden');
             updateQuizProgress();
 
             showView(viewMythFact);
@@ -1069,9 +1068,12 @@
                     remedialQueue = [];
 
                     // Show remedial banners
-                    document.getElementById('remedial-alert-banner').classList.remove('hidden');
-                    document.getElementById('remedial-count-text').innerText = quizQueue.length;
-                    document.getElementById('quiz-remedial-badge').classList.remove('hidden');
+                    const remedialAlertEl = document.getElementById('remedial-alert-banner');
+                    if (remedialAlertEl) remedialAlertEl.classList.remove('hidden');
+                    const remedialCountEl = document.getElementById('remedial-count-text');
+                    if (remedialCountEl) remedialCountEl.innerText = quizQueue.length;
+                    const remedialBadgeEl = document.getElementById('quiz-remedial-badge');
+                    if (remedialBadgeEl) remedialBadgeEl.classList.remove('hidden');
 
                     playSound('click');
                 } else {
@@ -1088,10 +1090,12 @@
             document.getElementById('question-statement').innerText = currentQuestion.statement;
 
             const remedialPill = document.getElementById('question-remedial-pill');
-            if (isRemedialSession) {
-                remedialPill.classList.remove('hidden');
-            } else {
-                remedialPill.classList.add('hidden');
+            if (remedialPill) {
+                if (isRemedialSession) {
+                    remedialPill.classList.remove('hidden');
+                } else {
+                    remedialPill.classList.add('hidden');
+                }
             }
 
             // Acak posisi tombol MITOS vs FAKTA (kiri/kanan) pada setiap pertanyaan
@@ -1714,12 +1718,23 @@
 
                     const formLb = document.getElementById('form-submit-leaderboard');
                     const successCard = document.getElementById('leaderboard-submit-success');
+                    const retryNotice = document.getElementById('leaderboard-retry-notice');
                     const cardTitle = document.getElementById('leaderboard-card-title');
-                    const isAlreadySubmitted = Boolean(record.hasSubmittedLeaderboard || hasSubmittedLeaderboard);
+                    const isAlreadySubmitted = Boolean(
+                        record.hasSubmittedLeaderboard || 
+                        hasSubmittedLeaderboard || 
+                        localStorage.getItem('skena_has_submitted_' + TODAY_DATE)
+                    );
+                    const isRetry = Boolean(
+                        (record.retryCount && record.retryCount > 0) || 
+                        retryCount > 0 || 
+                        localStorage.getItem('skena_retry_' + TODAY_DATE)
+                    );
 
                     if (isAlreadySubmitted) {
                         hasSubmittedLeaderboard = true;
                         if (formLb) formLb.classList.add('hidden');
+                        if (retryNotice) retryNotice.classList.add('hidden');
                         if (cardTitle) cardTitle.innerText = 'Papan Peringkat Harian (Sudah Tercatat)';
                         if (successCard) {
                             successCard.classList.remove('hidden');
@@ -1727,10 +1742,18 @@
                         }
                         // Refresh live rank terkini dari database server saat kembali ke halaman
                         refreshLivePlayerRank();
+                    } else if (isRetry) {
+                        // KETIKA MENGULANG: TIDAK ADA OPSI ISI NAMA KEMBALI
+                        if (formLb) formLb.classList.add('hidden');
+                        if (successCard) successCard.classList.add('hidden');
+                        if (retryNotice) retryNotice.classList.remove('hidden');
+                        if (cardTitle) cardTitle.innerText = 'Papan Peringkat Harian';
                     } else {
+                        // Percobaan pertama resmi: tampilkan form input nama
                         if (formLb) formLb.classList.remove('hidden');
                         if (cardTitle) cardTitle.innerText = 'Catat Namamu di Top 10 Hari Ini';
                         if (successCard) successCard.classList.add('hidden');
+                        if (retryNotice) retryNotice.classList.add('hidden');
                     }
                 }
 
@@ -2532,6 +2555,8 @@
 
                         // Simpan status sudah terdaftar & detailnya ke localStorage agar persisten saat refresh!
                         try {
+                            localStorage.setItem('skena_has_submitted_' + TODAY_DATE, 'true');
+                            localStorage.setItem('skena_player_name', nameVal);
                             const saved = localStorage.getItem(STORAGE_KEY_TODAY);
                             if (saved) {
                                 const rec = JSON.parse(saved);
@@ -2574,36 +2599,28 @@
             });
         }
 
-        // Tombol Ganti Nama Pemain
-        const btnChangePlayerName = document.getElementById('btn-change-player-name');
-        if (btnChangePlayerName) {
-            btnChangePlayerName.addEventListener('click', () => {
+        // Tombol Lihat Top 10 dari Notice Pemain Mengulang
+        const btnViewLbRetryOnly = document.getElementById('btn-view-lb-retry-only');
+        if (btnViewLbRetryOnly) {
+            btnViewLbRetryOnly.addEventListener('click', () => {
                 playSound('click');
-                hasSubmittedLeaderboard = false; // Buka kunci pengiriman untuk ganti nama
-                const formLb = document.getElementById('form-submit-leaderboard');
-                const successCard = document.getElementById('leaderboard-submit-success');
-                const cardTitle = document.getElementById('leaderboard-card-title');
-                if (cardTitle) cardTitle.innerText = 'Ganti Nama di Papan Peringkat';
-                if (formLb) formLb.classList.remove('hidden');
-                if (successCard) successCard.classList.add('hidden');
-
-                const nameField = document.getElementById('input-player-name');
-                if (nameField) {
-                    nameField.focus();
-                    nameField.select();
-                }
-                const btnSubmit = document.getElementById('btn-submit-score-lb');
-                if (btnSubmit) {
-                    btnSubmit.disabled = false;
-                    btnSubmit.innerHTML = '<span>Perbarui Nama</span><svg class="h-3.5 w-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"/></svg>';
-                    btnSubmit.className = 'flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-surface-950 font-black px-4 py-2.5 text-xs sm:text-sm shadow-md transition-all active:scale-95 cursor-pointer shrink-0';
-                }
+                openLeaderboardModal();
             });
         }
 
         // Mengulang permainan dari babak awal lagi (Babak 1: Mitos atau Fakta)
         function restartGame() {
             playSound('click');
+            retryCount++;
+            try {
+                localStorage.setItem('skena_retry_' + TODAY_DATE, retryCount.toString());
+            } catch (e) {}
+
+            const previouslySubmitted = Boolean(localStorage.getItem('skena_has_submitted_' + TODAY_DATE));
+            if (previouslySubmitted) {
+                hasSubmittedLeaderboard = true;
+            }
+
             localStorage.removeItem(STORAGE_KEY_TODAY);
             isPracticeMode = false;
             masteredCount = 0;
@@ -2616,8 +2633,6 @@
             word2Won = false;
             isGameOver = false;
             keyStatusMap = {};
-            hasSubmittedLeaderboard = false;
-            retryCount++;
             gameStartTime = Date.now();
 
             // Langsung bawa pemain mengulang dari babak awal (Mitos atau Fakta)
