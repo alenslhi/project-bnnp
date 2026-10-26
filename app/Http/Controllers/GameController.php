@@ -454,21 +454,16 @@ class GameController extends Controller
     {
         $today = GameLeaderboard::getCurrentPeriodDate();
         $nextResetCarbon = GameLeaderboard::getNextResetCarbon();
-        $offset = (int) ($request->session()->get('skena_set_offset') ?? $request->cookie('skena_set_offset', 0));
 
-        if ($request->has('reset')) {
-            // Setiap kali di-reset, berganti ke set soal baru berikutnya!
-            $offset = $offset + 1;
-            $request->session()->put('skena_set_offset', $offset);
-            cookie()->queue('skena_set_offset', (string) $offset, 60 * 24 * 30);
-            cookie()->queue(cookie()->forget('skena_game_done_' . $today));
+        // Bersihkan session/cookie skena_set_offset lama jika pernah tersimpan dari masa pengujian
+        if ($request->hasCookie('skena_set_offset') || $request->session()->has('skena_set_offset')) {
+            $request->session()->forget('skena_set_offset');
+            cookie()->queue(cookie()->forget('skena_set_offset'));
         }
 
+        $offset = 0;
         if ($request->has('set')) {
             $offset = max(0, (int) $request->input('set') - 1);
-            $request->session()->put('skena_set_offset', $offset);
-            cookie()->queue('skena_set_offset', (string) $offset, 60 * 24 * 30);
-            cookie()->queue(cookie()->forget('skena_game_done_' . $today));
         }
 
         $puzzleData = $this->getDailyPuzzle($today, $offset);
@@ -489,7 +484,7 @@ class GameController extends Controller
     {
         $today = GameLeaderboard::getCurrentPeriodDate();
         $nextResetCarbon = GameLeaderboard::getNextResetCarbon();
-        $offset = (int) ($request->session()->get('skena_set_offset') ?? $request->cookie('skena_set_offset', 0));
+        $offset = 0;
         if ($request->has('set')) {
             $offset = max(0, (int) $request->input('set') - 1);
         }

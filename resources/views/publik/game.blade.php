@@ -581,17 +581,17 @@
                 </div>
 
                 {{-- Countdown timer to next challenge (Kompak 1 Baris) --}}
-                <div id="result-countdown-box" class="rounded-xl bg-amber-500/10 border border-amber-400/20 px-3 py-2 max-w-sm mx-auto my-3 text-xs flex items-center justify-between gap-2">
+                <div id="result-countdown-box" class="rounded-xl bg-amber-500/10 border border-amber-400/20 px-3.5 py-2.5 max-w-sm mx-auto my-3 text-xs flex items-center justify-between gap-2">
                     <div class="text-left">
-                        <span class="text-[9px] font-bold uppercase tracking-wider text-amber-300 block">Reset Soal Baru (07:00 WITA):</span>
+                        <span class="text-[9px] font-bold uppercase tracking-wider text-amber-300 block">Tantangan Baru Berikutnya (07:00 WITA):</span>
                         <span id="countdown-timer" class="text-xs sm:text-sm font-black font-mono text-amber-400">--:--:--</span>
                     </div>
-                    <a href="{{ route('game.index', ['reset' => 1, 't' => time()]) }}" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-amber-400/30 bg-amber-400/10 hover:bg-amber-400/20 text-[10px] font-bold text-amber-300 transition cursor-pointer shrink-0">
-                        <svg class="h-3 w-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"/>
+                    <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-amber-400/20 bg-amber-400/5 text-[10px] font-bold text-amber-300/80 shrink-0">
+                        <svg class="h-3.5 w-3.5 text-amber-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
                         </svg>
-                        <span>Reset Soal</span>
-                    </a>
+                        <span>Tantangan Harian</span>
+                    </div>
                 </div>
 
                 {{-- Action Buttons (Promosi & Share WhatsApp Lebih Menarik) --}}
@@ -609,11 +609,11 @@
                             </svg>
                             <span>Papan Peringkat</span>
                         </button>
-                        <button id="btn-restart-game" type="button" class="flex-1 inline-flex items-center justify-center gap-1.5 rounded-xl border border-white/20 bg-white/5 hover:bg-white/10 text-white font-bold px-3 py-2.5 text-xs shadow transition cursor-pointer hover:scale-[1.01]">
+                        <button id="btn-restart-game" type="button" class="hidden flex-1 inline-flex items-center justify-center gap-1.5 rounded-xl border border-white/20 bg-white/5 hover:bg-white/10 text-white font-bold px-3 py-2.5 text-xs shadow transition cursor-pointer hover:scale-[1.01]">
                             <svg class="h-3.5 w-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"/>
                             </svg>
-                            <span>Main Lagi</span>
+                            <span>Mengulang</span>
                         </button>
                     </div>
 
@@ -1741,9 +1741,9 @@
                     document.getElementById('result-word1-def').innerText = w1.definition;
                     document.getElementById('result-word2-title').innerText = w2.word;
                     document.getElementById('result-word2-def').innerText = w2.definition;
-                }
                 if (resultCountdownBox) resultCountdownBox.classList.remove('hidden');
-                if (btnRestart) btnRestart.innerHTML = '<svg class="h-3.5 w-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"/></svg><span>Main Lagi</span>';
+                // Sembunyikan tombol restart saat menang agar pemain hanya bermain 1 kali per hari
+                if (btnRestart) btnRestart.classList.add('hidden');
             } else {
                 resultCard.className = 'rounded-3xl border border-danger-500/40 bg-gradient-to-br from-danger-950/40 via-surface-900 to-surface-950 p-6 sm:p-10 text-center shadow-2xl';
                 resultBadgeIcon.className = 'mx-auto flex h-20 w-20 items-center justify-center rounded-3xl bg-danger-500/20 text-danger-400 text-4xl mb-4 border border-danger-400/30';
@@ -2020,20 +2020,6 @@
         // ══════════════════════════════════════════════════════════
         // INITIALIZATION & CHECK IF ALREADY PLAYED TODAY
         // ══════════════════════════════════════════════════════════
-        const urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.has('reset')) {
-            Object.keys(localStorage).forEach(k => {
-                if (k.startsWith(STORAGE_KEY_PREFIX)) localStorage.removeItem(k);
-            });
-            window.history.replaceState({}, document.title, window.location.pathname);
-        }
-
-        // Global helper untuk reset cepat jika dibutuhkan kapan saja di console
-        window.skenaResetToday = function() {
-            localStorage.removeItem(STORAGE_KEY_TODAY);
-            window.location.href = window.location.pathname;
-        };
-
         function checkDailyStatus() {
             const savedToday = localStorage.getItem(STORAGE_KEY_TODAY);
             if (savedToday) {
