@@ -1741,6 +1741,7 @@
                     document.getElementById('result-word1-def').innerText = w1.definition;
                     document.getElementById('result-word2-title').innerText = w2.word;
                     document.getElementById('result-word2-def').innerText = w2.definition;
+                }
                 if (resultCountdownBox) resultCountdownBox.classList.remove('hidden');
                 // Sembunyikan tombol restart saat menang agar pemain hanya bermain 1 kali per hari
                 if (btnRestart) btnRestart.classList.add('hidden');
