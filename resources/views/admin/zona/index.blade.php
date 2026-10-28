@@ -15,7 +15,9 @@
         width: 100% !important;
         max-width: 100% !important;
         overflow: hidden !important;
+        background: #0b132b !important;
     }
+    .kabupaten-text-label { background: transparent !important; border: none !important; }
     @media (min-height: 850px) {
         #admin-peta-zona {
             height: 420px;
@@ -590,35 +592,68 @@ document.addEventListener('DOMContentLoaded', function() {
         maxBoundsViscosity: 0.9,
     }).setView([-1.0, 120.5], 7);
 
-    // 2. Base Tile Layers
+    // 2. Base Tile Layers (Default: Khusus Vektor Sulawesi Tengah tanpa peta dunia)
+    const cleanSultengLayer = L.layerGroup().addTo(map);
+
     const osmLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; OpenStreetMap contributors',
+        attribution: '&copy; OpenStreetMap contributors • BNNP Sulteng',
         maxZoom: 19,
+        bounds: sultengBounds,
     });
 
     const esriTopo = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
-        attribution: 'Esri Topo',
+        attribution: 'Esri Topo • BNNP Sulteng',
         maxZoom: 18,
+        bounds: sultengBounds,
     });
 
     const satelliteLayer = L.layerGroup([
         L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
             attribution: 'Esri Imagery',
             maxZoom: 18,
+            bounds: sultengBounds,
         }),
         L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}', {
             attribution: 'Batas Esri',
             maxZoom: 18,
+            bounds: sultengBounds,
         })
     ]);
 
-    osmLayer.addTo(map);
+    // Label penanda nama 13 Kabupaten/Kota di Sulawesi Tengah
+    const kabupatenLabelsLayer = L.layerGroup();
+    const kabupatenCenters = [
+        { name: 'KOTA PALU', lat: -0.8917, lng: 119.8707 },
+        { name: 'KAB. DONGGALA', lat: -0.5500, lng: 119.7500 },
+        { name: 'KAB. SIGI', lat: -1.3833, lng: 119.9667 },
+        { name: 'KAB. PARIGI MOUTONG', lat: -0.8000, lng: 120.3000 },
+        { name: 'KAB. POSO', lat: -1.4500, lng: 120.6500 },
+        { name: 'KAB. TOLITOLI', lat: 1.0500, lng: 120.8167 },
+        { name: 'KAB. BUOL', lat: 1.0500, lng: 121.4333 },
+        { name: 'KAB. TOJO UNA-UNA', lat: -1.1667, lng: 121.6000 },
+        { name: 'KAB. BANGGAI', lat: -1.2500, lng: 122.8000 },
+        { name: 'KAB. BANGGAI KEP.', lat: -1.4500, lng: 123.2500 },
+        { name: 'KAB. BANGGAI LAUT', lat: -1.7500, lng: 123.5000 },
+        { name: 'KAB. MOROWALI', lat: -2.4833, lng: 121.9000 },
+        { name: 'KAB. MOROWALI UTARA', lat: -1.8667, lng: 121.3500 },
+    ];
+    kabupatenCenters.forEach(k => {
+        const icon = L.divIcon({
+            className: 'kabupaten-text-label',
+            html: `<span style="font-size:9px;font-weight:800;letter-spacing:0.04em;color:#f8fafc;background:rgba(15,23,42,0.85);border:1px solid rgba(56,189,248,0.4);padding:2px 6px;border-radius:5px;box-shadow:0 2px 5px rgba(0,0,0,0.6);white-space:nowrap;pointer-events:none;">${k.name}</span>`,
+            iconSize: [70, 18],
+            iconAnchor: [35, 9]
+        });
+        L.marker([k.lat, k.lng], { icon: icon, interactive: false }).addTo(kabupatenLabelsLayer);
+    });
+    kabupatenLabelsLayer.addTo(map);
 
     L.control.layers({
-        "OpenStreetMap (Lengkap Perbatasan)": osmLayer,
-        "Topografi Detail": esriTopo,
-        "Satelit + Batas Wilayah": satelliteLayer,
-    }, null, { position: 'topright' }).addTo(map);
+        "Khusus Sulawesi Tengah (Default)": cleanSultengLayer,
+        "Peta Satelit (Sulawesi Tengah)": satelliteLayer,
+        "Peta Jalan OSM (Sulawesi Tengah)": osmLayer,
+        "Topografi (Sulawesi Tengah)": esriTopo,
+    }, { "Nama Kabupaten": kabupatenLabelsLayer }, { position: 'topright' }).addTo(map);
 
     setTimeout(() => { map.invalidateSize(); }, 300);
 
